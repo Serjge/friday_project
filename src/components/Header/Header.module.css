@@ -1,0 +1,23 @@
+.wrapper {
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.link {
+    margin-right: 20px;
+    background-color: #3498DB;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    min-width: 80px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.link:hover {
+    background-color: #2980B9
+}
+.act {
+    background: #1d49aa;
+}
