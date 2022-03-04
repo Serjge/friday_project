@@ -1,3 +1,3 @@
-import {ExampleActionsType} from "types/actions";
+import { ExampleActionsType } from 'types/actions';
 
-export type AppActionsType = ExampleActionsType
+export type AppActionsType = ExampleActionsType;

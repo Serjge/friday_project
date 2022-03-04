@@ -1,12 +1,11 @@
-import { Routers } from "pages";
-import {Header} from "components";
+import { ReactElement } from 'react';
 
-export function App() {
+import { Header } from 'components';
+import { Routers } from 'pages';
 
-    return (
-        <div>
-            <Header/>
-            <Routers/>
-        </div>
-    );
-}
+export const App = (): ReactElement => (
+  <div>
+    <Header />
+    <Routers />
+  </div>
+);

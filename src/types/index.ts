@@ -1,1 +1,1 @@
-export type {AppThunkType} from './AppThunkType'
+export type { AppThunkType } from './AppThunkType';

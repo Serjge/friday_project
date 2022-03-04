@@ -1,5 +1,5 @@
-import {exampleAction} from "store/actions";
+import { exampleAction } from 'store/actions';
 
-export type ExampleActionsType = ExampleType
+export type ExampleActionsType = ExampleType;
 
-export type ExampleType = ReturnType<typeof exampleAction>
+export type ExampleType = ReturnType<typeof exampleAction>;

@@ -1,7 +1,7 @@
-export const Login = () => {
-    return (
-        <div>
-            <h1>Login</h1>
-        </div>
-    );
-};
+import { ReactElement } from 'react';
+
+export const Login = (): ReactElement => (
+  <div>
+    <h1>Login</h1>
+  </div>
+);

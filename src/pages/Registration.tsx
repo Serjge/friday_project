@@ -1,7 +1,7 @@
-export const Registration = () => {
-    return (
-        <div>
-            <h1>Registration</h1>
-        </div>
-    );
-};
+import { ReactElement } from 'react';
+
+export const Registration = (): ReactElement => (
+  <div>
+    <h1>Registration</h1>
+  </div>
+);

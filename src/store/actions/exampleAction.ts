@@ -1,6 +1,5 @@
-export const exampleAction = () => {
-    return {
-        type: 'example',
-        payload: {}
-    } as const
-}
+export const exampleAction = () =>
+  ({
+    type: 'example',
+    payload: {},
+  } as const);

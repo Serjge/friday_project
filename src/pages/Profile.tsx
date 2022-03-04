@@ -1,8 +1,7 @@
+import { ReactElement } from 'react';
 
-export const Profile = () => {
-    return (
-        <div>
-            <h1>Profile</h1>
-        </div>
-    );
-};
+export const Profile = (): ReactElement => (
+  <div>
+    <h1>Profile</h1>
+  </div>
+);

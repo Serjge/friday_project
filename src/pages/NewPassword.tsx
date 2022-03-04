@@ -1,7 +1,7 @@
-export const NewPassword = () => {
-    return (
-        <div>
-            <h1>NewPassword</h1>
-        </div>
-    );
-};
+import { ReactElement } from 'react';
+
+export const NewPassword = (): ReactElement => (
+  <div>
+    <h1>NewPassword</h1>
+  </div>
+);
