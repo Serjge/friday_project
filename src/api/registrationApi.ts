@@ -1,17 +1,14 @@
-import { AxiosResponse } from 'axios';
+// type RegistrationParamsType = {
+//   email: string;
+//   password: string;
+// };
 
 import { instance } from 'api/instance';
 
-type RegistrationParamsType = {
-  email: string;
-  password: string;
-};
-
 export const registrationApi = {
-  registration(data: RegistrationParamsType) {
-    return instance.post<RegistrationParamsType, AxiosResponse<{ addedUser: {} }>>(
-      '/auth/register',
-      data,
-    );
+  registration(email: string, password: string) {
+    return instance.post('/auth/register', { email, password });
   },
 };
+
+// <RegistrationParamsType, AxiosResponse<{ addedUser: {} }>>
