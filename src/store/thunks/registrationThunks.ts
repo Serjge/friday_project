@@ -1,20 +1,28 @@
-/* eslint-disable @typescript-eslint/no-magic-numbers */
 import { AxiosError } from 'axios';
 
 import { registrationApi } from 'api/registrationApi';
+import { statusCode } from 'enum';
+import { setError, setIsCompleted, setStatus } from 'store/actions';
 import { AppThunkType } from 'types';
 
 export const registrationTC =
   (email: string, password: string): AppThunkType =>
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async dispatch => {
     try {
-      const res = await registrationApi.registration(email, password);
-      if (res.status === 201) console.log(res.data);
-    } catch (error) {
-      const { response } = error as AxiosError;
-      if (response?.status === 400) {
-        console.log(response.data.error);
+      dispatch(setStatus('loading'));
+      const response = await registrationApi.registration({ email, password });
+      if (response.status === statusCode.created) {
+        dispatch(setIsCompleted(true));
       }
+    } catch (errorCat) {
+      const { response, message } = errorCat as AxiosError;
+
+      if (response?.status === statusCode.Bad_Request) {
+        dispatch(setError(response.data.error));
+      } else {
+        dispatch(setError(message));
+      }
+    } finally {
+      dispatch(setStatus('completed'));
     }
   };

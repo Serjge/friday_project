@@ -30,7 +30,7 @@ export const Header = (): ReactElement => {
         RECOVERY
       </NavLink>
       <NavLink className={classActive} to={PATH.PAGE404}>
-        REGISTRATION
+        PAGE404
       </NavLink>
       <NavLink className={classActive} to={PATH.NEW_PASSWORD}>
         NEW_PASSWORD
