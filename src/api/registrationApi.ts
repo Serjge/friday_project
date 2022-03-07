@@ -1,9 +1,5 @@
 import { instance } from 'api/instance';
-
-type RegistrationParamsType = {
-  email: string;
-  password: string;
-};
+import { RegistrationParamsType } from 'types';
 
 export const registrationApi = {
   registration(data: RegistrationParamsType) {

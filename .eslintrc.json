@@ -32,7 +32,12 @@
     "no-magic-numbers": "off",
     "default-param-last": "off",
     "no-use-before-define": "off",
-    "no-param-reassign": ["error", { "props": false }],
+    "no-param-reassign": [
+      "error",
+      {
+        "props": false
+      }
+    ],
     "no-multiple-empty-lines": [
       "error",
       {
@@ -75,7 +80,6 @@
         ]
       }
     ],
-
     "react/function-component-definition": [
       2,
       {
@@ -83,6 +87,7 @@
         "unnamedComponents": "arrow-function"
       }
     ],
+    "react/jsx-props-no-spreading": "off",
     "import/extensions": "off",
     "import/prefer-default-export": "off",
     "import/order": [

@@ -13,6 +13,7 @@ export const Routers = (): ReactElement => (
     <Route path={PATH.LOGIN} element={<Login />} />
     <Route path={PATH.PROFILE} element={<Profile />} />
     <Route path={PATH.REGISTRATION} element={<Registration />} />
+    <Route path="/registrationForm" element={<Registration />} />
     <Route path={PATH.NEW_PASSWORD} element={<NewPassword />} />
     <Route path={PATH.PAGE404} element={<Page404 />} />
     <Route path={PATH.RECOVERY} element={<Recovery />} />

@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 
 import { registrationApi } from 'api/registrationApi';
 import { statusCode } from 'enum';
-import { setError, setIsCompleted, setStatus } from 'store/actions';
+import { setErrorMessage, setRegistrationIsCompleted, setStatus } from 'store/actions';
 import { AppThunkType } from 'types';
 
 export const registrationTC =
@@ -10,17 +10,22 @@ export const registrationTC =
   async dispatch => {
     try {
       dispatch(setStatus('loading'));
+
       const response = await registrationApi.registration({ email, password });
-      if (response.status === statusCode.created) {
-        dispatch(setIsCompleted(true));
+
+      const { status } = response;
+
+      if (status === statusCode.created) {
+        dispatch(setRegistrationIsCompleted(true));
       }
     } catch (errorCat) {
       const { response, message } = errorCat as AxiosError;
+      const error = response?.data.error;
 
       if (response?.status === statusCode.Bad_Request) {
-        dispatch(setError(response.data.error));
+        dispatch(setErrorMessage(error));
       } else {
-        dispatch(setError(message));
+        dispatch(setErrorMessage(message));
       }
     } finally {
       dispatch(setStatus('completed'));

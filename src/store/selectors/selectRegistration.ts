@@ -3,6 +3,7 @@ import { StatusType } from 'types';
 
 export const selectStatus = (state: RootReducerType): StatusType =>
   state.registration.status;
-export const selectError = (state: RootReducerType): string => state.registration.error;
-export const selectIsCompleted = (state: RootReducerType): boolean =>
-  state.registration.IsCompleted;
+export const selectErrorMessage = (state: RootReducerType): string =>
+  state.registration.errorMessage;
+export const selectRegistrationIsCompleted = (state: RootReducerType): boolean =>
+  state.registration.isCompleted;

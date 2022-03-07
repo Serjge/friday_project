@@ -1,1 +1,5 @@
-export { selectIsCompleted, selectStatus, selectError } from './selectRegistration';
+export {
+  selectRegistrationIsCompleted,
+  selectStatus,
+  selectErrorMessage,
+} from './selectRegistration';
