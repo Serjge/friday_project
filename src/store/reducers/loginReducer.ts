@@ -1,31 +1,8 @@
 import { Dispatch } from 'redux';
 
-import { loginAPI, LoginApiPayloadType } from 'api/instance';
+import { loginAPI } from 'api/loginApi';
 import { AppActionsType } from 'types/actions';
-
-export type LoginStateType = {
-  _id: string;
-  email: string;
-  rememberMe: false;
-  isAdmin: false;
-  name: string;
-  verified: false;
-  publicCardPacksCount: number;
-  created: string;
-  updated: string;
-  __v: number;
-  token: string;
-  tokenDeathTime: number;
-  avatar: string;
-  deviceTokens: [
-    {
-      _id: string;
-      device: string;
-      token: string;
-      tokenDeathTime: number;
-    },
-  ];
-};
+import { LoginApiPayloadType, LoginStateType } from 'types/LoginType';
 
 export const SET_LOGIN_DATA = 'SET_LOGIN_DATA';
 export const SET_ERROR = 'SET_ERROR';

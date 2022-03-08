@@ -3,13 +3,13 @@ import { ReactElement } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { LoginApiPayloadType } from 'api/instance';
 import { RootReducerType } from 'store';
 import {
   isLoginThunkCreator,
   logOutThunkCreator,
   setLoginDataThunkCreator,
 } from 'store/reducers/loginReducer';
+import { LoginApiPayloadType } from 'types';
 
 export const Login = (): ReactElement => {
   const dispatch = useDispatch();
