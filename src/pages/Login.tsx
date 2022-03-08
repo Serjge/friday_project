@@ -8,7 +8,7 @@ import {
   isLoginThunkCreator,
   logOutThunkCreator,
   setLoginDataThunkCreator,
-} from 'store/reducers/loginReducer';
+} from 'store/thunks';
 import { LoginApiPayloadType } from 'types';
 
 export const Login = (): ReactElement => {

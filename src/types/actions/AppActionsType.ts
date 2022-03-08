@@ -1,9 +1,10 @@
 import {
+  ExampleActionsType,
+  RegistrationActionType,
   SeErrorACType,
   SeLoginDataACType,
   SeLogOutACType,
-} from 'store/reducers/loginReducer';
-import { ExampleActionsType, RegistrationActionType } from 'types/actions';
+} from 'types/actions';
 
 export type AppActionsType =
   | ExampleActionsType

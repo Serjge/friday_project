@@ -1,29 +1,6 @@
-import { Dispatch } from 'redux';
-
-import { loginAPI } from 'api/loginApi';
+import { SET_ERROR, SET_LOGIN_DATA, SET_LOGOUT } from 'store/actions';
+import { LoginStateType } from 'types';
 import { AppActionsType } from 'types/actions';
-import { LoginApiPayloadType, LoginStateType } from 'types/LoginType';
-
-export const SET_LOGIN_DATA = 'SET_LOGIN_DATA';
-export const SET_ERROR = 'SET_ERROR';
-export const SET_LOGOUT = 'SET_LOGOUT';
-
-export type SeLoginDataACType = ReturnType<typeof seLoginDataAC>;
-export type SeErrorACType = ReturnType<typeof setErrorAC>;
-export type SeLogOutACType = ReturnType<typeof setLogOutAC>;
-
-export const seLoginDataAC = (data: LoginStateType) =>
-  ({ type: SET_LOGIN_DATA, data } as const);
-export const setErrorAC = (error: string) =>
-  ({
-    type: SET_ERROR,
-    error,
-  } as const);
-export const setLogOutAC = () =>
-  ({
-    type: SET_LOGOUT,
-    token: 'null',
-  } as const);
 
 type LoginStateWithErrorKey = LoginStateType & {
   error: string;
@@ -60,45 +37,12 @@ export const loginReducer = (
 ): LoginStateWithErrorKey => {
   switch (action.type) {
     case SET_LOGIN_DATA:
-      return { ...state, ...action.data };
+      return { ...state, ...action.payload.data };
     case SET_ERROR:
-      return { ...state, error: action.error };
+      return { ...state, error: action.payload.error };
     case SET_LOGOUT:
-      return { ...state, token: action.token };
+      return { ...state, token: action.payload.token };
     default:
       return state;
   }
-};
-
-export const setLoginDataThunkCreator =
-  (data: LoginApiPayloadType) => (dispatch: Dispatch) => {
-    loginAPI
-      .login(data)
-      .then(res => {
-        if (res.data.token) {
-          dispatch(seLoginDataAC(res.data));
-          dispatch(setErrorAC(''));
-        }
-      })
-      .catch(rej => {
-        const error = rej.response
-          ? rej.response.data.error
-          : `${rej.message}, more details in the console`;
-        dispatch(setErrorAC(error));
-      });
-  };
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const isLoginThunkCreator = () => (dispatch: Dispatch) => {
-  loginAPI.isLogin().then(res => {
-    console.dir(res);
-  });
-};
-
-export const logOutThunkCreator = () => (dispatch: Dispatch) => {
-  loginAPI.logOut().then(res => {
-    if (res.data.info) {
-      dispatch(setLogOutAC());
-    }
-  });
 };
