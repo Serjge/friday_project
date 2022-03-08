@@ -2,9 +2,9 @@ import { ReactElement } from 'react';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
-import { SuperButton, SuperInputText } from 'components';
+import { SuperButton, TextField } from 'components';
 import { PATH } from 'enum';
 import {
   selectErrorMessage,
@@ -47,7 +47,7 @@ export const Registration = (): ReactElement => {
   };
 
   if (RegistrationIsCompleted) {
-    navigate(PATH.LOGIN);
+    return <Navigate to={PATH.LOGIN} />;
   }
 
   return (
@@ -62,56 +62,44 @@ export const Registration = (): ReactElement => {
       <h1>Sing UP</h1>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label htmlFor="login">
-            Login
-            <div>
-              <SuperInputText
-                type="text"
-                {...register('email', {
-                  required: true,
-                  pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                })}
-                placeholder="Email"
-              />
-            </div>
-            <p style={{ color: 'darkred' }}>{getErrorValidate(email?.type)}</p>
-          </label>
-        </div>
-        <div>
-          <label htmlFor="password">
-            Password
-            <div>
-              <SuperInputText
-                id="password"
-                {...register('password', { required: true, minLength: 8 })}
-              />
-            </div>
-            <p style={{ color: 'darkred' }}>{getErrorValidate(password?.type)}</p>
-          </label>
-        </div>
-        <div>
-          <label htmlFor="confirmPassword">
-            Confirm password
-            <div>
-              <SuperInputText
-                {...register('confirmPassword', {
-                  required: true,
-                  minLength: 8,
-                  validate: value => value === getValues('password'),
-                })}
-              />
-            </div>
-            <p style={{ color: 'darkred' }}>{getErrorValidate(confirmPassword?.type)}</p>
-          </label>
-        </div>
-        <div>{errorMessage}</div>
+        <TextField
+          labelTitle="Email"
+          type="text"
+          disabled={status === 'loading'}
+          {...register('email', {
+            required: true,
+            pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+          })}
+          placeholder="Email"
+          error={getErrorValidate(email?.type)}
+        />
+        <TextField
+          type="password"
+          labelTitle="Password"
+          disabled={status === 'loading'}
+          {...register('password', { required: true, minLength: 8 })}
+          error={getErrorValidate(password?.type)}
+          placeholder="Password"
+        />
+        <TextField
+          labelTitle="Confirm password"
+          type="password"
+          disabled={status === 'loading'}
+          {...register('confirmPassword', {
+            required: true,
+            minLength: 8,
+            validate: value => value === getValues('password'),
+          })}
+          placeholder="Confirm password"
+          error={getErrorValidate(confirmPassword?.type)}
+        />
         <SuperButton onClick={onBackClick} type="button">
           Cancel
         </SuperButton>
         <SuperButton disabled={status === 'loading'} type="submit">
           Register
         </SuperButton>
+        <div>{errorMessage}</div>
       </form>
     </div>
   );

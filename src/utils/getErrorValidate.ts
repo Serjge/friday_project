@@ -1,6 +1,6 @@
-import { NullAnd, UndefinedAnd } from 'types';
+import { UndefinedAnd } from 'types';
 
-export const getErrorValidate = (type: UndefinedAnd<string>): NullAnd<string> => {
+export const getErrorValidate = (type: UndefinedAnd<string>): UndefinedAnd<string> => {
   switch (type) {
     case 'required':
       return 'This field is required';
@@ -15,6 +15,6 @@ export const getErrorValidate = (type: UndefinedAnd<string>): NullAnd<string> =>
       return 'Wrong or Invalid email address';
 
     default:
-      return null;
+      return undefined;
   }
 };
