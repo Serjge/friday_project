@@ -3,15 +3,22 @@ import { ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { SuperButton } from '../components';
+import EditProfilePage from '../components/UI/EditProfilePage/EditProfilePage';
 import { RootReducerType } from '../store';
 import { EditProfileAC } from '../store/actions/editProfileAction';
 
 export const Profile = (): ReactElement => {
   const dispatch = useDispatch();
+  const needEdit = useSelector<RootReducerType, boolean>(
+    state => state.editProfile.needEdit,
+  );
   const name = useSelector<RootReducerType, string>(state => state.login.name);
   const editModule = (): void => {
     dispatch(EditProfileAC(true));
   };
+  if (needEdit) {
+    return <EditProfilePage />;
+  }
   return (
     <div>
       <h1>Profile</h1>
