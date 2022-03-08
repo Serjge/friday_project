@@ -14,7 +14,7 @@ export const InputWrapper = styled.div`
   margin: 5px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 `;
 
 export const Label = styled.label`

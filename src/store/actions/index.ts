@@ -1,19 +1,12 @@
 export {
-  setErrorMessage,
   setRegistrationIsCompleted,
   setStatus,
   SET_STATUS,
   SET_REGISTRATION_IS_COMPLETED,
-  SET_ERROR_MESSAGE,
 } from 'store/actions/registrationAction';
 
-export {
-  seLoginDataAC,
-  setLogOutAC,
-  setErrorAC,
-  SET_LOGIN_DATA,
-  SET_LOGOUT,
-  SET_ERROR,
-} from './loginAction';
+export { seLoginDataAC, setLogOutAC, SET_LOGIN_DATA, SET_LOGOUT } from './loginAction';
+
+export { setErrorMessage, SET_ERROR_MESSAGE } from './appAction';
 
 export { exampleAction } from './exampleAction';

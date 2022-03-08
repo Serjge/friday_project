@@ -12,6 +12,7 @@ import {
   selectStatus,
 } from 'store/selectors';
 import { registrationTC } from 'store/thunks';
+import { Wrapper } from 'styles';
 import { getErrorValidate } from 'utils';
 
 type Inputs = {
@@ -51,14 +52,7 @@ export const Registration = (): ReactElement => {
   }
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        marginTop: ' 100px',
-        flexDirection: 'column',
-      }}
-    >
+    <Wrapper>
       <h1>Sing UP</h1>
 
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -101,6 +95,6 @@ export const Registration = (): ReactElement => {
         </SuperButton>
         <div>{errorMessage}</div>
       </form>
-    </div>
+    </Wrapper>
   );
 };

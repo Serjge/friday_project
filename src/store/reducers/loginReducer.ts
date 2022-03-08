@@ -1,6 +1,6 @@
-import { SET_ERROR, SET_LOGIN_DATA, SET_LOGOUT } from 'store/actions';
+import { SET_LOGIN_DATA, SET_LOGOUT } from 'store/actions';
 import { LoginStateType } from 'types';
-import { AppActionsType } from 'types/actions';
+import { LoginActionType } from 'types/actions';
 
 type LoginStateWithErrorKey = LoginStateType & {
   error: string;
@@ -33,15 +33,13 @@ const initialState: LoginStateWithErrorKey = {
 
 export const loginReducer = (
   state = initialState,
-  action: AppActionsType,
+  action: LoginActionType,
 ): LoginStateWithErrorKey => {
   switch (action.type) {
     case SET_LOGIN_DATA:
       return { ...state, ...action.payload.data };
-    case SET_ERROR:
-      return { ...state, error: action.payload.error };
     case SET_LOGOUT:
-      return { ...state, token: action.payload.token };
+      return { ...state, token: null };
     default:
       return state;
   }

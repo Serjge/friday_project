@@ -1,3 +1,5 @@
+import { NullAnd } from 'types/NullAnd';
+
 export type LoginStateType = {
   _id: string;
   email: string;
@@ -9,7 +11,7 @@ export type LoginStateType = {
   created: string;
   updated: string;
   __v: number;
-  token: string;
+  token: NullAnd<string>;
   tokenDeathTime: number;
   avatar: string;
   deviceTokens: [

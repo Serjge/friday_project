@@ -1,25 +1,25 @@
 import { loginAPI } from 'api';
-import { seLoginDataAC, setErrorAC, setLogOutAC } from 'store/actions';
+import { statusCode } from 'enum';
+import { seLoginDataAC, setErrorMessage, setLogOutAC } from 'store/actions';
 import { AppThunkType, LoginApiPayloadType } from 'types';
 
 export const setLoginDataThunkCreator =
   (data: LoginApiPayloadType): AppThunkType =>
-  dispatch => {
+  dispatch =>
     loginAPI
       .login(data)
       .then(res => {
         if (res.data.token) {
           dispatch(seLoginDataAC(res.data));
-          dispatch(setErrorAC(''));
+          dispatch(setErrorMessage(''));
         }
       })
       .catch(rej => {
         const error = rej.response
           ? rej.response.data.error
           : `${rej.message}, more details in the console`;
-        dispatch(setErrorAC(error));
+        dispatch(setErrorMessage(error));
       });
-  };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const isLoginThunkCreator = (): AppThunkType => dispatch => {
@@ -30,7 +30,8 @@ export const isLoginThunkCreator = (): AppThunkType => dispatch => {
 
 export const logOutThunkCreator = (): AppThunkType => dispatch => {
   loginAPI.logOut().then(res => {
-    if (res.data.info) {
+    if (res.status === statusCode.OK) {
+      console.log(res);
       dispatch(setLogOutAC());
     }
   });

@@ -2,69 +2,96 @@ import { ReactElement } from 'react';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-import { RootReducerType } from 'store';
+import { SuperButton, TextField } from 'components';
+import { PATH } from 'enum';
+import { selectErrorMessage } from 'store/selectors';
 import {
   isLoginThunkCreator,
   logOutThunkCreator,
   setLoginDataThunkCreator,
 } from 'store/thunks';
+import { Wrapper } from 'styles';
 import { LoginApiPayloadType } from 'types';
 
 export const Login = (): ReactElement => {
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   const loginHandle: SubmitHandler<LoginApiPayloadType> = data => {
     dispatch(setLoginDataThunkCreator(data));
   };
+
   const logOutHandle = (): void => {
     dispatch(logOutThunkCreator());
   };
+
   const isLogOutHandle = (): void => {
     dispatch(isLoginThunkCreator());
   };
 
-  const { register, handleSubmit } = useForm<LoginApiPayloadType>();
-  // const token = useSelector<RootReducerType, string>(state => state.login.token);
-  const error = useSelector<RootReducerType, string>(state => state.login.error);
+  const onSingUpClick = (): void => {
+    navigate(PATH.REGISTRATION);
+  };
 
-  // if (token !== undefined) {
+  const { register, handleSubmit } = useForm<LoginApiPayloadType>();
+  // const token = useSelector(selectLoginToken);
+  const errorMessage = useSelector(selectErrorMessage);
+
+  // if (token !== null) {
   //   return <Navigate to={PATH.PROFILE} />;
   // }
 
   return (
-    <div>
+    <Wrapper>
       <h1>Login</h1>
       <form onSubmit={handleSubmit(loginHandle)}>
-        <div>
-          login:
-          <input {...register('email')} type="text" autoComplete="on" />
-        </div>
-        <div>
-          password :
-          <input {...register('password')} type="password" autoComplete="on" />
-        </div>
-        <div>
-          Remember me:
-          <input {...register('rememberMe')} type="checkbox" autoComplete="on" />
-        </div>
-        <div>
-          <button type="submit" value="login">
+        <TextField
+          {...register('email')}
+          labelTitle="login:"
+          placeholder="Email"
+          type="text"
+          autoComplete="on"
+        />
+        <TextField
+          {...register('password')}
+          type="password"
+          labelTitle="Password:"
+          placeholder="Password"
+          autoComplete="on"
+        />
+        <TextField
+          {...register('rememberMe')}
+          labelTitle="Remember me:"
+          type="checkbox"
+          autoComplete="on"
+        />
+
+        <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+          <SuperButton type="submit" value="login">
             login
-          </button>
-        </div>
-        <div>
-          <button type="button" onClick={logOutHandle}>
-            logOut
-          </button>
+          </SuperButton>
+
           <div>
-            <button type="button" onClick={isLogOutHandle}>
-              is Login ?
-            </button>
+            <p>Don’t have an account?</p>
           </div>
+
+          <SuperButton onClick={onSingUpClick} type="button">
+            Sing Up
+          </SuperButton>
+
+          <SuperButton type="button" onClick={logOutHandle}>
+            logOut
+          </SuperButton>
+
+          <SuperButton type="button" onClick={isLogOutHandle}>
+            is Login ?
+          </SuperButton>
         </div>
       </form>
-      {error || null}
-    </div>
+      {errorMessage || null}
+    </Wrapper>
   );
 };
