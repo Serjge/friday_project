@@ -10,4 +10,4 @@ export type AppActionsType =
   | SeLoginDataACType
   | SeErrorACType
   | SeLogOutACType
-  |RegistrationActionType;
+  | RegistrationActionType;
