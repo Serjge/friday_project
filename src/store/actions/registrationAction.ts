@@ -1,8 +1,12 @@
 import { StatusType } from 'types';
 
+export const SET_REGISTRATION_IS_COMPLETED = 'REGISTRATION/SET_REGISTRATION_IS_COMPLETED';
+export const SET_ERROR_MESSAGE = 'REGISTRATION/SET_ERROR_MESSAGE';
+export const SET_STATUS = 'REGISTRATION/SET_STATUS';
+
 export const setRegistrationIsCompleted = (isCompleted: boolean) =>
   ({
-    type: 'registration/setRegistrationIsCompleted',
+    type: SET_REGISTRATION_IS_COMPLETED,
     payload: {
       isCompleted,
     },
@@ -10,7 +14,7 @@ export const setRegistrationIsCompleted = (isCompleted: boolean) =>
 
 export const setErrorMessage = (errorMessage: string) =>
   ({
-    type: 'registration/setErrorMessage',
+    type: SET_ERROR_MESSAGE,
     payload: {
       errorMessage,
     },
@@ -18,7 +22,7 @@ export const setErrorMessage = (errorMessage: string) =>
 
 export const setStatus = (status: StatusType) =>
   ({
-    type: 'registration/setStatus',
+    type: SET_STATUS,
     payload: {
       status,
     },

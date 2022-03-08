@@ -1,11 +1,10 @@
-import { Dispatch } from 'redux';
-
 import { loginAPI } from 'api';
 import { seLoginDataAC, setErrorAC, setLogOutAC } from 'store/actions';
-import { LoginApiPayloadType } from 'types';
+import { AppThunkType, LoginApiPayloadType } from 'types';
 
 export const setLoginDataThunkCreator =
-  (data: LoginApiPayloadType) => (dispatch: Dispatch) => {
+  (data: LoginApiPayloadType): AppThunkType =>
+  dispatch => {
     loginAPI
       .login(data)
       .then(res => {
@@ -23,13 +22,13 @@ export const setLoginDataThunkCreator =
   };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const isLoginThunkCreator = () => (dispatch: Dispatch) => {
+export const isLoginThunkCreator = (): AppThunkType => dispatch => {
   loginAPI.isLogin().then(res => {
     console.dir(res);
   });
 };
 
-export const logOutThunkCreator = () => (dispatch: Dispatch) => {
+export const logOutThunkCreator = (): AppThunkType => dispatch => {
   loginAPI.logOut().then(res => {
     if (res.data.info) {
       dispatch(setLogOutAC());

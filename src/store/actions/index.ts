@@ -2,6 +2,9 @@ export {
   setErrorMessage,
   setRegistrationIsCompleted,
   setStatus,
+  SET_STATUS,
+  SET_REGISTRATION_IS_COMPLETED,
+  SET_ERROR_MESSAGE,
 } from 'store/actions/registrationAction';
 
 export {
