@@ -1,12 +1,18 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 
-import { appReducer, authReducer, loginReducer } from 'store/reducers';
+import {
+  appReducer,
+  authReducer,
+  loginReducer,
+  registrationReducer,
+} from 'store/reducers';
 
 const rootReducer = combineReducers({
   app: appReducer,
   auth: authReducer,
   login: loginReducer,
+  registration: registrationReducer,
 });
 
 declare global {

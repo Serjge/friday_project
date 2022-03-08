@@ -3,7 +3,7 @@ import axios, { AxiosResponse } from 'axios';
 import { LoginStateType } from 'store/reducers/loginReducer';
 
 export const instance = axios.create({
-  baseURL: process.env.REACT_APP_BASE_URL,
+  baseURL: process.env.REACT_APP_BACK_URL || process.env.REACT_APP_BASE_URL,
   withCredentials: true,
 });
 
