@@ -111,17 +111,17 @@ export const setLoginDataThunkCreator =
       });
   };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const isLoginThunkCreator = () => (dispatch: Dispatch) => {
+  loginAPI.isLogin().then(res => {
+    console.dir(res);
+  });
+};
+
 export const logOutThunkCreator = () => (dispatch: Dispatch) => {
   loginAPI.logOut().then(res => {
     if (res.data.info) {
       dispatch(setLogOutAC());
     }
-  });
-};
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const isLoginThunkCreator = () => (dispatch: Dispatch) => {
-  loginAPI.isLogin().then(res => {
-    console.dir(res);
   });
 };
