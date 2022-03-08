@@ -4,6 +4,9 @@ export const ErrorWrapper = styled.div`
   height: 25px;
   display: flex;
   align-items: center;
+  color: darkred;
+  margin-left: 10px;
+  margin-bottom: 10px;
 `;
 
 export const InputWrapper = styled.div`
