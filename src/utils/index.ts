@@ -1,0 +1,1 @@
+export { getErrorValidate } from './getErrorValidate';

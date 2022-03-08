@@ -33,6 +33,7 @@
     "default-param-last": "off",
     "no-use-before-define": "off",
     "no-param-reassign": ["error", { "props": false }],
+    "react/jsx-props-no-spreading": "off",
     "no-multiple-empty-lines": [
       "error",
       {
