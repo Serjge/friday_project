@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 
-import { LoginStateType } from 'store/reducers/loginReducer';
+import { LoginStateType } from '../types';
 
 export const instance = axios.create({
   baseURL:

@@ -5,14 +5,12 @@ import { Navigate } from 'react-router-dom';
 
 import { PATH } from '../../../enum';
 import { RootReducerType } from '../../../store';
-import { EditProfileAC } from '../../../store/actions/editProfileAction';
+import { EditProfileAC } from '../../../store/actions/ProfileAction';
 import { SuperButton } from '../SuperButton';
 
 const EditProfilePage = (): ReactElement => {
   const dispatch = useDispatch();
-  const needEdit = useSelector<RootReducerType, boolean>(
-    state => state.editProfile.needEdit,
-  );
+  const needEdit = useSelector<RootReducerType, boolean>(state => state.profile.needEdit);
   const exitEditModule = (): void => {
     dispatch(EditProfileAC(false));
   };

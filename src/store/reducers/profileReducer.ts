@@ -1,0 +1,49 @@
+import { LoginStateType } from '../../types';
+import { EditProfileActionType } from '../actions/ProfileAction';
+
+type ProfileStateWithErrorKeyType = LoginStateType & {
+  error: string;
+  needEdit: boolean;
+};
+
+const initialState: ProfileStateWithErrorKeyType = {
+  _id: '5eecf82a3ed8f700042f1186',
+  email: 'nya-admin@nya.nya',
+  rememberMe: false,
+  isAdmin: false,
+  name: 'dfg',
+  verified: false,
+  publicCardPacksCount: 368,
+  created: '2020-06-19T17:38:50.679Z',
+  updated: '2022-03-05T13:17:59.159Z',
+  __v: 0,
+  token: 'ad78f960-9c86-11ec-86e1-556be06f6bb3',
+  tokenDeathTime: 1646497079158,
+  avatar: '',
+  deviceTokens: [
+    {
+      _id: '60e73dbfbc460736f0302b0f',
+      device: 'aedbb9f0-e016-11eb-9443-59b42c588954',
+      token: 'aedb6bd0-e016-11eb-9443-59b42c588954',
+      tokenDeathTime: 1625778159245,
+    },
+  ],
+  error: '',
+  needEdit: false,
+};
+
+export const ProfileReducer = (
+  state = initialState,
+  action: EditProfileActionType,
+): ProfileStateWithErrorKeyType => {
+  switch (action.type) {
+    case 'profile/checkAuth': {
+      return { ...state, error: '', needEdit: false };
+    }
+    case 'profile/changePersonalData': {
+      return { ...state, needEdit: action.needEdit };
+    }
+    default:
+      return state;
+  }
+};
