@@ -4,34 +4,43 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
 import { PATH } from '../../../enum';
-import { RootReducerType } from '../../../store';
 import { EditProfileAC } from '../../../store/actions/ProfileAction';
+import {
+  selectEmailProfile,
+  selectNameProfile,
+  selectNeedEditProfile,
+} from '../../../store/selectors/selectProfile';
 import { editProfileTC } from '../../../store/thunks/profileThunks';
 import { SuperButton } from '../SuperButton';
 import { TextField } from '../TextField';
 
 const EditProfilePage = (): ReactElement => {
-  const name = useSelector<RootReducerType, string>(state => state.profile.name);
-  const [newName, setNewName] = useState<string>(name);
   const dispatch = useDispatch();
-  const needEdit = useSelector<RootReducerType, boolean>(state => state.profile.needEdit);
+  const needEdit = useSelector(selectNeedEditProfile);
+  const email = useSelector(selectEmailProfile);
+  const name = useSelector(selectNameProfile);
 
-  const email = useSelector<RootReducerType, string>(state => state.profile.email);
+  const [newName, setNewName] = useState<string>(name);
   const [edit, setEdit] = useState<boolean>(true);
 
   const exitEditModule = (): void => {
     dispatch(EditProfileAC(false));
   };
+
   const changeNameHandler = (e: ChangeEvent<HTMLInputElement>): void => {
     setNewName(e.currentTarget.value);
   };
+
   const changePersonalInfoHandler = (): void => {
     dispatch(editProfileTC(newName));
   };
+
   const writeHandler = (): void => setEdit(false);
+
   if (!needEdit) {
     return <Navigate to={PATH.PROFILE} />;
   }
+
   return (
     <div>
       <div
