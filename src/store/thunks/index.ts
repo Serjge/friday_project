@@ -4,3 +4,4 @@ export {
   setLoginDataThunkCreator,
   logOutThunkCreator,
 } from './loginThunks';
+export { initializeMeTC } from './appThunks';

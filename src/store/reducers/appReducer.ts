@@ -1,12 +1,14 @@
-import { SET_ERROR_MESSAGE } from 'store/actions';
+import { INITIALIZE_ME, SET_ERROR_MESSAGE } from 'store/actions';
 import { AppActionsType } from 'types/actions';
 
 type InitialStateType = {
   errorMessage: string;
+  isInitialize: boolean;
 };
 
 const initialState: InitialStateType = {
   errorMessage: '',
+  isInitialize: false,
 };
 
 export const appReducer = (
@@ -16,6 +18,8 @@ export const appReducer = (
   switch (action.type) {
     case SET_ERROR_MESSAGE:
       return { ...state, errorMessage: action.payload.errorMessage };
+    case INITIALIZE_ME:
+      return { ...state, isInitialize: action.payload.isInitialize };
     default:
       return state;
   }

@@ -14,6 +14,6 @@ export const loginAPI = {
     return instance.delete<LogOutType>('/auth/me');
   },
   isLogin() {
-    return instance.post<LogOutType>('/auth/me');
+    return instance.post<LoginStateType>('/auth/me');
   },
 };
