@@ -7,6 +7,6 @@ export const profileApi = {
     return instance.post<AuthMeType>('/auth/me');
   },
   editProfile(name: string) {
-    return instance.post<EditProfileType>('/auth/me', name);
+    return instance.put<EditProfileType>('/auth/me', { name });
   },
 };

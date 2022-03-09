@@ -6,6 +6,7 @@ import { SuperButton } from '../components';
 import EditProfilePage from '../components/UI/EditProfilePage/EditProfilePage';
 import { RootReducerType } from '../store';
 import { EditProfileAC } from '../store/actions/ProfileAction';
+import { authMeTC } from '../store/thunks/profileThunks';
 
 export const Profile = (): ReactElement => {
   const dispatch = useDispatch();
@@ -27,6 +28,9 @@ export const Profile = (): ReactElement => {
       <h2>{name}</h2>
       <h2>Number of cards: {publicCardPacksCount}</h2>
       <SuperButton onClick={editModule}>Edite profile</SuperButton>
+      <SuperButton onClick={() => dispatch(authMeTC())}>
+        Give Data From Server
+      </SuperButton>
     </div>
   );
 };

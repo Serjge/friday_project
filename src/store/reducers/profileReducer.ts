@@ -30,7 +30,7 @@ export const ProfileReducer = (
 ): ProfileStateWithErrorKeyType => {
   switch (action.type) {
     case 'profile/check-auth': {
-      return { ...state, error: '', needEdit: false };
+      return { ...action.state, error: '', needEdit: false };
     }
     case 'profile/change-personal-data': {
       return { ...state, needEdit: action.needEdit };
