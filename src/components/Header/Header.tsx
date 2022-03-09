@@ -1,22 +1,32 @@
 import { ReactElement } from 'react';
 
+import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 import style from './Header.module.css';
 
+import { SuperButton } from 'components/UI';
 import { PATH } from 'enum';
+import { logOutThunkCreator } from 'store/thunks';
 
-const Wrapper = styled.header`
+const HeaderWrapper = styled.header`
   margin: 0 auto;
   padding: 20px;
 `;
 
 export const Header = (): ReactElement => {
+  const dispatch = useDispatch();
+
   const classActive = (active: { isActive: boolean }): string =>
     active.isActive ? `${style.link} + ${style.act}` : style.link;
+
+  const logOutHandle = (): void => {
+    dispatch(logOutThunkCreator());
+  };
+
   return (
-    <Wrapper>
+    <HeaderWrapper>
       <NavLink className={classActive} to={PATH.LOGIN}>
         LOGIN
       </NavLink>
@@ -38,7 +48,10 @@ export const Header = (): ReactElement => {
       <NavLink className={classActive} to={PATH.TEST}>
         TEST
       </NavLink>
-    </Wrapper>
+      <SuperButton type="button" onClick={logOutHandle}>
+        logOut
+      </SuperButton>
+    </HeaderWrapper>
   );
 };
 

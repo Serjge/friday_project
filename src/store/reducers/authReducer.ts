@@ -1,8 +1,8 @@
-import { AppActionsType } from 'types/actions';
+import { AllAppActionsType } from 'types/actions';
 
 const initialState: [] = [];
 
-export const authReducer = (state = initialState, action: AppActionsType): [] => {
+export const authReducer = (state = initialState, action: AllAppActionsType): [] => {
   switch (action.type) {
     case 'example':
       return state;

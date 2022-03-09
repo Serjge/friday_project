@@ -1,11 +1,21 @@
+import { SET_ERROR_MESSAGE } from 'store/actions';
 import { AppActionsType } from 'types/actions';
 
-const initialState: [] = [];
+type InitialStateType = {
+  errorMessage: string;
+};
 
-export const appReducer = (state = initialState, action: AppActionsType): [] => {
+const initialState: InitialStateType = {
+  errorMessage: '',
+};
+
+export const appReducer = (
+  state = initialState,
+  action: AppActionsType,
+): InitialStateType => {
   switch (action.type) {
-    case 'example':
-      return state;
+    case SET_ERROR_MESSAGE:
+      return { ...state, errorMessage: action.payload.errorMessage };
     default:
       return state;
   }
