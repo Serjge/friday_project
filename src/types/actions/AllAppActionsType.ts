@@ -1,4 +1,4 @@
-import { ProfileActionType } from '../../store/actions/ProfileAction';
+import { ProfileActionType } from '../ProfileType';
 
 import { setErrorMessage } from 'store/actions';
 import { ExampleActionsType, RegistrationActionType } from 'types/actions';

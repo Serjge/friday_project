@@ -12,8 +12,3 @@ export const ChangePersonalInfoAC = (name: string) =>
     type: 'profile/change-name',
     name,
   } as const);
-
-export type ProfileActionType =
-  | ReturnType<typeof EditProfileAC>
-  | ReturnType<typeof AuthMeAC>
-  | ReturnType<typeof ChangePersonalInfoAC>;
