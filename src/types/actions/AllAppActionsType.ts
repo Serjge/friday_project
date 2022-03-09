@@ -1,3 +1,5 @@
+import { ProfileActionType } from '../../store/actions/ProfileAction';
+
 import { setErrorMessage } from 'store/actions';
 import { ExampleActionsType, RegistrationActionType } from 'types/actions';
 import { LoginActionType } from 'types/actions/LoginActionsType';
@@ -6,7 +8,8 @@ export type AllAppActionsType =
   | LoginActionType
   | RegistrationActionType
   | AppActionsType
-  | ExampleActionsType;
+  | ExampleActionsType
+  | ProfileActionType;
 
 export type AppActionsType = SetErrorMessageType;
 
