@@ -1,11 +1,11 @@
-import { LoginStateType } from '../../types';
+import { AuthMeType } from '../../types/ProfileType';
 
 export const EditProfileAC = (needEdit: boolean) =>
   ({
     type: 'profile/changePersonalData',
     needEdit,
   } as const);
-export const AuthMeAC = (state: LoginStateType) =>
+export const AuthMeAC = (state: AuthMeType) =>
   ({ type: 'profile/checkAuth', state } as const);
 
 export type EditProfileActionType =

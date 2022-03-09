@@ -1,7 +1,7 @@
-import { LoginStateType } from '../../types';
+import { AuthMeType } from '../../types/ProfileType';
 import { EditProfileActionType } from '../actions/ProfileAction';
 
-type ProfileStateWithErrorKeyType = LoginStateType & {
+type ProfileStateWithErrorKeyType = AuthMeType & {
   error: string;
   needEdit: boolean;
 };
@@ -20,14 +20,6 @@ const initialState: ProfileStateWithErrorKeyType = {
   token: 'ad78f960-9c86-11ec-86e1-556be06f6bb3',
   tokenDeathTime: 1646497079158,
   avatar: '',
-  deviceTokens: [
-    {
-      _id: '60e73dbfbc460736f0302b0f',
-      device: 'aedbb9f0-e016-11eb-9443-59b42c588954',
-      token: 'aedb6bd0-e016-11eb-9443-59b42c588954',
-      tokenDeathTime: 1625778159245,
-    },
-  ],
   error: '',
   needEdit: false,
 };
