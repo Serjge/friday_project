@@ -1,4 +1,3 @@
-import { profileApi } from '../../api/profileApi';
 import { AppThunkType } from '../../types';
 import {
   AuthMeAC,
@@ -6,6 +5,7 @@ import {
   ChangePersonalNameAC,
 } from '../actions/ProfileAction';
 
+import { profileApi } from 'api/profileApi';
 import { initializeMe } from 'store/actions';
 
 export const authMeTC = (): AppThunkType => dispatch =>
