@@ -1,8 +1,4 @@
-export type {
-  AllAppActionsType,
-  AppActionsType,
-  SetErrorMessageType,
-} from 'types/actions/AllAppActionsType';
+export type { AllAppActionsType } from 'types/actions/AllAppActionsType';
 
 export type { ExampleActionsType, ExampleType } from './exampleActionsType';
 
@@ -12,8 +8,9 @@ export type {
   SetIsCompletedType,
 } from './RegistrationActionType';
 
+export type { LoginActionType } from 'types/actions/LoginActionsType';
 export type {
-  SeLoginDataACType,
-  SeLogOutACType,
-  LoginActionType,
-} from 'types/actions/LoginActionsType';
+  InitializeMeType,
+  AppActionsType,
+  SetErrorMessageType,
+} from './AppActionsType';

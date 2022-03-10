@@ -28,8 +28,9 @@ import {
 import { SuperButton } from '../SuperButton';
 import { TextField } from '../TextField';
 
-const EditProfilePage = (): ReactElement => {
+export const EditProfilePage = (): ReactElement => {
   const dispatch = useDispatch();
+
   const needEdit = useSelector(selectNeedEditProfile);
   const name = useSelector(selectNameProfile);
   const avatar = useSelector(selectAvatarProfile);
@@ -78,7 +79,7 @@ const EditProfilePage = (): ReactElement => {
             <SuperButton onClick={changeAvatarHandler}>Change avatar</SuperButton>
           ) : (
             <EditNameRowBlock>
-              <TextField onChange={changeAvatarUrlHandler} autoFocus />
+              <TextField type="url" onChange={changeAvatarUrlHandler} autoFocus />
               <SuperButton onClick={changePersonalAvatarHandler}>Save</SuperButton>
               <SuperButton onClick={cancelChangeAvatar}>Cancel</SuperButton>
             </EditNameRowBlock>
@@ -114,4 +115,3 @@ const EditProfilePage = (): ReactElement => {
     </EditProfileBlock>
   );
 };
-export default EditProfilePage;

@@ -1,20 +1,9 @@
-import { LoginStateType } from 'types';
+export const SET_IS_LOGIN = 'LOGIN/SET_IS_LOGIN';
 
-export const SET_LOGIN_DATA = 'LOGIN/SET_LOGIN_DATA';
-export const SET_LOGOUT = 'LOGIN/SET_LOGOUT';
-
-export const seLoginDataAC = (data: LoginStateType) =>
+export const setIsLoginAC = (isLogin: boolean) =>
   ({
-    type: SET_LOGIN_DATA,
+    type: SET_IS_LOGIN,
     payload: {
-      data,
-    },
-  } as const);
-
-export const setLogOutAC = () =>
-  ({
-    type: SET_LOGOUT,
-    payload: {
-      token: null,
+      isLogin,
     },
   } as const);

@@ -1,6 +1,5 @@
-import { seLoginDataAC, setLogOutAC } from 'store/actions';
+import { setIsLoginAC } from 'store/actions';
 
-export type LoginActionType = SeLoginDataACType | SeLogOutACType;
+export type LoginActionType = SetIsLoginACType;
 
-export type SeLoginDataACType = ReturnType<typeof seLoginDataAC>;
-export type SeLogOutACType = ReturnType<typeof setLogOutAC>;
+export type SetIsLoginACType = ReturnType<typeof setIsLoginAC>;

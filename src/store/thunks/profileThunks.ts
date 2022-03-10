@@ -6,6 +6,8 @@ import {
   ChangePersonalNameAC,
 } from '../actions/ProfileAction';
 
+import { initializeMe } from 'store/actions';
+
 export const authMeTC = (): AppThunkType => dispatch =>
   profileApi
     .authMe()
@@ -14,7 +16,8 @@ export const authMeTC = (): AppThunkType => dispatch =>
     })
     .catch(e => {
       console.log(e);
-    });
+    })
+    .finally(() => dispatch(initializeMe(true)));
 
 export const editProfileNameTC =
   (name: string): AppThunkType =>

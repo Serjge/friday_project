@@ -1,5 +1,3 @@
 import { RootReducerType } from 'store/store';
-import { NullAnd } from 'types';
 
-export const selectLoginToken = (state: RootReducerType): NullAnd<string> =>
-  state.login.token;
+export const selectIsLogin = (state: RootReducerType): boolean => state.login.isLogin;

@@ -1,2 +1,9 @@
 export { Header } from './Header';
-export { SuperButton, SuperInputText, SuperCheckbox, TextField, Loading } from './UI';
+export {
+  SuperButton,
+  SuperInputText,
+  SuperCheckbox,
+  TextField,
+  Loading,
+  EditProfilePage,
+} from './UI';

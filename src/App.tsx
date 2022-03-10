@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Header, Loading } from 'components';
 import { Routers } from 'pages';
 import { selectIsInitialize } from 'store/selectors';
-import { initializeMeTC } from 'store/thunks';
+import { authMeTC } from 'store/thunks/profileThunks';
 import { Wrapper } from 'styles';
 
 export const App = (): ReactElement => {
@@ -14,7 +14,7 @@ export const App = (): ReactElement => {
   const isInitialize = useSelector(selectIsInitialize);
 
   useEffect(() => {
-    dispatch(initializeMeTC());
+    dispatch(authMeTC());
   }, []);
 
   if (!isInitialize) {

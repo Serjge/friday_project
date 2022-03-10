@@ -1,3 +1,3 @@
 export { selectRegistrationIsCompleted, selectStatus } from './selectRegistration';
-export { selectLoginToken } from './selectLogin';
+export { selectIsLogin } from './selectLogin';
 export { selectErrorMessage, selectIsInitialize } from './selectApp';

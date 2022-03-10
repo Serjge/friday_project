@@ -1,19 +1,6 @@
-// import {
-//   SeErrorACType,
-//   SeLoginDataACType,
-//   SeLogOutACType,
-// } from 'store/reducers/loginReducer';
-import {
-  ExampleActionsType,
-  RegistrationActionType,
-  SeLoginDataACType,
-  SeLogOutACType,
-} from 'types/actions';
+import { initializeMe, setErrorMessage } from 'store/actions';
 
-export type AppActionsType =
-  | ExampleActionsType
-  | SeLoginDataACType
-  | SeLogOutACType
-  | RegistrationActionType;
+export type AppActionsType = SetErrorMessageType | InitializeMeType;
 
-// | SeErrorACType
+export type SetErrorMessageType = ReturnType<typeof setErrorMessage>;
+export type InitializeMeType = ReturnType<typeof initializeMe>;

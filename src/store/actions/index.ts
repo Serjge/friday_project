@@ -5,7 +5,7 @@ export {
   SET_STATUS,
 } from 'store/actions/registrationAction';
 
-export { seLoginDataAC, setLogOutAC, SET_LOGIN_DATA, SET_LOGOUT } from './loginAction';
+export { setIsLoginAC, SET_IS_LOGIN } from './loginAction';
 
 export {
   setErrorMessage,
