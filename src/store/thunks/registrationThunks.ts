@@ -18,8 +18,8 @@ export const registrationTC =
       if (status === statusCode.created) {
         dispatch(setRegistrationIsCompleted(true));
       }
-    } catch (errorCat) {
-      const { response, message } = errorCat as AxiosError;
+    } catch (errorCatch) {
+      const { response, message } = errorCatch as AxiosError;
       const error = response?.data.error;
 
       if (response?.status === statusCode.Bad_Request) {
