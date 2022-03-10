@@ -18,7 +18,8 @@ const initialState: ProfileStateWithErrorKeyType = {
   __v: 0,
   token: 'ad78f960-9c86-11ec-86e1-556be06f6bb3',
   tokenDeathTime: 1646497079158,
-  avatar: '',
+  avatar:
+    'https://www.pngitem.com/pimgs/m/560-5603874_product-image-logo-avatar-minimalist-flat-line-hd.png',
   error: '',
   needEdit: false,
 };

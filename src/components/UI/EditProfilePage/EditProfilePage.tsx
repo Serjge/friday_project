@@ -4,9 +4,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
 import { PATH } from '../../../enum';
+import {
+  EditAvatarBlock,
+  EditBlock,
+  EditNameBlock,
+  EditNameRowBlock,
+  EditPersonalInfo,
+  EditProfileBlock,
+  ShadowEditProfileBlock,
+  SpanEditProfile,
+  UserImgProfile,
+} from '../../../pages/Profile/style';
 import { EditProfileAC } from '../../../store/actions/ProfileAction';
 import {
-  selectEmailProfile,
+  selectAvatarProfile,
   selectNameProfile,
   selectNeedEditProfile,
 } from '../../../store/selectors/selectProfile';
@@ -17,11 +28,11 @@ import { TextField } from '../TextField';
 const EditProfilePage = (): ReactElement => {
   const dispatch = useDispatch();
   const needEdit = useSelector(selectNeedEditProfile);
-  const email = useSelector(selectEmailProfile);
   const name = useSelector(selectNameProfile);
+  const avatar = useSelector(selectAvatarProfile);
 
   const [newName, setNewName] = useState<string>(name);
-  const [edit, setEdit] = useState<boolean>(true);
+  const [editName, setEditName] = useState<boolean>(true);
 
   const exitEditModule = (): void => {
     dispatch(EditProfileAC(false));
@@ -33,44 +44,52 @@ const EditProfilePage = (): ReactElement => {
 
   const changePersonalInfoHandler = (): void => {
     dispatch(editProfileTC(newName));
+    setEditName(true);
   };
 
-  const writeHandler = (): void => setEdit(false);
+  const writeNewNameHandler = (): void => setEditName(false);
+  const cancelWriteNewNameHandler = (): void => setEditName(true);
 
   if (!needEdit) {
     return <Navigate to={PATH.PROFILE} />;
   }
 
   return (
-    <div>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          marginTop: ' 100px',
-          flexDirection: 'column',
-        }}
-      >
+    <EditProfileBlock>
+      <EditPersonalInfo>
         <h1>Personal information</h1>
-        <p>Your foto could be here</p>
-        {edit ? (
-          <span>{newName}</span>
-        ) : (
-          <TextField
-            value={newName}
-            onChange={changeNameHandler}
-            onBlur={() => setEdit(true)}
-            autoFocus
-          />
-        )}
-        <SuperButton onClick={writeHandler}>Change</SuperButton>
-        <h2>{email}</h2>
-      </div>
-      <div>
+        <EditAvatarBlock>
+          <UserImgProfile src={avatar} alt="avatar-user" />
+          <SuperButton>Change avatar</SuperButton>
+        </EditAvatarBlock>
+        <EditNameBlock>
+          {editName ? (
+            <EditBlock>
+              <h3>Name</h3>
+              <EditNameRowBlock>
+                <SpanEditProfile>{name}</SpanEditProfile>
+                <SuperButton onClick={writeNewNameHandler}>Change Name</SuperButton>
+              </EditNameRowBlock>
+              <ShadowEditProfileBlock>{}</ShadowEditProfileBlock>
+            </EditBlock>
+          ) : (
+            <EditBlock>
+              <h3>Name</h3>
+              <EditNameRowBlock>
+                <SpanEditProfile>{name}</SpanEditProfile>
+                <SuperButton onClick={cancelWriteNewNameHandler}>Cancel</SuperButton>
+              </EditNameRowBlock>
+              <h3>New Name</h3>
+              <EditNameRowBlock>
+                <TextField value={newName} onChange={changeNameHandler} autoFocus />
+                <SuperButton onClick={changePersonalInfoHandler}>Save</SuperButton>
+              </EditNameRowBlock>
+            </EditBlock>
+          )}
+        </EditNameBlock>
         <SuperButton onClick={exitEditModule}>Cancel</SuperButton>
-        <SuperButton onClick={changePersonalInfoHandler}>Apply</SuperButton>
-      </div>
-    </div>
+      </EditPersonalInfo>
+    </EditProfileBlock>
   );
 };
 export default EditProfilePage;

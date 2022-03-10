@@ -1,5 +1,5 @@
 export { Login } from './Login';
-export { Profile } from './Profile';
+export { Profile } from './Profile/Profile';
 export { Test } from './Test';
 export { Recovery } from './Recovery';
 export { Registration } from './Registration';
