@@ -38,6 +38,9 @@ export const ProfileReducer = (
     case 'profile/change-name': {
       return { ...state, name: action.name };
     }
+    case 'profile/change-avatar': {
+      return { ...state, avatar: action.avatar };
+    }
     default:
       return state;
   }

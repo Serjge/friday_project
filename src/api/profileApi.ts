@@ -6,7 +6,10 @@ export const profileApi = {
   authMe() {
     return instance.post<AuthMeType>('/auth/me');
   },
-  editProfile(name: string) {
+  editPersonalName(name: string) {
     return instance.put<EditProfileType>('/auth/me', { name });
+  },
+  editPersonalAvatar(name: string, avatar: string) {
+    return instance.put<EditProfileType>('auth/me', { name, avatar });
   },
 };

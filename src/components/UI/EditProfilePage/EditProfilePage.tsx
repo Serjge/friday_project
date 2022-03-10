@@ -21,7 +21,10 @@ import {
   selectNameProfile,
   selectNeedEditProfile,
 } from '../../../store/selectors/selectProfile';
-import { editProfileTC } from '../../../store/thunks/profileThunks';
+import {
+  editPersonalAvatarTC,
+  editProfileNameTC,
+} from '../../../store/thunks/profileThunks';
 import { SuperButton } from '../SuperButton';
 import { TextField } from '../TextField';
 
@@ -33,6 +36,8 @@ const EditProfilePage = (): ReactElement => {
 
   const [newName, setNewName] = useState<string>(name);
   const [editName, setEditName] = useState<boolean>(true);
+  const [newAvatar, setNewAvatar] = useState<string>(avatar);
+  const [editAvatar, setEditAvatar] = useState<boolean>(true);
 
   const exitEditModule = (): void => {
     dispatch(EditProfileAC(false));
@@ -42,13 +47,22 @@ const EditProfilePage = (): ReactElement => {
     setNewName(e.currentTarget.value);
   };
 
-  const changePersonalInfoHandler = (): void => {
-    dispatch(editProfileTC(newName));
+  const changePersonalNameHandler = (): void => {
+    dispatch(editProfileNameTC(newName));
     setEditName(true);
   };
+  const changePersonalAvatarHandler = (): void => {
+    dispatch(editPersonalAvatarTC(newName, newAvatar));
+    setEditAvatar(true);
+  };
 
-  const writeNewNameHandler = (): void => setEditName(false);
+  const applyNewNameHandler = (): void => setEditName(false);
   const cancelWriteNewNameHandler = (): void => setEditName(true);
+  const changeAvatarHandler = (): void => setEditAvatar(false);
+  const cancelChangeAvatar = (): void => setEditAvatar(true);
+  const changeAvatarUrlHandler = (e: ChangeEvent<HTMLInputElement>): void => {
+    setNewAvatar(e.currentTarget.value);
+  };
 
   if (!needEdit) {
     return <Navigate to={PATH.PROFILE} />;
@@ -60,7 +74,15 @@ const EditProfilePage = (): ReactElement => {
         <h1>Personal information</h1>
         <EditAvatarBlock>
           <UserImgProfile src={avatar} alt="avatar-user" />
-          <SuperButton>Change avatar</SuperButton>
+          {editAvatar ? (
+            <SuperButton onClick={changeAvatarHandler}>Change avatar</SuperButton>
+          ) : (
+            <EditNameRowBlock>
+              <TextField onChange={changeAvatarUrlHandler} autoFocus />
+              <SuperButton onClick={changePersonalAvatarHandler}>Save</SuperButton>
+              <SuperButton onClick={cancelChangeAvatar}>Cancel</SuperButton>
+            </EditNameRowBlock>
+          )}
         </EditAvatarBlock>
         <EditNameBlock>
           {editName ? (
@@ -68,7 +90,7 @@ const EditProfilePage = (): ReactElement => {
               <h3>Name</h3>
               <EditNameRowBlock>
                 <SpanEditProfile>{name}</SpanEditProfile>
-                <SuperButton onClick={writeNewNameHandler}>Change Name</SuperButton>
+                <SuperButton onClick={applyNewNameHandler}>Change Name</SuperButton>
               </EditNameRowBlock>
               <ShadowEditProfileBlock>{}</ShadowEditProfileBlock>
             </EditBlock>
@@ -82,7 +104,7 @@ const EditProfilePage = (): ReactElement => {
               <h3>New Name</h3>
               <EditNameRowBlock>
                 <TextField value={newName} onChange={changeNameHandler} autoFocus />
-                <SuperButton onClick={changePersonalInfoHandler}>Save</SuperButton>
+                <SuperButton onClick={changePersonalNameHandler}>Save</SuperButton>
               </EditNameRowBlock>
             </EditBlock>
           )}

@@ -1,6 +1,7 @@
 import {
   AuthMeAC,
-  ChangePersonalInfoAC,
+  ChangePersonalAvatarAC,
+  ChangePersonalNameAC,
   EditProfileAC,
 } from '../store/actions/ProfileAction';
 
@@ -43,4 +44,5 @@ export type AuthMeType = {
 export type ProfileActionType =
   | ReturnType<typeof EditProfileAC>
   | ReturnType<typeof AuthMeAC>
-  | ReturnType<typeof ChangePersonalInfoAC>;
+  | ReturnType<typeof ChangePersonalNameAC>
+  | ReturnType<typeof ChangePersonalAvatarAC>;
