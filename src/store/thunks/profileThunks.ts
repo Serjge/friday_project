@@ -1,0 +1,41 @@
+import { profileApi } from '../../api/profileApi';
+import { AppThunkType } from '../../types';
+import {
+  AuthMeAC,
+  ChangePersonalAvatarAC,
+  ChangePersonalNameAC,
+} from '../actions/ProfileAction';
+
+export const authMeTC = (): AppThunkType => dispatch =>
+  profileApi
+    .authMe()
+    .then(res => {
+      dispatch(AuthMeAC(res.data));
+    })
+    .catch(e => {
+      console.log(e);
+    });
+
+export const editProfileNameTC =
+  (name: string): AppThunkType =>
+  dispatch =>
+    profileApi
+      .editPersonalName(name)
+      .then(res => {
+        dispatch(ChangePersonalNameAC(res.data.updatedUser.name));
+      })
+      .catch(e => {
+        console.log(e);
+      });
+
+export const editPersonalAvatarTC =
+  (name: string, avatar: string): AppThunkType =>
+  dispatch =>
+    profileApi
+      .editPersonalAvatar(name, avatar)
+      .then(res => {
+        dispatch(ChangePersonalAvatarAC(res.data.updatedUser.avatar));
+      })
+      .catch(e => {
+        console.log(e);
+      });

@@ -39,7 +39,7 @@ export const Login = (): ReactElement => {
   const { register, handleSubmit } = useForm<LoginApiPayloadType>();
   // const token = useSelector(selectLoginToken);
   const errorMessage = useSelector(selectErrorMessage);
-
+  // нужна проверка авторизации, но это скорее можно всунуть в санку authMe, типо если не залогинен то редирект на логин. Так по крайней мере написано в описании запроса(проверка, сохранены ли куки)
   // if (token !== null) {
   //   return <Navigate to={PATH.PROFILE} />;
   // }
