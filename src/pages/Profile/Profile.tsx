@@ -4,22 +4,22 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { EditProfilePage, SuperButton } from 'components';
 import { UserImgProfile } from 'components/UI/EditProfilePage/style';
-import { EditProfileAC } from 'store/actions/ProfileAction';
+import { EditProfileAC } from 'store/actions';
 import {
   selectAvatarProfile,
   selectNameProfile,
   selectNeedEditProfile,
   selectPublicCardPacksCountProfile,
-} from 'store/selectors/selectProfile';
+} from 'store/selectors';
 import { Wrapper } from 'styles';
 
 export const Profile = (): ReactElement => {
   const dispatch = useDispatch();
 
-  const needEdit = useSelector(selectNeedEditProfile);
   const name = useSelector(selectNameProfile);
-  const publicCardPacksCount = useSelector(selectPublicCardPacksCountProfile);
   const avatar = useSelector(selectAvatarProfile);
+  const needEdit = useSelector(selectNeedEditProfile);
+  const publicCardPacksCount = useSelector(selectPublicCardPacksCountProfile);
 
   const editModule = (): void => {
     dispatch(EditProfileAC(true));

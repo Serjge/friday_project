@@ -7,14 +7,13 @@ import { AppThunkType } from 'types';
 
 export const initializeMeTC = (): AppThunkType => async dispatch => {
   try {
-    const response = await loginAPI.isLogin();
-    const { status } = response;
+    const { status } = await loginAPI.isLogin();
 
     if (status === statusCode.OK) {
       dispatch(setIsLoginAC(true));
     }
-  } catch (errorCat) {
-    const { response, message } = errorCat as AxiosError;
+  } catch (errorCatch) {
+    const { response, message } = errorCatch as AxiosError;
     const error = response?.data.error;
     const status = response?.status;
 

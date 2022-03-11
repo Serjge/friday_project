@@ -1,4 +1,4 @@
-import { profileApi } from 'api/profileApi';
+import { profileApi } from 'api';
 import {
   AuthMeAC,
   ChangePersonalAvatarAC,
