@@ -1,4 +1,4 @@
-import { ErrorValidateMessage } from 'enum/errorValidateMessage';
+import { ErrorValidateMessage } from 'enum';
 import { getErrorValidate } from 'utils';
 
 test('error validate', () => {

@@ -24,9 +24,9 @@ type Inputs = {
 export const Registration = (): ReactElement => {
   const dispatch = useDispatch();
 
-  const RegistrationIsCompleted = useSelector(selectRegistrationIsCompleted);
-  const errorMessage = useSelector(selectErrorMessage);
   const status = useSelector(selectStatus);
+  const errorMessage = useSelector(selectErrorMessage);
+  const RegistrationIsCompleted = useSelector(selectRegistrationIsCompleted);
 
   const navigate = useNavigate();
 
