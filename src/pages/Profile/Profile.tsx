@@ -2,8 +2,10 @@ import { ReactElement } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { EditProfilePage, SuperButton } from 'components';
-import { UserImgProfile } from 'components/UI/EditProfilePage/style';
+import { UserImgProfile } from './style';
+
+import { SuperButton } from 'components';
+import { EditProfilePage } from 'components/UI/EditProfilePage/EditProfilePage';
 import { EditProfileAC } from 'store/actions/ProfileAction';
 import {
   selectAvatarProfile,

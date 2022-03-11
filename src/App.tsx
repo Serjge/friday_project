@@ -12,6 +12,7 @@ import { Wrapper } from 'styles';
 
 export const App = (): ReactElement => {
   const dispatch = useDispatch();
+
   const isLogin = useSelector(selectIsLogin);
   const navigate = useNavigate();
   const isInitialize = useSelector(selectIsInitialize);
@@ -21,10 +22,6 @@ export const App = (): ReactElement => {
     if (!isLogin) {
       navigate(PATH.LOGIN);
     }
-  }, []);
-
-  useEffect(() => {
-    dispatch(authMeTC());
   }, []);
 
   if (!isInitialize) {

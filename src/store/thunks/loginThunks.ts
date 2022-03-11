@@ -1,6 +1,7 @@
 import { loginAPI } from 'api';
 import { statusCode } from 'enum';
 import { setErrorMessage, setIsLoginAC } from 'store/actions';
+import { AuthMeAC } from 'store/actions/ProfileAction';
 import { AppThunkType, LoginApiPayloadType } from 'types';
 
 export const setLoginDataThunkCreator =
@@ -10,6 +11,7 @@ export const setLoginDataThunkCreator =
       .login(data)
       .then(res => {
         if (res.status === statusCode.OK) {
+          dispatch(AuthMeAC(res.data));
           dispatch(setIsLoginAC(true));
           dispatch(setErrorMessage(''));
         }

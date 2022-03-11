@@ -10,6 +10,7 @@ import { selectErrorMessage, selectIsLogin } from 'store/selectors';
 import { setLoginDataThunkCreator } from 'store/thunks';
 import { Wrapper } from 'styles';
 import { LoginApiPayloadType } from 'types';
+import { getErrorValidate } from 'utils';
 
 export const Login = (): ReactElement => {
   const dispatch = useDispatch();
@@ -24,7 +25,14 @@ export const Login = (): ReactElement => {
     navigate(PATH.REGISTRATION);
   };
 
-  const { register, handleSubmit } = useForm<LoginApiPayloadType>();
+  const {
+    register,
+    handleSubmit,
+    // getValues,
+    formState: {
+      errors: { email, password },
+    },
+  } = useForm<LoginApiPayloadType>();
   const isLogin = useSelector(selectIsLogin);
   const errorMessage = useSelector(selectErrorMessage);
   // нужна проверка авторизации, но это скорее можно всунуть в санку authMe, типо если не залогинен то редирект на логин. Так по крайней мере написано в описании запроса(проверка, сохранены ли куки)
@@ -37,18 +45,23 @@ export const Login = (): ReactElement => {
       <h1>Login</h1>
       <form onSubmit={handleSubmit(onLoginClick)}>
         <TextField
-          {...register('email')}
+          {...register('email', {
+            required: true,
+            pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+          })}
           labelTitle="login:"
           placeholder="Email"
           type="text"
           autoComplete="on"
+          error={getErrorValidate(email?.type)}
         />
         <TextField
-          {...register('password')}
+          {...register('password', { required: true, minLength: 8 })}
           type="password"
           labelTitle="Password:"
           placeholder="Password"
           autoComplete="on"
+          error={getErrorValidate(password?.type)}
         />
         <TextField
           {...register('rememberMe')}

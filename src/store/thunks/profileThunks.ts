@@ -6,13 +6,14 @@ import {
 } from '../actions/ProfileAction';
 
 import { profileApi } from 'api/profileApi';
-import { initializeMe } from 'store/actions';
+import { initializeMe, setIsLoginAC } from 'store/actions';
 
 export const authMeTC = (): AppThunkType => dispatch =>
   profileApi
     .authMe()
     .then(res => {
       dispatch(AuthMeAC(res.data));
+      dispatch(setIsLoginAC(true));
     })
     .catch(e => {
       console.log(e);

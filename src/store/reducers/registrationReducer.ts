@@ -2,7 +2,7 @@ import { SET_REGISTRATION_IS_COMPLETED, SET_STATUS } from 'store/actions';
 import { StatusType } from 'types';
 import { RegistrationActionType } from 'types/actions';
 
-type InitialStateType = {
+export type InitialStateType = {
   isCompleted: boolean;
   status: StatusType;
 };
