@@ -1,7 +1,7 @@
 import { SET_IS_LOGIN } from 'store/actions';
 import { LoginActionType } from 'types/actions';
 
-type LoginStateWithErrorKey = {
+export type LoginStateWithErrorKey = {
   isLogin: boolean;
 };
 
