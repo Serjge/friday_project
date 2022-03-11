@@ -1,8 +1,7 @@
-import { ProfileActionType } from '../ProfileType';
-
 import {
   AppActionsType,
   ExampleActionsType,
+  ProfileActionType,
   RegistrationActionType,
 } from 'types/actions';
 import { LoginActionType } from 'types/actions/LoginActionsType';

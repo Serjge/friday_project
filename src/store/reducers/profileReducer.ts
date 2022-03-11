@@ -1,4 +1,5 @@
-import { AuthMeType, ProfileActionType } from 'types';
+import { AuthMeType } from 'types';
+import { ProfileActionType } from 'types/actions';
 
 export type ProfileStateWithErrorKeyType = {
   profileData: AuthMeType;
