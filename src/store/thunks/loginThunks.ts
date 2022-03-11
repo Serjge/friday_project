@@ -1,3 +1,5 @@
+import { AxiosError } from 'axios';
+
 import { loginAPI } from 'api';
 import { statusCode } from 'enum';
 import { setErrorMessage, setIsLoginAC } from 'store/actions';
@@ -6,27 +8,34 @@ import { AppThunkType, LoginApiPayloadType } from 'types';
 
 export const setLoginDataThunkCreator =
   (data: LoginApiPayloadType): AppThunkType =>
-  dispatch =>
-    loginAPI
-      .login(data)
-      .then(res => {
-        if (res.status === statusCode.OK) {
-          dispatch(AuthMeAC(res.data));
-          dispatch(setIsLoginAC(true));
-          dispatch(setErrorMessage(''));
-        }
-      })
-      .catch(rej => {
-        const error = rej.response
-          ? rej.response.data.error
-          : `${rej.message}, more details in the console`;
-        dispatch(setErrorMessage(error));
-      });
+  async dispatch => {
+    try {
+      const response = await loginAPI.login(data);
 
-export const logOutThunkCreator = (): AppThunkType => dispatch => {
-  loginAPI.logOut().then(res => {
-    if (res.status === statusCode.OK) {
-      dispatch(setIsLoginAC(false));
+      if (response.status === statusCode.OK) {
+        dispatch(AuthMeAC(response.data));
+        dispatch(setIsLoginAC(true));
+        dispatch(setErrorMessage(''));
+      }
+    } catch (errorCatch) {
+      const { response, message } = errorCatch as AxiosError;
+
+      const error = response
+        ? response.data.error
+        : `${message}, more details in the console`;
+      dispatch(setErrorMessage(error));
     }
-  });
+  };
+
+export const logOutThunkCreator = (): AppThunkType => async dispatch => {
+  try {
+    loginAPI.logOut().then(res => {
+      if (res.status === statusCode.OK) {
+        dispatch(setIsLoginAC(false));
+      }
+    });
+  } catch (e) {
+    // eslint-disable-next-line no-alert
+    alert(e);
+  }
 };

@@ -9,7 +9,7 @@ import { AuthMeType } from 'types/ProfileType';
 
 export const loginAPI = {
   login(data: LoginApiPayloadType) {
-    return instance.post<AuthMeType>('/auth/login', data).then(res => res);
+    return instance.post<AuthMeType>('/auth/login', data);
   },
   logOut(): CommonResponseType<LogOutType> {
     return instance.delete<LogOutType>('/auth/me');
