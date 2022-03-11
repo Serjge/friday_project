@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { UserImgProfile } from './style';
 
-import { EditProfilePage, SuperButton } from 'components';
+import { SuperButton } from 'components';
+import { EditProfilePage } from 'components/UI/EditProfilePage/EditProfilePage';
 import { EditProfileAC } from 'store/actions/ProfileAction';
 import {
   selectAvatarProfile,
