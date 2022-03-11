@@ -1,7 +1,7 @@
 import { INITIALIZE_ME, SET_ERROR_MESSAGE } from 'store/actions';
 import { AppActionsType } from 'types/actions';
 
-type InitialStateType = {
+export type InitialStateType = {
   errorMessage: string;
   isInitialize: boolean;
 };
