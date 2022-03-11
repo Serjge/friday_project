@@ -9,15 +9,13 @@ import {
 } from 'components/UI/EditProfilePage/style';
 import { SuperButton } from 'components/UI/SuperButton';
 import { TextField } from 'components/UI/TextField';
-import { selectAvatarProfile } from 'store/selectors/selectProfile';
+import { selectAvatarProfile, selectNameProfile } from 'store/selectors/selectProfile';
 import { editPersonalAvatarTC } from 'store/thunks/profileThunks';
 
-type EditAvatarType = {
-  name: string;
-};
-
-export const EditAvatar = ({ name }: EditAvatarType): ReactElement => {
+export const EditAvatar = (): ReactElement => {
   const dispatch = useDispatch();
+
+  const name = useSelector(selectNameProfile);
   const avatar = useSelector(selectAvatarProfile);
 
   const [newAvatar, setNewAvatar] = useState<string>(avatar);
