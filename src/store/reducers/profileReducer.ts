@@ -1,25 +1,13 @@
 import { AuthMeType, ProfileActionType } from '../../types/ProfileType';
 
-type ProfileStateWithErrorKeyType = AuthMeType & {
+type ProfileStateWithErrorKeyType = {
+  profileData: AuthMeType;
   error: string;
   needEdit: boolean;
 };
 
 const initialState: ProfileStateWithErrorKeyType = {
-  _id: '5eecf82a3ed8f700042f1186',
-  email: 'nya-admin@nya.nya',
-  rememberMe: false,
-  isAdmin: false,
-  name: 'dfg',
-  verified: false,
-  publicCardPacksCount: 368,
-  created: '2020-06-19T17:38:50.679Z',
-  updated: '2022-03-05T13:17:59.159Z',
-  __v: 0,
-  token: 'ad78f960-9c86-11ec-86e1-556be06f6bb3',
-  tokenDeathTime: 1646497079158,
-  avatar:
-    'https://www.pngitem.com/pimgs/m/560-5603874_product-image-logo-avatar-minimalist-flat-line-hd.png',
+  profileData: {} as AuthMeType,
   error: '',
   needEdit: false,
 };
@@ -30,16 +18,16 @@ export const ProfileReducer = (
 ): ProfileStateWithErrorKeyType => {
   switch (action.type) {
     case 'profile/check-auth': {
-      return { ...action.state, error: '', needEdit: false };
+      return { ...state, profileData: action.state };
     }
     case 'profile/change-personal-data': {
       return { ...state, needEdit: action.needEdit };
     }
     case 'profile/change-name': {
-      return { ...state, name: action.name };
+      return { ...state, profileData: { ...state.profileData, name: action.name } };
     }
     case 'profile/change-avatar': {
-      return { ...state, avatar: action.avatar };
+      return { ...state, profileData: { ...state.profileData, avatar: action.avatar } };
     }
     default:
       return state;
