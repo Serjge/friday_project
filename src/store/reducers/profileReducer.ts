@@ -1,6 +1,6 @@
 import { AuthMeType, ProfileActionType } from '../../types/ProfileType';
 
-type ProfileStateWithErrorKeyType = {
+export type ProfileStateWithErrorKeyType = {
   profileData: AuthMeType;
   error: string;
   needEdit: boolean;
