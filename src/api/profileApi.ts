@@ -1,6 +1,5 @@
-import { instance } from './instance';
-
-import { AuthMeType, EditProfileType } from 'types/ProfileType';
+import { instance } from 'api';
+import { AuthMeType, EditProfileType } from 'types';
 
 export const profileApi = {
   authMe() {
