@@ -10,13 +10,13 @@ export const setLoginDataThunkCreator =
   (data: LoginApiPayloadType): AppThunkType =>
   async dispatch => {
     try {
-      loginAPI.login(data).then(res => {
-        if (res.status === statusCode.OK) {
-          dispatch(AuthMeAC(res.data));
-          dispatch(setIsLoginAC(true));
-          dispatch(setErrorMessage(''));
-        }
-      });
+      const response = await loginAPI.login(data);
+
+      if (response.status === statusCode.OK) {
+        dispatch(AuthMeAC(response.data));
+        dispatch(setIsLoginAC(true));
+        dispatch(setErrorMessage(''));
+      }
     } catch (errorCatch) {
       const { response, message } = errorCatch as AxiosError;
 
