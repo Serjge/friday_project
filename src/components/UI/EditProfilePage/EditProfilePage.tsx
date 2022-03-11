@@ -3,10 +3,7 @@ import React, { ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
-import { SuperButton } from '../SuperButton';
-
-import { EditAvatar } from 'components/UI/EditProfilePage/EditAvatar/EditAvatar';
-import { EditName } from 'components/UI/EditProfilePage/EditName/EditName';
+import { EditAvatar, EditName, SuperButton } from 'components';
 import { EditPersonalInfo, EditProfileBlock } from 'components/UI/EditProfilePage/style';
 import { PATH } from 'enum';
 import { EditProfileAC } from 'store/actions';

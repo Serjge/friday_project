@@ -2,6 +2,7 @@ import React, { ChangeEvent, ReactElement, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
+import { SuperButton, TextField } from 'components';
 import {
   EditBlock,
   EditNameBlock,
@@ -9,10 +10,8 @@ import {
   ShadowEditProfileBlock,
   SpanEditProfile,
 } from 'components/UI/EditProfilePage/style';
-import { SuperButton } from 'components/UI/SuperButton';
-import { TextField } from 'components/UI/TextField';
-import { selectNameProfile } from 'store/selectors/selectProfile';
-import { editProfileNameTC } from 'store/thunks/profileThunks';
+import { selectNameProfile } from 'store/selectors';
+import { editProfileNameTC } from 'store/thunks';
 
 export const EditName = (): ReactElement => {
   const dispatch = useDispatch();
@@ -23,6 +22,7 @@ export const EditName = (): ReactElement => {
   const [newName, setNewName] = useState<string>(name);
 
   const applyNewNameHandler = (): void => setEditName(false);
+
   const cancelWriteNewNameHandler = (): void => setEditName(true);
 
   const changeNameHandler = (e: ChangeEvent<HTMLInputElement>): void => {

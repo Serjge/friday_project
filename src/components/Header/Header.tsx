@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { SuperButton } from 'components/UI';
+import { SuperButton } from 'components';
 import { PATH } from 'enum';
 import { selectIsLogin } from 'store/selectors';
 import { logOutThunkCreator } from 'store/thunks';
@@ -19,9 +19,6 @@ export const Header = (): ReactElement => {
 
   const isLogin = useSelector(selectIsLogin);
   const navigate = useNavigate();
-
-  // const classActive = (active: { isActive: boolean }): string =>
-  //   active.isActive ? `${style.link} + ${style.act}` : style.link;
 
   const logOutHandle = (): void => {
     dispatch(logOutThunkCreator());

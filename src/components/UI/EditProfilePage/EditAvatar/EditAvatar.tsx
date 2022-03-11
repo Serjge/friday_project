@@ -2,15 +2,14 @@ import React, { ChangeEvent, ReactElement, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
+import { SuperButton, TextField } from 'components';
 import {
   EditAvatarBlock,
   EditRowBlock,
   UserImgProfile,
 } from 'components/UI/EditProfilePage/style';
-import { SuperButton } from 'components/UI/SuperButton';
-import { TextField } from 'components/UI/TextField';
-import { selectAvatarProfile, selectNameProfile } from 'store/selectors/selectProfile';
-import { editPersonalAvatarTC } from 'store/thunks/profileThunks';
+import { selectAvatarProfile, selectNameProfile } from 'store/selectors';
+import { editPersonalAvatarTC } from 'store/thunks';
 
 export const EditAvatar = (): ReactElement => {
   const dispatch = useDispatch();
