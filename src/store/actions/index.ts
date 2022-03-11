@@ -15,3 +15,10 @@ export {
 } from './appAction';
 
 export { exampleAction } from './exampleAction';
+
+export {
+  ChangePersonalAvatarAC,
+  ChangePersonalNameAC,
+  EditProfileAC,
+  AuthMeAC,
+} from './ProfileAction';
