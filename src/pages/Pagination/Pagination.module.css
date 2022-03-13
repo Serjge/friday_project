@@ -1,0 +1,8 @@
+.generalBlock {
+    margin: 0 10px;
+    min-height: 50px;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: flex-end;
+}
