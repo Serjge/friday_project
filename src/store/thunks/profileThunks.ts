@@ -12,6 +12,7 @@ export const authMeTC = (): AppThunkType => dispatch =>
   profileApi
     .authMe()
     .then(res => {
+      console.log(res);
       dispatch(AuthMeAC(res.data));
       dispatch(setIsLoginAC(true));
     })

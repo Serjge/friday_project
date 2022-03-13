@@ -11,3 +11,7 @@ export const selectPublicCardPacksCountProfile = (state: RootReducerType): numbe
 
 export const selectAvatarProfile = (state: RootReducerType): string =>
   state.profile.profileData.avatar;
+
+export const selectUserId = (state: RootReducerType): string =>
+  // eslint-disable-next-line no-underscore-dangle
+  state.profile.profileData._id;
