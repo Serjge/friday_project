@@ -15,3 +15,14 @@ export type CardType = {
   __v: number;
   _id: string;
 };
+
+export type CardsPackType = {
+  cardPacks: CardType[];
+  cardPacksTotalCount: number;
+  maxCardsCount: number;
+  minCardsCount: number;
+  page: number;
+  pageCount: number;
+  token: string;
+  tokenDeathTime: number;
+};

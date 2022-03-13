@@ -9,13 +9,10 @@ export const registrationTC = (): AppThunkType => async dispatch => {
   try {
     dispatch(setStatus('loading'));
 
-    const {
-      status,
-      data: { cardsPack },
-    } = await cardsApi.getCards();
+    const { status, data } = await cardsApi.getCards();
 
     if (status === statusCode.OK) {
-      dispatch(setCards(cardsPack));
+      dispatch(setCards(data));
     }
   } catch (errorCatch) {
     const { response, message } = errorCatch as AxiosError;
