@@ -1,24 +1,37 @@
+import { AxiosError } from 'axios';
+
 import { profileApi } from 'api';
+import { statusCode } from 'enum';
 import {
   AuthMeAC,
   ChangePersonalAvatarAC,
   ChangePersonalNameAC,
   initializeMe,
+  setErrorMessage,
   setIsLoginAC,
 } from 'store/actions';
 import { AppThunkType } from 'types';
 
-export const authMeTC = (): AppThunkType => dispatch =>
-  profileApi
-    .authMe()
-    .then(res => {
-      dispatch(AuthMeAC(res.data));
+export const authMeTC = (): AppThunkType => async dispatch => {
+  try {
+    const { data, status } = await profileApi.authMe();
+    if (status === statusCode.OK) {
+      dispatch(AuthMeAC(data));
       dispatch(setIsLoginAC(true));
-    })
-    .catch(e => {
-      console.log(e);
-    })
-    .finally(() => dispatch(initializeMe(true)));
+    }
+  } catch (errorCatch) {
+    const { response, message } = errorCatch as AxiosError;
+    const error = response?.data.error;
+    const status = response?.status;
+    if (status === statusCode.Unauthorized) {
+      dispatch(setErrorMessage(error));
+    } else {
+      dispatch(setErrorMessage(message));
+    }
+  } finally {
+    dispatch(initializeMe(true));
+  }
+};
 
 export const editProfileNameTC =
   (name: string): AppThunkType =>
