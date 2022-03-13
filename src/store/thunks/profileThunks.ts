@@ -15,8 +15,8 @@ export const authMeTC = (): AppThunkType => dispatch =>
       dispatch(AuthMeAC(res.data));
       dispatch(setIsLoginAC(true));
     })
-    .catch(e => {
-      console.log(e);
+    .catch(errorCatch => {
+      console.log(errorCatch);
     })
     .finally(() => dispatch(initializeMe(true)));
 

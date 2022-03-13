@@ -5,6 +5,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { Login, NewPassword, Page404, Profile, Recovery, Registration, Test } from '.';
 
 import { PATH } from 'enum';
+import { Cards } from 'pages/cards';
 
 export const Routers = (): ReactElement => (
   <Routes>
@@ -17,5 +18,6 @@ export const Routers = (): ReactElement => (
     <Route path={PATH.PAGE404} element={<Page404 />} />
     <Route path={PATH.RECOVERY} element={<Recovery />} />
     <Route path={PATH.TEST} element={<Test />} />
+    <Route path={PATH.CARDS} element={<Cards />} />
   </Routes>
 );
