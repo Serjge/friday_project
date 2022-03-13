@@ -14,7 +14,7 @@ import { AppThunkType } from 'types';
 
 export const authMeTC = (): AppThunkType => async dispatch => {
   try {
-    const { data, status } = await profileApi.authMe();
+    const { status, data } = await profileApi.authMe();
     if (status === statusCode.OK) {
       dispatch(AuthMeAC(data));
       dispatch(setIsLoginAC(true));
@@ -35,15 +35,23 @@ export const authMeTC = (): AppThunkType => async dispatch => {
 
 export const editProfileNameTC =
   (name: string): AppThunkType =>
-  dispatch =>
-    profileApi
-      .editPersonalName(name)
-      .then(res => {
-        dispatch(ChangePersonalNameAC(res.data.updatedUser.name));
-      })
-      .catch(e => {
-        console.log(e);
-      });
+  async dispatch => {
+    try {
+      const { status, data } = await profileApi.editPersonalName(name);
+      if (status === statusCode.OK) {
+        dispatch(ChangePersonalNameAC(data.updatedUser.name));
+      }
+    } catch (errorCatch) {
+      const { response, message } = errorCatch as AxiosError;
+      const error = response?.data.error;
+      const status = response?.status;
+      if (status === statusCode.Unauthorized) {
+        dispatch(setErrorMessage(error));
+      } else {
+        dispatch(setErrorMessage(message));
+      }
+    }
+  };
 
 export const editPersonalAvatarTC =
   (name: string, avatar: string): AppThunkType =>
