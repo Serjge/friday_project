@@ -1,4 +1,4 @@
-import React, { memo, ReactElement, useEffect } from 'react';
+import { memo, ReactElement, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
@@ -6,18 +6,24 @@ import styled from 'styled-components';
 import { SuperButton } from 'components';
 import { RootReducerType } from 'store';
 import { setSort } from 'store/actions';
-import { selectCards, selectSortPacks } from 'store/selectors';
 import {
+  selectCards,
   selectCardsCount,
   selectPackName,
+  selectSortPacks,
   selectUpdateDataPack,
   selectUserNamePack,
-} from 'store/selectors/selectCards';
+} from 'store/selectors';
 import { getCardsTC } from 'store/thunks';
 
-const TableHead = styled.div`
+type PropsType = {
+  width?: string;
+};
+
+const TableHead = styled.div<PropsType>`
   padding: 10px;
   display: flex;
+  width: ${({ width }) => width};
 `;
 
 export const PacksList = (): ReactElement => {
@@ -42,12 +48,20 @@ export const PacksList = (): ReactElement => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '670px' }}>
-        <TableHead onClick={() => onSortClick('name')}>Name</TableHead>
-        <TableHead onClick={() => onSortClick('cardsCount')}>Cards</TableHead>
-        <TableHead onClick={() => onSortClick('updated')}>Last Updated</TableHead>
-        <TableHead onClick={() => onSortClick('user_name')}>Creat by</TableHead>
-        <TableHead>Action</TableHead>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <TableHead width="200px" onClick={() => onSortClick('name')}>
+          Name
+        </TableHead>
+        <TableHead width="50px" onClick={() => onSortClick('cardsCount')}>
+          Cards
+        </TableHead>
+        <TableHead width="100px" onClick={() => onSortClick('updated')}>
+          Last Updated
+        </TableHead>
+        <TableHead width="200px" onClick={() => onSortClick('user_name')}>
+          Creat by
+        </TableHead>
+        <TableHead width="180px">Action</TableHead>
       </div>
       {/* eslint-disable-next-line @typescript-eslint/no-use-before-define */}
       {cards && cards.map(({ _id }) => <Pack id={_id} key={_id} />)}
@@ -67,15 +81,15 @@ export const Pack = memo(({ id }: { id: string }) => {
   const dataNew = new Date(updateDataPack);
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '670px' }}>
-      <TableHead>{namePack}</TableHead>
-      <TableHead>{cardsCount}</TableHead>
-      <TableHead>{dataNew.toLocaleDateString()}</TableHead>
-      <TableHead>{userNamePack}</TableHead>
-      <TableHead>
-        <SuperButton>Delete</SuperButton>
-        <SuperButton>Edit</SuperButton>
-        <SuperButton>Learn</SuperButton>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <TableHead width="200px">{namePack}</TableHead>
+      <TableHead width="50px">{cardsCount}</TableHead>
+      <TableHead width="100px">{dataNew.toLocaleDateString()}</TableHead>
+      <TableHead width="200px">{userNamePack}</TableHead>
+      <TableHead width="180px">
+        <SuperButton size="small">Delete</SuperButton>
+        <SuperButton size="small">Edit</SuperButton>
+        <SuperButton size="small">Learn</SuperButton>
       </TableHead>
     </div>
   );
