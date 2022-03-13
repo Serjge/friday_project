@@ -54,13 +54,21 @@ export const editProfileNameTC =
   };
 
 export const editPersonalAvatarTC =
-  (name: string, avatar: string): AppThunkType =>
-  dispatch =>
-    profileApi
-      .editPersonalAvatar(name, avatar)
-      .then(res => {
-        dispatch(ChangePersonalAvatarAC(res.data.updatedUser.avatar));
-      })
-      .catch(e => {
-        console.log(e);
-      });
+  (avatar: string): AppThunkType =>
+  async dispatch => {
+    try {
+      const { data, status } = await profileApi.editPersonalAvatar(avatar);
+      if (status === statusCode.OK) {
+        dispatch(ChangePersonalAvatarAC(data.updatedUser.avatar));
+      }
+    } catch (errorCatch) {
+      const { response, message } = errorCatch as AxiosError;
+      const error = response?.data.error;
+      const status = response?.status;
+      if (status === statusCode.Unauthorized) {
+        dispatch(setErrorMessage(error));
+      } else {
+        dispatch(setErrorMessage(message));
+      }
+    }
+  };
