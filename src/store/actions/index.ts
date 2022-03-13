@@ -22,3 +22,5 @@ export {
   EditProfileAC,
   AuthMeAC,
 } from './ProfileAction';
+
+export { setCards, SET_CARDS } from './cardsAction';

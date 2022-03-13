@@ -1,6 +1,8 @@
-import { ReactElement } from 'react';
+import { ReactElement, useEffect } from 'react';
 
 import styled from 'styled-components';
+
+import { cardsApi } from 'api/cardsApi';
 
 const TableHead = styled.div`
   padding: 20px;
@@ -24,21 +26,26 @@ const TableHead = styled.div`
 //   _id: string;
 // };
 
-export const Cards = (): ReactElement => (
-  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-    <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '670px' }}>
-      <TableHead>Name</TableHead>
-      <TableHead>Cards</TableHead>
-      <TableHead>Last Updated</TableHead>
-      <TableHead>Creat by</TableHead>
-      <TableHead>Action</TableHead>
+export const Cards = (): ReactElement => {
+  useEffect(() => {
+    cardsApi.getCards().then(res => console.log(res));
+  }, []);
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '670px' }}>
+        <TableHead>Name</TableHead>
+        <TableHead>Cards</TableHead>
+        <TableHead>Last Updated</TableHead>
+        <TableHead>Creat by</TableHead>
+        <TableHead>Action</TableHead>
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '670px' }}>
+        <TableHead>Name</TableHead>
+        <TableHead>Cards</TableHead>
+        <TableHead>Last Updated</TableHead>
+        <TableHead>Creat by</TableHead>
+        <TableHead>Action</TableHead>
+      </div>
     </div>
-    <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '670px' }}>
-      <TableHead>Name</TableHead>
-      <TableHead>Cards</TableHead>
-      <TableHead>Last Updated</TableHead>
-      <TableHead>Creat by</TableHead>
-      <TableHead>Action</TableHead>
-    </div>
-  </div>
-);
+  );
+};
