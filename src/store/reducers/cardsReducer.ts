@@ -1,19 +1,16 @@
-import { SET_CARDS } from 'store/actions';
-import { CardType } from 'types';
+import { SET_CARDS, SET_SORT } from 'store/actions';
+import { CardsPackType } from 'types';
 import { CardsActionType } from 'types/actions';
 
 export type InitialStateType = {
-  cardPacks: CardType[];
-  cardPacksTotalCount: number;
-  maxCardsCount: number;
-  minCardsCount: number;
-  page: number;
-  pageCount: number;
-  token: string;
-  tokenDeathTime: number;
+  packs: CardsPackType;
+  sort: string;
 };
 
-const initialState: InitialStateType = {} as InitialStateType;
+const initialState: InitialStateType = {
+  packs: {} as CardsPackType,
+  sort: '',
+};
 
 export const cardsReducer = (
   state = initialState,
@@ -21,7 +18,9 @@ export const cardsReducer = (
 ): InitialStateType => {
   switch (action.type) {
     case SET_CARDS:
-      return { ...action.payload.cards };
+      return { ...state, packs: action.payload.cards };
+    case SET_SORT:
+      return { ...state, sort: action.payload.sort };
     default:
       return state;
   }
