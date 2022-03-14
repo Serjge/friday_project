@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 import {
   appReducer,
   authReducer,
+  cardsReducer,
   loginReducer,
   ProfileReducer,
   registrationReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   login: loginReducer,
   registration: registrationReducer,
   profile: ProfileReducer,
+  cards: cardsReducer,
 });
 
 declare global {

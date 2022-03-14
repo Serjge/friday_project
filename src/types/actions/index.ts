@@ -17,3 +17,5 @@ export type {
 } from './AppActionsType';
 
 export type { ProfileActionType } from './ProfileActionType';
+
+export type { SetCardsType, CardsActionType } from './CardsActionType';

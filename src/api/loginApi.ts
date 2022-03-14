@@ -1,11 +1,11 @@
 import { instance } from 'api';
 import {
+  AuthMeType,
   CommonResponseType,
   LoginApiPayloadType,
   LoginStateType,
   LogOutType,
 } from 'types';
-import { AuthMeType } from 'types/ProfileType';
 
 export const loginAPI = {
   login(data: LoginApiPayloadType) {
