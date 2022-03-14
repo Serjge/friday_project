@@ -2,7 +2,7 @@ import { memo } from 'react';
 
 import { useSelector } from 'react-redux';
 
-import { SuperButton } from 'components/UI/SuperButton';
+import { SuperButton } from 'components';
 import { TableItem } from 'components/UI/TableCardsPack/PackItem/style';
 import { RootReducerType } from 'store';
 import {

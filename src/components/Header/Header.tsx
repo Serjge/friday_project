@@ -50,13 +50,20 @@ export const Header = (): ReactElement => {
       {/* <NavLink className={classActive} to={PATH.NEW_PASSWORD}> */}
       {/*   NEW_PASSWORD */}
       {/* </NavLink> */}
-      {/* <NavLink className={classActive} to={PATH.TEST}> */}
-      {/*   TEST */}
-      {/* </NavLink> */}
+
       {isLogin && (
-        <SuperButton type="button" onClick={logOutHandle}>
-          logOut
-        </SuperButton>
+        <>
+          <SuperButton type="button" onClick={logOutHandle}>
+            logOut
+          </SuperButton>
+
+          <SuperButton type="button" onClick={() => navigate(PATH.CARDS)}>
+            Cards
+          </SuperButton>
+          <SuperButton type="button" onClick={() => navigate(PATH.PROFILE)}>
+            Profile
+          </SuperButton>
+        </>
       )}
     </HeaderWrapper>
   );
