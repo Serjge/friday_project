@@ -2,11 +2,9 @@ import { ReactElement } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Pagination } from '../../../pages/Pagination/Pagination';
-
 import { TableHead } from './style';
 
-import { PackItem } from 'components';
+import { PackItem, Pagination } from 'components';
 import { setSort } from 'store/actions';
 import { selectCards, selectSortPacks } from 'store/selectors';
 

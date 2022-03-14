@@ -1,7 +1,7 @@
 import { ReactElement, useState } from 'react';
 
 import { SuperButton, SuperCheckbox, SuperInputText } from 'components';
-import { Pagination } from 'pages/Pagination/Pagination';
+import { Pagination } from 'components/Pagination/Pagination';
 
 export const Test = (): ReactElement => {
   const [text, setText] = useState('');
