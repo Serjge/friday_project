@@ -25,3 +25,19 @@ export const selectUserIdPack = (state: RootReducerType, cardId: string): string
   state.cards.packs.cardPacks.filter(({ _id }) => _id === cardId)[zeroElement].user_id;
 
 export const selectSortPacks = (state: RootReducerType): string => state.cards.sort;
+
+// for pagination
+export const selectCurrentPage = (state: RootReducerType): number =>
+  state.cards.packs.page;
+
+export const selectPageCount = (state: RootReducerType): number =>
+  state.cards.packs.pageCount;
+
+export const selectCardPacksTotalCount = (state: RootReducerType): number =>
+  state.cards.packs.cardPacksTotalCount;
+
+export const selectMinCardsCount = (state: RootReducerType): number =>
+  state.cards.packs.minCardsCount;
+
+export const selectMaxCardsCount = (state: RootReducerType): number =>
+  state.cards.packs.maxCardsCount;
