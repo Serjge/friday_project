@@ -10,6 +10,7 @@ import {
   ForgotPassword,
   Registration,
   Test,
+  InstructionSet,
 } from '.';
 
 import { PATH } from 'enum';
@@ -27,5 +28,6 @@ export const Routers = (): ReactElement => (
     <Route path={PATH.FORGOT_PASSWORD} element={<ForgotPassword />} />
     <Route path={PATH.TEST} element={<Test />} />
     <Route path={PATH.CARDS} element={<PacksList />} />
+    <Route path={PATH.INSTRUCTION} element={<InstructionSet />} />
   </Routes>
 );
