@@ -43,5 +43,3 @@ export const selectMinCardsCount = (state: RootReducerType): number =>
 
 export const selectMaxCardsCount = (state: RootReducerType): number =>
   state.cards.packs.maxCardsCount;
-
-

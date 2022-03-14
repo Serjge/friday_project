@@ -4,7 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { TableCardsPack, SearchField } from 'components';
 import { setSearchPack } from 'store/actions';
-import { selectCurrentPage, selectPageCount, selectSortPacks, selectSearchPack } from 'store/selectors';
+import {
+  selectCurrentPage,
+  selectPageCount,
+  selectSortPacks,
+  selectSearchPack,
+} from 'store/selectors';
 import { getCardsTC } from 'store/thunks';
 
 export const PacksList = (): ReactElement => {
@@ -28,7 +33,6 @@ export const PacksList = (): ReactElement => {
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <SearchField searchValue={searchValue} />
       <TableCardsPack />
-      {searchPack}
     </div>
   );
 };
