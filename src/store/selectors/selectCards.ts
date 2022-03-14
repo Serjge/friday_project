@@ -26,6 +26,8 @@ export const selectUserIdPack = (state: RootReducerType, cardId: string): string
 
 export const selectSortPacks = (state: RootReducerType): string => state.cards.sort;
 
+export const selectSearchPack = (state: RootReducerType): string =>
+  state.cards.searchPack;
 // for pagination
 export const selectCurrentPage = (state: RootReducerType): number =>
   state.cards.packs.page;
