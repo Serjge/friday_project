@@ -1,7 +1,6 @@
 import { ReactElement, useState } from 'react';
 
-import { SuperButton, SuperCheckbox, SuperInputText } from 'components';
-import { Pagination } from 'components/Pagination/Pagination';
+import { AddPack, SuperButton, SuperCheckbox, SuperInputText } from 'components';
 
 export const Test = (): ReactElement => {
   const [text, setText] = useState('');
@@ -9,6 +8,7 @@ export const Test = (): ReactElement => {
 
   return (
     <div>
+      <AddPack />
       <h1>Test</h1>
       <SuperInputText onChange={e => setText(e.currentTarget.value)} />
       <SuperCheckbox
@@ -18,8 +18,6 @@ export const Test = (): ReactElement => {
       <SuperButton disabled={!disable} onClick={() => text} title="Button">
         Button
       </SuperButton>
-
-      <Pagination />
     </div>
   );
 };

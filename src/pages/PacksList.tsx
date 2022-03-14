@@ -2,13 +2,13 @@ import { ReactElement, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { TableCardsPack, SearchField } from 'components';
+import { SearchField, TableCardsPack } from 'components';
 import { setSearchPack } from 'store/actions';
 import {
   selectCurrentPage,
   selectPageCount,
-  selectSortPacks,
   selectSearchPack,
+  selectSortPacks,
 } from 'store/selectors';
 import { getCardsTC } from 'store/thunks';
 

@@ -31,3 +31,10 @@ export {
   setSearchPack,
   SET_SEARCH_PACK,
 } from './cardsAction';
+
+export {
+  setAddModAC,
+  setResultMessageAddPackAC,
+  SET_RESULT_MESSAGE,
+  SET_ADD_MOD,
+} from './addPackAction';
