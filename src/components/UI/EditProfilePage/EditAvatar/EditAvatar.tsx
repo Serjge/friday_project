@@ -8,13 +8,12 @@ import {
   EditRowBlock,
   UserImgProfile,
 } from 'components/UI/EditProfilePage/style';
-import { selectAvatarProfile, selectNameProfile } from 'store/selectors';
+import { selectAvatarProfile } from 'store/selectors';
 import { editPersonalAvatarTC } from 'store/thunks';
 
 export const EditAvatar = (): ReactElement => {
   const dispatch = useDispatch();
 
-  const name = useSelector(selectNameProfile);
   const avatar = useSelector(selectAvatarProfile);
 
   const [newAvatar, setNewAvatar] = useState<string>(avatar);
@@ -24,7 +23,7 @@ export const EditAvatar = (): ReactElement => {
   const cancelChangeAvatar = (): void => setEditAvatar(true);
 
   const changePersonalAvatarHandler = (): void => {
-    dispatch(editPersonalAvatarTC(name, newAvatar));
+    dispatch(editPersonalAvatarTC(newAvatar));
     setEditAvatar(true);
   };
   const changeAvatarUrlHandler = (e: ChangeEvent<HTMLInputElement>): void => {
