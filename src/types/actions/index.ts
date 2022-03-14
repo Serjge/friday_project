@@ -18,4 +18,9 @@ export type {
 
 export type { ProfileActionType } from './ProfileActionType';
 
-export type { SetCardsType, CardsActionType } from './CardsActionType';
+export type {
+  SetCardsType,
+  CardsActionType,
+  SetSearchPack,
+  SetSortType,
+} from './CardsActionType';

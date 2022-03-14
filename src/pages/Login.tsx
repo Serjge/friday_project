@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, useEffect } from 'react';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,6 +6,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 
 import { SuperButton, TextField } from 'components';
 import { PATH } from 'enum';
+import { setErrorMessage } from 'store/actions';
 import { selectErrorMessage, selectIsLogin } from 'store/selectors';
 import { setLoginDataThunkCreator } from 'store/thunks';
 import { Wrapper } from 'styles';
@@ -16,6 +17,10 @@ export const Login = (): ReactElement => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setErrorMessage('');
+  });
 
   const onLoginClick: SubmitHandler<LoginApiPayloadType> = data => {
     dispatch(setLoginDataThunkCreator(data));

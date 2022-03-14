@@ -2,6 +2,8 @@ import { ReactElement } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
+import { Pagination } from '../../../pages/Pagination/Pagination';
+
 import { TableHead } from './style';
 
 import { PackItem } from 'components';
@@ -26,7 +28,14 @@ export const TableCardsPack = (): ReactElement => {
   const mapCardsPack = cards && cards.map(({ _id }) => <PackItem id={_id} key={_id} />);
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
       <div
         style={{
           display: 'flex',
@@ -54,6 +63,7 @@ export const TableCardsPack = (): ReactElement => {
         </div>
         {mapCardsPack}
       </div>
+      <Pagination />
     </div>
   );
 };

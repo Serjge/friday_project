@@ -23,4 +23,11 @@ export {
   AuthMeAC,
 } from './ProfileAction';
 
-export { setCards, SET_CARDS, setSort, SET_SORT } from './cardsAction';
+export {
+  setCards,
+  SET_CARDS,
+  setSort,
+  SET_SORT,
+  setSearchPack,
+  SET_SEARCH_PACK,
+} from './cardsAction';
