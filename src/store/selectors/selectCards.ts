@@ -25,3 +25,6 @@ export const selectUserIdPack = (state: RootReducerType, cardId: string): string
   state.cards.packs.cardPacks.filter(({ _id }) => _id === cardId)[zeroElement].user_id;
 
 export const selectSortPacks = (state: RootReducerType): string => state.cards.sort;
+
+export const selectSearchPack = (state: RootReducerType): string =>
+  state.cards.searchPack;

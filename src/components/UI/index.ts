@@ -5,3 +5,4 @@ export { TextField } from './TextField';
 export { Loading } from './Loading';
 export { EditProfilePage, EditAvatar, EditName } from './EditProfilePage';
 export { PackItem, TableCardsPack } from './TableCardsPack';
+export { SearchField } from './SearchField';
