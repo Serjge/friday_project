@@ -6,4 +6,6 @@ export {
   TextField,
   Loading,
   EditProfilePage,
+  EditAvatar,
+  EditName,
 } from './UI';

@@ -1,45 +1,74 @@
-import { AppThunkType } from '../../types';
+import { AxiosError } from 'axios';
+
+import { profileApi } from 'api';
+import { statusCode } from 'enum';
 import {
   AuthMeAC,
   ChangePersonalAvatarAC,
   ChangePersonalNameAC,
-} from '../actions/ProfileAction';
+  initializeMe,
+  setErrorMessage,
+  setIsLoginAC,
+} from 'store/actions';
+import { AppThunkType } from 'types';
 
-import { profileApi } from 'api/profileApi';
-import { initializeMe, setIsLoginAC } from 'store/actions';
-
-export const authMeTC = (): AppThunkType => dispatch =>
-  profileApi
-    .authMe()
-    .then(res => {
-      dispatch(AuthMeAC(res.data));
+export const authMeTC = (): AppThunkType => async dispatch => {
+  try {
+    const { status, data } = await profileApi.authMe();
+    if (status === statusCode.OK) {
+      dispatch(AuthMeAC(data));
       dispatch(setIsLoginAC(true));
-    })
-    .catch(e => {
-      console.log(e);
-    })
-    .finally(() => dispatch(initializeMe(true)));
+    }
+  } catch (errorCatch) {
+    const { response, message } = errorCatch as AxiosError;
+    const error = response?.data.error;
+    const status = response?.status;
+    if (status === statusCode.Unauthorized) {
+      dispatch(setErrorMessage(error));
+    } else {
+      dispatch(setErrorMessage(message));
+    }
+  } finally {
+    dispatch(initializeMe(true));
+  }
+};
 
 export const editProfileNameTC =
   (name: string): AppThunkType =>
-  dispatch =>
-    profileApi
-      .editPersonalName(name)
-      .then(res => {
-        dispatch(ChangePersonalNameAC(res.data.updatedUser.name));
-      })
-      .catch(e => {
-        console.log(e);
-      });
+  async dispatch => {
+    try {
+      const { status, data } = await profileApi.editPersonalName(name);
+      if (status === statusCode.OK) {
+        dispatch(ChangePersonalNameAC(data.updatedUser.name));
+      }
+    } catch (errorCatch) {
+      const { response, message } = errorCatch as AxiosError;
+      const error = response?.data.error;
+      const status = response?.status;
+      if (status === statusCode.Unauthorized) {
+        dispatch(setErrorMessage(error));
+      } else {
+        dispatch(setErrorMessage(message));
+      }
+    }
+  };
 
 export const editPersonalAvatarTC =
-  (name: string, avatar: string): AppThunkType =>
-  dispatch =>
-    profileApi
-      .editPersonalAvatar(name, avatar)
-      .then(res => {
-        dispatch(ChangePersonalAvatarAC(res.data.updatedUser.avatar));
-      })
-      .catch(e => {
-        console.log(e);
-      });
+  (avatar: string): AppThunkType =>
+  async dispatch => {
+    try {
+      const { data, status } = await profileApi.editPersonalAvatar(avatar);
+      if (status === statusCode.OK) {
+        dispatch(ChangePersonalAvatarAC(data.updatedUser.avatar));
+      }
+    } catch (errorCatch) {
+      const { response, message } = errorCatch as AxiosError;
+      const error = response?.data.error;
+      const status = response?.status;
+      if (status === statusCode.Unauthorized) {
+        dispatch(setErrorMessage(error));
+      } else {
+        dispatch(setErrorMessage(message));
+      }
+    }
+  };

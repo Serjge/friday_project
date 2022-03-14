@@ -1,12 +1,11 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 
-import { ProfileReducer } from './reducers/profileReducer';
-
 import {
   appReducer,
   authReducer,
   loginReducer,
+  ProfileReducer,
   registrationReducer,
 } from 'store/reducers';
 

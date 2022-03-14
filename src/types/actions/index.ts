@@ -1,4 +1,4 @@
-export type { AllAppActionsType } from 'types/actions/AllAppActionsType';
+export type { AllAppActionsType } from './AllAppActionsType';
 
 export type { ExampleActionsType, ExampleType } from './exampleActionsType';
 
@@ -9,8 +9,11 @@ export type {
 } from './RegistrationActionType';
 
 export type { LoginActionType } from 'types/actions/LoginActionsType';
+
 export type {
   InitializeMeType,
   AppActionsType,
   SetErrorMessageType,
 } from './AppActionsType';
+
+export type { ProfileActionType } from './ProfileActionType';

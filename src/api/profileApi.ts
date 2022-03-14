@@ -1,6 +1,5 @@
-import { AuthMeType, EditProfileType } from '../types/ProfileType';
-
-import { instance } from './instance';
+import { instance } from 'api';
+import { AuthMeType, EditProfileType } from 'types';
 
 export const profileApi = {
   authMe() {
@@ -9,7 +8,7 @@ export const profileApi = {
   editPersonalName(name: string) {
     return instance.put<EditProfileType>('/auth/me', { name });
   },
-  editPersonalAvatar(name: string, avatar: string) {
-    return instance.put<EditProfileType>('auth/me', { name, avatar });
+  editPersonalAvatar(avatar: string) {
+    return instance.put<EditProfileType>('auth/me', { avatar });
   },
 };

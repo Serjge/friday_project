@@ -1,4 +1,4 @@
-import { instance } from 'api/instance';
+import { instance } from 'api';
 import { RegistrationParamsType } from 'types';
 
 export const registrationApi = {
