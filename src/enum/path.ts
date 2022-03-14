@@ -3,7 +3,7 @@ export enum PATH {
   NEW_PASSWORD = '/new-password',
   PAGE404 = '/page404',
   PROFILE = '/profile',
-  RECOVERY = '/recovery',
+  FORGOT_PASSWORD = '/forgot-password',
   REGISTRATION = '/registration',
   TEST = '/test',
   CARDS = '/cards',
