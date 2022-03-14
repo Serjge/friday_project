@@ -11,23 +11,32 @@ import {
   selectMaxCardsCount,
   selectMinCardsCount,
   selectPageCount,
+  selectSortPacks,
 } from 'store/selectors';
 import { getCardsTC } from 'store/thunks';
 
 export const Pagination: FC = (): ReactElement => {
   const dispatch = useDispatch();
 
-  const currentPage = useSelector(selectCurrentPage);
-  const pagesCount = useSelector(selectPageCount);
   const minCardsCount = useSelector(selectMinCardsCount);
   const maxCardsCount = useSelector(selectMaxCardsCount);
+  const sortPacks = useSelector(selectSortPacks);
+  const currentPage = useSelector(selectCurrentPage);
+  const pagesCount = useSelector(selectPageCount);
 
   const setCurrentPage = (
     newCurrentPage: number,
     newPageCount: number = pagesCount,
   ): void => {
     dispatch(
-      getCardsTC('', minCardsCount, maxCardsCount, '', newPageCount, newCurrentPage),
+      getCardsTC(
+        '',
+        minCardsCount, // заглушка на будущее, чтобы не зануляло
+        maxCardsCount, // заглушка на будущее, чтобы не зануляло
+        sortPacks, // заглушка на будущее, чтобы не зануляло
+        newPageCount,
+        newCurrentPage,
+      ),
     );
   };
 
