@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 
-import style from 'pages/Page404/Error.module.css';
+import style from 'pages/Page404/Page404.module.css';
 
 export const Page404 = (): ReactElement => (
   <div className={style.dive}>

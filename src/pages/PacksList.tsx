@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { TableCardsPack, SearchField } from 'components';
 import { setSearchPack } from 'store/actions';
-import { selectSearchPack, selectSortPacks } from 'store/selectors';
+import { selectCurrentPage, selectPageCount, selectSortPacks, selectSearchPack } from 'store/selectors';
 import { getCardsTC } from 'store/thunks';
 
 export const PacksList = (): ReactElement => {
@@ -16,10 +16,12 @@ export const PacksList = (): ReactElement => {
   const searchValue = (value: string): void => {
     dispatch(setSearchPack(value));
   };
+  const currentPage = useSelector(selectCurrentPage);
+  const pagesCount = useSelector(selectPageCount);
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-    dispatch(getCardsTC(searchPack, 0, 0, sortPacks));
+    dispatch(getCardsTC(searchPack, 0, 0, sortPacks, pagesCount, currentPage));
   }, [sortPacks, searchPack]);
 
   return (

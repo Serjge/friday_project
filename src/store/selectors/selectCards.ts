@@ -28,3 +28,20 @@ export const selectSortPacks = (state: RootReducerType): string => state.cards.s
 
 export const selectSearchPack = (state: RootReducerType): string =>
   state.cards.searchPack;
+// for pagination
+export const selectCurrentPage = (state: RootReducerType): number =>
+  state.cards.packs.page;
+
+export const selectPageCount = (state: RootReducerType): number =>
+  state.cards.packs.pageCount;
+
+export const selectCardPacksTotalCount = (state: RootReducerType): number =>
+  state.cards.packs.cardPacksTotalCount;
+
+export const selectMinCardsCount = (state: RootReducerType): number =>
+  state.cards.packs.minCardsCount;
+
+export const selectMaxCardsCount = (state: RootReducerType): number =>
+  state.cards.packs.maxCardsCount;
+
+
