@@ -7,12 +7,7 @@ import style from './Pagination.module.css';
 import { SuperButton } from 'components';
 import { ButtonsPagination } from 'enum';
 import { selectCardPacksTotalCount } from 'store/selectors';
-
-type ButtonsPropsType = {
-  currentPage: number;
-  pagesCount: number;
-  setCurrentPage: (currentPage: number) => void;
-};
+import { ButtonsPropsType } from 'types';
 
 export const Buttons: FC<ButtonsPropsType> = ({
   setCurrentPage,
@@ -51,7 +46,7 @@ export const Buttons: FC<ButtonsPropsType> = ({
         {' ... '}
       </span>
     );
-    buttons = buttons.filter((p, i) => i < two || i > currentPage - four);
+    buttons = buttons.filter((button, i) => i < two || i > currentPage - four);
   }
 
   return <div className={style.generalBlock}>{buttons}</div>;
