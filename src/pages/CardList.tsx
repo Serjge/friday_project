@@ -2,6 +2,7 @@ import { ChangeEvent, memo, ReactElement, useEffect, useRef, useState } from 're
 
 import { useDispatch } from 'react-redux';
 
+import { cardsApi } from 'api';
 import { TextField } from 'components';
 import { TableCards } from 'components/UI/TableCards';
 import { useDebounce } from 'hook/useDebounce';
@@ -10,7 +11,9 @@ import { setErrorMessage } from 'store/actions';
 export const CardList = memo((): ReactElement => {
   const dispatch = useDispatch();
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    cardsApi.getCards('623056734348a50004eb4dc3').then(res => console.log(res));
+  }, []);
 
   const [value, setValue] = useState('');
 

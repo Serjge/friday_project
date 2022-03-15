@@ -17,7 +17,7 @@ export const getCardsTC =
   ): AppThunkType =>
   async dispatch => {
     try {
-      const { status, data } = await cardsApi.getCards(
+      const { status, data } = await cardsApi.getPacks(
         packName,
         min,
         max,

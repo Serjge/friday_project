@@ -2,8 +2,6 @@ import { ReactElement } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Pagination } from '../../../pages/Pagination/Pagination';
-
 import { CardItem } from './CardItem';
 import { TableHead } from './style';
 
