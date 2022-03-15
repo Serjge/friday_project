@@ -8,14 +8,14 @@ import { SuperButton, TextField } from '../../components';
 import { PATH } from '../../enum';
 import { selectErrorMessage } from '../../store/selectors';
 import { Wrapper } from '../../styles';
-import { ForgotPasswordType } from '../../types';
+import { ForgotPasswordSendType } from '../../types';
 import { getErrorValidate } from '../../utils';
 
 export const ForgotPassword = (): ReactElement => {
   const navigate = useNavigate();
 
-  const onSetInstructions: SubmitHandler<ForgotPasswordType> = data => {
-    console.log(data);
+  const onSetInstructions: SubmitHandler<ForgotPasswordSendType> = data => {
+    console.log(data.email);
     navigate(PATH.INSTRUCTION);
   };
 
@@ -29,7 +29,7 @@ export const ForgotPassword = (): ReactElement => {
     formState: {
       errors: { email },
     },
-  } = useForm<ForgotPasswordType>();
+  } = useForm<ForgotPasswordSendType>();
 
   const errorMessage = useSelector(selectErrorMessage);
 
