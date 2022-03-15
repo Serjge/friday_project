@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 
-import { passwordApi } from '../../api/passwordApi';
+import { passwordApi } from '../../api';
 import { statusCode } from '../../enum';
 import { AppThunkType, ForgotPasswordSendType } from '../../types';
 import { setErrorMessage } from '../actions';

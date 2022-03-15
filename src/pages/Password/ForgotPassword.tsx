@@ -4,14 +4,13 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { SuperButton, TextField } from '../../components';
-import { PATH } from '../../enum';
-import { selectErrorMessage } from '../../store/selectors';
-import { forgotPasswordTC } from '../../store/thunks/passwordThunks';
-import { Wrapper } from '../../styles';
-import { ForgotPasswordSendType } from '../../types';
-import { ForgotPasswordFormType } from '../../types/PasswordType';
-import { getErrorValidate } from '../../utils';
+import { SuperButton, TextField } from 'components';
+import { PATH } from 'enum';
+import { selectErrorMessage } from 'store/selectors';
+import { forgotPasswordTC } from 'store/thunks';
+import { Wrapper } from 'styles';
+import { ForgotPasswordFormType, ForgotPasswordSendType } from 'types';
+import { getErrorValidate } from 'utils';
 
 export const ForgotPassword = (): ReactElement => {
   const navigate = useNavigate();
@@ -26,6 +25,7 @@ export const ForgotPassword = (): ReactElement => {
         "<div style='background-color: lime; padding: 15px'>password recovery link: <a href='http://localhost:3000/friday_project#/set-new-password/$token$'>link</a></div>",
     };
     dispatch(forgotPasswordTC(postData));
+    navigate(PATH.INSTRUCTION);
   };
 
   const tryLoginIn = (): void => {

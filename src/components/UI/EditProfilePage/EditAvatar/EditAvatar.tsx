@@ -2,12 +2,9 @@ import React, { ChangeEvent, ReactElement, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
+import { EditAvatarBlock, EditRowBlock, UserImgProfile } from '../style';
+
 import { SuperButton, TextField } from 'components';
-import {
-  EditAvatarBlock,
-  EditRowBlock,
-  UserImgProfile,
-} from 'components/UI/EditProfilePage/style';
 import { selectAvatarProfile } from 'store/selectors';
 import { editPersonalAvatarTC } from 'store/thunks';
 
