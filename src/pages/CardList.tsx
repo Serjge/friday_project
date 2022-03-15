@@ -1,6 +1,7 @@
 import { ChangeEvent, memo, ReactElement, useEffect, useRef, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import { cardsApi } from 'api';
 import { TextField } from 'components';
@@ -11,8 +12,10 @@ import { setErrorMessage } from 'store/actions';
 export const CardList = memo((): ReactElement => {
   const dispatch = useDispatch();
 
+  const { id, name } = useParams<'id' | 'name'>();
+  console.log(name);
   useEffect(() => {
-    cardsApi.getCards('623056734348a50004eb4dc3').then(res => console.log(res));
+    cardsApi.getCards(id).then(res => console.log(res));
   }, []);
 
   const [value, setValue] = useState('');
@@ -44,6 +47,8 @@ export const CardList = memo((): ReactElement => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      ID:{id}
+      NAME PACK: {name}
       <TextField value={value} onChange={onChange} />
       <TextField
         ref={valueRef}

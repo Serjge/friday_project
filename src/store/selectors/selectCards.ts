@@ -24,6 +24,10 @@ export const selectUserNamePack = (state: RootReducerType, cardId: string): stri
 export const selectUserIdPack = (state: RootReducerType, cardId: string): string =>
   state.cards.packs.cardPacks.filter(({ _id }) => _id === cardId)[zeroElement].user_id;
 
+export const selectPackId = (state: RootReducerType, cardId: string): string =>
+  // eslint-disable-next-line no-underscore-dangle
+  state.cards.packs.cardPacks.filter(({ _id }) => _id === cardId)[zeroElement]._id;
+
 export const selectSortPacks = (state: RootReducerType): string => state.cards.sort;
 
 export const selectSearchPack = (state: RootReducerType): string =>

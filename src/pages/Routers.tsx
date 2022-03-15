@@ -20,6 +20,11 @@ export const Routers = (): ReactElement => (
     <Route path={PATH.RECOVERY} element={<Recovery />} />
     <Route path={PATH.TEST} element={<Test />} />
     <Route path={PATH.CARDS} element={<PacksList />} />
-    <Route path={PATH.CARD} element={<CardList />} />
+    {/* <Route path={PATH.CARD} element={<CardList />} /> */}
+    <Route path={PATH.CARD} element={<CardList />}>
+      <Route path={PATH.CARD_ID} element={<CardList />}>
+        <Route path={PATH.CARD_NAME} element={<CardList />} />
+      </Route>
+    </Route>
   </Routes>
 );

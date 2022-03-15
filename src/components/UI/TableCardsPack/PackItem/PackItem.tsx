@@ -1,12 +1,15 @@
 import { memo } from 'react';
 
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { SuperButton } from 'components';
 import { TableItem } from 'components/UI/TableCardsPack/PackItem/style';
+import { PATH } from 'enum';
 import { RootReducerType } from 'store';
 import {
   selectCardsCount,
+  selectPackId,
   selectPackName,
   selectUpdateDataPack,
   selectUserId,
@@ -15,6 +18,8 @@ import {
 } from 'store/selectors';
 
 export const PackItem = memo(({ id }: { id: string }) => {
+  const navigate = useNavigate();
+
   const namePack = useSelector((state: RootReducerType) => selectPackName(state, id));
   const cardsCount = useSelector((state: RootReducerType) => selectCardsCount(state, id));
   const userNamePack = useSelector((state: RootReducerType) =>
@@ -27,6 +32,12 @@ export const PackItem = memo(({ id }: { id: string }) => {
 
   const userId = useSelector(selectUserId);
   const userIdPack = useSelector((state: RootReducerType) => selectUserIdPack(state, id));
+
+  const packId = useSelector((state: RootReducerType) => selectPackId(state, id));
+
+  const onPackClick = (): void => {
+    navigate(`${PATH.CARD}${packId}/${namePack}`);
+  };
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -41,7 +52,9 @@ export const PackItem = memo(({ id }: { id: string }) => {
         <SuperButton size="small" hidden={userId !== userIdPack}>
           Edit
         </SuperButton>
-        <SuperButton size="small">Learn</SuperButton>
+        <SuperButton onClick={onPackClick} size="small">
+          Learn
+        </SuperButton>
       </TableItem>
     </div>
   );
