@@ -7,6 +7,7 @@ import {
   KeyboardEvent,
   memo,
   RefAttributes,
+  useCallback,
 } from 'react';
 
 import { ErrorWrapper, Input, InputWrapper, Label } from './style';
@@ -42,32 +43,41 @@ export const TextField: FC<SuperInputTextPropsType> = memo(
       },
       ref,
     ) => {
-      const onChangeCallback = (e: ChangeEvent<HTMLInputElement>): void => {
-        if (onChange) {
-          onChange(e);
-        }
-        if (onChangeText) {
-          onChangeText(e.currentTarget.value);
-        }
-      };
+      const onChangeCallback = useCallback(
+        (e: ChangeEvent<HTMLInputElement>): void => {
+          if (onChange) {
+            onChange(e);
+          }
+          if (onChangeText) {
+            onChangeText(e.currentTarget.value);
+          }
+        },
+        [onChange, onChangeText],
+      );
 
-      const onKeyPressCtrlEnterCallback = (e: KeyboardEvent<HTMLInputElement>): void => {
-        if (onKeyDown) {
-          onKeyDown(e);
-        }
-        if (onCtrlEnter && (e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-          onCtrlEnter();
-        }
-      };
+      const onKeyPressCtrlEnterCallback = useCallback(
+        (e: KeyboardEvent<HTMLInputElement>): void => {
+          if (onKeyDown) {
+            onKeyDown(e);
+          }
+          if (onCtrlEnter && (e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+            onCtrlEnter();
+          }
+        },
+        [onKeyDown, onCtrlEnter],
+      );
 
-      const onKeyPressCallback = (e: KeyboardEvent<HTMLInputElement>): void => {
-        if (onKeyPress) {
-          onKeyPress(e);
-        }
-        if (onEnter && e.key === 'Enter') {
-          onEnter();
-        }
-      };
+      const onKeyPressCallback = useCallback(
+        (e: KeyboardEvent<HTMLInputElement>): void => {
+          if (onKeyPress) {
+            onKeyPress(e);
+          }
+          if (onEnter && e.key === 'Enter') {
+            onEnter();
+          }
+        },
+        [onEnter, onKeyPress],
+      );
 
       return (
         <Label htmlFor={labelTitle}>

@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, ReactElement } from 'react';
+import { ChangeEvent, FC, memo, ReactElement } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -14,7 +14,7 @@ import {
 } from 'store/selectors';
 import { getCardsTC } from 'store/thunks';
 
-export const Pagination: FC = (): ReactElement => {
+export const Pagination: FC = memo((): ReactElement => {
   const dispatch = useDispatch();
 
   const currentPage = useSelector(selectCurrentPage);
@@ -53,4 +53,4 @@ export const Pagination: FC = (): ReactElement => {
       />
     </div>
   );
-};
+});

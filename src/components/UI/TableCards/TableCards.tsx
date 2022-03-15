@@ -40,8 +40,8 @@ export const TableCards = (): ReactElement => {
           flexDirection: 'column',
           height: '500px',
           overflow: 'auto',
-          overflowY: 'scroll',
-          width: '750px',
+          overflowY: 'auto',
+          width: '900px',
         }}
       >
         <div style={{ display: 'flex', justifyContent: 'center' }}>

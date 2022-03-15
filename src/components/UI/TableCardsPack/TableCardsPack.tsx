@@ -1,29 +1,12 @@
-import { ReactElement } from 'react';
+import { memo, ReactElement } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { Pagination } from '../../../pages/Pagination/Pagination';
+import { HeadTablePacks, PackItem } from 'components';
+import { selectCards } from 'store/selectors';
 
-import { TableHead } from './style';
-
-import { PackItem } from 'components';
-import { setSort } from 'store/actions';
-import { selectCards, selectSortPacks } from 'store/selectors';
-
-export const TableCardsPack = (): ReactElement => {
-  const dispatch = useDispatch();
-
+export const TableCardsPack = memo((): ReactElement => {
   const cards = useSelector(selectCards);
-  const sortPacks = useSelector(selectSortPacks);
-
-  const onSortClick = (sortType: string): void => {
-    if (sortPacks === `1${sortType}`) {
-      dispatch(setSort(`0${sortType}`));
-    }
-    if (sortPacks !== `1${sortType}`) {
-      dispatch(setSort(`1${sortType}`));
-    }
-  };
 
   const mapCardsPack = cards && cards.map(({ _id }) => <PackItem id={_id} key={_id} />);
 
@@ -42,28 +25,13 @@ export const TableCardsPack = (): ReactElement => {
           flexDirection: 'column',
           height: '500px',
           overflow: 'auto',
-          overflowY: 'scroll',
+          overflowY: 'auto',
           width: '750px',
         }}
       >
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <TableHead width="200px" onClick={() => onSortClick('name')}>
-            Name
-          </TableHead>
-          <TableHead width="50px" onClick={() => onSortClick('cardsCount')}>
-            Cards
-          </TableHead>
-          <TableHead width="100px" onClick={() => onSortClick('updated')}>
-            Last Updated
-          </TableHead>
-          <TableHead width="200px" onClick={() => onSortClick('user_name')}>
-            Creat by
-          </TableHead>
-          <TableHead width="180px">Action</TableHead>
-        </div>
+        <HeadTablePacks />
         {mapCardsPack}
       </div>
-      <Pagination />
     </div>
   );
-};
+});
