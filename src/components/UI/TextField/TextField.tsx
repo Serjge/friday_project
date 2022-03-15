@@ -17,7 +17,7 @@ type DefaultInputPropsType = DetailedHTMLProps<
 >;
 
 type SuperInputTextPropsType = DefaultInputPropsType &
-  RefAttributes<any> & {
+  RefAttributes<HTMLInputElement> & {
     onChangeText?: (value: string) => void;
     onEnter?: () => void;
     onCtrlEnter?: () => void;
