@@ -30,10 +30,6 @@ export const Login = (): ReactElement => {
     navigate(PATH.REGISTRATION);
   };
 
-  const forgotPasswordClick = (): void => {
-    navigate(PATH.FORGOT_PASSWORD);
-  };
-
   const {
     register,
     handleSubmit,
@@ -80,8 +76,9 @@ export const Login = (): ReactElement => {
         />
 
         <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
-          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
-          <h3 onClick={forgotPasswordClick}>Forgot Password? Click here!</h3>
+          <h3>Forgot Password?</h3>
+
+          <a href="http://localhost:3000/friday_project#/forgot-password">Click here!</a>
 
           <SuperButton type="submit" value="login">
             login
