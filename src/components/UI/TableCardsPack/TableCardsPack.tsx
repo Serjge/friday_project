@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { TableHead } from './style';
 
-import { PackItem, Pagination } from 'components';
+import { PackItem } from 'components';
 import { setSort } from 'store/actions';
 import { selectCards, selectSortPacks } from 'store/selectors';
 
@@ -61,7 +61,6 @@ export const TableCardsPack = (): ReactElement => {
         </div>
         {mapCardsPack}
       </div>
-      <Pagination />
     </div>
   );
 };

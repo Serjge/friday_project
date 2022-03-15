@@ -7,7 +7,7 @@ import { instance } from 'api/instance';
 // };
 
 export const addPackApi = {
-  set() {
-    return instance.post('/cards/pack', { cardsPack: {} });
+  set(newTitle: string) {
+    return instance.post('/cards/pack', { cardsPack: { name: newTitle } });
   },
 };

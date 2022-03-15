@@ -12,11 +12,13 @@ import { addPackTC } from 'store/thunks';
 export const AddPack = (): ReactElement => {
   const dispatch = useDispatch();
 
+  const newTitle = 'new title from EPIC TEAM';
+
   const isAddMod = useSelector(selectIsAddMod);
   const resultMessage = useSelector(selectResultMessage);
 
   const setNewPack = (): void => {
-    dispatch(addPackTC());
+    dispatch(addPackTC(newTitle));
   };
   const setIsAddMod = (isAdd: boolean): void => {
     dispatch(setAddModAC(isAdd));
@@ -31,7 +33,7 @@ export const AddPack = (): ReactElement => {
             <span className={style.title}>ADD NEW PACK</span>
             <div className={style.input}>
               <span>New title</span>
-              <SuperInputText value="new title from EPIC TEAM" />
+              <SuperInputText defaultValue={newTitle} />
             </div>
             <div className={style.message}>{resultMessage}</div>
             <div>
