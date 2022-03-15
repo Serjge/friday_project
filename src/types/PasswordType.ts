@@ -14,3 +14,7 @@ export type ForgotPasswordGetType = {
 export type CreateNewPasswordType = {
   password: string;
 };
+
+export type ForgotPasswordFormType = {
+  email: string;
+};

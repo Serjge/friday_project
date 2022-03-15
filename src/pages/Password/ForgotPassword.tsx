@@ -1,22 +1,31 @@
 import { ReactElement } from 'react';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { SuperButton, TextField } from '../../components';
 import { PATH } from '../../enum';
 import { selectErrorMessage } from '../../store/selectors';
+import { forgotPasswordTC } from '../../store/thunks/passwordThunks';
 import { Wrapper } from '../../styles';
 import { ForgotPasswordSendType } from '../../types';
+import { ForgotPasswordFormType } from '../../types/PasswordType';
 import { getErrorValidate } from '../../utils';
 
 export const ForgotPassword = (): ReactElement => {
   const navigate = useNavigate();
 
-  const onSetInstructions: SubmitHandler<ForgotPasswordSendType> = data => {
-    console.log(data.email);
-    navigate(PATH.INSTRUCTION);
+  const dispatch = useDispatch();
+
+  const onSetInstructions: SubmitHandler<ForgotPasswordFormType> = data => {
+    const postData: ForgotPasswordSendType = {
+      email: data.email,
+      from: 'test-front-admin <ai73a@yandex.by>',
+      message:
+        "<div style='background-color: lime; padding: 15px'>password recovery link: <a href='http://localhost:3000/friday_project#/set-new-password/$token$'>link</a></div>",
+    };
+    dispatch(forgotPasswordTC(postData));
   };
 
   const tryLoginIn = (): void => {
@@ -29,7 +38,7 @@ export const ForgotPassword = (): ReactElement => {
     formState: {
       errors: { email },
     },
-  } = useForm<ForgotPasswordSendType>();
+  } = useForm<ForgotPasswordFormType>();
 
   const errorMessage = useSelector(selectErrorMessage);
 
