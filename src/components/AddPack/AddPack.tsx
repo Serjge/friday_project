@@ -33,7 +33,7 @@ export const AddPack = (): ReactElement => {
               <span>New title</span>
               <SuperInputText value="new title from EPIC TEAM" />
             </div>
-            <div>{resultMessage}</div>
+            <div className={style.message}>{resultMessage}</div>
             <div>
               <SuperButton onClick={() => setIsAddMod(false)}>Cancel</SuperButton>
               <SuperButton onClick={setNewPack}>Add</SuperButton>
