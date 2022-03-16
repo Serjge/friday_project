@@ -12,7 +12,7 @@ import { addPackTC } from 'store/thunks';
 export const AddPack = (): ReactElement => {
   const dispatch = useDispatch();
 
-  const newTitle = 'new title from EPIC TEAM';
+  const newTitle = 'new title from EPIC TEAM'; // hard code
 
   const isAddMod = useSelector(selectIsAddMod);
   const resultMessage = useSelector(selectResultMessage);

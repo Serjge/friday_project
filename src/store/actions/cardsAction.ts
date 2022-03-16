@@ -4,7 +4,7 @@ export const SET_CARDS = 'CARDS/SET_CARDS';
 export const SET_SORT = 'CARDS/SET_SORT';
 export const SET_SEARCH_PACK = 'CARDS/SET_SEARCH_PACK';
 export const SET_CURRENT_PAGE = 'CARDS/SET_CURRENT_PAGE';
-export const SET_PACKS_COUNT = 'CARDS/SET_PACKS_COUNT';
+export const SET_PAGE_COUNT = 'CARDS/SET_PAGE_COUNT';
 
 export const setCards = (cards: CardsPackType) =>
   ({
@@ -33,11 +33,15 @@ export const setSearchPack = (searchValue: string) =>
 export const setCurrentPageAC = (currentPage: number) =>
   ({
     type: SET_CURRENT_PAGE,
-    currentPage,
+    payload: {
+      currentPage,
+    },
   } as const);
 
-export const setPacksCountAC = (pagesCount: number) =>
+export const setPageCountAC = (pageCount: number) =>
   ({
-    type: SET_PACKS_COUNT,
-    pagesCount,
+    type: SET_PAGE_COUNT,
+    payload: {
+      pageCount,
+    },
   } as const);

@@ -1,5 +1,5 @@
 import { SET_CARDS, SET_SEARCH_PACK, SET_SORT } from 'store/actions';
-import { SET_CURRENT_PAGE, SET_PACKS_COUNT } from 'store/actions/cardsAction';
+import { SET_CURRENT_PAGE, SET_PAGE_COUNT } from 'store/actions/cardsAction';
 import { CardsPackType } from 'types';
 import { CardsActionType } from 'types/actions';
 
@@ -27,9 +27,12 @@ export const cardsReducer = (
     case SET_SEARCH_PACK:
       return { ...state, searchPack: action.payload.searchValue };
     case SET_CURRENT_PAGE:
-      return { ...state, packs: { ...state.packs, page: action.currentPage } };
-    case SET_PACKS_COUNT:
-      return { ...state, packs: { ...state.packs, pageCount: action.pagesCount } };
+      return { ...state, packs: { ...state.packs, page: action.payload.currentPage } };
+    case SET_PAGE_COUNT:
+      return {
+        ...state,
+        packs: { ...state.packs, pageCount: action.payload.pageCount },
+      };
     default:
       return state;
   }

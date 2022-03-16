@@ -30,6 +30,10 @@ export {
   SET_SORT,
   setSearchPack,
   SET_SEARCH_PACK,
+  setPageCountAC,
+  SET_PAGE_COUNT,
+  setCurrentPageAC,
+  SET_CURRENT_PAGE,
 } from './cardsAction';
 
 export {
