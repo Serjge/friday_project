@@ -14,10 +14,7 @@ import { getErrorValidate } from 'utils';
 export const NewPassword = (): ReactElement => {
   const navigate = useNavigate();
 
-  const createNewPassword: SubmitHandler<CreateNewPasswordType> = data => {
-    console.log(data);
-    navigate(PATH.LOGIN);
-  };
+  const errorMessage = useSelector(selectErrorMessage);
 
   const {
     register,
@@ -27,7 +24,10 @@ export const NewPassword = (): ReactElement => {
     },
   } = useForm<CreateNewPasswordType>();
 
-  const errorMessage = useSelector(selectErrorMessage);
+  const createNewPassword: SubmitHandler<CreateNewPasswordType> = data => {
+    console.log(data);
+    navigate(PATH.LOGIN);
+  };
 
   return (
     <Wrapper>
