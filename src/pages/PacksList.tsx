@@ -3,6 +3,7 @@ import { ReactElement, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Pagination, SearchField, TableCardsPack } from 'components';
+import { CountDecksOnPage } from 'enum';
 import { setSearchPack } from 'store/actions';
 import { setCurrentPageAC, setPacksCountAC } from 'store/actions/cardsAction';
 import {
@@ -12,6 +13,7 @@ import {
   selectSortPacks,
 } from 'store/selectors';
 import { getCardsTC } from 'store/thunks';
+import { getValuesFromEnum } from 'utils/getValuesFromEnum';
 
 export const PacksList = (): ReactElement => {
   const dispatch = useDispatch();
@@ -38,6 +40,8 @@ export const PacksList = (): ReactElement => {
     dispatch(getCardsTC(searchPack, 0, 0, sortPacks, pagesCount, currentPage));
   }, [sortPacks, searchPack, pagesCount, currentPage]);
 
+  const countDecksOnPage = getValuesFromEnum(CountDecksOnPage);
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <SearchField searchValue={searchValue} />
@@ -45,6 +49,7 @@ export const PacksList = (): ReactElement => {
       <Pagination
         currentPage={currentPage}
         pagesCount={pagesCount}
+        countDecksOnPage={countDecksOnPage}
         setCurrentPage={setCurrentPage}
         setPacksCount={setPacksCount}
       />
