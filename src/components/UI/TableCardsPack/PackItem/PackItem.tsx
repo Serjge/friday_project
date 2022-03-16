@@ -1,12 +1,13 @@
 import { memo } from 'react';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { SuperButton } from 'components';
 import { TableItem } from 'components/UI/TableCardsPack/PackItem/style';
 import { PATH } from 'enum';
 import { RootReducerType } from 'store';
+import { setSearchAnswer, setSearchQuestion } from 'store/actions';
 import {
   selectCardsCount,
   selectPackId,
@@ -19,6 +20,7 @@ import {
 
 export const PackItem = memo(({ id }: { id: string }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const namePack = useSelector((state: RootReducerType) => selectPackName(state, id));
   const cardsCount = useSelector((state: RootReducerType) => selectCardsCount(state, id));
@@ -36,6 +38,8 @@ export const PackItem = memo(({ id }: { id: string }) => {
   const packId = useSelector((state: RootReducerType) => selectPackId(state, id));
 
   const onPackClick = (): void => {
+    dispatch(setSearchQuestion(''));
+    dispatch(setSearchAnswer(''));
     navigate(`${PATH.CARD}${packId}/${namePack}`);
   };
 
