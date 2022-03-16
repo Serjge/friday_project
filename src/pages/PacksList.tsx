@@ -12,7 +12,7 @@ import {
   selectSortPacks,
 } from 'store/selectors';
 import { getCardsTC } from 'store/thunks';
-import { getValuesFromEnum } from 'utils';
+import { getNumberValuesFromEnum } from 'utils';
 
 export const PacksList = (): ReactElement => {
   const dispatch = useDispatch();
@@ -39,7 +39,7 @@ export const PacksList = (): ReactElement => {
     dispatch(getCardsTC(searchPack, 0, 0, sortPacks, pagesCount, currentPage));
   }, [sortPacks, searchPack, pagesCount, currentPage]);
 
-  const countDecksOnPage = getValuesFromEnum(CountDecksOnPage);
+  const countDecksOnPage = getNumberValuesFromEnum(CountDecksOnPage);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>

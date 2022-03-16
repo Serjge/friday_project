@@ -1,2 +1,2 @@
 export { getErrorValidate } from './getErrorValidate';
-export { getValuesFromEnum } from './getValuesFromEnum';
+export { getNumberValuesFromEnum } from 'utils/getNumberValuesFromEnum';
