@@ -1,6 +1,9 @@
-import { SET_REGISTRATION_IS_COMPLETED, SET_STATUS } from 'store/actions';
+import {
+  SET_REGISTRATION_IS_COMPLETED,
+  SET_STATUS,
+  RegistrationActionType,
+} from 'store/actions';
 import { StatusType } from 'types';
-import { RegistrationActionType } from 'types/actions';
 
 export type InitialStateType = {
   isCompleted: boolean;

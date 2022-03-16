@@ -1,9 +1,8 @@
 import { AxiosError } from 'axios';
 
-import { setErrorMessage } from '../actions';
-
 import { passwordApi } from 'api';
 import { statusCode } from 'enum';
+import { setErrorMessage } from 'store/actions';
 import { AppThunkType, ForgotPasswordSendType, SendNewPasswordType } from 'types';
 
 export const forgotPasswordTC =

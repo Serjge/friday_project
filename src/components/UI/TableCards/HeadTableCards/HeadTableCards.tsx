@@ -3,7 +3,7 @@ import React, { memo, ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { TableHead } from 'components/UI/TableCards/style';
-import { setSortCard } from 'store/actions';
+import { setSortCards } from 'store/actions';
 import { selectSortCard } from 'store/selectors';
 
 export const HeadTableCards = memo((): ReactElement => {
@@ -13,10 +13,10 @@ export const HeadTableCards = memo((): ReactElement => {
 
   const onSortClick = (sortType: string): void => {
     if (sortPacks === `1${sortType}`) {
-      dispatch(setSortCard(`0${sortType}`));
+      dispatch(setSortCards(`0${sortType}`));
     }
     if (sortPacks !== `1${sortType}`) {
-      dispatch(setSortCard(`1${sortType}`));
+      dispatch(setSortCards(`1${sortType}`));
     }
   };
   return (

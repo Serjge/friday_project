@@ -1,27 +1,27 @@
 import { RootReducerType } from 'store';
-import { NewCardType } from 'types';
+import { CardType } from 'types';
 
 const zeroElement = 0;
 
-export const selectPackCards = (state: RootReducerType): NewCardType[] =>
-  state.card.pack.cards;
+export const selectPackCards = (state: RootReducerType): CardType[] =>
+  state.cards.pack.cards;
 
-export const selectSortCard = (state: RootReducerType): string => state.card.sort;
+export const selectSortCard = (state: RootReducerType): string => state.cards.sort;
 
 export const selectSearchQuestion = (state: RootReducerType): string =>
-  state.card.searchQuestion;
+  state.cards.searchQuestion;
 
 export const selectSearchAnswer = (state: RootReducerType): string =>
-  state.card.searchAnswer;
+  state.cards.searchAnswer;
 
 export const selectQuestion = (state: RootReducerType, cardId: string): string =>
-  state.card.pack.cards.filter(({ _id }) => _id === cardId)[zeroElement].question;
+  state.cards.pack.cards.filter(({ _id }) => _id === cardId)[zeroElement].question;
 
 export const selectAnswer = (state: RootReducerType, cardId: string): string =>
-  state.card.pack.cards.filter(({ _id }) => _id === cardId)[zeroElement].answer;
+  state.cards.pack.cards.filter(({ _id }) => _id === cardId)[zeroElement].answer;
 
 export const selectUpdateCard = (state: RootReducerType, cardId: string): string =>
-  state.card.pack.cards.filter(({ _id }) => _id === cardId)[zeroElement].updated;
+  state.cards.pack.cards.filter(({ _id }) => _id === cardId)[zeroElement].updated;
 
 export const selectGradeCard = (state: RootReducerType, cardId: string): number =>
-  state.card.pack.cards.filter(({ _id }) => _id === cardId)[zeroElement].grade;
+  state.cards.pack.cards.filter(({ _id }) => _id === cardId)[zeroElement].grade;

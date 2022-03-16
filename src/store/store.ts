@@ -4,23 +4,21 @@ import thunk from 'redux-thunk';
 import {
   addPackReducer,
   appReducer,
-  authReducer,
-  cardsReducer,
+  packsReducer,
   loginReducer,
   ProfileReducer,
   registrationReducer,
-  cardReducer,
+  cardsReducer,
 } from 'store/reducers';
 
 const rootReducer = combineReducers({
   app: appReducer,
-  auth: authReducer,
   login: loginReducer,
   registration: registrationReducer,
   profile: ProfileReducer,
-  cards: cardsReducer,
+  packs: packsReducer,
   addPack: addPackReducer,
-  card: cardReducer,
+  cards: cardsReducer,
 });
 
 declare global {

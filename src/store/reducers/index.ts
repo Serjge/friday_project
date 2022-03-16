@@ -1,8 +1,7 @@
 export { appReducer } from './appReducer';
-export { authReducer } from './authReducer';
 export { loginReducer } from './loginReducer';
 export { registrationReducer } from './registrationReducer';
 export { ProfileReducer } from './profileReducer';
-export { cardsReducer } from './cardsReducer';
+export { packsReducer } from 'store/reducers/PacksReducer';
 export { addPackReducer } from './addPackReducer';
-export { cardReducer } from './cardReducer';
+export { cardsReducer } from 'store/reducers/cardsReducer';

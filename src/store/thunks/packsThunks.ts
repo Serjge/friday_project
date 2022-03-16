@@ -1,36 +1,34 @@
 import { AxiosError } from 'axios';
 
-import { cardsApi } from 'api';
+import { packApi } from 'api';
 import { statusCode } from 'enum';
-import { setCard, setErrorMessage } from 'store/actions';
+import { setPacks, setErrorMessage } from 'store/actions';
 import { AppThunkType } from 'types';
 
-export const getCardTC =
+export const getPacksTC =
   (
-    cardsPackId: string,
-    sortCards?: string,
-    cardQuestion?: string,
-    cardAnswer?: string,
+    packName?: string,
     min?: number,
     max?: number,
+    sortPacks?: string,
     pageCount?: number,
     page?: number,
+    userId?: string,
   ): AppThunkType =>
   async dispatch => {
     try {
-      const { status, data } = await cardsApi.getCards(
-        cardsPackId,
-        cardAnswer,
-        cardQuestion,
+      const { status, data } = await packApi.getPacks(
+        packName,
         min,
         max,
-        sortCards,
+        sortPacks,
         pageCount,
         page,
+        userId,
       );
 
       if (status === statusCode.OK) {
-        dispatch(setCard(data));
+        dispatch(setPacks(data));
       }
     } catch (errorCatch) {
       const { response, message } = errorCatch as AxiosError;

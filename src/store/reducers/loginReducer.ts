@@ -1,5 +1,4 @@
-import { SET_IS_LOGIN } from 'store/actions';
-import { LoginActionType } from 'types/actions';
+import { SET_IS_LOGIN, LoginActionType } from 'store/actions';
 
 export type LoginStateWithErrorKey = {
   isLogin: boolean;

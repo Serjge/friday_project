@@ -1,5 +1,4 @@
-import { INITIALIZE_ME, SET_ERROR_MESSAGE } from 'store/actions';
-import { AppActionsType } from 'types/actions';
+import { INITIALIZE_ME, SET_ERROR_MESSAGE, AppActionsType } from 'store/actions';
 
 export type InitialStateType = {
   errorMessage: string;

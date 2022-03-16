@@ -4,13 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { DebounceSearchField, TableCards } from 'components';
-import { setSearchAnswer, setSearchQuestion } from 'store/actions';
+import { setSearchAnswerCards, setSearchQuestionCards } from 'store/actions';
 import {
   selectSearchAnswer,
   selectSearchQuestion,
   selectSortCard,
 } from 'store/selectors';
-import { getCardTC } from 'store/thunks';
+import { getCardsTC } from 'store/thunks';
 
 export const CardList = memo((): ReactElement => {
   const dispatch = useDispatch();
@@ -23,16 +23,16 @@ export const CardList = memo((): ReactElement => {
 
   useEffect(() => {
     if (id) {
-      dispatch(getCardTC(id, sortCard, searchQuestion, searchAnswer));
+      dispatch(getCardsTC(id, sortCard, searchQuestion, searchAnswer));
     }
   }, [sortCard, searchQuestion, searchAnswer]);
 
   const searchByQuestion = useCallback((question: string): void => {
-    dispatch(setSearchQuestion(question));
+    dispatch(setSearchQuestionCards(question));
   }, []);
 
   const searchByAnswer = useCallback((answer: string): void => {
-    dispatch(setSearchAnswer(answer));
+    dispatch(setSearchAnswerCards(answer));
   }, []);
 
   return (

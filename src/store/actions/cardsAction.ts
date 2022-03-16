@@ -1,47 +1,30 @@
-import { CardsPackType } from 'types';
+import { CardsType } from 'types';
 
 export const SET_CARDS = 'CARDS/SET_CARDS';
-export const SET_SORT = 'CARDS/SET_SORT';
-export const SET_SEARCH_PACK = 'CARDS/SET_SEARCH_PACK';
-export const SET_CURRENT_PAGE = 'CARDS/SET_CURRENT_PAGE';
-export const SET_PAGE_COUNT = 'CARDS/SET_PAGE_COUNT';
+export const SET_SORT_CARDS = 'CARDS/SET_SORT_CARDS';
+export const SET_SEARCH_QUESTION_CARDS = 'CARDS/SET_SEARCH_QUESTION_CARDS';
+export const SET_SEARCH_ANSWER_CARDS = 'CARDS/SET_SEARCH_ANSWER_CARDS';
 
-export const setCards = (cards: CardsPackType) =>
+export const setCards = (cards: CardsType) =>
   ({
     type: SET_CARDS,
-    payload: {
-      cards,
-    },
+    cards,
   } as const);
 
-export const setSort = (sort: string) =>
+export const setSortCards = (sort: string) =>
   ({
-    type: SET_SORT,
-    payload: {
-      sort,
-    },
+    type: SET_SORT_CARDS,
+    sort,
   } as const);
 
-export const setSearchPack = (searchValue: string) =>
+export const setSearchQuestionCards = (searchValue: string) =>
   ({
-    type: SET_SEARCH_PACK,
-    payload: {
-      searchValue,
-    },
+    type: SET_SEARCH_QUESTION_CARDS,
+    searchValue,
   } as const);
 
-export const setCurrentPageAC = (currentPage: number) =>
+export const setSearchAnswerCards = (searchValue: string) =>
   ({
-    type: SET_CURRENT_PAGE,
-    payload: {
-      currentPage,
-    },
-  } as const);
-
-export const setPageCountAC = (pageCount: number) =>
-  ({
-    type: SET_PAGE_COUNT,
-    payload: {
-      pageCount,
-    },
+    type: SET_SEARCH_ANSWER_CARDS,
+    searchValue,
   } as const);

@@ -1,4 +1,4 @@
-export type CardType = {
+export type PackType = {
   cardsCount: number;
   created: string;
   grade: number;
@@ -16,8 +16,8 @@ export type CardType = {
   _id: string;
 };
 
-export type CardsPackType = {
-  cardPacks: CardType[];
+export type PacksType = {
+  cardPacks: PackType[];
   cardPacksTotalCount: number;
   maxCardsCount: number;
   minCardsCount: number;
@@ -27,7 +27,7 @@ export type CardsPackType = {
   tokenDeathTime: number;
 };
 
-export type NewCardType = {
+export type CardType = {
   answer: string;
   cardsPack_id: string;
   comments: String;
@@ -46,7 +46,7 @@ export type NewCardType = {
 };
 
 export type CardsType = {
-  cards: NewCardType[];
+  cards: CardType[];
   cardsTotalCount: number;
   maxGrade: number;
   minGrade: number;

@@ -1,16 +1,16 @@
 import {
-  setCards,
-  setCurrentPageAC,
-  setPageCountAC,
+  setPacks,
+  setCurrentPagePacksAC,
+  setPageCountPacksAC,
   setSearchPack,
-  setSort,
+  setSortPacks,
 } from 'store/actions';
-import { cardsReducer, InitialStateType } from 'store/reducers/cardsReducer';
-import { CardsPackType, CardType } from 'types';
+import { packsReducer, InitialStateType } from 'store/reducers/PacksReducer';
+import { PacksType, PackType } from 'types';
 
 let initialState: InitialStateType;
-let packs: CardsPackType;
-let cards: CardType[];
+let packs: PacksType;
+let cards: PackType[];
 let sort: string;
 let searchPack: string;
 const currentPage: number = 10;
@@ -18,7 +18,7 @@ const pageCount: number = 100;
 
 beforeEach(() => {
   initialState = {
-    packs: {} as CardsPackType,
+    packs: {} as PacksType,
     sort: '',
     searchPack: '',
   };
@@ -58,9 +58,9 @@ beforeEach(() => {
 });
 
 test('set Cards from API', () => {
-  const action = setCards(packs);
+  const action = setPacks(packs);
 
-  const endState = cardsReducer(initialState, action);
+  const endState = packsReducer(initialState, action);
 
   expect(endState).not.toBe(initialState);
   expect(endState.packs).toBe(packs);
@@ -68,9 +68,9 @@ test('set Cards from API', () => {
 });
 
 test('change sort value for cards', () => {
-  const action = setSort(sort);
+  const action = setSortPacks(sort);
 
-  const endState = cardsReducer(initialState, action);
+  const endState = packsReducer(initialState, action);
 
   expect(endState).not.toBe(initialState);
   expect(endState.sort).toBe(sort);
@@ -79,25 +79,25 @@ test('change sort value for cards', () => {
 test('set value for search pack', () => {
   const action = setSearchPack(searchPack);
 
-  const endState = cardsReducer(initialState, action);
+  const endState = packsReducer(initialState, action);
 
   expect(endState).not.toBe(initialState);
   expect(endState.searchPack).toBe(searchPack);
 });
 
 test('set current page', () => {
-  const action = setCurrentPageAC(currentPage);
+  const action = setCurrentPagePacksAC(currentPage);
 
-  const endState = cardsReducer(initialState, action);
+  const endState = packsReducer(initialState, action);
 
   expect(endState).not.toBe(initialState);
   expect(endState.packs.page).toBe(currentPage);
 });
 
 test('set page count', () => {
-  const action = setPageCountAC(pageCount);
+  const action = setPageCountPacksAC(pageCount);
 
-  const endState = cardsReducer(initialState, action);
+  const endState = packsReducer(initialState, action);
 
   expect(endState).not.toBe(initialState);
   expect(endState.packs.pageCount).toBe(pageCount);

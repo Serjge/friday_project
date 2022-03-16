@@ -3,7 +3,7 @@ import {
   ChangePersonalAvatarAC,
   ChangePersonalNameAC,
   EditProfileAC,
-} from 'store/actions/ProfileAction';
+} from 'store/actions/profileAction';
 import {
   ProfileReducer,
   ProfileStateWithErrorKeyType,

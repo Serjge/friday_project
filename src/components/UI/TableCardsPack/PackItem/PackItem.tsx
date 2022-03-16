@@ -7,7 +7,7 @@ import { SuperButton } from 'components';
 import { TableItem } from 'components/UI/TableCardsPack/PackItem/style';
 import { PATH } from 'enum';
 import { RootReducerType } from 'store';
-import { setSearchAnswer, setSearchQuestion } from 'store/actions';
+import { setSearchAnswerCards, setSearchQuestionCards } from 'store/actions';
 import {
   selectCardsCount,
   selectPackId,
@@ -38,8 +38,8 @@ export const PackItem = memo(({ id }: { id: string }) => {
   const packId = useSelector((state: RootReducerType) => selectPackId(state, id));
 
   const onLearnPackClick = (): void => {
-    dispatch(setSearchQuestion(''));
-    dispatch(setSearchAnswer(''));
+    dispatch(setSearchQuestionCards(''));
+    dispatch(setSearchAnswerCards(''));
     navigate(`${PATH.CARD}${packId}/${namePack}`);
   };
 

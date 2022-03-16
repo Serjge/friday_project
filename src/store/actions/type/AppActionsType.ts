@@ -1,4 +1,4 @@
-import { initializeMe, setErrorMessage } from 'store/actions';
+import { initializeMe, setErrorMessage } from 'store/actions/index';
 
 export type AppActionsType = SetErrorMessageType | InitializeMeType;
 

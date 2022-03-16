@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { DebounceSearchField, TableCardsPack, Pagination } from 'components';
 import { CountDecksOnPage } from 'enum';
-import { setCurrentPageAC, setPageCountAC, setSearchPack } from 'store/actions';
+import { setCurrentPagePacksAC, setPageCountPacksAC, setSearchPack } from 'store/actions';
 import {
   selectCurrentPage,
   selectPageCount,
@@ -27,11 +27,11 @@ export const PacksList = memo((): ReactElement => {
   }, []);
 
   const setCurrentPage = (value: number): void => {
-    dispatch(setCurrentPageAC(value));
+    dispatch(setCurrentPagePacksAC(value));
   };
 
   const setPacksCount = (value: number): void => {
-    dispatch(setPageCountAC(value));
+    dispatch(setPageCountPacksAC(value));
   };
 
   useEffect(() => {

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 import { instance } from 'api/instance';
-import { CardsPackType } from 'types';
+import { PacksType } from 'types';
 
 // type AddPackPayload = {
 //   name?: string;
@@ -21,7 +21,7 @@ export const packApi = {
     page: number = 0,
     userId: string = '',
   ) {
-    return instance.get<CardsPackType>('/cards/pack', {
+    return instance.get<PacksType>('/cards/pack', {
       params: {
         packName,
         min,
