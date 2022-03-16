@@ -7,4 +7,5 @@ export { EditProfilePage, EditAvatar, EditName } from './EditProfilePage';
 export { PackItem, TableCardsPack, HeadTablePacks } from './TableCardsPack';
 export { SearchField } from './SearchField';
 export { SearchPackCard } from './SearchPackCard';
-export { TableCards, CardItem } from './TableCards';
+export { TableCards, CardItem, HeadTableCards } from './TableCards';
+export { DebounceSearchField } from './DebounceSearchField';

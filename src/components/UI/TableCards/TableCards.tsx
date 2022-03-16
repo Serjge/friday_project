@@ -1,30 +1,14 @@
-import { ReactElement } from 'react';
+import { memo, ReactElement } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { TableHead } from './style';
+import { CardItem, HeadTableCards } from 'components';
+import { selectPackCards } from 'store/selectors';
 
-import { CardItem } from 'components';
-import { setSortCard } from 'store/actions';
-import { selectPackCards, selectSortCard } from 'store/selectors';
-
-export const TableCards = (): ReactElement => {
-  const dispatch = useDispatch();
-
+export const TableCards = memo((): ReactElement => {
   const cards = useSelector(selectPackCards);
 
-  const sortPacks = useSelector(selectSortCard);
-
-  const onSortClick = (sortType: string): void => {
-    if (sortPacks === `1${sortType}`) {
-      dispatch(setSortCard(`0${sortType}`));
-    }
-    if (sortPacks !== `1${sortType}`) {
-      dispatch(setSortCard(`1${sortType}`));
-    }
-  };
-
-  const mapCardsPack = cards && cards.map(({ _id }) => <CardItem id={_id} key={_id} />);
+  const mapCards = cards && cards.map(({ _id }) => <CardItem id={_id} key={_id} />);
 
   return (
     <div
@@ -45,22 +29,9 @@ export const TableCards = (): ReactElement => {
           width: '900px',
         }}
       >
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <TableHead width="300px" onClick={() => onSortClick('question')}>
-            Question
-          </TableHead>
-          <TableHead width="300px" onClick={() => onSortClick('answer')}>
-            Answer
-          </TableHead>
-          <TableHead width="100px" onClick={() => onSortClick('updated')}>
-            Last Updated
-          </TableHead>
-          <TableHead width="100px" onClick={() => onSortClick('grade')}>
-            Grade
-          </TableHead>
-        </div>
-        {mapCardsPack}
+        <HeadTableCards />
+        {mapCards}
       </div>
     </div>
   );
-};
+});

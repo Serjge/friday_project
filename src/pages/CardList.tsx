@@ -1,11 +1,9 @@
-import { memo, ReactElement, useEffect, useState } from 'react';
+import { memo, ReactElement, useCallback, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { TextField, TableCards } from 'components';
-import { SEARCH_DELAY } from 'const';
-import { useDebounce } from 'hook';
+import { DebounceSearchField, TableCards } from 'components';
 import { setSearchAnswer, setSearchQuestion } from 'store/actions';
 import {
   selectSearchAnswer,
@@ -29,27 +27,13 @@ export const CardList = memo((): ReactElement => {
     }
   }, [sortCard, searchQuestion, searchAnswer]);
 
-  const [questionValue, setQuestionValue] = useState('');
-  const [answerValue, setAnswerValue] = useState('');
-
-  const searchByQuestion = (question: string): void => {
+  const searchByQuestion = useCallback((question: string): void => {
     dispatch(setSearchQuestion(question));
-  };
-  const searchByAnswer = (answer: string): void => {
+  }, []);
+
+  const searchByAnswer = useCallback((answer: string): void => {
     dispatch(setSearchAnswer(answer));
-  };
-
-  const debounceSearchQuestion = useDebounce(searchByQuestion, SEARCH_DELAY);
-  const debounceSearchAnswer = useDebounce(searchByAnswer, SEARCH_DELAY);
-
-  const onSearchQuestionChange = (question: string): void => {
-    setQuestionValue(question);
-    debounceSearchQuestion(question);
-  };
-  const onSearchAnswerChange = (answer: string): void => {
-    setAnswerValue(answer);
-    debounceSearchAnswer(answer);
-  };
+  }, []);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -62,9 +46,9 @@ export const CardList = memo((): ReactElement => {
         }}
       >
         Question:
-        <TextField value={questionValue} onChangeText={onSearchQuestionChange} />
+        <DebounceSearchField searchValue={searchByQuestion} />
         Answer:
-        <TextField value={answerValue} onChangeText={onSearchAnswerChange} />
+        <DebounceSearchField searchValue={searchByAnswer} />
       </div>
       <TableCards />
     </div>

@@ -1,0 +1,1 @@
+export { HeadTableCards } from './HeadTableCards';
