@@ -1,5 +1,5 @@
 import { CardsType } from 'types';
-import { CardsActionType } from 'types/actions';
+import { CardActionType } from 'types/actions';
 
 export type InitialStateType = {
   packs: CardsType;
@@ -17,7 +17,7 @@ const initialState: InitialStateType = {
 
 export const cardReducer = (
   state = initialState,
-  action: CardsActionType,
+  action: CardActionType,
 ): InitialStateType => {
   switch (action.type) {
     default:

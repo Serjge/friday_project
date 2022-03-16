@@ -5,6 +5,7 @@ import {
   LoginActionType,
   ProfileActionType,
   RegistrationActionType,
+  SetSearchAnswerType,
 } from 'types/actions';
 
 export type AllAppActionsType =
@@ -13,4 +14,5 @@ export type AllAppActionsType =
   | AppActionsType
   | ExampleActionsType
   | ProfileActionType
-  | CardsActionType;
+  | CardsActionType
+  | SetSearchAnswerType;

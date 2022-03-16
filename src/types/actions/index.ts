@@ -24,3 +24,11 @@ export type {
   SetSearchPack,
   SetSortType,
 } from './CardsActionType';
+
+export type {
+  SetCardType,
+  SetSearchAnswerType,
+  SetSearchQuestionType,
+  SetSortCardType,
+  CardActionType,
+} from './CardActionType';
