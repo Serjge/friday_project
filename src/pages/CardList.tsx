@@ -3,8 +3,7 @@ import { memo, ReactElement, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { TextField } from 'components';
-import { TableCards } from 'components/UI/TableCards';
+import { TextField, TableCards } from 'components';
 import { SEARCH_DELAY } from 'const';
 import { useDebounce } from 'hook';
 import { setSearchAnswer, setSearchQuestion } from 'store/actions';
@@ -12,7 +11,7 @@ import {
   selectSearchAnswer,
   selectSearchQuestion,
   selectSortCard,
-} from 'store/selectors/selectCard';
+} from 'store/selectors';
 import { getCardTC } from 'store/thunks';
 
 export const CardList = memo((): ReactElement => {

@@ -1,9 +1,7 @@
-import { RootReducerType } from 'store/store';
+import { RootReducerType } from 'store';
 import { NewCardType } from 'types';
 
 const zeroElement = 0;
-// export const selectPacks = (state: RootReducerType, cardId: string): CardType =>
-//   state.card.pack.cards..packs.cardPacks.filter(({ _id }) => _id === cardId)[zeroElement];
 
 export const selectPackCards = (state: RootReducerType): NewCardType[] =>
   state.card.pack.cards;

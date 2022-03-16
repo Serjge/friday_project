@@ -10,3 +10,4 @@ export {
 } from './selectProfile';
 
 export * from './selectCards';
+export * from './selectCard';

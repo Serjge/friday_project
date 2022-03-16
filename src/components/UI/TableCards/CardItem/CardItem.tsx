@@ -9,7 +9,7 @@ import {
   selectGradeCard,
   selectQuestion,
   selectUpdateCard,
-} from 'store/selectors/selectCard';
+} from 'store/selectors';
 
 export const CardItem = memo(({ id }: { id: string }) => {
   const question = useSelector((state: RootReducerType) => selectQuestion(state, id));

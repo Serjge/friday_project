@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { TableHead } from './style';
 
-import { CardItem } from 'components/UI/TableCards/CardItem';
+import { CardItem } from 'components';
 import { setSortCard } from 'store/actions';
-import { selectPackCards, selectSortCard } from 'store/selectors/selectCard';
+import { selectPackCards, selectSortCard } from 'store/selectors';
 
 export const TableCards = (): ReactElement => {
   const dispatch = useDispatch();
