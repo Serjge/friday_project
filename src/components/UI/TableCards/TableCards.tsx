@@ -2,24 +2,25 @@ import { ReactElement } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { CardItem } from './CardItem';
 import { TableHead } from './style';
 
-import { setSort } from 'store/actions';
-import { selectSortPacks } from 'store/selectors';
+import { CardItem } from 'components/UI/TableCards/CardItem';
+import { setSortCard } from 'store/actions';
+import { selectPackCards, selectSortCard } from 'store/selectors/selectCard';
 
 export const TableCards = (): ReactElement => {
   const dispatch = useDispatch();
 
-  const cards = [{ _id: '1' }, { _id: '2' }, { _id: '3' }];
-  const sortPacks = useSelector(selectSortPacks);
+  const cards = useSelector(selectPackCards);
+
+  const sortPacks = useSelector(selectSortCard);
 
   const onSortClick = (sortType: string): void => {
     if (sortPacks === `1${sortType}`) {
-      dispatch(setSort(`0${sortType}`));
+      dispatch(setSortCard(`0${sortType}`));
     }
     if (sortPacks !== `1${sortType}`) {
-      dispatch(setSort(`1${sortType}`));
+      dispatch(setSortCard(`1${sortType}`));
     }
   };
 
@@ -45,16 +46,16 @@ export const TableCards = (): ReactElement => {
         }}
       >
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <TableHead width="200px" onClick={() => onSortClick('name')}>
+          <TableHead width="300px" onClick={() => onSortClick('question')}>
             Question
           </TableHead>
-          <TableHead width="50px" onClick={() => onSortClick('cardsCount')}>
+          <TableHead width="300px" onClick={() => onSortClick('answer')}>
             Answer
           </TableHead>
           <TableHead width="100px" onClick={() => onSortClick('updated')}>
             Last Updated
           </TableHead>
-          <TableHead width="200px" onClick={() => onSortClick('user_name')}>
+          <TableHead width="100px" onClick={() => onSortClick('grade')}>
             Grade
           </TableHead>
         </div>

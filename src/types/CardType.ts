@@ -46,7 +46,7 @@ export type NewCardType = {
 };
 
 export type CardsType = {
-  cards: NewCardType;
+  cards: NewCardType[];
   cardsTotalCount: number;
   maxGrade: number;
   minGrade: number;

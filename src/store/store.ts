@@ -8,6 +8,7 @@ import {
   loginReducer,
   ProfileReducer,
   registrationReducer,
+  cardReducer,
 } from 'store/reducers';
 
 const rootReducer = combineReducers({
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   registration: registrationReducer,
   profile: ProfileReducer,
   cards: cardsReducer,
+  card: cardReducer,
 });
 
 declare global {

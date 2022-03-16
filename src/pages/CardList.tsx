@@ -1,59 +1,72 @@
-import { ChangeEvent, memo, ReactElement, useEffect, useRef, useState } from 'react';
+import { memo, ReactElement, useEffect, useState } from 'react';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { cardsApi } from 'api';
 import { TextField } from 'components';
 import { TableCards } from 'components/UI/TableCards';
-import { useDebounce } from 'hook/useDebounce';
-import { setErrorMessage } from 'store/actions';
+import { SEARCH_DELAY } from 'const';
+import { useDebounce } from 'hook';
+import { setSearchAnswer, setSearchQuestion } from 'store/actions';
+import {
+  selectSearchAnswer,
+  selectSearchQuestion,
+  selectSortCard,
+} from 'store/selectors/selectCard';
+import { getCardTC } from 'store/thunks';
 
 export const CardList = memo((): ReactElement => {
   const dispatch = useDispatch();
 
   const { id, name } = useParams<'id' | 'name'>();
-  console.log(name);
+
+  const sortCard = useSelector(selectSortCard);
+  const searchQuestion = useSelector(selectSearchQuestion);
+  const searchAnswer = useSelector(selectSearchAnswer);
+
   useEffect(() => {
-    cardsApi.getCards(id).then(res => console.log(res));
-  }, []);
+    if (id) {
+      dispatch(getCardTC(id, sortCard, searchQuestion, searchAnswer));
+    }
+  }, [sortCard, searchQuestion, searchAnswer]);
 
-  const [value, setValue] = useState('');
+  const [questionValue, setQuestionValue] = useState('');
+  const [answerValue, setAnswerValue] = useState('');
 
-  const search = (qwe: string): void => {
-    console.log(qwe);
-    dispatch(setErrorMessage(''));
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-    // dispatch(getCardsTC(qwe, 0, 0, sortPacks, pagesCount, currentPage));
-    // dispatch(setSearchPack(qwe));
+  const searchByQuestion = (question: string): void => {
+    dispatch(setSearchQuestion(question));
+  };
+  const searchByAnswer = (answer: string): void => {
+    dispatch(setSearchAnswer(answer));
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-  const debounceSearch = useDebounce(search, 1500);
+  const debounceSearchQuestion = useDebounce(searchByQuestion, SEARCH_DELAY);
+  const debounceSearchAnswer = useDebounce(searchByAnswer, SEARCH_DELAY);
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    setValue(e.target.value);
-    debounceSearch(e.target.value);
+  const onSearchQuestionChange = (question: string): void => {
+    setQuestionValue(question);
+    debounceSearchQuestion(question);
   };
-
-  const valueRef = useRef<HTMLInputElement>(null);
-
-  const search2 = (qwe: string): void => {
-    console.log(qwe);
+  const onSearchAnswerChange = (answer: string): void => {
+    setAnswerValue(answer);
+    debounceSearchAnswer(answer);
   };
-
-  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-  const debounceSearch2 = useDebounce(search2, 1500);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      ID:{id}
-      NAME PACK: {name}
-      <TextField value={value} onChange={onChange} />
-      <TextField
-        ref={valueRef}
-        onEnter={() => debounceSearch2(valueRef.current!.value)}
-      />
+      {name}
+      <div
+        style={{
+          display: 'flex',
+          margin: '20px',
+          alignItems: 'center',
+        }}
+      >
+        Question:
+        <TextField value={questionValue} onChangeText={onSearchQuestionChange} />
+        Answer:
+        <TextField value={answerValue} onChangeText={onSearchAnswerChange} />
+      </div>
       <TableCards />
     </div>
   );
