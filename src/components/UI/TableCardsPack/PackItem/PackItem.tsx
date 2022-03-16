@@ -37,7 +37,7 @@ export const PackItem = memo(({ id }: { id: string }) => {
 
   const packId = useSelector((state: RootReducerType) => selectPackId(state, id));
 
-  const onPackClick = (): void => {
+  const onLearnPackClick = (): void => {
     dispatch(setSearchQuestion(''));
     dispatch(setSearchAnswer(''));
     navigate(`${PATH.CARD}${packId}/${namePack}`);
@@ -56,7 +56,7 @@ export const PackItem = memo(({ id }: { id: string }) => {
         <SuperButton size="small" hidden={userId !== userIdPack}>
           Edit
         </SuperButton>
-        <SuperButton onClick={onPackClick} size="small">
+        <SuperButton onClick={onLearnPackClick} size="small">
           Learn
         </SuperButton>
       </TableItem>
