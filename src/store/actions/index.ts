@@ -30,4 +30,15 @@ export {
   SET_SORT,
   setSearchPack,
   SET_SEARCH_PACK,
+  setPageCountAC,
+  SET_PAGE_COUNT,
+  setCurrentPageAC,
+  SET_CURRENT_PAGE,
 } from './cardsAction';
+
+export {
+  setAddModAC,
+  setResultMessageAddPackAC,
+  SET_RESULT_MESSAGE,
+  SET_ADD_MOD,
+} from './addPackAction';

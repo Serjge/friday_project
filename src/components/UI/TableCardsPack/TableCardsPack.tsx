@@ -2,8 +2,6 @@ import { ReactElement } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Pagination } from '../../../pages/Pagination/Pagination';
-
 import { TableHead } from './style';
 
 import { PackItem } from 'components';
@@ -63,7 +61,6 @@ export const TableCardsPack = (): ReactElement => {
         </div>
         {mapCardsPack}
       </div>
-      <Pagination />
     </div>
   );
 };

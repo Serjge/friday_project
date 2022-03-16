@@ -1,6 +1,6 @@
 import { memo, ReactElement, useCallback, useRef } from 'react';
 
-import { SuperButton, TextField } from 'components';
+import { AddPack, SuperButton, TextField } from 'components';
 
 type SearchFieldPropsType = {
   searchValue: (value: string) => void;
@@ -21,6 +21,7 @@ export const SearchField = memo(({ searchValue }: SearchFieldPropsType): ReactEl
     <div style={{ display: 'flex' }}>
       <TextField ref={valueRef} />
       <SuperButton onClick={onSearchClick}>Search</SuperButton>
+      <AddPack />
     </div>
   );
 });
