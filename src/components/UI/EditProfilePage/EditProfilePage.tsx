@@ -3,8 +3,9 @@ import React, { ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
+import { EditPersonalInfo, EditProfileBlock } from './style';
+
 import { EditAvatar, EditName, SuperButton } from 'components';
-import { EditPersonalInfo, EditProfileBlock } from 'components/UI/EditProfilePage/style';
 import { PATH } from 'enum';
 import { EditProfileAC } from 'store/actions';
 import { selectNeedEditProfile } from 'store/selectors';

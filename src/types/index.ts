@@ -8,3 +8,11 @@ export type { CommonResponseType } from './CommonResponseType';
 export type { EditProfileType, AuthMeType } from './ProfileType';
 export type { CardType, CardsPackType, NewCardType, CardsType } from './CardType';
 export type { ButtonsPropsType } from './Pagination';
+export type {
+  ForgotPasswordSendType,
+  ForgotPasswordGetType,
+  CreateNewPasswordType,
+  ForgotPasswordFormType,
+  SendNewPasswordType,
+  SendNewPasswordAnswerType,
+} from './PasswordType';

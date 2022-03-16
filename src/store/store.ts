@@ -2,6 +2,7 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 
 import {
+  addPackReducer,
   appReducer,
   authReducer,
   cardsReducer,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   registration: registrationReducer,
   profile: ProfileReducer,
   cards: cardsReducer,
+  addPack: addPackReducer,
   card: cardReducer,
 });
 

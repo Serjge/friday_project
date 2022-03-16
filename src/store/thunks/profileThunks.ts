@@ -15,6 +15,7 @@ import { AppThunkType } from 'types';
 export const authMeTC = (): AppThunkType => async dispatch => {
   try {
     const { status, data } = await profileApi.authMe();
+
     if (status === statusCode.OK) {
       dispatch(AuthMeAC(data));
       dispatch(setIsLoginAC(true));
@@ -23,6 +24,7 @@ export const authMeTC = (): AppThunkType => async dispatch => {
     const { response, message } = errorCatch as AxiosError;
     const error = response?.data.error;
     const status = response?.status;
+
     if (status === statusCode.Unauthorized) {
       dispatch(setErrorMessage(error));
     } else {
@@ -38,6 +40,7 @@ export const editProfileNameTC =
   async dispatch => {
     try {
       const { status, data } = await profileApi.editPersonalName(name);
+
       if (status === statusCode.OK) {
         dispatch(ChangePersonalNameAC(data.updatedUser.name));
       }
@@ -45,6 +48,7 @@ export const editProfileNameTC =
       const { response, message } = errorCatch as AxiosError;
       const error = response?.data.error;
       const status = response?.status;
+
       if (status === statusCode.Unauthorized) {
         dispatch(setErrorMessage(error));
       } else {
@@ -58,6 +62,7 @@ export const editPersonalAvatarTC =
   async dispatch => {
     try {
       const { data, status } = await profileApi.editPersonalAvatar(avatar);
+
       if (status === statusCode.OK) {
         dispatch(ChangePersonalAvatarAC(data.updatedUser.avatar));
       }
@@ -65,6 +70,7 @@ export const editPersonalAvatarTC =
       const { response, message } = errorCatch as AxiosError;
       const error = response?.data.error;
       const status = response?.status;
+
       if (status === statusCode.Unauthorized) {
         dispatch(setErrorMessage(error));
       } else {

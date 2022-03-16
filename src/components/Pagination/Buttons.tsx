@@ -2,9 +2,8 @@ import { FC, ReactElement } from 'react';
 
 import { useSelector } from 'react-redux';
 
-import style from './Pagination.module.css';
-
-import { SuperButton } from 'components';
+import style from 'components/Pagination/Pagination.module.css';
+import { SuperButton } from 'components/UI';
 import { ButtonsPagination } from 'enum';
 import { selectCardPacksTotalCount } from 'store/selectors';
 import { ButtonsPropsType } from 'types';
@@ -20,18 +19,18 @@ export const Buttons: FC<ButtonsPropsType> = ({
   let buttons = [];
   const lastPage = Math.ceil(cardPacksTotalCount / pagesCount);
 
-  for (let i = 1; i <= lastPage; i += one)
+  for (let index = 1; index <= lastPage; index += one)
     buttons.push(
       <SuperButton
-        key={i}
-        style={{ background: currentPage === i ? 'aqua' : undefined }}
-        onClick={() => setCurrentPage(i)}
+        key={index}
+        style={{ background: currentPage === index ? 'aqua' : undefined }}
+        onClick={() => setCurrentPage(index)}
       >
-        {i}
+        {index}
       </SuperButton>,
     );
 
-  // 1 ... 4 5 (6) 7 8 ... 11
+  // 1 ... 10 11 (12) 13 14 ... 100
   if (currentPage + two < lastPage) {
     buttons[currentPage + two] = (
       <span className={style.points} key={currentPage + three}>

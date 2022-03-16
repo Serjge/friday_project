@@ -25,6 +25,8 @@ export type {
   SetSortType,
 } from './CardsActionType';
 
+export type { AddPackActionsType } from './AddPackActionsType';
+
 export type {
   SetCardType,
   SetSearchAnswerType,

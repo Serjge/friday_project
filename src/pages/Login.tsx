@@ -76,6 +76,10 @@ export const Login = (): ReactElement => {
         />
 
         <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+          <h3>Forgot Password?</h3>
+
+          <a href="http://localhost:3000/friday_project#/forgot-password">Click here!</a>
+
           <SuperButton type="submit" value="login">
             login
           </SuperButton>

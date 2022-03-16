@@ -2,7 +2,16 @@ import { ReactElement } from 'react';
 
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import { Login, NewPassword, Page404, Profile, Recovery, Registration, Test } from '.';
+import {
+  Login,
+  NewPassword,
+  Page404,
+  Profile,
+  ForgotPassword,
+  Registration,
+  Test,
+  InstructionSet,
+} from '.';
 
 import { PATH } from 'enum';
 import { CardList } from 'pages/CardList';
@@ -17,9 +26,10 @@ export const Routers = (): ReactElement => (
     <Route path={PATH.REGISTRATION} element={<Registration />} />
     <Route path={PATH.NEW_PASSWORD} element={<NewPassword />} />
     <Route path={PATH.PAGE404} element={<Page404 />} />
-    <Route path={PATH.RECOVERY} element={<Recovery />} />
+    <Route path={PATH.FORGOT_PASSWORD} element={<ForgotPassword />} />
     <Route path={PATH.TEST} element={<Test />} />
     <Route path={PATH.CARDS} element={<PacksList />} />
+    <Route path={PATH.INSTRUCTION} element={<InstructionSet />} />
     {/* <Route path={PATH.CARD} element={<CardList />} /> */}
     <Route path={PATH.CARD} element={<CardList />}>
       <Route path={PATH.CARD_ID} element={<CardList />}>
