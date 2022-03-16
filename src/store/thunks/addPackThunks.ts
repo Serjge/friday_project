@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 
-import { addPackApi } from 'api/addPackApi';
+import { packApi } from 'api/packApi';
 import { statusCode } from 'enum';
 import { setResultMessageAddPackAC } from 'store/actions/addPackAction';
 import { AppThunkType } from 'types';
@@ -9,7 +9,7 @@ export const addPackTC =
   (newTitle: string): AppThunkType =>
   async dispatch => {
     try {
-      const { status } = await addPackApi.set(newTitle);
+      const { status } = await packApi.set(newTitle);
 
       if (status === statusCode.created) {
         dispatch(setResultMessageAddPackAC('Pack created'));

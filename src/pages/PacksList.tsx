@@ -2,16 +2,16 @@ import { memo, ReactElement, useCallback, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
+import { DebounceSearchField, TableCardsPack, Pagination } from 'components';
 import { CountDecksOnPage } from 'enum';
 import { setCurrentPageAC, setPageCountAC, setSearchPack } from 'store/actions';
-import { DebounceSearchField, TableCardsPack, Pagination } from 'components';
 import {
   selectCurrentPage,
   selectPageCount,
   selectSearchPack,
   selectSortPacks,
 } from 'store/selectors';
-import { getCardsTC } from 'store/thunks';
+import { getPacksTC } from 'store/thunks';
 import { getNumberValuesFromEnum } from 'utils';
 
 export const PacksList = memo((): ReactElement => {
@@ -36,7 +36,7 @@ export const PacksList = memo((): ReactElement => {
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-    dispatch(getCardsTC(searchPack, 0, 0, sortPacks, pagesCount, currentPage));
+    dispatch(getPacksTC(searchPack, 0, 0, sortPacks, pagesCount, currentPage));
   }, [sortPacks, searchPack, pagesCount, currentPage]);
 
   const countDecksOnPage = getNumberValuesFromEnum(CountDecksOnPage);

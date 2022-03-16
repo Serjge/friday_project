@@ -1,11 +1,11 @@
 import { AxiosError } from 'axios';
 
-import { cardsApi } from 'api';
+import { packApi } from 'api';
 import { statusCode } from 'enum';
 import { setCards, setErrorMessage } from 'store/actions';
 import { AppThunkType } from 'types';
 
-export const getCardsTC =
+export const getPacksTC =
   (
     packName?: string,
     min?: number,
@@ -17,7 +17,7 @@ export const getCardsTC =
   ): AppThunkType =>
   async dispatch => {
     try {
-      const { status, data } = await cardsApi.getPacks(
+      const { status, data } = await packApi.getPacks(
         packName,
         min,
         max,
