@@ -1,4 +1,4 @@
-import { ReactElement, useEffect } from 'react';
+import { memo, ReactElement, useCallback, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -10,19 +10,20 @@ import { selectIsLogin } from 'store/selectors';
 import { logOutThunkCreator } from 'store/thunks';
 
 const HeaderWrapper = styled.header`
-  margin: 0 auto;
+  display: flex;
+  justify-content: flex-end;
   padding: 20px;
 `;
 
-export const Header = (): ReactElement => {
+export const Header = memo((): ReactElement => {
   const dispatch = useDispatch();
 
   const isLogin = useSelector(selectIsLogin);
   const navigate = useNavigate();
 
-  const logOutHandle = (): void => {
+  const logOutHandle = useCallback((): void => {
     dispatch(logOutThunkCreator());
-  };
+  }, [logOutThunkCreator]);
 
   useEffect(() => {
     if (!isLogin) {
@@ -53,21 +54,20 @@ export const Header = (): ReactElement => {
 
       {isLogin && (
         <>
-          <SuperButton type="button" onClick={logOutHandle}>
-            logOut
-          </SuperButton>
-
           <SuperButton type="button" onClick={() => navigate(PATH.CARDS)}>
-            Cards
+            Packs list
           </SuperButton>
           <SuperButton type="button" onClick={() => navigate(PATH.PROFILE)}>
             Profile
+          </SuperButton>
+          <SuperButton type="button" onClick={logOutHandle}>
+            logOut
           </SuperButton>
         </>
       )}
     </HeaderWrapper>
   );
-};
+});
 
 // type ButtonPropsType = {
 //   isActive: boolean;
