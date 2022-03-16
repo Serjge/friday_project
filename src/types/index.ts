@@ -6,7 +6,8 @@ export type { RegistrationParamsType } from './RegistrationParamsType';
 export type { LoginStateType, LoginApiPayloadType, LogOutType } from './LoginType';
 export type { CommonResponseType } from './CommonResponseType';
 export type { EditProfileType, AuthMeType } from './ProfileType';
-export type { PackType, PacksType, CardType, CardsType } from 'types/PackType';
+export type { PackType, PacksType } from './PackType';
+export type { CardType, CardsType } from './CardsType';
 export type { ButtonsPropsType } from './Pagination';
 export type {
   ForgotPasswordSendType,
