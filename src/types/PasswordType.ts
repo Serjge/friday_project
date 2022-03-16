@@ -18,3 +18,12 @@ export type CreateNewPasswordType = {
 export type ForgotPasswordFormType = {
   email: string;
 };
+
+export type SendNewPasswordType = {
+  password: string;
+  resetPasswordToken: string;
+};
+
+export type SendNewPasswordAnswerType = {
+  info: string;
+};

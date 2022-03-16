@@ -13,4 +13,6 @@ export type {
   ForgotPasswordGetType,
   CreateNewPasswordType,
   ForgotPasswordFormType,
+  SendNewPasswordType,
+  SendNewPasswordAnswerType,
 } from './PasswordType';
