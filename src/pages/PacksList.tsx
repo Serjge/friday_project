@@ -1,21 +1,16 @@
-import {memo, ReactElement, useCallback, useEffect} from 'react';
+import { memo, ReactElement, useCallback, useEffect } from 'react';
 
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
-
-
-
-
   SwitcherMyAll,
+  DebounceSearchField,
+  TableCardsPack,
+  Pagination,
+  AddPack,
 } from 'components';
-import {DebounceSearchField, TableCardsPack, Pagination, AddPack} from 'components';
-import {CountDecksOnPage} from 'enum';
-import {
-  setCurrentPagePacksAC,
-  setPageCountPacksAC,
-  setSearchPack
-} from 'store/actions';
+import { CountDecksOnPage } from 'enum';
+import { setCurrentPagePacksAC, setPageCountPacksAC, setSearchPack } from 'store/actions';
 import {
   selectCurrentPage,
   selectIsMyPack,
@@ -24,8 +19,8 @@ import {
   selectSortPacks,
   selectUserId,
 } from 'store/selectors';
-import {getPacksTC} from 'store/thunks';
-import {getNumberValuesFromEnum} from 'utils';
+import { getPacksTC } from 'store/thunks';
+import { getNumberValuesFromEnum } from 'utils';
 
 export const PacksList = memo((): ReactElement => {
   const dispatch = useDispatch();
@@ -61,13 +56,11 @@ export const PacksList = memo((): ReactElement => {
   const countDecksOnPage = getNumberValuesFromEnum(CountDecksOnPage);
 
   return (
-    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-      <DebounceSearchField searchValue={searchByPacks}/>
-      <div style={{display: 'flex'}}>
-        <SwitcherMyAll/>
-        <AddPack/>
-      </div>
-      <TableCardsPack/>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <DebounceSearchField searchValue={searchByPacks} />
+      <SwitcherMyAll />
+      <AddPack />
+      <TableCardsPack />
 
       <Pagination
         currentPage={currentPage}
