@@ -32,6 +32,8 @@ export {
   SET_PAGE_COUNT_PACKS,
   setCurrentPagePacksAC,
   SET_CURRENT_PAGE_PACKS,
+  setIsMyPack,
+  SET_IS_MY_PACK,
 } from 'store/actions/packsAction';
 
 export * from 'store/actions/cardsAction';

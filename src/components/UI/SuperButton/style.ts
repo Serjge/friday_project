@@ -15,7 +15,7 @@ export const Button = styled.button<ButtonPropsType>`
   background: #4676d7;
   color: #fff;
   padding: ${({ size }) => (size === 'small' ? '5px' : '8px 16px')};
-  font-size: ${({ size }) => (size === 'small' ? '12px' : '14px')}14px;
+  font-size: ${({ size }) => (size === 'small' ? '12px' : '14px')};
 
   &:hover {
     background: #8daee5;

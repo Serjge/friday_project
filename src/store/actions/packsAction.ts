@@ -5,6 +5,7 @@ export const SET_SORT_PACKS = 'PACKS/SET_SORT_PACKS';
 export const SET_SEARCH_PACK = 'PACKS/SET_SEARCH_PACK';
 export const SET_CURRENT_PAGE_PACKS = 'PACKS/SET_CURRENT_PAGE_PACKS';
 export const SET_PAGE_COUNT_PACKS = 'PACKS/SET_PAGE_COUNT_PACKS';
+export const SET_IS_MY_PACK = 'PACKS/SET_IS_MY_PACK';
 
 export const setPacks = (cards: PacksType) =>
   ({
@@ -43,5 +44,13 @@ export const setPageCountPacksAC = (pageCount: number) =>
     type: SET_PAGE_COUNT_PACKS,
     payload: {
       pageCount,
+    },
+  } as const);
+
+export const setIsMyPack = (isMyPack: boolean) =>
+  ({
+    type: SET_IS_MY_PACK,
+    payload: {
+      isMyPack,
     },
   } as const);

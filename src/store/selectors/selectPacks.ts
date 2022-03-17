@@ -6,6 +6,8 @@ const zeroElement = 0;
 export const selectPacks = (state: RootReducerType): PackType[] =>
   state.packs.packs.cardPacks;
 
+export const selectIsMyPack = (state: RootReducerType): boolean => state.packs.isMyPack;
+
 export const selectPack = (state: RootReducerType, cardId: string): PackType =>
   state.packs.packs.cardPacks.filter(({ _id }) => _id === cardId)[zeroElement];
 
