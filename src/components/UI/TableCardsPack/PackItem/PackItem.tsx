@@ -3,8 +3,9 @@ import { memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import { TableItem } from './style';
+
 import { SuperButton } from 'components';
-import { TableItem } from 'components/UI/TableCardsPack/PackItem/style';
 import { PATH } from 'enum';
 import { RootReducerType } from 'store';
 import { setSearchAnswerCards, setSearchQuestionCards } from 'store/actions';
@@ -22,7 +23,10 @@ export const PackItem = memo(({ id }: { id: string }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const userId = useSelector(selectUserId);
+  const packId = useSelector((state: RootReducerType) => selectPackId(state, id));
   const namePack = useSelector((state: RootReducerType) => selectPackName(state, id));
+  const userIdPack = useSelector((state: RootReducerType) => selectUserIdPack(state, id));
   const cardsCount = useSelector((state: RootReducerType) => selectCardsCount(state, id));
   const userNamePack = useSelector((state: RootReducerType) =>
     selectUserNamePack(state, id),
@@ -30,12 +34,8 @@ export const PackItem = memo(({ id }: { id: string }) => {
   const updateDataPack = useSelector((state: RootReducerType) =>
     selectUpdateDataPack(state, id),
   );
+
   const dataNew = new Date(updateDataPack);
-
-  const userId = useSelector(selectUserId);
-  const userIdPack = useSelector((state: RootReducerType) => selectUserIdPack(state, id));
-
-  const packId = useSelector((state: RootReducerType) => selectPackId(state, id));
 
   const onLearnPackClick = (): void => {
     dispatch(setSearchQuestionCards(''));

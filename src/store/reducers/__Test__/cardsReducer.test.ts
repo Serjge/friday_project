@@ -21,6 +21,7 @@ beforeEach(() => {
     packs: {} as PacksType,
     sort: '',
     searchPack: '',
+    isMyPack: false,
   };
 
   cards = [

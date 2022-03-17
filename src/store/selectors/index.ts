@@ -10,5 +10,5 @@ export {
 } from './selectProfile';
 export { selectResultMessage, selectIsAddMod } from './selectAddPack';
 
-export * from 'store/selectors/selectPacks';
+export * from './selectPacks';
 export * from './selectCard';
