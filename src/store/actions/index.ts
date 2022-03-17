@@ -36,7 +36,16 @@ export {
   SET_IS_MY_PACK,
 } from 'store/actions/packsAction';
 
-export * from 'store/actions/cardsAction';
+export {
+  SET_SEARCH_QUESTION_CARDS,
+  SET_SORT_CARDS,
+  SET_SEARCH_ANSWER_CARDS,
+  setCards,
+  setSearchAnswerCards,
+  setSearchQuestionCards,
+  setSortCards,
+  SET_CARDS,
+} from 'store/actions/cardsAction';
 
 export {
   setAddModAC,
