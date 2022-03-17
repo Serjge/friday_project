@@ -9,9 +9,6 @@ import { PacksType } from 'types';
 // };
 
 export const packApi = {
-  set(newTitle: string) {
-    return instance.post('/cards/pack', { cardsPack: { name: newTitle } });
-  },
   getPacks(
     packName: string = '',
     min: number = 0,
@@ -30,6 +27,16 @@ export const packApi = {
         pageCount,
         page,
         user_id: userId,
+      },
+    });
+  },
+  setNewPack(newTitle: string) {
+    return instance.post('/cards/pack', { cardsPack: { name: newTitle } });
+  },
+  deletePack(id: string) {
+    return instance.delete('/cards/pack', {
+      params: {
+        id,
       },
     });
   },

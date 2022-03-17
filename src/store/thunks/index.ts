@@ -5,4 +5,4 @@ export { editPersonalAvatarTC, editProfileNameTC, authMeTC } from './profileThun
 export { getPacksTC } from 'store/thunks/packsThunks';
 export { getCardsTC } from 'store/thunks/cardsThunks';
 export { forgotPasswordTC } from './passwordThunks';
-export { addPackTC } from './addPackThunks';
+export { addPackTC, deletePackTC } from './addPackThunks';

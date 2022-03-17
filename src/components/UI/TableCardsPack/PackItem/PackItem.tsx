@@ -18,7 +18,12 @@ import {
   selectUserNamePack,
 } from 'store/selectors';
 
-export const PackItem = memo(({ id }: { id: string }) => {
+type PackItemType = {
+  id: string;
+  deletePack: (packId: string) => void;
+};
+
+export const PackItem = memo(({ id, deletePack }: PackItemType) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -50,7 +55,11 @@ export const PackItem = memo(({ id }: { id: string }) => {
       <TableItem width="100px">{dataNew.toLocaleDateString()}</TableItem>
       <TableItem width="200px">{userNamePack}</TableItem>
       <TableItem width="180px">
-        <SuperButton size="small" hidden={userId !== userIdPack}>
+        <SuperButton
+          size="small"
+          hidden={userId !== userIdPack}
+          onClick={() => deletePack(packId)}
+        >
           Delete
         </SuperButton>
         <SuperButton size="small" hidden={userId !== userIdPack}>
