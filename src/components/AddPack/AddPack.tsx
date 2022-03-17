@@ -19,6 +19,7 @@ export const AddPack = (): ReactElement => {
 
   const setNewPack = (): void => {
     dispatch(addPackTC(newTitle));
+    // dispatch(setAddModAC(!isAddMod));
   };
 
   const setIsAddMod = (isAdd: boolean): void => {

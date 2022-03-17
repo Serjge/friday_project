@@ -2,7 +2,7 @@ import { memo, ReactElement, useCallback, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { DebounceSearchField, TableCardsPack, Pagination } from 'components';
+import { DebounceSearchField, TableCardsPack, Pagination, AddPack } from 'components';
 import { CountDecksOnPage } from 'enum';
 import { setCurrentPagePacksAC, setPageCountPacksAC, setSearchPack } from 'store/actions';
 import {
@@ -44,6 +44,8 @@ export const PacksList = memo((): ReactElement => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <DebounceSearchField searchValue={searchByPacks} />
+      <AddPack />
+
       <TableCardsPack />
 
       <Pagination
