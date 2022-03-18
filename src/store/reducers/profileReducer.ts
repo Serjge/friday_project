@@ -19,16 +19,22 @@ export const ProfileReducer = (
 ): ProfileStateWithErrorKeyType => {
   switch (action.type) {
     case 'profile/check-auth': {
-      return { ...state, profileData: action.state };
+      return { ...state, profileData: action.payload.state };
     }
     case 'profile/change-personal-data': {
-      return { ...state, needEdit: action.needEdit };
+      return { ...state, needEdit: action.payload.needEdit };
     }
     case 'profile/change-name': {
-      return { ...state, profileData: { ...state.profileData, name: action.name } };
+      return {
+        ...state,
+        profileData: { ...state.profileData, name: action.payload.name },
+      };
     }
     case 'profile/change-avatar': {
-      return { ...state, profileData: { ...state.profileData, avatar: action.avatar } };
+      return {
+        ...state,
+        profileData: { ...state.profileData, avatar: action.payload.avatar },
+      };
     }
     default:
       return state;
