@@ -1,4 +1,10 @@
-import { ProfileActionType } from 'store/actions';
+import {
+  CHANGE_AVATAR,
+  CHANGE_NAME,
+  CHANGE_PERSONAL_DATA,
+  CHECK_AUTH,
+  ProfileActionType,
+} from 'store/actions';
 import { AuthMeType } from 'types';
 
 export type ProfileStateWithErrorKeyType = {
@@ -18,19 +24,19 @@ export const ProfileReducer = (
   action: ProfileActionType,
 ): ProfileStateWithErrorKeyType => {
   switch (action.type) {
-    case 'profile/check-auth': {
+    case CHECK_AUTH: {
       return { ...state, profileData: action.payload.state };
     }
-    case 'profile/change-personal-data': {
+    case CHANGE_PERSONAL_DATA: {
       return { ...state, needEdit: action.payload.needEdit };
     }
-    case 'profile/change-name': {
+    case CHANGE_NAME: {
       return {
         ...state,
         profileData: { ...state.profileData, name: action.payload.name },
       };
     }
-    case 'profile/change-avatar': {
+    case CHANGE_AVATAR: {
       return {
         ...state,
         profileData: { ...state.profileData, avatar: action.payload.avatar },

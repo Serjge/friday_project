@@ -1,8 +1,13 @@
 import { AuthMeType } from 'types/ProfileType';
 
+export const CHANGE_PERSONAL_DATA = 'PROFILE/CHANGE_PERSONAL_DATA';
+export const CHECK_AUTH = 'PROFILE/CHECK_AUTH';
+export const CHANGE_NAME = 'PROFILE/CHANGE_NAME';
+export const CHANGE_AVATAR = 'PROFILE/CHANGE_AVATAR';
+
 export const editProfileAC = (needEdit: boolean) =>
   ({
-    type: 'profile/change-personal-data',
+    type: CHANGE_PERSONAL_DATA,
     payload: {
       needEdit,
     },
@@ -10,7 +15,7 @@ export const editProfileAC = (needEdit: boolean) =>
 
 export const authMeAC = (state: AuthMeType) =>
   ({
-    type: 'profile/check-auth',
+    type: CHECK_AUTH,
     payload: {
       state,
     },
@@ -18,7 +23,7 @@ export const authMeAC = (state: AuthMeType) =>
 
 export const changePersonalNameAC = (name: string) =>
   ({
-    type: 'profile/change-name',
+    type: CHANGE_NAME,
     payload: {
       name,
     },
@@ -26,7 +31,7 @@ export const changePersonalNameAC = (name: string) =>
 
 export const changePersonalAvatarAC = (avatar: string) =>
   ({
-    type: 'profile/change-avatar',
+    type: CHANGE_AVATAR,
     payload: {
       avatar,
     },

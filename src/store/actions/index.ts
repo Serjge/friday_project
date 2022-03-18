@@ -19,6 +19,10 @@ export {
   changePersonalNameAC,
   editProfileAC,
   authMeAC,
+  CHANGE_NAME,
+  CHANGE_PERSONAL_DATA,
+  CHECK_AUTH,
+  CHANGE_AVATAR,
 } from './profileAction';
 
 export {
