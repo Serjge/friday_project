@@ -22,7 +22,9 @@ export const MultiRangeSlider: FC<PropTypes> = ({ min, max, onChange }) => {
 
   // Convert to percentage
   const getPercent = useCallback(
-    value => Math.round(((value - min) / (max - min)) * ValueForRange.HUNDRED_PERCENT),
+    value => {
+      Math.round(((value - min) / (max - min)) * ValueForRange.HUNDRED_PERCENT);
+    },
     [min, max],
   );
 
