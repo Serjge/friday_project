@@ -4,11 +4,10 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { sendNewPasswordTC } from '../../store/thunks/passwordThunks';
-
 import { SuperButton, TextField } from 'components';
 import { PATH } from 'enum';
 import { selectErrorMessage } from 'store/selectors';
+import { sendNewPasswordTC } from 'store/thunks/passwordThunks';
 import { Wrapper } from 'styles';
 import { CreateNewPasswordType, SendNewPasswordType } from 'types';
 import { getErrorValidate } from 'utils';
@@ -26,8 +25,9 @@ export const NewPassword = (): ReactElement => {
   const {
     register,
     handleSubmit,
+    getValues,
     formState: {
-      errors: { password },
+      errors: { password, confirmPassword },
     },
   } = useForm<CreateNewPasswordType>();
 
@@ -51,6 +51,17 @@ export const NewPassword = (): ReactElement => {
           placeholder="Password"
           autoComplete="on"
           error={getErrorValidate(password?.type)}
+        />
+        <TextField
+          labelTitle="Confirm password"
+          type="password"
+          {...register('confirmPassword', {
+            required: true,
+            minLength: 8,
+            validate: value => value === getValues('password'),
+          })}
+          placeholder="Confirm password"
+          error={getErrorValidate(confirmPassword?.type)}
         />
 
         <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
