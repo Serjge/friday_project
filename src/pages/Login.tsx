@@ -2,7 +2,7 @@ import { ReactElement, useEffect } from 'react';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 import { SuperButton, TextField } from 'components';
 import { PATH } from 'enum';
@@ -77,7 +77,7 @@ export const Login = (): ReactElement => {
         <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
           <h3>Forgot Password?</h3>
 
-          <a href="http://localhost:3000/friday_project#/forgot-password">Click here!</a>
+          <Link to={PATH.FORGOT_PASSWORD}>Click here!</Link>
 
           <SuperButton type="submit" value="login">
             login
