@@ -1,6 +1,7 @@
 import { memo, ReactElement, useCallback, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 
 import {
   AddPack,
@@ -9,10 +10,11 @@ import {
   SwitcherMyAll,
   TableCardsPack,
 } from 'components';
-import { CountDecksOnPage } from 'enum';
+import { CountDecksOnPage, PATH } from 'enum';
 import { setCurrentPagePacksAC, setPageCountPacksAC, setSearchPack } from 'store/actions';
 import {
   selectCurrentPage,
+  selectIsLogin,
   selectIsMyPack,
   selectPageCount,
   selectRerender,
@@ -25,6 +27,8 @@ import { getNumberValuesFromEnum } from 'utils';
 
 export const PacksList = memo((): ReactElement => {
   const dispatch = useDispatch();
+  // const navigate = useNavigate();
+  const isLogin = useSelector(selectIsLogin);
 
   let userId = useSelector(selectUserId);
   const isMyPack = useSelector(selectIsMyPack);
@@ -56,6 +60,10 @@ export const PacksList = memo((): ReactElement => {
   }, [sortPacks, searchPack, pagesCount, currentPage, userId, rerender]);
 
   const countDecksOnPage = getNumberValuesFromEnum(CountDecksOnPage);
+
+  if (!isLogin) {
+    return <Navigate to={PATH.LOGIN} />;
+  }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
