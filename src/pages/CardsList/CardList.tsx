@@ -3,6 +3,8 @@ import { memo, ReactElement, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useParams } from 'react-router-dom';
 
+import { CardListWrapper, SearchWrapper } from './style';
+
 import { DebounceSearchField, TableCards } from 'components';
 import { PATH } from 'enum';
 import { setSearchAnswerCards, setSearchQuestionCards } from 'store/actions';
@@ -21,8 +23,8 @@ export const CardList = memo((): ReactElement => {
 
   const isLogin = useSelector(selectIsLogin);
   const sortCard = useSelector(selectSortCard);
-  const searchQuestion = useSelector(selectSearchQuestion);
   const searchAnswer = useSelector(selectSearchAnswer);
+  const searchQuestion = useSelector(selectSearchQuestion);
 
   useEffect(() => {
     if (id) {
@@ -43,21 +45,13 @@ export const CardList = memo((): ReactElement => {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <CardListWrapper>
       {name}
-      <div
-        style={{
-          display: 'flex',
-          margin: '20px',
-          alignItems: 'center',
-        }}
-      >
-        Question:
-        <DebounceSearchField searchValue={searchByQuestion} />
-        Answer:
-        <DebounceSearchField searchValue={searchByAnswer} />
-      </div>
+      <SearchWrapper>
+        <DebounceSearchField placeholder="Question:" searchValue={searchByQuestion} />
+        <DebounceSearchField placeholder=" Answer:" searchValue={searchByAnswer} />
+      </SearchWrapper>
       <TableCards />
-    </div>
+    </CardListWrapper>
   );
 });

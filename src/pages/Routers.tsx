@@ -14,7 +14,7 @@ import {
 } from '.';
 
 import { PATH } from 'enum';
-import { CardList } from 'pages/CardList';
+import { CardList } from 'pages/CardsList/CardList';
 import { PacksList } from 'pages/PacksList';
 
 export const Routers = (): ReactElement => (

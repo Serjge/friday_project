@@ -10,3 +10,11 @@ export const TableHead = styled.div<PropsType>`
   width: ${({ width }) => width};
   cursor: pointer;
 `;
+
+export const WrapperTableCards = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 60vh;
+  overflow-y: auto;
+  width: 80vw;
+`;

@@ -26,10 +26,9 @@ import { getNumberValuesFromEnum } from 'utils';
 
 export const PacksList = memo((): ReactElement => {
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
-  const isLogin = useSelector(selectIsLogin);
 
   let userId = useSelector(selectUserId);
+  const isLogin = useSelector(selectIsLogin);
   const isMyPack = useSelector(selectIsMyPack);
   const sortPacks = useSelector(selectSortPacks);
   const pagesCount = useSelector(selectPageCount);
@@ -65,7 +64,7 @@ export const PacksList = memo((): ReactElement => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <DebounceSearchField searchValue={searchByPacks} />
+      <DebounceSearchField placeholder="Name" searchValue={searchByPacks} />
       <SwitcherMyAll />
       <AddPack />
       <TableCardsPack />
