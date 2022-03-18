@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { SuperButton, TextField } from 'components';
 import { PATH } from 'enum';
@@ -14,6 +14,9 @@ import { getErrorValidate } from 'utils';
 export const NewPassword = (): ReactElement => {
   const navigate = useNavigate();
 
+  const param = useParams<'token'>();
+  const { token } = param;
+  console.log(token);
   const createNewPassword: SubmitHandler<CreateNewPasswordType> = data => {
     console.log(data);
     navigate(PATH.LOGIN);
