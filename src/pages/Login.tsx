@@ -33,9 +33,6 @@ export const Login = (): ReactElement => {
   const {
     register,
     handleSubmit,
-    setValue,
-
-    // getValues,
     formState: {
       errors: { email, password },
     },
@@ -46,9 +43,6 @@ export const Login = (): ReactElement => {
   if (isLogin) {
     return <Navigate to={PATH.PROFILE} />;
   }
-
-  setValue('email', 'test@test.ru');
-  setValue('password', 'test@test.ru');
 
   return (
     <Wrapper>
