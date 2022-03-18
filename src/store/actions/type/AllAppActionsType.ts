@@ -1,18 +1,18 @@
 import {
+  AddPackActionsType,
   AppActionsType,
-  CardsActionType,
-  ExampleActionsType,
+  PacksActionType,
   LoginActionType,
   ProfileActionType,
   RegistrationActionType,
-} from 'types/actions';
-import { AddPackActionsType } from 'types/actions/AddPackActionsType';
+  CardsActionType,
+} from 'store/actions';
 
 export type AllAppActionsType =
   | LoginActionType
   | RegistrationActionType
   | AppActionsType
-  | ExampleActionsType
   | ProfileActionType
-  | CardsActionType
-  | AddPackActionsType;
+  | PacksActionType
+  | AddPackActionsType
+  | CardsActionType;

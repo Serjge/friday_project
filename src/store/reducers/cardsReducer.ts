@@ -1,18 +1,24 @@
-import { SET_CARDS, SET_SEARCH_PACK, SET_SORT } from 'store/actions';
-import { SET_CURRENT_PAGE, SET_PAGE_COUNT } from 'store/actions/cardsAction';
-import { CardsPackType } from 'types';
-import { CardsActionType } from 'types/actions';
+import {
+  SET_CARDS,
+  SET_SEARCH_ANSWER_CARDS,
+  SET_SEARCH_QUESTION_CARDS,
+  SET_SORT_CARDS,
+  CardsActionType,
+} from 'store/actions';
+import { CardsType } from 'types';
 
 export type InitialStateType = {
-  packs: CardsPackType;
+  pack: CardsType;
   sort: string;
-  searchPack: string;
+  searchAnswer: string;
+  searchQuestion: string;
 };
 
 const initialState: InitialStateType = {
-  packs: {} as CardsPackType,
+  pack: {} as CardsType,
   sort: '',
-  searchPack: '',
+  searchAnswer: '',
+  searchQuestion: '',
 };
 
 export const cardsReducer = (
@@ -21,18 +27,13 @@ export const cardsReducer = (
 ): InitialStateType => {
   switch (action.type) {
     case SET_CARDS:
-      return { ...state, packs: action.payload.cards };
-    case SET_SORT:
-      return { ...state, sort: action.payload.sort };
-    case SET_SEARCH_PACK:
-      return { ...state, searchPack: action.payload.searchValue };
-    case SET_CURRENT_PAGE:
-      return { ...state, packs: { ...state.packs, page: action.payload.currentPage } };
-    case SET_PAGE_COUNT:
-      return {
-        ...state,
-        packs: { ...state.packs, pageCount: action.payload.pageCount },
-      };
+      return { ...state, pack: action.cards };
+    case SET_SORT_CARDS:
+      return { ...state, sort: action.sort };
+    case SET_SEARCH_ANSWER_CARDS:
+      return { ...state, searchAnswer: action.searchValue };
+    case SET_SEARCH_QUESTION_CARDS:
+      return { ...state, searchQuestion: action.searchValue };
     default:
       return state;
   }

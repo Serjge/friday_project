@@ -1,18 +1,23 @@
 import { AxiosError } from 'axios';
 
-import { addPackApi } from 'api/addPackApi';
+import { packApi } from 'api/packApi';
 import { statusCode } from 'enum';
-import { setResultMessageAddPackAC } from 'store/actions/addPackAction';
+import { TimeForSetTimeout } from 'enum/timeForSetTimeout';
+import { rerenderPackAC, setAddModAC, setResultMessageAddPackAC } from 'store/actions';
 import { AppThunkType } from 'types';
 
 export const addPackTC =
   (newTitle: string): AppThunkType =>
   async dispatch => {
     try {
-      const { status } = await addPackApi.set(newTitle);
+      const { status } = await packApi.setNewPack(newTitle);
 
       if (status === statusCode.created) {
         dispatch(setResultMessageAddPackAC('Pack created'));
+        dispatch(rerenderPackAC());
+        setTimeout(() => {
+          dispatch(setAddModAC(false));
+        }, TimeForSetTimeout.hideAddComponentAfterSuccess);
       }
     } catch (errorCatch) {
       const { response, message } = errorCatch as AxiosError;
@@ -24,5 +29,19 @@ export const addPackTC =
       } else {
         dispatch(setResultMessageAddPackAC(message));
       }
+    }
+  };
+
+export const deletePackTC =
+  (packId: string): AppThunkType =>
+  async dispatch => {
+    try {
+      const response = await packApi.deletePack(packId);
+      if (response.status === statusCode.OK) {
+        dispatch(rerenderPackAC());
+      }
+    } catch (errorCatch) {
+      const { message } = errorCatch as AxiosError;
+      console.warn(message);
     }
   };

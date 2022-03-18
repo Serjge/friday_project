@@ -24,11 +24,11 @@ type Inputs = {
 export const Registration = (): ReactElement => {
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   const status = useSelector(selectStatus);
   const errorMessage = useSelector(selectErrorMessage);
   const RegistrationIsCompleted = useSelector(selectRegistrationIsCompleted);
-
-  const navigate = useNavigate();
 
   const {
     register,
@@ -43,7 +43,7 @@ export const Registration = (): ReactElement => {
     dispatch(registrationTC(data.email, data.password));
   };
 
-  const onBackClick = (): void => {
+  const onBackLoginClick = (): void => {
     navigate(PATH.LOGIN);
   };
 
@@ -87,7 +87,7 @@ export const Registration = (): ReactElement => {
           placeholder="Confirm password"
           error={getErrorValidate(confirmPassword?.type)}
         />
-        <SuperButton onClick={onBackClick} type="button">
+        <SuperButton onClick={onBackLoginClick} type="button">
           Cancel
         </SuperButton>
         <SuperButton disabled={status === 'loading'} type="submit">

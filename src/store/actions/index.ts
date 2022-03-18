@@ -14,27 +14,31 @@ export {
   SET_ERROR_MESSAGE,
 } from './appAction';
 
-export { exampleAction } from './exampleAction';
-
 export {
   ChangePersonalAvatarAC,
   ChangePersonalNameAC,
   EditProfileAC,
   AuthMeAC,
-} from './ProfileAction';
+} from './profileAction';
 
 export {
-  setCards,
-  SET_CARDS,
-  setSort,
-  SET_SORT,
+  setPacksAC,
+  SET_PACKS,
+  setSortPacks,
+  SET_SORT_PACKS,
   setSearchPack,
   SET_SEARCH_PACK,
-  setPageCountAC,
-  SET_PAGE_COUNT,
-  setCurrentPageAC,
-  SET_CURRENT_PAGE,
-} from './cardsAction';
+  setPageCountPacksAC,
+  SET_PAGE_COUNT_PACKS,
+  setCurrentPagePacksAC,
+  SET_CURRENT_PAGE_PACKS,
+  setIsMyPack,
+  SET_IS_MY_PACK,
+  rerenderPackAC,
+  RERENDER_PACK,
+} from 'store/actions/packsAction';
+
+export * from 'store/actions/cardsAction';
 
 export {
   setAddModAC,
@@ -42,3 +46,5 @@ export {
   SET_RESULT_MESSAGE,
   SET_ADD_MOD,
 } from './addPackAction';
+
+export * from './type';

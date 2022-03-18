@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { SuperButton, TextField } from 'components';
 import { PATH } from 'enum';
@@ -17,10 +17,8 @@ export const NewPassword = (): ReactElement => {
   const param = useParams<'token'>();
   const { token } = param;
   console.log(token);
-  const createNewPassword: SubmitHandler<CreateNewPasswordType> = data => {
-    console.log(data);
-    navigate(PATH.LOGIN);
-  };
+
+  const errorMessage = useSelector(selectErrorMessage);
 
   const {
     register,
@@ -30,7 +28,10 @@ export const NewPassword = (): ReactElement => {
     },
   } = useForm<CreateNewPasswordType>();
 
-  const errorMessage = useSelector(selectErrorMessage);
+  const createNewPassword: SubmitHandler<CreateNewPasswordType> = data => {
+    console.log(data);
+    navigate(PATH.LOGIN);
+  };
 
   return (
     <Wrapper>

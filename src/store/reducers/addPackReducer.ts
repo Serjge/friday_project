@@ -1,5 +1,4 @@
-import { SET_ADD_MOD, SET_RESULT_MESSAGE } from 'store/actions';
-import { AddPackActionsType } from 'types/actions';
+import { SET_ADD_MOD, SET_RESULT_MESSAGE, AddPackActionsType } from 'store/actions';
 
 export type InitialStateType = {
   isAddMod: boolean;

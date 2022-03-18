@@ -14,21 +14,23 @@ export const Buttons: FC<ButtonsPropsType> = ({
   pagesCount,
 }): ReactElement => {
   const cardPacksTotalCount = useSelector(selectCardPacksTotalCount);
+
   const { one, two, four, three } = ButtonsPagination;
-
-  let buttons = [];
   const lastPage = Math.ceil(cardPacksTotalCount / pagesCount);
+  let buttons = [];
 
-  for (let index = 1; index <= lastPage; index += one)
+  for (let index = 1; index <= lastPage; index += one) {
     buttons.push(
       <SuperButton
         key={index}
+        size="small"
         style={{ background: currentPage === index ? 'aqua' : undefined }}
         onClick={() => setCurrentPage(index)}
       >
         {index}
       </SuperButton>,
     );
+  }
 
   // 1 ... 10 11 (12) 13 14 ... 100
   if (currentPage + two < lastPage) {

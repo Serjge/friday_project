@@ -7,5 +7,8 @@ export enum PATH {
   REGISTRATION = '/registration',
   TEST = '/test',
   CARDS = '/cards',
+  CARD = '/card/',
+  CARD_ID = ':id',
+  CARD_NAME = ':name',
   INSTRUCTION = '/instruction',
 }

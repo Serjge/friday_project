@@ -7,24 +7,26 @@ import { AppThunkType } from 'types';
 
 export const getCardsTC =
   (
-    packName?: string,
+    cardsPackId: string,
+    sortCards?: string,
+    cardQuestion?: string,
+    cardAnswer?: string,
     min?: number,
     max?: number,
-    sortPacks?: string,
     pageCount?: number,
     page?: number,
-    userId?: string,
   ): AppThunkType =>
   async dispatch => {
     try {
       const { status, data } = await cardsApi.getCards(
-        packName,
+        cardsPackId,
+        cardAnswer,
+        cardQuestion,
         min,
         max,
-        sortPacks,
+        sortCards,
         pageCount,
         page,
-        userId,
       );
 
       if (status === statusCode.OK) {
