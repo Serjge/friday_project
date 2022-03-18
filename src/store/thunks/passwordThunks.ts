@@ -9,7 +9,9 @@ export const forgotPasswordTC =
   (data: ForgotPasswordSendType): AppThunkType =>
   async dispatch => {
     try {
+      // true
       await passwordApi.forgotPassword(data);
+      // false
     } catch (errorCatch) {
       const { response, message } = errorCatch as AxiosError;
       const error = response?.data.error;

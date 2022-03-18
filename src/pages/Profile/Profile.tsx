@@ -1,12 +1,15 @@
 import { ReactElement } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 
 import { EditProfilePage, SuperButton } from 'components';
 import { UserImgProfile } from 'components/UI/EditProfilePage';
+import { PATH } from 'enum';
 import { EditProfileAC } from 'store/actions';
 import {
   selectAvatarProfile,
+  selectIsLogin,
   selectNameProfile,
   selectNeedEditProfile,
   selectPublicCardPacksCountProfile,
@@ -16,6 +19,7 @@ import { Wrapper } from 'styles';
 export const Profile = (): ReactElement => {
   const dispatch = useDispatch();
 
+  const isLogin = useSelector(selectIsLogin);
   const name = useSelector(selectNameProfile);
   const avatar = useSelector(selectAvatarProfile);
   const needEdit = useSelector(selectNeedEditProfile);
@@ -24,6 +28,10 @@ export const Profile = (): ReactElement => {
   const editModule = (): void => {
     dispatch(EditProfileAC(true));
   };
+
+  if (!isLogin) {
+    return <Navigate to={PATH.LOGIN} />;
+  }
 
   if (needEdit) {
     return <EditProfilePage />;

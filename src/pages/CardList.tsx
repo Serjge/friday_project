@@ -1,11 +1,13 @@
 import { memo, ReactElement, useCallback, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 
 import { DebounceSearchField, TableCards } from 'components';
+import { PATH } from 'enum';
 import { setSearchAnswerCards, setSearchQuestionCards } from 'store/actions';
 import {
+  selectIsLogin,
   selectSearchAnswer,
   selectSearchQuestion,
   selectSortCard,
@@ -17,6 +19,7 @@ export const CardList = memo((): ReactElement => {
 
   const { id, name } = useParams<'id' | 'name'>();
 
+  const isLogin = useSelector(selectIsLogin);
   const sortCard = useSelector(selectSortCard);
   const searchQuestion = useSelector(selectSearchQuestion);
   const searchAnswer = useSelector(selectSearchAnswer);
@@ -34,6 +37,10 @@ export const CardList = memo((): ReactElement => {
   const searchByAnswer = useCallback((answer: string): void => {
     dispatch(setSearchAnswerCards(answer));
   }, []);
+
+  if (!isLogin) {
+    return <Navigate to={PATH.LOGIN} />;
+  }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>

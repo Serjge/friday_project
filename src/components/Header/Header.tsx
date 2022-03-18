@@ -1,4 +1,4 @@
-import { memo, ReactElement, useCallback, useEffect } from 'react';
+import { memo, ReactElement, useCallback } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -23,13 +23,7 @@ export const Header = memo((): ReactElement => {
 
   const logOutHandle = useCallback((): void => {
     dispatch(logOutThunkCreator());
-  }, [logOutThunkCreator]);
-
-  useEffect(() => {
-    if (!isLogin) {
-      navigate(PATH.LOGIN);
-    }
-  }, [isLogin]);
+  }, []);
 
   return (
     <HeaderWrapper>
