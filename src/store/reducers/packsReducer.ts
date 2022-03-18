@@ -3,6 +3,8 @@ import {
   RERENDER_PACK,
   SET_CURRENT_PAGE_PACKS,
   SET_IS_MY_PACK,
+  SET_MAX_CARDS_COUNT,
+  SET_MIN_CARDS_COUNT,
   SET_PACKS,
   SET_PAGE_COUNT_PACKS,
   SET_SEARCH_PACK,
@@ -48,6 +50,16 @@ export const packsReducer = (
       return { ...state, isMyPack: action.payload.isMyPack };
     case RERENDER_PACK:
       return { ...state, flagForRerender: { ...state.flagForRerender } };
+    case SET_MIN_CARDS_COUNT:
+      return {
+        ...state,
+        packs: { ...state.packs, minCardsCount: action.payload.minCards },
+      };
+    case SET_MAX_CARDS_COUNT:
+      return {
+        ...state,
+        packs: { ...state.packs, maxCardsCount: action.payload.maxCards },
+      };
     default:
       return state;
   }

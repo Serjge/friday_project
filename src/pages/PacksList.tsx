@@ -1,7 +1,6 @@
 import { memo, ReactElement, useCallback, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
 
 import {
   AddPack,
@@ -10,12 +9,14 @@ import {
   SwitcherMyAll,
   TableCardsPack,
 } from 'components';
-import { CountDecksOnPage, PATH } from 'enum';
+import { MultiRangeSlider } from 'components/DoubleRange/MultiRangeSlider';
+import { CountDecksOnPage } from 'enum';
 import { setCurrentPagePacksAC, setPageCountPacksAC, setSearchPack } from 'store/actions';
 import {
   selectCurrentPage,
-  selectIsLogin,
   selectIsMyPack,
+  selectMaxCardsCount,
+  selectMinCardsCount,
   selectPageCount,
   selectRerender,
   selectSearchPack,
@@ -27,8 +28,6 @@ import { getNumberValuesFromEnum } from 'utils';
 
 export const PacksList = memo((): ReactElement => {
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
-  const isLogin = useSelector(selectIsLogin);
 
   let userId = useSelector(selectUserId);
   const isMyPack = useSelector(selectIsMyPack);
@@ -36,6 +35,10 @@ export const PacksList = memo((): ReactElement => {
   const pagesCount = useSelector(selectPageCount);
   const searchPack = useSelector(selectSearchPack);
   const currentPage = useSelector(selectCurrentPage);
+  const minRange = useSelector(selectMinCardsCount);
+  const maxRange = useSelector(selectMaxCardsCount);
+
+  // rerender
   const rerender = useSelector(selectRerender);
 
   const searchByPacks = useCallback((pack: string): void => {
@@ -56,17 +59,31 @@ export const PacksList = memo((): ReactElement => {
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-    dispatch(getPacksTC(searchPack, 0, 0, sortPacks, pagesCount, currentPage, userId));
+    dispatch(
+      getPacksTC(
+        searchPack,
+        minRange,
+        maxRange,
+        sortPacks,
+        pagesCount,
+        currentPage,
+        userId,
+      ),
+    );
   }, [sortPacks, searchPack, pagesCount, currentPage, userId, rerender]);
 
   const countDecksOnPage = getNumberValuesFromEnum(CountDecksOnPage);
 
-  if (!isLogin) {
-    return <Navigate to={PATH.LOGIN} />;
-  }
+  const changeRange = (min: number, max: number): void => {
+    // dispatch(seMinCardsCountAC(min));
+    // dispatch(seMaxCardsCountAC(max));
+    // dispatch(rerenderPackAC()); // т.е. сетаются сначала значения, а потом вызывается юзЭффект выше, из-за вызова этой функции
+    console.log(max, min);
+  };
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <MultiRangeSlider min={0} max={100} onChange={changeRange} />
       <DebounceSearchField searchValue={searchByPacks} />
       <SwitcherMyAll />
       <AddPack />

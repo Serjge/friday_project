@@ -36,6 +36,10 @@ export {
   SET_IS_MY_PACK,
   rerenderPackAC,
   RERENDER_PACK,
+  seMaxCardsCountAC,
+  seMinCardsCountAC,
+  SET_MAX_CARDS_COUNT,
+  SET_MIN_CARDS_COUNT,
 } from 'store/actions/packsAction';
 
 export * from 'store/actions/cardsAction';

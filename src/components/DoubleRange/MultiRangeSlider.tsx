@@ -8,6 +8,11 @@ type PropTypes = {
   onChange: (a: number, b: number) => void;
 };
 
+export enum ValueForRange {
+  HUNDRED_PERCENT = 100,
+  STEP = 1,
+}
+
 export const MultiRangeSlider: FC<PropTypes> = ({ min, max, onChange }) => {
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
@@ -17,8 +22,7 @@ export const MultiRangeSlider: FC<PropTypes> = ({ min, max, onChange }) => {
 
   // Convert to percentage
   const getPercent = useCallback(
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-    value => Math.round(((value - min) / (max - min)) * 100),
+    value => Math.round(((value - min) / (max - min)) * ValueForRange.HUNDRED_PERCENT),
     [min, max],
   );
 
@@ -60,13 +64,13 @@ export const MultiRangeSlider: FC<PropTypes> = ({ min, max, onChange }) => {
         max={max}
         value={minVal}
         onChange={event => {
-          // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-          const value = Math.min(Number(event.target.value), maxVal - 1);
+          const value = Math.min(Number(event.target.value), maxVal - ValueForRange.STEP);
           setMinVal(value);
           minValRef.current = value;
         }}
         className="thumb thumb--left"
-        // style={{ zIndex: minVal > max - 100 && '5' }}
+        // @ts-ignore
+        // style={{ zIndex: minVal > max - ValueForRange.HUNDRED_PERCENT && '5' }}
       />
       <input
         type="range"
@@ -74,8 +78,7 @@ export const MultiRangeSlider: FC<PropTypes> = ({ min, max, onChange }) => {
         max={max}
         value={maxVal}
         onChange={event => {
-          // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-          const value = Math.max(Number(event.target.value), minVal + 1);
+          const value = Math.max(Number(event.target.value), minVal + ValueForRange.STEP);
           setMaxVal(value);
           maxValRef.current = value;
         }}
@@ -91,11 +94,3 @@ export const MultiRangeSlider: FC<PropTypes> = ({ min, max, onChange }) => {
     </div>
   );
 };
-
-// MultiRangeSlider.propTypes = {
-//   min: PropTypes.number.isRequired,
-//   max: PropTypes.number.isRequired,
-//   onChange: PropTypes.func.isRequired,
-// };
-//
-// export default MultiRangeSlider;

@@ -1,9 +1,9 @@
 import {
+  CardsActionType,
   SET_CARDS,
   SET_SEARCH_ANSWER_CARDS,
   SET_SEARCH_QUESTION_CARDS,
   SET_SORT_CARDS,
-  CardsActionType,
 } from 'store/actions';
 import { CardsType } from 'types';
 
