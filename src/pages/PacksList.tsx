@@ -3,11 +3,11 @@ import { memo, ReactElement, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
-  SwitcherMyAll,
-  DebounceSearchField,
-  TableCardsPack,
-  Pagination,
   AddPack,
+  DebounceSearchField,
+  Pagination,
+  SwitcherMyAll,
+  TableCardsPack,
 } from 'components';
 import { CountDecksOnPage } from 'enum';
 import { setCurrentPagePacksAC, setPageCountPacksAC, setSearchPack } from 'store/actions';
