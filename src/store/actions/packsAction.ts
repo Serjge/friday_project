@@ -6,8 +6,9 @@ export const SET_SEARCH_PACK = 'PACKS/SET_SEARCH_PACK';
 export const SET_CURRENT_PAGE_PACKS = 'PACKS/SET_CURRENT_PAGE_PACKS';
 export const SET_PAGE_COUNT_PACKS = 'PACKS/SET_PAGE_COUNT_PACKS';
 export const SET_IS_MY_PACK = 'PACKS/SET_IS_MY_PACK';
+export const RERENDER_PACK = 'PACKS/RERENDER_PACK';
 
-export const setPacks = (cards: PacksType) =>
+export const setPacksAC = (cards: PacksType) =>
   ({
     type: SET_PACKS,
     payload: {
@@ -53,4 +54,9 @@ export const setIsMyPack = (isMyPack: boolean) =>
     payload: {
       isMyPack,
     },
+  } as const);
+
+export const rerenderPackAC = () =>
+  ({
+    type: RERENDER_PACK,
   } as const);

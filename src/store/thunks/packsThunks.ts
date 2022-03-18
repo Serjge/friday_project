@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 
 import { packApi } from 'api';
 import { statusCode } from 'enum';
-import { setPacks, setErrorMessage } from 'store/actions';
+import { setPacksAC, setErrorMessage } from 'store/actions';
 import { AppThunkType } from 'types';
 
 export const getPacksTC =
@@ -28,7 +28,7 @@ export const getPacksTC =
       );
 
       if (status === statusCode.OK) {
-        dispatch(setPacks(data));
+        dispatch(setPacksAC(data));
       }
     } catch (errorCatch) {
       const { response, message } = errorCatch as AxiosError;

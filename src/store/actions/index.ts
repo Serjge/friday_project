@@ -22,7 +22,7 @@ export {
 } from './profileAction';
 
 export {
-  setPacks,
+  setPacksAC,
   SET_PACKS,
   setSortPacks,
   SET_SORT_PACKS,
@@ -34,6 +34,8 @@ export {
   SET_CURRENT_PAGE_PACKS,
   setIsMyPack,
   SET_IS_MY_PACK,
+  rerenderPackAC,
+  RERENDER_PACK,
 } from 'store/actions/packsAction';
 
 export * from 'store/actions/cardsAction';

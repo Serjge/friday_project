@@ -50,3 +50,7 @@ export const selectMinCardsCount = (state: RootReducerType): number =>
 
 export const selectMaxCardsCount = (state: RootReducerType): number =>
   state.packs.packs.maxCardsCount;
+
+// delete
+export const selectRerender = (state: RootReducerType): string[] =>
+  state.packs.flagForRerender;

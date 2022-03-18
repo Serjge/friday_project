@@ -1,11 +1,11 @@
 import {
-  setPacks,
+  setPacksAC,
   setCurrentPagePacksAC,
   setPageCountPacksAC,
   setSearchPack,
   setSortPacks,
 } from 'store/actions';
-import { packsReducer, InitialStateType } from 'store/reducers/PacksReducer';
+import { packsReducer, InitialStateType } from 'store/reducers/packsReducer';
 import { PacksType, PackType } from 'types';
 
 let initialState: InitialStateType;
@@ -22,6 +22,7 @@ beforeEach(() => {
     sort: '',
     searchPack: '',
     isMyPack: false,
+    flagForRerender: ['remind'],
   };
 
   cards = [
@@ -59,7 +60,7 @@ beforeEach(() => {
 });
 
 test('set Cards from API', () => {
-  const action = setPacks(packs);
+  const action = setPacksAC(packs);
 
   const endState = packsReducer(initialState, action);
 
