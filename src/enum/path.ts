@@ -1,6 +1,7 @@
 export enum PATH {
   LOGIN = '/login',
-  NEW_PASSWORD = '/set-new-password/*',
+  NEW_PASSWORD = '/set-new-password/',
+  TOKEN = ':token',
   PAGE404 = '/page404',
   PROFILE = '/profile',
   FORGOT_PASSWORD = '/forgot-password',

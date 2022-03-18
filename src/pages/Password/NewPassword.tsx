@@ -1,22 +1,25 @@
 import { ReactElement } from 'react';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { SendNewPasswordTC } from '../../store/thunks/passwordThunks';
 
 import { SuperButton, TextField } from 'components';
 import { PATH } from 'enum';
 import { selectErrorMessage } from 'store/selectors';
 import { Wrapper } from 'styles';
-import { CreateNewPasswordType } from 'types';
+import { CreateNewPasswordType, SendNewPasswordType } from 'types';
 import { getErrorValidate } from 'utils';
 
 export const NewPassword = (): ReactElement => {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const param = useParams<'token'>();
+
   const { token } = param;
-  console.log(token);
+  const resetPasswordToken = String(token);
 
   const errorMessage = useSelector(selectErrorMessage);
 
@@ -29,7 +32,11 @@ export const NewPassword = (): ReactElement => {
   } = useForm<CreateNewPasswordType>();
 
   const createNewPassword: SubmitHandler<CreateNewPasswordType> = data => {
-    console.log(data);
+    const newPasswordData: SendNewPasswordType = {
+      password: data.password,
+      resetPasswordToken,
+    };
+    dispatch(SendNewPasswordTC(newPasswordData));
     navigate(PATH.LOGIN);
   };
 
