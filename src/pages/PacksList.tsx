@@ -51,9 +51,6 @@ export const PacksList = memo((): ReactElement => {
   if (!isMyPack) {
     userId = '';
   }
-  if (!isLogin) {
-    return <Navigate to={PATH.LOGIN} />;
-  }
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
@@ -61,6 +58,10 @@ export const PacksList = memo((): ReactElement => {
   }, [sortPacks, searchPack, pagesCount, currentPage, userId]);
 
   const countDecksOnPage = getNumberValuesFromEnum(CountDecksOnPage);
+
+  if (!isLogin) {
+    return <Navigate to={PATH.LOGIN} />;
+  }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
