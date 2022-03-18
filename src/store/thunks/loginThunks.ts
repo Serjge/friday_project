@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 
 import { loginAPI } from 'api';
 import { statusCode } from 'enum';
-import { AuthMeAC, setErrorMessage, setIsLoginAC } from 'store/actions';
+import { authMeAC, setErrorMessage, setIsLoginAC } from 'store/actions';
 import { AppThunkType, LoginApiPayloadType } from 'types';
 
 export const setLoginDataThunkCreator =
@@ -12,7 +12,7 @@ export const setLoginDataThunkCreator =
       const { data, status } = await loginAPI.login(loginData);
 
       if (status === statusCode.OK) {
-        dispatch(AuthMeAC(data));
+        dispatch(authMeAC(data));
         dispatch(setIsLoginAC(true));
         dispatch(setErrorMessage(''));
       }

@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { SendNewPasswordTC } from '../../store/thunks/passwordThunks';
+import { sendNewPasswordTC } from '../../store/thunks/passwordThunks';
 
 import { SuperButton, TextField } from 'components';
 import { PATH } from 'enum';
@@ -36,7 +36,7 @@ export const NewPassword = (): ReactElement => {
       password: data.password,
       resetPasswordToken,
     };
-    dispatch(SendNewPasswordTC(newPasswordData));
+    dispatch(sendNewPasswordTC(newPasswordData));
     navigate(PATH.LOGIN);
   };
 

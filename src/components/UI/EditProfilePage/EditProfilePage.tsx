@@ -7,7 +7,7 @@ import { EditPersonalInfo, EditProfileBlock } from './style';
 
 import { EditAvatar, EditName, SuperButton } from 'components';
 import { PATH } from 'enum';
-import { EditProfileAC } from 'store/actions';
+import { editProfileAC } from 'store/actions';
 import { selectNeedEditProfile } from 'store/selectors';
 
 export const EditProfilePage = (): ReactElement => {
@@ -16,7 +16,7 @@ export const EditProfilePage = (): ReactElement => {
   const needEdit = useSelector(selectNeedEditProfile);
 
   const exitEditModule = (): void => {
-    dispatch(EditProfileAC(false));
+    dispatch(editProfileAC(false));
   };
 
   if (!needEdit) {

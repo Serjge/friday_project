@@ -15,10 +15,10 @@ export {
 } from './appAction';
 
 export {
-  ChangePersonalAvatarAC,
-  ChangePersonalNameAC,
-  EditProfileAC,
-  AuthMeAC,
+  changePersonalAvatarAC,
+  changePersonalNameAC,
+  editProfileAC,
+  authMeAC,
 } from './profileAction';
 
 export {

@@ -1,10 +1,10 @@
 export enum PATH {
   LOGIN = '/login',
+  FORGOT_PASSWORD = '/forgot-password',
   NEW_PASSWORD = '/set-new-password/',
   TOKEN = ':token',
   PAGE404 = '/page404',
   PROFILE = '/profile',
-  FORGOT_PASSWORD = '/forgot-password',
   REGISTRATION = '/registration',
   TEST = '/test',
   CARDS = '/cards',
