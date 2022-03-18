@@ -29,7 +29,7 @@ export const Header = memo((): ReactElement => {
     if (!isLogin) {
       navigate(PATH.LOGIN);
     }
-  }, [isLogin]);
+  }, []);
 
   return (
     <HeaderWrapper>

@@ -5,7 +5,7 @@ import {
   setSearchPack,
   setSortPacks,
 } from 'store/actions';
-import { packsReducer, InitialStateType } from 'store/reducers/PacksReducer';
+import { packsReducer, InitialStateType } from 'store/reducers/packsReducer';
 import { PacksType, PackType } from 'types';
 
 let initialState: InitialStateType;

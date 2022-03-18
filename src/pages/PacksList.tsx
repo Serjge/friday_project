@@ -1,18 +1,20 @@
 import { memo, ReactElement, useCallback, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 
 import {
-  SwitcherMyAll,
-  DebounceSearchField,
-  TableCardsPack,
-  Pagination,
   AddPack,
+  DebounceSearchField,
+  Pagination,
+  SwitcherMyAll,
+  TableCardsPack,
 } from 'components';
-import { CountDecksOnPage } from 'enum';
+import { CountDecksOnPage, PATH } from 'enum';
 import { setCurrentPagePacksAC, setPageCountPacksAC, setSearchPack } from 'store/actions';
 import {
   selectCurrentPage,
+  selectIsLogin,
   selectIsMyPack,
   selectPageCount,
   selectSearchPack,
@@ -24,6 +26,8 @@ import { getNumberValuesFromEnum } from 'utils';
 
 export const PacksList = memo((): ReactElement => {
   const dispatch = useDispatch();
+  // const navigate = useNavigate();
+  const isLogin = useSelector(selectIsLogin);
 
   let userId = useSelector(selectUserId);
   const isMyPack = useSelector(selectIsMyPack);
@@ -46,6 +50,9 @@ export const PacksList = memo((): ReactElement => {
 
   if (!isMyPack) {
     userId = '';
+  }
+  if (!isLogin) {
+    return <Navigate to={PATH.LOGIN} />;
   }
 
   useEffect(() => {
