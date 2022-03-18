@@ -1,5 +1,5 @@
 import {
-  setPacks,
+  setPacksAC,
   setCurrentPagePacksAC,
   setPageCountPacksAC,
   setSearchPack,
@@ -22,6 +22,7 @@ beforeEach(() => {
     sort: '',
     searchPack: '',
     isMyPack: false,
+    flagForRerender: ['remind'],
   };
 
   cards = [
@@ -59,7 +60,7 @@ beforeEach(() => {
 });
 
 test('set Cards from API', () => {
-  const action = setPacks(packs);
+  const action = setPacksAC(packs);
 
   const endState = packsReducer(initialState, action);
 

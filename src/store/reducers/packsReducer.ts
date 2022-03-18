@@ -1,11 +1,16 @@
 import {
-  PacksActionType,
+
+  RERENDER_PACK,
   SET_CURRENT_PAGE_PACKS,
-  SET_IS_MY_PACK,
+
   SET_PACKS,
-  SET_PAGE_COUNT_PACKS,
+
   SET_SEARCH_PACK,
   SET_SORT_PACKS,
+
+  SET_PAGE_COUNT_PACKS,
+  PacksActionType,
+  SET_IS_MY_PACK,
 } from 'store/actions';
 import { PacksType } from 'types';
 
@@ -14,6 +19,7 @@ export type InitialStateType = {
   sort: string;
   searchPack: string;
   isMyPack: boolean;
+  flagForRerender: string[]; // for delete
 };
 
 const initialState: InitialStateType = {
@@ -21,6 +27,7 @@ const initialState: InitialStateType = {
   sort: '',
   searchPack: '',
   isMyPack: false,
+  flagForRerender: ['rerender'],
 };
 
 export const packsReducer = (
@@ -43,6 +50,8 @@ export const packsReducer = (
       };
     case SET_IS_MY_PACK:
       return { ...state, isMyPack: action.payload.isMyPack };
+    case RERENDER_PACK:
+      return { ...state, flagForRerender: { ...state.flagForRerender } };
     default:
       return state;
   }

@@ -17,6 +17,7 @@ import {
   selectIsLogin,
   selectIsMyPack,
   selectPageCount,
+  selectRerender,
   selectSearchPack,
   selectSortPacks,
   selectUserId,
@@ -34,6 +35,7 @@ export const PacksList = memo((): ReactElement => {
   const pagesCount = useSelector(selectPageCount);
   const searchPack = useSelector(selectSearchPack);
   const currentPage = useSelector(selectCurrentPage);
+  const rerender = useSelector(selectRerender);
 
   const searchByPacks = useCallback((pack: string): void => {
     dispatch(setSearchPack(pack));
@@ -54,7 +56,7 @@ export const PacksList = memo((): ReactElement => {
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     dispatch(getPacksTC(searchPack, 0, 0, sortPacks, pagesCount, currentPage, userId));
-  }, [sortPacks, searchPack, pagesCount, currentPage, userId]);
+  }, [sortPacks, searchPack, pagesCount, currentPage, userId, rerender]);
 
   const countDecksOnPage = getNumberValuesFromEnum(CountDecksOnPage);
 

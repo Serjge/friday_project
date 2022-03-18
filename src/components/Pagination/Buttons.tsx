@@ -23,6 +23,7 @@ export const Buttons: FC<ButtonsPropsType> = ({
     buttons.push(
       <SuperButton
         key={index}
+        size="small"
         style={{ background: currentPage === index ? 'aqua' : undefined }}
         onClick={() => setCurrentPage(index)}
       >
