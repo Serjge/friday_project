@@ -3,6 +3,8 @@ import { memo, ReactElement, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
+import { PackListWrapper } from './style';
+
 import {
   AddPack,
   DebounceSearchField,
@@ -65,10 +67,13 @@ export const PacksList = memo((): ReactElement => {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <PackListWrapper>
       <DebounceSearchField placeholder="Name" searchValue={searchByPacks} />
-      <SwitcherMyAll />
-      <AddPack />
+      <div style={{ display: 'flex' }}>
+        <SwitcherMyAll />
+        <AddPack />
+      </div>
+
       <TableCardsPack />
 
       <Pagination
@@ -78,6 +83,6 @@ export const PacksList = memo((): ReactElement => {
         setCurrentPage={setCurrentPage}
         setPacksCount={setPacksCount}
       />
-    </div>
+    </PackListWrapper>
   );
 });

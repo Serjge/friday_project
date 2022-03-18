@@ -16,7 +16,7 @@ import {
 
 import { PATH } from 'enum';
 import { CardList } from 'pages/CardsList/CardList';
-import { PacksList } from 'pages/PacksList';
+import { PacksList } from 'pages/PacksList/PacksList';
 import { selectIsLogin } from 'store/selectors';
 
 export const Routers = (): ReactElement => {
