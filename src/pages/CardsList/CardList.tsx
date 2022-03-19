@@ -49,7 +49,7 @@ export const CardList = memo((): ReactElement => {
       {name}
       <SearchWrapper>
         <DebounceSearchField placeholder="Question:" searchValue={searchByQuestion} />
-        <DebounceSearchField placeholder=" Answer:" searchValue={searchByAnswer} />
+        <DebounceSearchField placeholder="Answer:" searchValue={searchByAnswer} />
       </SearchWrapper>
       <TableCards />
     </CardListWrapper>
