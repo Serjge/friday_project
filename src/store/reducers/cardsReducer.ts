@@ -27,13 +27,13 @@ export const cardsReducer = (
 ): InitialStateType => {
   switch (action.type) {
     case SET_CARDS:
-      return { ...state, pack: action.cards };
+      return { ...state, pack: action.payload.cards };
     case SET_SORT_CARDS:
-      return { ...state, sort: action.sort };
+      return { ...state, sort: action.payload.sort };
     case SET_SEARCH_ANSWER_CARDS:
-      return { ...state, searchAnswer: action.searchValue };
+      return { ...state, searchAnswer: action.payload.searchValue };
     case SET_SEARCH_QUESTION_CARDS:
-      return { ...state, searchQuestion: action.searchValue };
+      return { ...state, searchQuestion: action.payload.searchValue };
     default:
       return state;
   }
