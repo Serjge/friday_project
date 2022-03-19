@@ -14,8 +14,8 @@ export const packApi = {
     min: number = 0,
     max: number = 0,
     sortPacks: string = '',
-    pageCount: number = 0,
-    page: number = 0,
+    pageCount: number = 5,
+    page: number = 1,
     userId: string = '',
   ) {
     return instance.get<PacksType>('/cards/pack', {

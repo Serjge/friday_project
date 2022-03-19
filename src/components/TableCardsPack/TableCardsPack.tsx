@@ -10,7 +10,9 @@ import { deletePackTC } from 'store/thunks';
 
 export const TableCardsPack = memo((): ReactElement => {
   const dispatch = useDispatch();
+
   const cards = useSelector(selectPacks);
+
   const deletePack = (packId: string): void => {
     dispatch(deletePackTC(packId));
   };
