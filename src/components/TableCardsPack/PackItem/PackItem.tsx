@@ -3,9 +3,8 @@ import { memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { TableItem } from './style';
-
 import { SuperButton } from 'components';
+import { TableItem } from 'components/TableCardsPack/PackItem/style';
 import { PATH } from 'enum';
 import { RootReducerType } from 'store';
 import { setSearchAnswerCards, setSearchQuestionCards } from 'store/actions';

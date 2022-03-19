@@ -2,15 +2,14 @@ import React, { ChangeEvent, ReactElement, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
+import { SuperButton, TextField } from 'components';
 import {
   EditBlock,
   EditNameBlock,
   EditRowBlock,
   ShadowEditProfileBlock,
   SpanEditProfile,
-} from '../style';
-
-import { SuperButton, TextField } from 'components';
+} from 'components/EditProfilePage/style';
 import { selectNameProfile } from 'store/selectors';
 import { editProfileNameTC } from 'store/thunks';
 

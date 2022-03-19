@@ -2,7 +2,7 @@ import { memo, ReactElement } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { TableHead } from 'components/UI/TableCardsPack/style';
+import { TableHead } from 'components/TableCardsPack/style';
 import { setSortPacks } from 'store/actions';
 import { selectSortPacks } from 'store/selectors';
 

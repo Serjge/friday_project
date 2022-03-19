@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
 import { EditProfilePage, SuperButton } from 'components';
-import { UserImgProfile } from 'components/UI/EditProfilePage';
+import { UserImgProfile } from 'components/EditProfilePage';
 import { PATH } from 'enum';
 import { editProfileAC } from 'store/actions';
 import {
