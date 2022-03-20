@@ -2,10 +2,15 @@ import React, { useCallback, useEffect, useState, useRef, FC } from 'react';
 
 import './multiRangeSlider.css';
 
+type DataOnChangeType = {
+  minVal: number;
+  maxVal: number;
+};
+
 type PropTypes = {
   min: number;
   max: number;
-  onChange: (a: number, b: number) => void;
+  onChange: (Data: DataOnChangeType) => void;
 };
 
 export enum ValueForRange {
@@ -14,8 +19,8 @@ export enum ValueForRange {
 }
 
 export const MultiRangeSlider: FC<PropTypes> = ({ min, max, onChange }) => {
-  const [minVal, setMinVal] = useState(min);
-  const [maxVal, setMaxVal] = useState(max);
+  const [minVal, setMinVal] = useState<number>(min);
+  const [maxVal, setMaxVal] = useState<number>(max);
   const minValRef = useRef(min);
   const maxValRef = useRef(max);
   const range = useRef(null);
@@ -52,7 +57,7 @@ export const MultiRangeSlider: FC<PropTypes> = ({ min, max, onChange }) => {
 
   // Get min and max values when their state changes
   useEffect(() => {
-    onChange(minVal, maxVal);
+    onChange({ minVal, maxVal });
   }, [minVal, maxVal, onChange]);
 
   // @ts-ignore

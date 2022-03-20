@@ -9,7 +9,6 @@ import {
   SET_SORT_PACKS,
   SET_PAGE_COUNT_PACKS,
   PacksActionType,
-  SET_IS_MY_PACK,
 } from 'store/actions';
 import { PacksType } from 'types';
 

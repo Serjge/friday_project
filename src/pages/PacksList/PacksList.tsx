@@ -7,12 +7,13 @@ import { PackListWrapper } from './style';
 import {
   AddPack,
   DebounceSearchField,
+  MultiRangeSlider,
   Pagination,
   SwitcherMyAll,
   TableCardsPack,
 } from 'components';
-import { MultiRangeSlider } from 'components/DoubleRange/MultiRangeSlider';
-import { CountDecksOnPage } from 'enum';
+import { CountDecksOnPage, TimerForDeBounce } from 'enum';
+import { useDebounce } from 'hook';
 import { setCurrentPagePacksAC, setPageCountPacksAC, setSearchPack } from 'store/actions';
 import {
   selectCurrentPage,
@@ -60,7 +61,6 @@ export const PacksList = memo((): ReactElement => {
   }
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     dispatch(
       getPacksTC(
         searchPack,
@@ -72,22 +72,30 @@ export const PacksList = memo((): ReactElement => {
         userId,
       ),
     );
-  }, [sortPacks, searchPack, pagesCount, currentPage, userId, rerender]);
+  }, [
+    sortPacks,
+    searchPack,
+    pagesCount,
+    currentPage,
+    userId,
+    minRange,
+    maxRange,
+    rerender,
+  ]);
 
   const countDecksOnPage = getNumberValuesFromEnum(CountDecksOnPage);
 
-  const changeRange = (min: number, max: number): void => {
-    // dispatch(seMinCardsCountAC(min));
-    // dispatch(seMaxCardsCountAC(max));
-    // dispatch(rerenderPackAC()); // т.е. сетаются сначала значения, а потом вызывается юзЭффект выше, из-за вызова этой функции
-    console.log(max, min);
+  const changeRange = (data: { minVal: number; maxVal: number }): void => {
+    console.log(data);
   };
+
+  const rangeAPI = useDebounce(changeRange, TimerForDeBounce.RANGE_DELAY);
 
   return (
     <PackListWrapper>
+      <MultiRangeSlider min={0} max={100} onChange={rangeAPI} />
       <DebounceSearchField placeholder="Name" searchValue={searchByPacks} />
       <div style={{ display: 'flex' }}>
-        <MultiRangeSlider min={0} max={100} onChange={changeRange} />
         <SwitcherMyAll />
         <AddPack />
       </div>
