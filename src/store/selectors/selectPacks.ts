@@ -8,27 +8,27 @@ export const selectPacks = (state: RootReducerType): PackType[] =>
 
 export const selectIsMyPack = (state: RootReducerType): boolean => state.packs.isMyPack;
 
-export const selectPack = (state: RootReducerType, cardId: string): PackType =>
-  state.packs.packs.cardPacks.filter(({ _id }) => _id === cardId)[zeroElement];
+export const selectPack = (state: RootReducerType, packId: string): PackType =>
+  state.packs.packs.cardPacks.filter(({ _id }) => _id === packId)[zeroElement];
 
-export const selectPackName = (state: RootReducerType, cardId: string): string =>
-  state.packs.packs.cardPacks.filter(({ _id }) => _id === cardId)[zeroElement].name;
+export const selectPackName = (state: RootReducerType, packId: string): string =>
+  state.packs.packs.cardPacks.filter(({ _id }) => _id === packId)[zeroElement].name;
 
-export const selectUpdateDataPack = (state: RootReducerType, cardId: string): string =>
-  state.packs.packs.cardPacks.filter(({ _id }) => _id === cardId)[zeroElement].updated;
+export const selectUpdateDataPack = (state: RootReducerType, packId: string): string =>
+  state.packs.packs.cardPacks.filter(({ _id }) => _id === packId)[zeroElement].updated;
 
-export const selectCardsCount = (state: RootReducerType, cardId: string): number =>
-  state.packs.packs.cardPacks.filter(({ _id }) => _id === cardId)[zeroElement].cardsCount;
+export const selectCardsCount = (state: RootReducerType, packId: string): number =>
+  state.packs.packs.cardPacks.filter(({ _id }) => _id === packId)[zeroElement].cardsCount;
 
-export const selectUserNamePack = (state: RootReducerType, cardId: string): string =>
-  state.packs.packs.cardPacks.filter(({ _id }) => _id === cardId)[zeroElement].user_name;
+export const selectUserNamePack = (state: RootReducerType, packId: string): string =>
+  state.packs.packs.cardPacks.filter(({ _id }) => _id === packId)[zeroElement].user_name;
 
-export const selectUserIdPack = (state: RootReducerType, cardId: string): string =>
-  state.packs.packs.cardPacks.filter(({ _id }) => _id === cardId)[zeroElement].user_id;
+export const selectUserIdPack = (state: RootReducerType, packId: string): string =>
+  state.packs.packs.cardPacks.filter(({ _id }) => _id === packId)[zeroElement].user_id;
 
-export const selectPackId = (state: RootReducerType, cardId: string): string =>
+export const selectPackId = (state: RootReducerType, packId: string): string =>
   // eslint-disable-next-line no-underscore-dangle
-  state.packs.packs.cardPacks.filter(({ _id }) => _id === cardId)[zeroElement]._id;
+  state.packs.packs.cardPacks.filter(({ _id }) => _id === packId)[zeroElement]._id;
 
 export const selectSortPacks = (state: RootReducerType): string => state.packs.sort;
 

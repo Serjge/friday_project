@@ -11,9 +11,9 @@ export const HeadTableCards = memo(
   ({ isMyPack }: { isMyPack: boolean }): ReactElement => {
     const sortPacks = useSelector(selectSortCard);
 
-    const onSortClick = useSort(setSortCards, selectSortCard);
+    const onSortCardsClick = useSort(setSortCards, selectSortCard);
 
-    const TableHeadData = [
+    const tableHeadData = [
       {
         name: 'Question',
         sortType: 'question',
@@ -47,18 +47,18 @@ export const HeadTableCards = memo(
     ];
 
     if (!isMyPack) {
-      TableHeadData.pop();
+      tableHeadData.pop();
     }
 
     return (
       <Flex justifyContent="center">
-        {TableHeadData.map(({ name, flexBasis, sortType, flexBasisIsMyPack }) => (
+        {tableHeadData.map(({ name, flexBasis, sortType, flexBasisIsMyPack }) => (
           <TableHeadWithSorts
             key={name + flexBasis}
             sortPack={sortPacks}
             sortType={sortType}
             flexBasis={isMyPack ? flexBasisIsMyPack : flexBasis}
-            onClick={() => onSortClick(sortType)}
+            onClick={() => onSortCardsClick(sortType)}
           >
             {name}
           </TableHeadWithSorts>

@@ -2,8 +2,6 @@ import { memo } from 'react';
 
 import { useSelector } from 'react-redux';
 
-import { TableItem } from './style';
-
 import { SuperButton } from 'components';
 import { RootReducerType } from 'store';
 import {
@@ -12,36 +10,44 @@ import {
   selectQuestion,
   selectUpdateCard,
 } from 'store/selectors';
+import { Flex, TableItem } from 'styles';
 
-export const CardItem = memo(({ id, isMyPack }: { id: string; isMyPack: boolean }) => {
-  const question = useSelector((state: RootReducerType) => selectQuestion(state, id));
-  const answer = useSelector((state: RootReducerType) => selectAnswer(state, id));
-  const updated = useSelector((state: RootReducerType) => selectUpdateCard(state, id));
-  const grade = useSelector((state: RootReducerType) => selectGradeCard(state, id));
+type CardItemPropsType = {
+  cardId: string;
+  isMyPack: boolean;
+};
+
+export const CardItem = memo(({ cardId, isMyPack }: CardItemPropsType) => {
+  const question = useSelector((state: RootReducerType) => selectQuestion(state, cardId));
+  const answer = useSelector((state: RootReducerType) => selectAnswer(state, cardId));
+  const updated = useSelector((state: RootReducerType) =>
+    selectUpdateCard(state, cardId),
+  );
+  const grade = useSelector((state: RootReducerType) => selectGradeCard(state, cardId));
 
   const dataNew = new Date(updated);
 
   if (isMyPack) {
     return (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <TableItem width="35%">{question}</TableItem>
-        <TableItem width="35%">{answer}</TableItem>
-        <TableItem width="10%">{dataNew.toLocaleDateString()}</TableItem>
-        <TableItem width="10%">{grade}</TableItem>
-        <TableItem width="10%">
+      <Flex justifyContent="center">
+        <TableItem flexBasis="35%">{question}</TableItem>
+        <TableItem flexBasis="35%">{answer}</TableItem>
+        <TableItem flexBasis="10%">{dataNew.toLocaleDateString()}</TableItem>
+        <TableItem flexBasis="10%">{grade}</TableItem>
+        <TableItem flexBasis="10%">
           <SuperButton size="small">Edit</SuperButton>
           <SuperButton size="small">Delete</SuperButton>
         </TableItem>
-      </div>
+      </Flex>
     );
   }
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
-      <TableItem width="40%">{question}</TableItem>
-      <TableItem width="40%">{answer}</TableItem>
-      <TableItem width="10%">{dataNew.toLocaleDateString()}</TableItem>
-      <TableItem width="10%">{grade}</TableItem>
-    </div>
+    <Flex justifyContent="center">
+      <TableItem flexBasis="40%">{question}</TableItem>
+      <TableItem flexBasis="40%">{answer}</TableItem>
+      <TableItem flexBasis="10%">{dataNew.toLocaleDateString()}</TableItem>
+      <TableItem flexBasis="10%">{grade}</TableItem>
+    </Flex>
   );
 });

@@ -1,4 +1,4 @@
-import { memo, ReactElement } from 'react';
+import React, { memo, ReactElement } from 'react';
 
 import { useSelector } from 'react-redux';
 
@@ -10,43 +10,49 @@ import { Flex, TableHeadWithSorts } from 'styles';
 export const HeadTablePacks = memo((): ReactElement => {
   const sortPacks = useSelector(selectSortPacks);
 
-  const onSortClick = useSort(setSortPacks, selectSortPacks);
+  const onSortPacksClick = useSort(setSortPacks, selectSortPacks);
+
+  const tableHeadData = [
+    {
+      name: 'Name',
+      sortType: 'name',
+      flexBasis: '30%',
+    },
+    {
+      name: 'Cards',
+      sortType: 'cardsCount',
+      flexBasis: '10%',
+    },
+    {
+      name: 'Last Updated',
+      sortType: 'updated',
+      flexBasis: '10%',
+    },
+    {
+      name: 'Creat by',
+      sortType: 'user_name',
+      flexBasis: '30%',
+    },
+    {
+      name: 'Action',
+      sortType: '',
+      flexBasis: '20%',
+    },
+  ];
 
   return (
     <Flex justifyContent="center">
-      <TableHeadWithSorts
-        sortPack={sortPacks}
-        sortType="name"
-        flexBasis="30%"
-        onClick={() => onSortClick('name')}
-      >
-        Name
-      </TableHeadWithSorts>
-      <TableHeadWithSorts
-        sortPack={sortPacks}
-        sortType="cardsCount"
-        flexBasis="10%"
-        onClick={() => onSortClick('cardsCount')}
-      >
-        Cards
-      </TableHeadWithSorts>
-      <TableHeadWithSorts
-        sortPack={sortPacks}
-        sortType="updated"
-        flexBasis="10%"
-        onClick={() => onSortClick('updated')}
-      >
-        Last Updated
-      </TableHeadWithSorts>
-      <TableHeadWithSorts
-        sortPack={sortPacks}
-        sortType="user_name"
-        flexBasis="30%"
-        onClick={() => onSortClick('user_name')}
-      >
-        Creat by
-      </TableHeadWithSorts>
-      <TableHeadWithSorts flexBasis="20%">Action</TableHeadWithSorts>
+      {tableHeadData.map(({ name, flexBasis, sortType }) => (
+        <TableHeadWithSorts
+          key={name + flexBasis}
+          sortPack={sortPacks}
+          sortType={sortType}
+          flexBasis={flexBasis}
+          onClick={() => onSortPacksClick(sortType)}
+        >
+          {name}
+        </TableHeadWithSorts>
+      ))}
     </Flex>
   );
 });

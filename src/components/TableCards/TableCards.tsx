@@ -15,7 +15,7 @@ export const TableCards = memo((): ReactElement => {
   const mapCards =
     cards &&
     cards.map(({ _id }) => (
-      <CardItem id={_id} key={_id} isMyPack={userId === packUserId} />
+      <CardItem cardId={_id} key={_id} isMyPack={userId === packUserId} />
     ));
 
   return (

@@ -4,53 +4,61 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { SuperButton } from 'components';
-import { TableItem } from 'components/TablePacks/PackItem/style';
 import { PATH } from 'enum';
 import { PenIcon } from 'icon';
 import { RootReducerType } from 'store';
 import { setSearchAnswerCards, setSearchQuestionCards } from 'store/actions';
 import {
   selectCardsCount,
-  selectPackId,
   selectPackName,
   selectUpdateDataPack,
   selectUserId,
   selectUserIdPack,
   selectUserNamePack,
 } from 'store/selectors';
+import { deletePackTC } from 'store/thunks';
+import { Flex, TableItem } from 'styles';
 
-type PackItemType = {
-  id: string;
-  deletePack: (packId: string) => void;
+type PackItemPropsType = {
+  packId: string;
 };
 
-export const PackItem = memo(({ id, deletePack }: PackItemType) => {
-  const navigate = useNavigate();
+export const PackItem = memo(({ packId }: PackItemPropsType) => {
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   const userId = useSelector(selectUserId);
-  const packId = useSelector((state: RootReducerType) => selectPackId(state, id));
-  const namePack = useSelector((state: RootReducerType) => selectPackName(state, id));
-  const userIdPack = useSelector((state: RootReducerType) => selectUserIdPack(state, id));
-  const cardsCount = useSelector((state: RootReducerType) => selectCardsCount(state, id));
+  const namePack = useSelector((state: RootReducerType) => selectPackName(state, packId));
+  const userIdPack = useSelector((state: RootReducerType) =>
+    selectUserIdPack(state, packId),
+  );
+  const cardsCount = useSelector((state: RootReducerType) =>
+    selectCardsCount(state, packId),
+  );
   const userNamePack = useSelector((state: RootReducerType) =>
-    selectUserNamePack(state, id),
+    selectUserNamePack(state, packId),
   );
   const updateDataPack = useSelector((state: RootReducerType) =>
-    selectUpdateDataPack(state, id),
+    selectUpdateDataPack(state, packId),
   );
 
   const dataNew = new Date(updateDataPack);
+  const hiddenEditPackButton = userId !== userIdPack;
 
-  const onLearnPackClick = (): void => {
+  const onDeletePackClick = (): void => {
+    dispatch(deletePackTC(packId));
+  };
+
+  const onOpenPackClick = (): void => {
     dispatch(setSearchQuestionCards(''));
     dispatch(setSearchAnswerCards(''));
     navigate(`${PATH.CARD}${packId}/${namePack}`);
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
-      <TableItem cursorPointer onClick={onLearnPackClick} flexBasis="30%">
+    <Flex justifyContent="center">
+      <TableItem cursorPointer flexBasis="30%">
         <PenIcon />
         {namePack}
       </TableItem>
@@ -59,17 +67,17 @@ export const PackItem = memo(({ id, deletePack }: PackItemType) => {
       <TableItem flexBasis="30%">{userNamePack}</TableItem>
       <TableItem flexBasis="20%">
         <SuperButton size="small">Learn</SuperButton>
-        <SuperButton size="small" hidden={userId !== userIdPack}>
+        <SuperButton size="small" hidden={hiddenEditPackButton} onClick={onOpenPackClick}>
           Open
         </SuperButton>
         <SuperButton
           size="small"
-          hidden={userId !== userIdPack}
-          onClick={() => deletePack(packId)}
+          hidden={hiddenEditPackButton}
+          onClick={onDeletePackClick}
         >
           Delete
         </SuperButton>
       </TableItem>
-    </div>
+    </Flex>
   );
 });
