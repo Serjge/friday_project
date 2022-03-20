@@ -4,6 +4,7 @@ export const SET_CARDS = 'CARDS/SET_CARDS';
 export const SET_SORT_CARDS = 'CARDS/SET_SORT_CARDS';
 export const SET_SEARCH_QUESTION_CARDS = 'CARDS/SET_SEARCH_QUESTION_CARDS';
 export const SET_SEARCH_ANSWER_CARDS = 'CARDS/SET_SEARCH_ANSWER_CARDS';
+export const RERENDER_CARD = 'CARDS/RERENDER_CARD';
 
 export const setCards = (cards: CardsType) =>
   ({
@@ -35,4 +36,9 @@ export const setSearchAnswerCards = (searchValue: string) =>
     payload: {
       searchValue,
     },
+  } as const);
+
+export const rerenderCardAC = () =>
+  ({
+    type: RERENDER_CARD,
   } as const);
