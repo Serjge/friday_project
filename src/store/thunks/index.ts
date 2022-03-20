@@ -3,6 +3,6 @@ export { setLoginDataThunkCreator, logOutThunkCreator } from './loginThunks';
 export { initializeMeTC } from './appThunks';
 export { editPersonalAvatarTC, editProfileNameTC, authMeTC } from './profileThunks';
 export { getPacksTC } from 'store/thunks/packsThunks';
-export { getCardsTC } from 'store/thunks/cardsThunks';
+export { getCardsTC, deleteCardTC, addCardTC } from 'store/thunks/cardsThunks';
 export { forgotPasswordTC, sendNewPasswordTC } from './passwordThunks';
 export { addPackTC, deletePackTC } from './addPackThunks';

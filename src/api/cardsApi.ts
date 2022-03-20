@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 import { instance } from 'api';
-import { CardsType } from 'types';
+import { AddCardType, CardsType } from 'types';
 
 export const cardsApi = {
   getCards(
@@ -33,5 +33,8 @@ export const cardsApi = {
   },
   deleteCard(cardId: string) {
     return instance.delete('/cards/card', { params: { id: cardId } });
+  },
+  updateCard(card: Partial<AddCardType>) {
+    return instance.put('/cards/card', card);
   },
 };

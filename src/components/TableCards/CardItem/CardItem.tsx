@@ -10,7 +10,7 @@ import {
   selectQuestion,
   selectUpdateCard,
 } from 'store/selectors';
-import { deleteCardTC } from 'store/thunks/cardsThunks';
+import { deleteCardTC } from 'store/thunks';
 import { Flex, TableItem } from 'styles';
 
 type CardItemPropsType = {
