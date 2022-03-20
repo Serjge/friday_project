@@ -7,6 +7,10 @@ export const SET_CURRENT_PAGE_PACKS = 'PACKS/SET_CURRENT_PAGE_PACKS';
 export const SET_PAGE_COUNT_PACKS = 'PACKS/SET_PAGE_COUNT_PACKS';
 export const SET_IS_MY_PACK = 'PACKS/SET_IS_MY_PACK';
 export const RERENDER_PACK = 'PACKS/RERENDER_PACK';
+export const SET_MIN_CARDS_COUNT = 'PACKS/SET_MIN_CARDS_COUNT';
+export const SET_MAX_CARDS_COUNT = 'PACKS/SET_MAX_CARDS_COUNT';
+export const SET_LOCAL_MIN_CARDS_COUNT = 'PACKS/SET_LOCAL_MIN_CARDS_COUNT';
+export const SET_LOCAL_MAX_CARDS_COUNT = 'PACKS/SET_LOCAL_MAX_CARDS_COUNT';
 
 export const setPacksAC = (cards: PacksType) =>
   ({
@@ -59,4 +63,36 @@ export const setIsMyPack = (isMyPack: boolean) =>
 export const rerenderPackAC = () =>
   ({
     type: RERENDER_PACK,
+  } as const);
+
+export const setMinCardsCountAC = (minCards: number) =>
+  ({
+    type: SET_MIN_CARDS_COUNT,
+    payload: {
+      minCards,
+    },
+  } as const);
+
+export const setMaxCardsCountAC = (maxCards: number) =>
+  ({
+    type: SET_MAX_CARDS_COUNT,
+    payload: {
+      maxCards,
+    },
+  } as const);
+
+export const setLocalMinCardsCountAC = (minCards: number) =>
+  ({
+    type: SET_LOCAL_MIN_CARDS_COUNT,
+    payload: {
+      minCards,
+    },
+  } as const);
+
+export const setLocalMaxCardsCountAC = (maxCards: number) =>
+  ({
+    type: SET_LOCAL_MAX_CARDS_COUNT,
+    payload: {
+      maxCards,
+    },
   } as const);

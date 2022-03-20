@@ -3,7 +3,7 @@ import { ReactElement, useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { TextField } from 'components';
-import { SEARCH_DELAY } from 'const';
+import { TimerForDeBounce } from 'enum';
 import { useDebounce } from 'hook/useDebounce';
 import { setSearchPack } from 'store/actions';
 
@@ -19,7 +19,7 @@ export const SearchPackCard = (): ReactElement => {
     [setSearchPack],
   );
 
-  const debounceSearch = useDebounce(search, SEARCH_DELAY);
+  const debounceSearch = useDebounce(search, TimerForDeBounce.SEARCH_DELAY);
 
   const onChange = useCallback(
     (text: string): void => {

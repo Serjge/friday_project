@@ -1,6 +1,8 @@
 import {
-  setPacksAC,
+  setMaxCardsCountAC,
+  setMinCardsCountAC,
   setCurrentPagePacksAC,
+  setPacksAC,
   setPageCountPacksAC,
   setSearchPack,
   setSortPacks,
@@ -13,8 +15,10 @@ let packs: PacksType;
 let cards: PackType[];
 let sort: string;
 let searchPack: string;
-const currentPage: number = 10;
+const currentPage: number = 10; // Magic number must be here, not into beForeEach
 const pageCount: number = 100;
+const minCards: number = 12;
+const maxCards: number = 111;
 
 beforeEach(() => {
   initialState = {
@@ -23,6 +27,8 @@ beforeEach(() => {
     searchPack: '',
     isMyPack: false,
     flagForRerender: ['remind'],
+    localMinRage: 0,
+    localMaxRage: 0,
   };
 
   cards = [
@@ -103,4 +109,26 @@ test('set page count', () => {
 
   expect(endState).not.toBe(initialState);
   expect(endState.packs.pageCount).toBe(pageCount);
+});
+
+// SET_IS_MY_PACK
+
+// RERENDER_PACK
+
+test('set min cards count', () => {
+  const action = setMinCardsCountAC(minCards);
+
+  const endState = packsReducer(initialState, action);
+
+  expect(endState).not.toBe(initialState);
+  expect(endState.packs.minCardsCount).toBe(minCards);
+});
+
+test('set min cards count', () => {
+  const action = setMaxCardsCountAC(maxCards);
+
+  const endState = packsReducer(initialState, action);
+
+  expect(endState).not.toBe(initialState);
+  expect(endState.packs.maxCardsCount).toBe(maxCards);
 });

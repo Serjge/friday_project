@@ -1,24 +1,35 @@
-import React, { useCallback, useEffect, useState, useRef, FC } from 'react';
+import { useCallback, useEffect, useState, useRef, FC } from 'react';
 
 import './multiRangeSlider.css';
+import { ValueForRange } from 'enum';
 
-type PropTypes = {
-  min: number;
-  max: number;
-  onChange: (a: number, b: number) => void;
+type DataOnChangeType = {
+  minVal: number;
+  maxVal: number;
 };
 
-export const MultiRangeSlider: FC<PropTypes> = ({ min, max, onChange }) => {
-  const [minVal, setMinVal] = useState(min);
-  const [maxVal, setMaxVal] = useState(max);
+type MultiRangeSliderPropTypes = {
+  min: number;
+  max: number;
+  onChange: (Data: DataOnChangeType) => void;
+};
+
+export const MultiRangeSlider: FC<MultiRangeSliderPropTypes> = ({
+  min,
+  max,
+  onChange,
+}) => {
+  const [minVal, setMinVal] = useState<number>(min);
+  const [maxVal, setMaxVal] = useState<number>(max);
   const minValRef = useRef(min);
   const maxValRef = useRef(max);
   const range = useRef(null);
 
   // Convert to percentage
   const getPercent = useCallback(
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-    value => Math.round(((value - min) / (max - min)) * 100),
+    value => {
+      Math.round(((value - min) / (max - min)) * ValueForRange.HUNDRED_PERCENT);
+    },
     [min, max],
   );
 
@@ -48,10 +59,9 @@ export const MultiRangeSlider: FC<PropTypes> = ({ min, max, onChange }) => {
 
   // Get min and max values when their state changes
   useEffect(() => {
-    onChange(minVal, maxVal);
+    onChange({ minVal, maxVal });
   }, [minVal, maxVal, onChange]);
 
-  // @ts-ignore
   return (
     <div className="container">
       <input
@@ -60,13 +70,13 @@ export const MultiRangeSlider: FC<PropTypes> = ({ min, max, onChange }) => {
         max={max}
         value={minVal}
         onChange={event => {
-          // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-          const value = Math.min(Number(event.target.value), maxVal - 1);
+          const value = Math.min(Number(event.target.value), maxVal - ValueForRange.STEP);
           setMinVal(value);
           minValRef.current = value;
         }}
         className="thumb thumb--left"
-        // style={{ zIndex: minVal > max - 100 && '5' }}
+        // @ts-ignore
+        // style={{ zIndex: minVal > max - ValueForRange.HUNDRED_PERCENT && '5' }}
       />
       <input
         type="range"
@@ -74,8 +84,7 @@ export const MultiRangeSlider: FC<PropTypes> = ({ min, max, onChange }) => {
         max={max}
         value={maxVal}
         onChange={event => {
-          // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-          const value = Math.max(Number(event.target.value), minVal + 1);
+          const value = Math.max(Number(event.target.value), minVal + ValueForRange.STEP);
           setMaxVal(value);
           maxValRef.current = value;
         }}
@@ -91,11 +100,3 @@ export const MultiRangeSlider: FC<PropTypes> = ({ min, max, onChange }) => {
     </div>
   );
 };
-
-// MultiRangeSlider.propTypes = {
-//   min: PropTypes.number.isRequired,
-//   max: PropTypes.number.isRequired,
-//   onChange: PropTypes.func.isRequired,
-// };
-//
-// export default MultiRangeSlider;

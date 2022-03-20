@@ -6,16 +6,25 @@ import { Navigate } from 'react-router-dom';
 import {
   AddPack,
   DebounceSearchField,
+  MultiRangeSlider,
   Pagination,
   SwitcherMyAll,
   TablePacks,
 } from 'components';
-import { CountDecksOnPage, PATH } from 'enum';
+import { CountDecksOnPage, TimerForDeBounce } from 'enum';
+import { useDebounce } from 'hook';
 import { setCurrentPagePacksAC, setPageCountPacksAC, setSearchPack } from 'store/actions';
 import {
+  setLocalMaxCardsCountAC,
+  setLocalMinCardsCountAC,
+} from 'store/actions/packsAction';
+import {
   selectCurrentPage,
-  selectIsLogin,
   selectIsMyPack,
+  selectLocalMaxCardsCount,
+  selectLocalMinCardsCount,
+  selectMaxCardsCount,
+  selectMinCardsCount,
   selectPageCount,
   selectRerender,
   selectSearchPack,
@@ -37,6 +46,13 @@ export const PacksList = memo((): ReactElement => {
   const pagesCount = useSelector(selectPageCount);
   const searchPack = useSelector(selectSearchPack);
   const currentPage = useSelector(selectCurrentPage);
+  let minRange = useSelector(selectMinCardsCount);
+  let maxRange = useSelector(selectMaxCardsCount);
+  const minRangeLocal = useSelector(selectLocalMinCardsCount);
+  const maxRangeLocal = useSelector(selectLocalMaxCardsCount);
+
+  // rerender
+  const rerender = useSelector(selectRerender);
 
   const countDecksOnPage = getNumberValuesFromEnum(CountDecksOnPage);
 
@@ -57,9 +73,46 @@ export const PacksList = memo((): ReactElement => {
   }
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-    dispatch(getPacksTC(searchPack, 0, 0, sortPacks, pagesCount, currentPage, userId));
-  }, [sortPacks, searchPack, pagesCount, currentPage, userId, rerender]);
+    if (minRangeLocal !== null) {
+      minRange = minRangeLocal;
+    }
+
+    if (maxRangeLocal !== null) {
+      maxRange = maxRangeLocal;
+    }
+
+    dispatch(
+      getPacksTC(
+        searchPack,
+        minRange,
+        maxRange,
+        sortPacks,
+        pagesCount,
+        currentPage,
+        userId,
+      ),
+    );
+  }, [
+    sortPacks,
+    searchPack,
+    pagesCount,
+    currentPage,
+    userId,
+    minRange,
+    maxRange,
+    minRangeLocal,
+    maxRangeLocal,
+    rerender,
+  ]);
+
+  const countDecksOnPage = getNumberValuesFromEnum(CountDecksOnPage);
+
+  const changeRange = ({ minVal, maxVal }: { minVal: number; maxVal: number }): void => {
+    dispatch(setLocalMinCardsCountAC(minVal));
+    dispatch(setLocalMaxCardsCountAC(maxVal));
+  };
+
+  const handleRange = useDebounce(changeRange, TimerForDeBounce.RANGE_DELAY);
 
   if (!isLogin) {
     return <Navigate to={PATH.LOGIN} />;
@@ -67,6 +120,7 @@ export const PacksList = memo((): ReactElement => {
 
   return (
     <Flex flexDirection="column" alignItems="center">
+      <MultiRangeSlider min={minRange} max={maxRange} onChange={handleRange} />
       <DebounceSearchField placeholder="Name" searchValue={searchByPacks} />
       <Flex>
         <SwitcherMyAll />
