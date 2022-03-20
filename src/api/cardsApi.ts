@@ -31,4 +31,7 @@ export const cardsApi = {
       card: { cardsPack_id: cardsPackId, question, answer },
     });
   },
+  deleteCard(cardId: string) {
+    return instance.delete('/cards/card', { params: { id: cardId } });
+  },
 };

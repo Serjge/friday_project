@@ -1,4 +1,4 @@
-import React, { memo, ReactElement } from 'react';
+import { memo, ReactElement } from 'react';
 
 import { useSelector } from 'react-redux';
 
