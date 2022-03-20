@@ -16,7 +16,7 @@ export const HeadTablePacks = memo((): ReactElement => {
       <TableHeadWithSorts
         sortPack={sortPacks}
         sortType="name"
-        width="30%"
+        flexBasis="30%"
         onClick={() => onSortClick('name')}
       >
         Name
@@ -24,7 +24,7 @@ export const HeadTablePacks = memo((): ReactElement => {
       <TableHeadWithSorts
         sortPack={sortPacks}
         sortType="cardsCount"
-        width="10%"
+        flexBasis="10%"
         onClick={() => onSortClick('cardsCount')}
       >
         Cards
@@ -32,7 +32,7 @@ export const HeadTablePacks = memo((): ReactElement => {
       <TableHeadWithSorts
         sortPack={sortPacks}
         sortType="updated"
-        width="10%"
+        flexBasis="10%"
         onClick={() => onSortClick('updated')}
       >
         Last Updated
@@ -40,12 +40,12 @@ export const HeadTablePacks = memo((): ReactElement => {
       <TableHeadWithSorts
         sortPack={sortPacks}
         sortType="user_name"
-        width="30%"
+        flexBasis="30%"
         onClick={() => onSortClick('user_name')}
       >
         Creat by
       </TableHeadWithSorts>
-      <TableHeadWithSorts width="20%">Action</TableHeadWithSorts>
+      <TableHeadWithSorts flexBasis="20%">Action</TableHeadWithSorts>
     </Flex>
   );
 });

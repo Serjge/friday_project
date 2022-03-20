@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { SuperButton } from 'components';
 import { TableItem } from 'components/TablePacks/PackItem/style';
 import { PATH } from 'enum';
+import { PenIcon } from 'icon';
 import { RootReducerType } from 'store';
 import { setSearchAnswerCards, setSearchQuestionCards } from 'store/actions';
 import {
@@ -49,11 +50,14 @@ export const PackItem = memo(({ id, deletePack }: PackItemType) => {
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
-      <TableItem width="30%">{namePack}</TableItem>
-      <TableItem width="10%">{cardsCount}</TableItem>
-      <TableItem width="10%">{dataNew.toLocaleDateString()}</TableItem>
-      <TableItem width="30%">{userNamePack}</TableItem>
-      <TableItem width="20%">
+      <TableItem cursorPointer onClick={onLearnPackClick} flexBasis="30%">
+        <PenIcon />
+        {namePack}
+      </TableItem>
+      <TableItem flexBasis="10%">{cardsCount}</TableItem>
+      <TableItem flexBasis="10%">{dataNew.toLocaleDateString()}</TableItem>
+      <TableItem flexBasis="30%">{userNamePack}</TableItem>
+      <TableItem flexBasis="20%">
         <SuperButton
           size="small"
           hidden={userId !== userIdPack}
@@ -64,9 +68,7 @@ export const PackItem = memo(({ id, deletePack }: PackItemType) => {
         <SuperButton size="small" hidden={userId !== userIdPack}>
           Edit
         </SuperButton>
-        <SuperButton onClick={onLearnPackClick} size="small">
-          Learn
-        </SuperButton>
+        <SuperButton size="small">Learn</SuperButton>
       </TableItem>
     </div>
   );

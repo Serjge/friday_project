@@ -4,11 +4,13 @@ type TableHeadWithSortsPropsType = {
   width?: string;
   sortType?: string;
   sortPack?: string;
+  flexBasis?: string;
 };
 
 export const TableHeadWithSorts = styled.div<TableHeadWithSortsPropsType>`
   padding: 10px;
   display: flex;
+  flex-basis: ${({ flexBasis }) => flexBasis};
   width: ${({ width }) => width};
   cursor: ${({ sortType }) => (sortType ? 'pointer' : '')};
   position: relative;
