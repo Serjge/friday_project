@@ -6,6 +6,7 @@ import { RootReducerType } from 'store';
 
 export const useSort = (
   action: (sort: string) => any,
+  rerenderAction: () => any,
   select: (state: RootReducerType) => string,
 ): ((sortType: string) => void) => {
   const dispatch = useDispatch();
@@ -16,8 +17,10 @@ export const useSort = (
     (sortType: string): void => {
       if (sortPacks === `1${sortType}`) {
         dispatch(action(`0${sortType}`));
+        dispatch(rerenderAction());
       } else {
         dispatch(action(`1${sortType}`));
+        dispatch(rerenderAction());
       }
     },
     [sortPacks],

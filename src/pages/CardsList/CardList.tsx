@@ -7,16 +7,13 @@ import { CardListWrapper, SearchWrapper } from './style';
 
 import { DebounceSearchField, SuperButton, TableCards } from 'components';
 import { PATH } from 'enum';
-import { setSearchAnswerCards, setSearchQuestionCards } from 'store/actions';
 import {
-  selectIsLogin,
-  selectRerenderCards,
-  selectSearchAnswer,
-  selectSearchQuestion,
-  selectSortCard,
-} from 'store/selectors';
-import { getCardsTC } from 'store/thunks';
-import { addCardTC } from 'store/thunks/cardsThunks';
+  rerenderCardAC,
+  setSearchAnswerCards,
+  setSearchQuestionCards,
+} from 'store/actions';
+import { selectIsLogin, selectRerenderCards } from 'store/selectors';
+import { addCardTC, getCardsTC } from 'store/thunks';
 
 export const CardList = memo((): ReactElement => {
   const dispatch = useDispatch();
@@ -24,27 +21,26 @@ export const CardList = memo((): ReactElement => {
   const { id, name } = useParams<'id' | 'name'>();
 
   const isLogin = useSelector(selectIsLogin);
-  const sortCard = useSelector(selectSortCard);
   const rerender = useSelector(selectRerenderCards);
-  const searchAnswer = useSelector(selectSearchAnswer);
-  const searchQuestion = useSelector(selectSearchQuestion);
 
   useEffect(() => {
     if (id) {
-      dispatch(getCardsTC(id, sortCard, searchQuestion, searchAnswer));
+      dispatch(getCardsTC(id));
     }
-  }, [sortCard, searchQuestion, searchAnswer, rerender]);
+  }, [rerender]);
 
   const searchByQuestion = useCallback((question: string): void => {
     dispatch(setSearchQuestionCards(question));
+    dispatch(rerenderCardAC());
   }, []);
 
   const searchByAnswer = useCallback((answer: string): void => {
     dispatch(setSearchAnswerCards(answer));
+    dispatch(rerenderCardAC());
   }, []);
 
   const onAddCardClick = (): void => {
-    if (id !== undefined) {
+    if (id) {
       dispatch(addCardTC(id));
     }
   };

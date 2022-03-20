@@ -3,27 +3,33 @@ import { AxiosError } from 'axios';
 import { cardsApi } from 'api';
 import { statusCode } from 'enum';
 import { rerenderCardAC, setCards, setErrorMessage } from 'store/actions';
-import { selectCard } from 'store/selectors';
+import {
+  selectCard,
+  selectSearchAnswer,
+  selectSearchQuestion,
+  selectSortCard,
+} from 'store/selectors';
 import { RootReducerType } from 'store/store';
 import { AddCardType, AppThunkType } from 'types';
 
 export const getCardsTC =
   (
     cardsPackId: string,
-    sortCards?: string,
-    cardQuestion?: string,
-    cardAnswer?: string,
     min?: number,
     max?: number,
     pageCount?: number,
     page?: number,
   ): AppThunkType =>
-  async dispatch => {
+  async (dispatch, getState: () => RootReducerType) => {
     try {
+      const sortCards = selectSortCard(getState());
+      const searchAnswer = selectSearchAnswer(getState());
+      const searchQuestion = selectSearchQuestion(getState());
+
       const { status, data } = await cardsApi.getCards(
         cardsPackId,
-        cardAnswer,
-        cardQuestion,
+        searchAnswer,
+        searchQuestion,
         min,
         max,
         sortCards,
