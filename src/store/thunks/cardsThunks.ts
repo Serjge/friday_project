@@ -44,3 +44,25 @@ export const getCardsTC =
       }
     }
   };
+
+export const addCardTC =
+  (cardsPackId: string): AppThunkType =>
+  async dispatch => {
+    try {
+      const { status, data } = await cardsApi.addCard(cardsPackId);
+
+      if (status === statusCode.created) {
+        dispatch(setCards(data));
+      }
+    } catch (errorCatch) {
+      const { response, message } = errorCatch as AxiosError;
+      const error = response?.data.error;
+      const status = response?.status;
+
+      if (status === statusCode.Bad_Request) {
+        dispatch(setErrorMessage(error));
+      } else {
+        dispatch(setErrorMessage(message));
+      }
+    }
+  };

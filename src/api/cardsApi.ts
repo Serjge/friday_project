@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 import { instance } from 'api';
-import { AddCardType, CardsType } from 'types';
+import { CardsType } from 'types';
 
 export const cardsApi = {
   getCards(
@@ -26,7 +26,7 @@ export const cardsApi = {
       },
     });
   },
-  addCard({ cardsPackId, question = 'New', answer = 'new' }: AddCardType) {
+  addCard(cardsPackId: string, question = 'New', answer = 'new') {
     return instance.post('/cards/card', {
       card: { cardsPack_id: cardsPackId, question, answer },
     });
