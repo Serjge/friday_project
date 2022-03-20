@@ -20,8 +20,8 @@ export type InitialStateType = {
   searchPack: string;
   isMyPack: boolean;
   flagForRerender: string[]; // for delete
-  localMinRage: number | null;
-  localMaxRage: number | null;
+  localMinRage: number | undefined;
+  localMaxRage: number | undefined;
 };
 
 const initialState: InitialStateType = {
