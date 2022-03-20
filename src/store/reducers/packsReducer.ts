@@ -4,7 +4,9 @@ import {
   SET_CURRENT_PAGE_PACKS,
   SET_IS_MY_PACK,
   SET_MAX_CARDS_COUNT,
+  SET_MAX_CARDS_COUNT_LOCAL,
   SET_MIN_CARDS_COUNT,
+  SET_MIN_CARDS_COUNT_LOCAL,
   SET_PACKS,
   SET_PAGE_COUNT_PACKS,
   SET_SEARCH_PACK,
@@ -18,7 +20,14 @@ export type InitialStateType = {
   searchPack: string;
   isMyPack: boolean;
   flagForRerender: string[]; // for delete
+  localMinValue: number;
+  localMaxValue: number;
 };
+
+enum LocalValue {
+  localMinValue,
+  localMaxValue,
+}
 
 const initialState: InitialStateType = {
   packs: {} as PacksType,
@@ -26,6 +35,8 @@ const initialState: InitialStateType = {
   searchPack: '',
   isMyPack: false,
   flagForRerender: ['rerender'],
+  localMinValue: LocalValue.localMinValue,
+  localMaxValue: LocalValue.localMaxValue,
 };
 
 export const packsReducer = (
@@ -60,6 +71,10 @@ export const packsReducer = (
         ...state,
         packs: { ...state.packs, maxCardsCount: action.payload.maxCards },
       };
+    case SET_MIN_CARDS_COUNT_LOCAL:
+      return { ...state, localMinValue: action.value };
+    case SET_MAX_CARDS_COUNT_LOCAL:
+      return { ...state, localMaxValue: action.value };
     default:
       return state;
   }

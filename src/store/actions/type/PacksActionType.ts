@@ -6,8 +6,11 @@ import {
   setPageCountPacksAC,
   setIsMyPack,
   rerenderPackAC,
+  seMinCardsCountLocalAC,
+  seMinCardsCountAC,
+  seMaxCardsCountLocalAC,
+  seMaxCardsCountAC,
 } from 'store/actions';
-import { seMaxCardsCountAC, seMinCardsCountAC } from 'store/actions/packsAction';
 
 export type SetPacksType = ReturnType<typeof setPacksAC>;
 export type SetSortPacksType = ReturnType<typeof setSortPacks>;
@@ -26,4 +29,6 @@ export type PacksActionType =
   | SetIsMyPackType
   | RerenderPackType
   | ReturnType<typeof seMaxCardsCountAC>
-  | ReturnType<typeof seMinCardsCountAC>;
+  | ReturnType<typeof seMinCardsCountAC>
+  | ReturnType<typeof seMinCardsCountLocalAC>
+  | ReturnType<typeof seMaxCardsCountLocalAC>;

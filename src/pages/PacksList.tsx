@@ -11,7 +11,13 @@ import {
 } from 'components';
 import { MultiRangeSlider } from 'components/DoubleRange/MultiRangeSlider';
 import { CountDecksOnPage } from 'enum';
-import { setCurrentPagePacksAC, setPageCountPacksAC, setSearchPack } from 'store/actions';
+import {
+  // seMaxCardsCountLocalAC,
+  // seMinCardsCountLocalAC,
+  setCurrentPagePacksAC,
+  setPageCountPacksAC,
+  setSearchPack,
+} from 'store/actions';
 import {
   selectCurrentPage,
   selectIsMyPack,
@@ -37,6 +43,8 @@ export const PacksList = memo((): ReactElement => {
   const currentPage = useSelector(selectCurrentPage);
   let minRange = useSelector(selectMinCardsCount);
   let maxRange = useSelector(selectMaxCardsCount);
+  // const minRangeLocal = useSelector(selectMinCardsCountLocal);
+  // const maxRangeLocal = useSelector(selectMaxCardsCountLocal);
 
   // rerender
   const rerender = useSelector(selectRerender);
@@ -77,7 +85,6 @@ export const PacksList = memo((): ReactElement => {
     // dispatch(rerenderPackAC()); // т.е. сетаются сначала значения, а потом вызывается юзЭффект выше, из-за вызова этой функции
     console.log(max, min);
   };
-  console.log(typeof minRange, maxRange);
 
   if (minRange === undefined) {
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
@@ -95,6 +102,7 @@ export const PacksList = memo((): ReactElement => {
       <SwitcherMyAll />
       <AddPack />
       <TableCardsPack />
+
       <Pagination
         currentPage={currentPage}
         pagesCount={pagesCount}

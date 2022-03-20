@@ -27,6 +27,8 @@ beforeEach(() => {
     searchPack: '',
     isMyPack: false,
     flagForRerender: ['remind'],
+    localMinValue: 0,
+    localMaxValue: 0,
   };
 
   cards = [

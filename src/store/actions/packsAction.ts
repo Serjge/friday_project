@@ -9,6 +9,8 @@ export const SET_IS_MY_PACK = 'PACKS/SET_IS_MY_PACK';
 export const RERENDER_PACK = 'PACKS/RERENDER_PACK';
 export const SET_MIN_CARDS_COUNT = 'PACKS/SET_MIN_CARDS_COUNT';
 export const SET_MAX_CARDS_COUNT = 'PACKS/SET_MAX_CARDS_COUNT';
+export const SET_MIN_CARDS_COUNT_LOCAL = 'PACKS/SET_MIN_CARDS_COUNT_LOCAL';
+export const SET_MAX_CARDS_COUNT_LOCAL = 'PACKS/SET_MAX_CARDS_COUNT_LOCAL';
 
 export const setPacksAC = (cards: PacksType) =>
   ({
@@ -77,4 +79,16 @@ export const seMaxCardsCountAC = (maxCards: number) =>
     payload: {
       maxCards,
     },
+  } as const);
+
+export const seMinCardsCountLocalAC = (value: number) =>
+  ({
+    type: SET_MIN_CARDS_COUNT_LOCAL,
+    value,
+  } as const);
+
+export const seMaxCardsCountLocalAC = (value: number) =>
+  ({
+    type: SET_MAX_CARDS_COUNT_LOCAL,
+    value,
   } as const);
