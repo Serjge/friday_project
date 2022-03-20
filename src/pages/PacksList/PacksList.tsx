@@ -11,15 +11,18 @@ import {
   SwitcherMyAll,
   TablePacks,
 } from 'components';
-import { CountDecksOnPage, TimerForDeBounce } from 'enum';
+import { CountDecksOnPage, PATH, TimerForDeBounce } from 'enum';
 import { useDebounce } from 'hook';
-import { setCurrentPagePacksAC, setPageCountPacksAC, setSearchPack } from 'store/actions';
 import {
+  setCurrentPagePacksAC,
   setLocalMaxCardsCountAC,
   setLocalMinCardsCountAC,
-} from 'store/actions/packsAction';
+  setPageCountPacksAC,
+  setSearchPack,
+} from 'store/actions';
 import {
   selectCurrentPage,
+  selectIsLogin,
   selectIsMyPack,
   selectLocalMaxCardsCount,
   selectLocalMinCardsCount,
@@ -46,13 +49,10 @@ export const PacksList = memo((): ReactElement => {
   const pagesCount = useSelector(selectPageCount);
   const searchPack = useSelector(selectSearchPack);
   const currentPage = useSelector(selectCurrentPage);
-  let minRange = useSelector(selectMinCardsCount);
-  let maxRange = useSelector(selectMaxCardsCount);
+  const minRange = useSelector(selectMinCardsCount);
+  const maxRange = useSelector(selectMaxCardsCount);
   const minRangeLocal = useSelector(selectLocalMinCardsCount);
   const maxRangeLocal = useSelector(selectLocalMaxCardsCount);
-
-  // rerender
-  const rerender = useSelector(selectRerender);
 
   const countDecksOnPage = getNumberValuesFromEnum(CountDecksOnPage);
 
@@ -73,13 +73,13 @@ export const PacksList = memo((): ReactElement => {
   }
 
   useEffect(() => {
-    if (minRangeLocal !== null) {
-      minRange = minRangeLocal;
-    }
-
-    if (maxRangeLocal !== null) {
-      maxRange = maxRangeLocal;
-    }
+    // if (minRangeLocal !== null) {
+    //   minRange = minRangeLocal;
+    // }
+    //
+    // if (maxRangeLocal !== null) {
+    //   maxRange = maxRangeLocal;
+    // }
 
     dispatch(
       getPacksTC(
@@ -104,8 +104,6 @@ export const PacksList = memo((): ReactElement => {
     maxRangeLocal,
     rerender,
   ]);
-
-  const countDecksOnPage = getNumberValuesFromEnum(CountDecksOnPage);
 
   const changeRange = ({ minVal, maxVal }: { minVal: number; maxVal: number }): void => {
     dispatch(setLocalMinCardsCountAC(minVal));

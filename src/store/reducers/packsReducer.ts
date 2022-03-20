@@ -33,8 +33,8 @@ const initialState: InitialStateType = {
   searchPack: '',
   isMyPack: false,
   flagForRerender: ['rerender'],
-  localMinRage: null,
-  localMaxRage: null,
+  localMinRage: 0,
+  localMaxRage: 30,
 };
 
 export const packsReducer = (
