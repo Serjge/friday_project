@@ -7,7 +7,7 @@ export type { LoginStateType, LoginApiPayloadType, LogOutType } from './LoginTyp
 export type { CommonResponseType } from './CommonResponseType';
 export type { EditProfileType, AuthMeType } from './ProfileType';
 export type { PackType, PacksType } from './PackType';
-export type { CardType, CardsType } from './CardsType';
+export type { CardType, CardsType, AddCardType } from './CardsType';
 export type { ButtonsPropsType } from './Pagination';
 export type {
   ForgotPasswordSendType,

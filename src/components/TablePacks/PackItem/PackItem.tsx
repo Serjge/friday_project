@@ -59,15 +59,15 @@ export const PackItem = memo(({ packId }: PackItemPropsType) => {
   return (
     <Flex justifyContent="center">
       <TableItem cursorPointer flexBasis="30%">
-        <PenIcon />
         {namePack}
+        {!hiddenEditPackButton && <PenIcon />}
       </TableItem>
       <TableItem flexBasis="10%">{cardsCount}</TableItem>
       <TableItem flexBasis="10%">{dataNew.toLocaleDateString()}</TableItem>
       <TableItem flexBasis="30%">{userNamePack}</TableItem>
       <TableItem flexBasis="20%">
         <SuperButton size="small">Learn</SuperButton>
-        <SuperButton size="small" hidden={hiddenEditPackButton} onClick={onOpenPackClick}>
+        <SuperButton size="small" onClick={onOpenPackClick}>
           Open
         </SuperButton>
         <SuperButton
