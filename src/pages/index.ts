@@ -1,4 +1,4 @@
-export { Login } from './Login';
+export { Login } from 'pages/Login/Login';
 export { Profile } from './Profile';
 export { Test } from './Test';
 export { ForgotPassword } from './Password/ForgotPassword';

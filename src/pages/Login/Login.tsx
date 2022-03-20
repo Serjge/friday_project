@@ -2,21 +2,20 @@ import { ReactElement, useEffect } from 'react';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 import { SuperButton, TextField } from 'components';
 import { PATH } from 'enum';
+import { ForgotPassword, SingUp, Text } from 'pages/Login/style';
 import { setErrorMessage } from 'store/actions';
 import { selectErrorMessage, selectIsLogin } from 'store/selectors';
 import { setLoginDataThunkCreator } from 'store/thunks';
-import { Wrapper } from 'styles';
+import { Flex, Wrapper } from 'styles';
 import { LoginApiPayloadType } from 'types';
 import { getErrorValidate } from 'utils';
 
 export const Login = (): ReactElement => {
   const dispatch = useDispatch();
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     setErrorMessage('');
@@ -24,10 +23,6 @@ export const Login = (): ReactElement => {
 
   const onLoginClick: SubmitHandler<LoginApiPayloadType> = data => {
     dispatch(setLoginDataThunkCreator(data));
-  };
-
-  const onSingUpClick = (): void => {
-    navigate(PATH.REGISTRATION);
   };
 
   const {
@@ -73,24 +68,14 @@ export const Login = (): ReactElement => {
           type="checkbox"
           autoComplete="on"
         />
-
-        <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
-          <h3>Forgot Password?</h3>
-
-          <Link to={PATH.FORGOT_PASSWORD}>Click here!</Link>
-
-          <SuperButton type="submit" value="login">
+        <Flex flexDirection="column" alignItems="center">
+          <ForgotPassword to={PATH.FORGOT_PASSWORD}>Forgot Password?</ForgotPassword>
+          <SuperButton style={{ marginTop: '20px' }} type="submit" value="login">
             login
           </SuperButton>
-
-          <div>
-            <p>Don’t have an account?</p>
-          </div>
-
-          <SuperButton onClick={onSingUpClick} type="button">
-            Sing Up
-          </SuperButton>
-        </div>
+          <Text>Don’t have an account?</Text>
+          <SingUp to={PATH.REGISTRATION}>Sing Up</SingUp>
+        </Flex>
       </form>
       {errorMessage || null}
     </Wrapper>

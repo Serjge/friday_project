@@ -38,17 +38,19 @@ export const PacksList = memo((): ReactElement => {
   const searchPack = useSelector(selectSearchPack);
   const currentPage = useSelector(selectCurrentPage);
 
+  const countDecksOnPage = getNumberValuesFromEnum(CountDecksOnPage);
+
   const searchByPacks = useCallback((pack: string): void => {
     dispatch(setSearchPack(pack));
   }, []);
 
-  const setCurrentPage = (value: number): void => {
+  const setCurrentPage = useCallback((value: number): void => {
     dispatch(setCurrentPagePacksAC(value));
-  };
+  }, []);
 
-  const setPacksCount = (value: number): void => {
+  const setPacksCount = useCallback((value: number): void => {
     dispatch(setPageCountPacksAC(value));
-  };
+  }, []);
 
   if (!isMyPack) {
     userId = '';
@@ -58,8 +60,6 @@ export const PacksList = memo((): ReactElement => {
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     dispatch(getPacksTC(searchPack, 0, 0, sortPacks, pagesCount, currentPage, userId));
   }, [sortPacks, searchPack, pagesCount, currentPage, userId, rerender]);
-
-  const countDecksOnPage = getNumberValuesFromEnum(CountDecksOnPage);
 
   if (!isLogin) {
     return <Navigate to={PATH.LOGIN} />;
