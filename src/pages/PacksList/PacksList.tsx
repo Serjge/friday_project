@@ -49,8 +49,8 @@ export const PacksList = memo((): ReactElement => {
   const pagesCount = useSelector(selectPageCount);
   const searchPack = useSelector(selectSearchPack);
   const currentPage = useSelector(selectCurrentPage);
-  const minRange = useSelector(selectMinCardsCount);
-  const maxRange = useSelector(selectMaxCardsCount);
+  let minRange = useSelector(selectMinCardsCount);
+  let maxRange = useSelector(selectMaxCardsCount);
   const minRangeLocal = useSelector(selectLocalMinCardsCount);
   const maxRangeLocal = useSelector(selectLocalMaxCardsCount);
 
@@ -73,13 +73,13 @@ export const PacksList = memo((): ReactElement => {
   }
 
   useEffect(() => {
-    // if (minRangeLocal !== null) {
-    //   minRange = minRangeLocal;
-    // }
-    //
-    // if (maxRangeLocal !== null) {
-    //   maxRange = maxRangeLocal;
-    // }
+    if (minRangeLocal !== null) {
+      minRange = minRangeLocal;
+    }
+
+    if (maxRangeLocal !== null) {
+      maxRange = maxRangeLocal;
+    }
 
     dispatch(
       getPacksTC(
