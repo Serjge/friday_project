@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { SuperButton } from 'components';
 import { RootReducerType } from 'store';
@@ -10,6 +10,7 @@ import {
   selectQuestion,
   selectUpdateCard,
 } from 'store/selectors';
+import { deleteCardTC } from 'store/thunks/cardsThunks';
 import { Flex, TableItem } from 'styles';
 
 type CardItemPropsType = {
@@ -18,6 +19,8 @@ type CardItemPropsType = {
 };
 
 export const CardItem = memo(({ cardId, isMyPack }: CardItemPropsType) => {
+  const dispatch = useDispatch();
+
   const question = useSelector((state: RootReducerType) => selectQuestion(state, cardId));
   const answer = useSelector((state: RootReducerType) => selectAnswer(state, cardId));
   const updated = useSelector((state: RootReducerType) =>
@@ -26,6 +29,10 @@ export const CardItem = memo(({ cardId, isMyPack }: CardItemPropsType) => {
   const grade = useSelector((state: RootReducerType) => selectGradeCard(state, cardId));
 
   const dataNew = new Date(updated);
+
+  const onDeleteCardClick = (): void => {
+    dispatch(deleteCardTC(cardId));
+  };
 
   if (isMyPack) {
     return (
@@ -36,7 +43,9 @@ export const CardItem = memo(({ cardId, isMyPack }: CardItemPropsType) => {
         <TableItem flexBasis="10%">{grade}</TableItem>
         <TableItem flexBasis="10%">
           <SuperButton size="small">Edit</SuperButton>
-          <SuperButton size="small">Delete</SuperButton>
+          <SuperButton size="small" onClick={onDeleteCardClick}>
+            Delete
+          </SuperButton>
         </TableItem>
       </Flex>
     );
