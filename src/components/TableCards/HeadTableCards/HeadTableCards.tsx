@@ -1,61 +1,69 @@
 import React, { memo, ReactElement } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { TableHead } from 'components/TableCards/style';
+import { useSort } from 'hook';
 import { setSortCards } from 'store/actions';
 import { selectSortCard } from 'store/selectors';
+import { Flex, TableHeadWithSorts } from 'styles';
 
 export const HeadTableCards = memo(
   ({ isMyPack }: { isMyPack: boolean }): ReactElement => {
-    const dispatch = useDispatch();
-
     const sortPacks = useSelector(selectSortCard);
 
-    const onSortClick = (sortType: string): void => {
-      if (sortPacks === `1${sortType}`) {
-        dispatch(setSortCards(`0${sortType}`));
-      }
-      if (sortPacks !== `1${sortType}`) {
-        dispatch(setSortCards(`1${sortType}`));
-      }
-    };
+    const onSortClick = useSort(setSortCards, selectSortCard);
 
-    if (isMyPack) {
-      return (
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <TableHead width="35%" onClick={() => onSortClick('question')}>
-            Question
-          </TableHead>
-          <TableHead width="35%" onClick={() => onSortClick('answer')}>
-            Answer
-          </TableHead>
-          <TableHead width="10%" onClick={() => onSortClick('updated')}>
-            Last Updated
-          </TableHead>
-          <TableHead width="10%" onClick={() => onSortClick('grade')}>
-            Grade
-          </TableHead>
-          <TableHead width="10%">Action</TableHead>
-        </div>
-      );
+    const TableHeadData = [
+      {
+        name: 'Question',
+        sortType: 'question',
+        flexBasis: '40%',
+        flexBasisIsMyPack: '35%',
+      },
+      {
+        name: 'Answer',
+        sortType: 'answer',
+        flexBasis: '40%',
+        flexBasisIsMyPack: '35%',
+      },
+      {
+        name: 'Last Updated',
+        sortType: 'updated',
+        flexBasis: '10%',
+        flexBasisIsMyPack: '10%',
+      },
+      {
+        name: 'Grade',
+        sortType: 'grade',
+        flexBasis: '10%',
+        flexBasisIsMyPack: '10%',
+      },
+      {
+        name: 'Action',
+        sortType: '',
+        flexBasis: '0%',
+        flexBasisIsMyPack: '10%',
+      },
+    ];
+
+    if (!isMyPack) {
+      TableHeadData.pop();
     }
 
     return (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <TableHead width="40%" onClick={() => onSortClick('question')}>
-          Question
-        </TableHead>
-        <TableHead width="40%" onClick={() => onSortClick('answer')}>
-          Answer
-        </TableHead>
-        <TableHead width="10%" onClick={() => onSortClick('updated')}>
-          Last Updated
-        </TableHead>
-        <TableHead width="10%" onClick={() => onSortClick('grade')}>
-          Grade
-        </TableHead>
-      </div>
+      <Flex justifyContent="center">
+        {TableHeadData.map(({ name, flexBasis, sortType, flexBasisIsMyPack }) => (
+          <TableHeadWithSorts
+            key={name + flexBasis}
+            sortPack={sortPacks}
+            sortType={sortType}
+            flexBasis={isMyPack ? flexBasisIsMyPack : flexBasis}
+            onClick={() => onSortClick(sortType)}
+          >
+            {name}
+          </TableHeadWithSorts>
+        ))}
+      </Flex>
     );
   },
 );

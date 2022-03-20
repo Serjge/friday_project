@@ -58,6 +58,10 @@ export const PackItem = memo(({ id, deletePack }: PackItemType) => {
       <TableItem flexBasis="10%">{dataNew.toLocaleDateString()}</TableItem>
       <TableItem flexBasis="30%">{userNamePack}</TableItem>
       <TableItem flexBasis="20%">
+        <SuperButton size="small">Learn</SuperButton>
+        <SuperButton size="small" hidden={userId !== userIdPack}>
+          Open
+        </SuperButton>
         <SuperButton
           size="small"
           hidden={userId !== userIdPack}
@@ -65,10 +69,6 @@ export const PackItem = memo(({ id, deletePack }: PackItemType) => {
         >
           Delete
         </SuperButton>
-        <SuperButton size="small" hidden={userId !== userIdPack}>
-          Edit
-        </SuperButton>
-        <SuperButton size="small">Learn</SuperButton>
       </TableItem>
     </div>
   );

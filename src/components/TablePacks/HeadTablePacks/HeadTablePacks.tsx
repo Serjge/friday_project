@@ -3,13 +3,14 @@ import { memo, ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 
 import { useSort } from 'hook';
+import { setSortPacks } from 'store/actions';
 import { selectSortPacks } from 'store/selectors';
 import { Flex, TableHeadWithSorts } from 'styles';
 
 export const HeadTablePacks = memo((): ReactElement => {
   const sortPacks = useSelector(selectSortPacks);
 
-  const onSortClick = useSort();
+  const onSortClick = useSort(setSortPacks, selectSortPacks);
 
   return (
     <Flex justifyContent="center">

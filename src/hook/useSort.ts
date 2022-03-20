@@ -2,20 +2,22 @@ import { useCallback } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setSortPacks } from 'store/actions';
-import { selectSortPacks } from 'store/selectors';
+import { RootReducerType } from 'store';
 
-export const useSort = (): ((sortType: string) => void) => {
+export const useSort = (
+  action: (sort: string) => any,
+  select: (state: RootReducerType) => string,
+): ((sortType: string) => void) => {
   const dispatch = useDispatch();
 
-  const sortPacks = useSelector(selectSortPacks);
+  const sortPacks = useSelector(select);
 
   return useCallback(
     (sortType: string): void => {
       if (sortPacks === `1${sortType}`) {
-        dispatch(setSortPacks(`0${sortType}`));
+        dispatch(action(`0${sortType}`));
       } else {
-        dispatch(setSortPacks(`1${sortType}`));
+        dispatch(action(`1${sortType}`));
       }
     },
     [sortPacks],
