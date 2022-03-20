@@ -14,8 +14,7 @@ export const useSort = (): ((sortType: string) => void) => {
     (sortType: string): void => {
       if (sortPacks === `1${sortType}`) {
         dispatch(setSortPacks(`0${sortType}`));
-      }
-      if (sortPacks !== `1${sortType}`) {
+      } else {
         dispatch(setSortPacks(`1${sortType}`));
       }
     },

@@ -1,3 +1,3 @@
 export { Wrapper } from './wrapper';
 export { Flex } from './flex';
-export { SortingDirection } from './sortingDirection';
+export { TableHeadWithSorts } from 'styles/TableHeadWithSorts';

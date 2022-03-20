@@ -3,14 +3,12 @@ import { memo, ReactElement, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
-import { PackListWrapper } from './style';
-
 import {
   AddPack,
   DebounceSearchField,
   Pagination,
   SwitcherMyAll,
-  TableCardsPack,
+  TablePacks,
 } from 'components';
 import { CountDecksOnPage, PATH } from 'enum';
 import { setCurrentPagePacksAC, setPageCountPacksAC, setSearchPack } from 'store/actions';
@@ -25,6 +23,7 @@ import {
   selectUserId,
 } from 'store/selectors';
 import { getPacksTC } from 'store/thunks';
+import { Flex } from 'styles';
 import { getNumberValuesFromEnum } from 'utils';
 
 export const PacksList = memo((): ReactElement => {
@@ -33,11 +32,11 @@ export const PacksList = memo((): ReactElement => {
   let userId = useSelector(selectUserId);
   const isLogin = useSelector(selectIsLogin);
   const isMyPack = useSelector(selectIsMyPack);
+  const rerender = useSelector(selectRerender);
   const sortPacks = useSelector(selectSortPacks);
   const pagesCount = useSelector(selectPageCount);
   const searchPack = useSelector(selectSearchPack);
   const currentPage = useSelector(selectCurrentPage);
-  const rerender = useSelector(selectRerender);
 
   const searchByPacks = useCallback((pack: string): void => {
     dispatch(setSearchPack(pack));
@@ -67,15 +66,13 @@ export const PacksList = memo((): ReactElement => {
   }
 
   return (
-    <PackListWrapper>
+    <Flex flexDirection="column" alignItems="center">
       <DebounceSearchField placeholder="Name" searchValue={searchByPacks} />
-      <div style={{ display: 'flex' }}>
+      <Flex>
         <SwitcherMyAll />
         <AddPack />
-      </div>
-
-      <TableCardsPack />
-
+      </Flex>
+      <TablePacks />
       <Pagination
         currentPage={currentPage}
         pagesCount={pagesCount}
@@ -83,6 +80,6 @@ export const PacksList = memo((): ReactElement => {
         setCurrentPage={setCurrentPage}
         setPacksCount={setPacksCount}
       />
-    </PackListWrapper>
+    </Flex>
   );
 });

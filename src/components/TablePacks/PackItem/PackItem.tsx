@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { SuperButton } from 'components';
-import { TableItem } from 'components/TableCardsPack/PackItem/style';
+import { TableItem } from 'components/TablePacks/PackItem/style';
 import { PATH } from 'enum';
 import { RootReducerType } from 'store';
 import { setSearchAnswerCards, setSearchQuestionCards } from 'store/actions';
@@ -49,11 +49,11 @@ export const PackItem = memo(({ id, deletePack }: PackItemType) => {
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
-      <TableItem width="200px">{namePack}</TableItem>
-      <TableItem width="50px">{cardsCount}</TableItem>
-      <TableItem width="100px">{dataNew.toLocaleDateString()}</TableItem>
-      <TableItem width="200px">{userNamePack}</TableItem>
-      <TableItem width="180px">
+      <TableItem width="30%">{namePack}</TableItem>
+      <TableItem width="10%">{cardsCount}</TableItem>
+      <TableItem width="10%">{dataNew.toLocaleDateString()}</TableItem>
+      <TableItem width="30%">{userNamePack}</TableItem>
+      <TableItem width="20%">
         <SuperButton
           size="small"
           hidden={userId !== userIdPack}

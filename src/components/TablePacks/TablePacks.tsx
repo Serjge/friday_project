@@ -8,7 +8,7 @@ import { HeadTablePacks, PackItem } from 'components';
 import { selectPacks } from 'store/selectors';
 import { deletePackTC } from 'store/thunks';
 
-export const TableCardsPack = memo((): ReactElement => {
+export const TablePacks = memo((): ReactElement => {
   const dispatch = useDispatch();
 
   const cards = useSelector(selectPacks);
