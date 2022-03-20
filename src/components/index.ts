@@ -1,5 +1,7 @@
 export { Header } from './Header';
 export { Pagination } from './Pagination';
 export { AddPack } from './AddPack';
-export * from './UI';
 export { SwitcherMyAll } from './SwitcherMyAll';
+export * from './UI';
+export { TableCards, CardItem, HeadTableCards } from './TableCards';
+export { PackItem, TableCardsPack, HeadTablePacks } from './TableCardsPack';

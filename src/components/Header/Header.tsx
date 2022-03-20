@@ -2,18 +2,13 @@ import { memo, ReactElement, useCallback } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+
+import { HeaderWrapper } from './style';
 
 import { SuperButton } from 'components';
 import { PATH } from 'enum';
 import { selectIsLogin } from 'store/selectors';
 import { logOutThunkCreator } from 'store/thunks';
-
-const HeaderWrapper = styled.header`
-  display: flex;
-  justify-content: flex-end;
-  padding: 20px;
-`;
 
 export const Header = memo((): ReactElement => {
   const dispatch = useDispatch();
@@ -27,25 +22,6 @@ export const Header = memo((): ReactElement => {
 
   return (
     <HeaderWrapper>
-      {/* <NavLink className={classActive} to={PATH.LOGIN}> */}
-      {/*   LOGIN */}
-      {/* </NavLink> */}
-      {/* <NavLink className={classActive} to={PATH.PROFILE}> */}
-      {/*   PROFILE */}
-      {/* </NavLink> */}
-      {/* <NavLink className={classActive} to={PATH.REGISTRATION}> */}
-      {/*   REGISTRATION */}
-      {/* </NavLink> */}
-      {/* <NavLink className={classActive} to={PATH.RECOVERY}> */}
-      {/*   RECOVERY */}
-      {/* </NavLink> */}
-      {/* <NavLink className={classActive} to={PATH.PAGE404}> */}
-      {/*   PAGE404 */}
-      {/* </NavLink> */}
-      {/* <NavLink className={classActive} to={PATH.NEW_PASSWORD}> */}
-      {/*   NEW_PASSWORD */}
-      {/* </NavLink> */}
-
       {isLogin && (
         <>
           <SuperButton type="button" onClick={() => navigate(PATH.CARDS)}>

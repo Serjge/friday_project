@@ -8,23 +8,31 @@ export const SET_SEARCH_ANSWER_CARDS = 'CARDS/SET_SEARCH_ANSWER_CARDS';
 export const setCards = (cards: CardsType) =>
   ({
     type: SET_CARDS,
-    cards,
+    payload: {
+      cards,
+    },
   } as const);
 
 export const setSortCards = (sort: string) =>
   ({
     type: SET_SORT_CARDS,
-    sort,
+    payload: {
+      sort,
+    },
   } as const);
 
 export const setSearchQuestionCards = (searchValue: string) =>
   ({
     type: SET_SEARCH_QUESTION_CARDS,
-    searchValue,
+    payload: {
+      searchValue,
+    },
   } as const);
 
 export const setSearchAnswerCards = (searchValue: string) =>
   ({
     type: SET_SEARCH_ANSWER_CARDS,
-    searchValue,
+    payload: {
+      searchValue,
+    },
   } as const);

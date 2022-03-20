@@ -14,6 +14,9 @@ export const selectSearchQuestion = (state: RootReducerType): string =>
 export const selectSearchAnswer = (state: RootReducerType): string =>
   state.cards.searchAnswer;
 
+export const selectPackUserId = (state: RootReducerType): string =>
+  state.cards.pack.packUserId;
+
 export const selectQuestion = (state: RootReducerType, cardId: string): string =>
   state.cards.pack.cards.filter(({ _id }) => _id === cardId)[zeroElement].question;
 

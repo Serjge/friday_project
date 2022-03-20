@@ -13,6 +13,7 @@ export type ForgotPasswordGetType = {
 
 export type CreateNewPasswordType = {
   password: string;
+  confirmPassword: string;
 };
 
 export type ForgotPasswordFormType = {

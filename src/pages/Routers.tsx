@@ -15,8 +15,8 @@ import {
 } from '.';
 
 import { PATH } from 'enum';
-import { CardList } from 'pages/CardList';
-import { PacksList } from 'pages/PacksList';
+import { CardList } from 'pages/CardsList/CardList';
+import { PacksList } from 'pages/PacksList/PacksList';
 import { selectIsLogin } from 'store/selectors';
 
 export const Routers = (): ReactElement => {
@@ -32,7 +32,9 @@ export const Routers = (): ReactElement => {
         element={isLogin ? <Profile /> : <Navigate to={PATH.LOGIN} />}
       />
       <Route path={PATH.REGISTRATION} element={<Registration />} />
-      <Route path={PATH.NEW_PASSWORD} element={<NewPassword />} />
+      <Route path={PATH.NEW_PASSWORD} element={<NewPassword />}>
+        <Route path={PATH.TOKEN} element={<NewPassword />} />
+      </Route>
       <Route path={PATH.PAGE404} element={<Page404 />} />
       <Route path={PATH.FORGOT_PASSWORD} element={<ForgotPassword />} />
       <Route

@@ -1,8 +1,8 @@
 import {
-  AuthMeAC,
-  ChangePersonalAvatarAC,
-  ChangePersonalNameAC,
-  EditProfileAC,
+  authMeAC,
+  changePersonalAvatarAC,
+  changePersonalNameAC,
+  editProfileAC,
 } from 'store/actions/profileAction';
 import {
   ProfileReducer,
@@ -57,7 +57,7 @@ beforeEach(() => {
 });
 
 test('change isEdit view', () => {
-  const action = EditProfileAC(newNeedEditValue);
+  const action = editProfileAC(newNeedEditValue);
 
   const endState = ProfileReducer(initialState, action);
 
@@ -66,7 +66,7 @@ test('change isEdit view', () => {
 });
 
 test('check Auth me', () => {
-  const action = AuthMeAC(dataFromAPI);
+  const action = authMeAC(dataFromAPI);
 
   const endState = ProfileReducer(initialState, action);
 
@@ -79,7 +79,7 @@ test('check Auth me', () => {
 });
 
 test('change Name', () => {
-  const action = ChangePersonalNameAC(newNameUser);
+  const action = changePersonalNameAC(newNameUser);
 
   const endState = ProfileReducer(initialState, action);
 
@@ -88,7 +88,7 @@ test('change Name', () => {
 });
 
 test('change person Avatar', () => {
-  const action = ChangePersonalAvatarAC(newAvatarURL);
+  const action = changePersonalAvatarAC(newAvatarURL);
 
   const endState = ProfileReducer(initialState, action);
 

@@ -25,7 +25,7 @@ export const forgotPasswordTC =
     }
   };
 
-export const SendNewPasswordTC =
+export const sendNewPasswordTC =
   (data: SendNewPasswordType): AppThunkType =>
   async dispatch => {
     try {

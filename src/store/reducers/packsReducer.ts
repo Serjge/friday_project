@@ -1,14 +1,15 @@
 import {
-  PacksActionType,
   RERENDER_PACK,
   SET_CURRENT_PAGE_PACKS,
   SET_IS_MY_PACK,
   SET_MAX_CARDS_COUNT,
   SET_MIN_CARDS_COUNT,
   SET_PACKS,
-  SET_PAGE_COUNT_PACKS,
   SET_SEARCH_PACK,
   SET_SORT_PACKS,
+  SET_PAGE_COUNT_PACKS,
+  PacksActionType,
+  SET_IS_MY_PACK,
 } from 'store/actions';
 import { PacksType } from 'types';
 

@@ -17,7 +17,7 @@ type DefaultInputPropsType = DetailedHTMLProps<
   HTMLInputElement
 >;
 
-type SuperInputTextPropsType = DefaultInputPropsType &
+export type TextFieldPropsType = DefaultInputPropsType &
   RefAttributes<HTMLInputElement> & {
     onChangeText?: (value: string) => void;
     onEnter?: () => void;
@@ -27,7 +27,7 @@ type SuperInputTextPropsType = DefaultInputPropsType &
     labelTitle?: string;
   };
 
-export const TextField: FC<SuperInputTextPropsType> = memo(
+export const TextField: FC<TextFieldPropsType> = memo(
   forwardRef(
     (
       {

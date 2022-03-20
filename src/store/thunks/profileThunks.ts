@@ -3,9 +3,9 @@ import { AxiosError } from 'axios';
 import { profileApi } from 'api';
 import { statusCode } from 'enum';
 import {
-  AuthMeAC,
-  ChangePersonalAvatarAC,
-  ChangePersonalNameAC,
+  authMeAC,
+  changePersonalAvatarAC,
+  changePersonalNameAC,
   initializeMe,
   setErrorMessage,
   setIsLoginAC,
@@ -17,7 +17,7 @@ export const authMeTC = (): AppThunkType => async dispatch => {
     const { status, data } = await profileApi.authMe();
 
     if (status === statusCode.OK) {
-      dispatch(AuthMeAC(data));
+      dispatch(authMeAC(data));
       dispatch(setIsLoginAC(true));
     }
   } catch (errorCatch) {
@@ -42,7 +42,7 @@ export const editProfileNameTC =
       const { status, data } = await profileApi.editPersonalName(name);
 
       if (status === statusCode.OK) {
-        dispatch(ChangePersonalNameAC(data.updatedUser.name));
+        dispatch(changePersonalNameAC(data.updatedUser.name));
       }
     } catch (errorCatch) {
       const { response, message } = errorCatch as AxiosError;
@@ -64,7 +64,7 @@ export const editPersonalAvatarTC =
       const { data, status } = await profileApi.editPersonalAvatar(avatar);
 
       if (status === statusCode.OK) {
-        dispatch(ChangePersonalAvatarAC(data.updatedUser.avatar));
+        dispatch(changePersonalAvatarAC(data.updatedUser.avatar));
       }
     } catch (errorCatch) {
       const { response, message } = errorCatch as AxiosError;

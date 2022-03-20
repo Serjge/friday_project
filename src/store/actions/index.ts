@@ -15,10 +15,14 @@ export {
 } from './appAction';
 
 export {
-  ChangePersonalAvatarAC,
-  ChangePersonalNameAC,
-  EditProfileAC,
-  AuthMeAC,
+  changePersonalAvatarAC,
+  changePersonalNameAC,
+  editProfileAC,
+  authMeAC,
+  CHANGE_NAME,
+  CHANGE_PERSONAL_DATA,
+  CHECK_AUTH,
+  CHANGE_AVATAR,
 } from './profileAction';
 
 export {
@@ -42,7 +46,16 @@ export {
   SET_MIN_CARDS_COUNT,
 } from 'store/actions/packsAction';
 
-export * from 'store/actions/cardsAction';
+export {
+  SET_SEARCH_QUESTION_CARDS,
+  SET_SORT_CARDS,
+  SET_SEARCH_ANSWER_CARDS,
+  setCards,
+  setSearchAnswerCards,
+  setSearchQuestionCards,
+  setSortCards,
+  SET_CARDS,
+} from 'store/actions/cardsAction';
 
 export {
   setAddModAC,

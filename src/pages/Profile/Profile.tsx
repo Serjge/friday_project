@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
 import { EditProfilePage, SuperButton } from 'components';
-import { UserImgProfile } from 'components/UI/EditProfilePage';
+import { UserImgProfile } from 'components/EditProfilePage';
 import { PATH } from 'enum';
-import { EditProfileAC } from 'store/actions';
+import { editProfileAC } from 'store/actions';
 import {
   selectAvatarProfile,
   selectIsLogin,
@@ -26,7 +26,7 @@ export const Profile = (): ReactElement => {
   const publicCardPacksCount = useSelector(selectPublicCardPacksCountProfile);
 
   const editModule = (): void => {
-    dispatch(EditProfileAC(true));
+    dispatch(editProfileAC(true));
   };
 
   if (!isLogin) {

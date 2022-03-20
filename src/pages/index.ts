@@ -7,3 +7,4 @@ export { NewPassword } from './Password/NewPassword';
 export { Page404 } from './Page404';
 export { Routers } from './Routers';
 export { InstructionSet } from './Password/InstructionSet';
+export { CardList } from './CardsList';
