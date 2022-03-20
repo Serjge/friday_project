@@ -11,6 +11,7 @@ import {
   selectUpdateCard,
 } from 'store/selectors';
 import { deleteCardTC } from 'store/thunks';
+import { updateCardTC } from 'store/thunks/cardsThunks';
 import { Flex, TableItem } from 'styles';
 
 type CardItemPropsType = {
@@ -34,6 +35,12 @@ export const CardItem = memo(({ cardId, isMyPack }: CardItemPropsType) => {
     dispatch(deleteCardTC(cardId));
   };
 
+  const onUpdateCardClick = (): void => {
+    dispatch(
+      updateCardTC(cardId, { question: 'updateQuestion', answer: 'updateAnswer' }),
+    );
+  };
+
   if (isMyPack) {
     return (
       <Flex justifyContent="center">
@@ -42,7 +49,9 @@ export const CardItem = memo(({ cardId, isMyPack }: CardItemPropsType) => {
         <TableItem flexBasis="10%">{dataNew.toLocaleDateString()}</TableItem>
         <TableItem flexBasis="10%">{grade}</TableItem>
         <TableItem flexBasis="10%">
-          <SuperButton size="small">Edit</SuperButton>
+          <SuperButton size="small" onClick={onUpdateCardClick}>
+            Edit
+          </SuperButton>
           <SuperButton size="small" onClick={onDeleteCardClick}>
             Delete
           </SuperButton>

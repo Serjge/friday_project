@@ -34,7 +34,7 @@ export const cardsApi = {
   deleteCard(cardId: string) {
     return instance.delete('/cards/card', { params: { id: cardId } });
   },
-  updateCard(card: Partial<AddCardType>) {
-    return instance.put('/cards/card', card);
+  updateCard(cardId: string, card: Partial<Omit<AddCardType, 'cardsPackId'>>) {
+    return instance.put('/cards/card', { card: { cardsPack_id: cardId, ...card } });
   },
 };

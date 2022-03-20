@@ -31,3 +31,6 @@ export const selectUpdateCard = (state: RootReducerType, cardId: string): string
 
 export const selectGradeCard = (state: RootReducerType, cardId: string): number =>
   state.cards.pack.cards.filter(({ _id }) => _id === cardId)[zeroElement].grade;
+
+export const selectCard = (state: RootReducerType, cardId: string): CardType =>
+  state.cards.pack.cards.filter(({ _id }) => _id === cardId)[zeroElement];

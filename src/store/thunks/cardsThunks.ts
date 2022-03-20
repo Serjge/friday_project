@@ -3,7 +3,9 @@ import { AxiosError } from 'axios';
 import { cardsApi } from 'api';
 import { statusCode } from 'enum';
 import { rerenderCardAC, setCards, setErrorMessage } from 'store/actions';
-import { AppThunkType } from 'types';
+import { selectCard } from 'store/selectors';
+import { RootReducerType } from 'store/store';
+import { AddCardType, AppThunkType } from 'types';
 
 export const getCardsTC =
   (
@@ -72,6 +74,29 @@ export const deleteCardTC =
   async dispatch => {
     try {
       const { status } = await cardsApi.deleteCard(cardId);
+
+      if (status === statusCode.OK) {
+        dispatch(rerenderCardAC());
+      }
+    } catch (errorCatch) {
+      const { response, message } = errorCatch as AxiosError;
+      const error = response?.data.error;
+      const status = response?.status;
+
+      if (status === statusCode.Bad_Request) {
+        dispatch(setErrorMessage(error));
+      } else {
+        dispatch(setErrorMessage(message));
+      }
+    }
+  };
+
+export const updateCardTC =
+  (cardsId: string, card: Partial<Omit<AddCardType, 'cardsPackId'>>): AppThunkType =>
+  async (dispatch, getState: () => RootReducerType) => {
+    try {
+      const stateCard = selectCard(getState(), cardsId);
+      const { status } = await cardsApi.updateCard(cardsId, { ...stateCard, ...card });
 
       if (status === statusCode.OK) {
         dispatch(rerenderCardAC());
