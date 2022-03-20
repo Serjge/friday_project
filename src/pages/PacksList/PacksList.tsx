@@ -16,6 +16,10 @@ import { CountDecksOnPage, TimerForDeBounce } from 'enum';
 import { useDebounce } from 'hook';
 import { setCurrentPagePacksAC, setPageCountPacksAC, setSearchPack } from 'store/actions';
 import {
+  setLocalMaxCardsCountAC,
+  setLocalMinCardsCountAC,
+} from 'store/actions/packsAction';
+import {
   selectCurrentPage,
   selectIsMyPack,
   selectLocalMaxCardsCount,
@@ -64,15 +68,15 @@ export const PacksList = memo((): ReactElement => {
     userId = '';
   }
 
-  if (minRangeLocal !== null) {
-    minRange = minRangeLocal;
-  }
-
-  if (maxRangeLocal !== null) {
-    maxRange = maxRangeLocal;
-  }
-
   useEffect(() => {
+    if (minRangeLocal !== null) {
+      minRange = minRangeLocal;
+    }
+
+    if (maxRangeLocal !== null) {
+      maxRange = maxRangeLocal;
+    }
+
     dispatch(
       getPacksTC(
         searchPack,
@@ -92,20 +96,23 @@ export const PacksList = memo((): ReactElement => {
     userId,
     minRange,
     maxRange,
+    minRangeLocal,
+    maxRangeLocal,
     rerender,
   ]);
 
   const countDecksOnPage = getNumberValuesFromEnum(CountDecksOnPage);
 
-  const changeRange = (data: { minVal: number; maxVal: number }): void => {
-    console.log(data);
+  const changeRange = ({ minVal, maxVal }: { minVal: number; maxVal: number }): void => {
+    dispatch(setLocalMinCardsCountAC(minVal));
+    dispatch(setLocalMaxCardsCountAC(maxVal));
   };
 
-  const rangeAPI = useDebounce(changeRange, TimerForDeBounce.RANGE_DELAY);
+  const handleRange = useDebounce(changeRange, TimerForDeBounce.RANGE_DELAY);
 
   return (
     <PackListWrapper>
-      <MultiRangeSlider min={minRange} max={maxRange} onChange={rangeAPI} />
+      <MultiRangeSlider min={minRange} max={maxRange} onChange={handleRange} />
       <DebounceSearchField placeholder="Name" searchValue={searchByPacks} />
       <div style={{ display: 'flex' }}>
         <SwitcherMyAll />

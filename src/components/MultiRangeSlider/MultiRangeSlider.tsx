@@ -1,24 +1,24 @@
-import React, { useCallback, useEffect, useState, useRef, FC } from 'react';
+import { useCallback, useEffect, useState, useRef, FC } from 'react';
 
 import './multiRangeSlider.css';
+import { ValueForRange } from 'enum';
 
 type DataOnChangeType = {
   minVal: number;
   maxVal: number;
 };
 
-type PropTypes = {
+type MultiRangeSliderPropTypes = {
   min: number;
   max: number;
   onChange: (Data: DataOnChangeType) => void;
 };
 
-export enum ValueForRange {
-  HUNDRED_PERCENT = 100,
-  STEP = 1,
-}
-
-export const MultiRangeSlider: FC<PropTypes> = ({ min, max, onChange }) => {
+export const MultiRangeSlider: FC<MultiRangeSliderPropTypes> = ({
+  min,
+  max,
+  onChange,
+}) => {
   const [minVal, setMinVal] = useState<number>(min);
   const [maxVal, setMaxVal] = useState<number>(max);
   const minValRef = useRef(min);
@@ -60,7 +60,6 @@ export const MultiRangeSlider: FC<PropTypes> = ({ min, max, onChange }) => {
     onChange({ minVal, maxVal });
   }, [minVal, maxVal, onChange]);
 
-  // @ts-ignore
   return (
     <div className="container">
       <input

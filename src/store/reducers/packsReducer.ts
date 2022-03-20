@@ -3,6 +3,8 @@ import {
   RERENDER_PACK,
   SET_CURRENT_PAGE_PACKS,
   SET_IS_MY_PACK,
+  SET_LOCAL_MAX_CARDS_COUNT,
+  SET_LOCAL_MIN_CARDS_COUNT,
   SET_MAX_CARDS_COUNT,
   SET_MIN_CARDS_COUNT,
   SET_PACKS,
@@ -10,10 +12,6 @@ import {
   SET_SEARCH_PACK,
   SET_SORT_PACKS,
 } from 'store/actions';
-import {
-  SET_LOCAL_MAX_CARDS_COUNT,
-  SET_LOCAL_MIN_CARDS_COUNT,
-} from 'store/actions/packsAction';
 import { PacksType } from 'types';
 
 export type InitialStateType = {

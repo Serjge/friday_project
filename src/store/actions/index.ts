@@ -44,6 +44,10 @@ export {
   setMinCardsCountAC,
   SET_MAX_CARDS_COUNT,
   SET_MIN_CARDS_COUNT,
+  SET_LOCAL_MAX_CARDS_COUNT,
+  SET_LOCAL_MIN_CARDS_COUNT,
+  setLocalMaxCardsCountAC,
+  setLocalMinCardsCountAC,
 } from 'store/actions/packsAction';
 
 export {
