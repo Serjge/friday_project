@@ -14,6 +14,9 @@ export const selectSearchQuestion = (state: RootReducerType): string =>
 export const selectSearchAnswer = (state: RootReducerType): string =>
   state.cards.searchAnswer;
 
+export const selectRerenderCards = (state: RootReducerType): string[] =>
+  state.cards.flagForRerender;
+
 export const selectPackUserId = (state: RootReducerType): string =>
   state.cards.pack.packUserId;
 

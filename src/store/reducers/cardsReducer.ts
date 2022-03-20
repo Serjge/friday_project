@@ -1,9 +1,10 @@
 import {
+  CardsActionType,
+  RERENDER_CARD,
   SET_CARDS,
   SET_SEARCH_ANSWER_CARDS,
   SET_SEARCH_QUESTION_CARDS,
   SET_SORT_CARDS,
-  CardsActionType,
 } from 'store/actions';
 import { CardsType } from 'types';
 
@@ -12,6 +13,7 @@ export type InitialStateType = {
   sort: string;
   searchAnswer: string;
   searchQuestion: string;
+  flagForRerender: string[];
 };
 
 const initialState: InitialStateType = {
@@ -19,6 +21,7 @@ const initialState: InitialStateType = {
   sort: '',
   searchAnswer: '',
   searchQuestion: '',
+  flagForRerender: ['rerender'],
 };
 
 export const cardsReducer = (
@@ -34,6 +37,8 @@ export const cardsReducer = (
       return { ...state, searchAnswer: action.payload.searchValue };
     case SET_SEARCH_QUESTION_CARDS:
       return { ...state, searchQuestion: action.payload.searchValue };
+    case RERENDER_CARD:
+      return { ...state, flagForRerender: { ...state.flagForRerender } };
     default:
       return state;
   }
