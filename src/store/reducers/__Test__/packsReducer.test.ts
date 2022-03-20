@@ -1,6 +1,6 @@
 import {
-  seMaxCardsCountAC,
-  seMinCardsCountAC,
+  setMaxCardsCountAC,
+  setMinCardsCountAC,
   setCurrentPagePacksAC,
   setPacksAC,
   setPageCountPacksAC,
@@ -27,6 +27,8 @@ beforeEach(() => {
     searchPack: '',
     isMyPack: false,
     flagForRerender: ['remind'],
+    localMinRage: 0,
+    localMaxRage: 0,
   };
 
   cards = [
@@ -114,7 +116,7 @@ test('set page count', () => {
 // RERENDER_PACK
 
 test('set min cards count', () => {
-  const action = seMinCardsCountAC(minCards);
+  const action = setMinCardsCountAC(minCards);
 
   const endState = packsReducer(initialState, action);
 
@@ -123,7 +125,7 @@ test('set min cards count', () => {
 });
 
 test('set min cards count', () => {
-  const action = seMaxCardsCountAC(maxCards);
+  const action = setMaxCardsCountAC(maxCards);
 
   const endState = packsReducer(initialState, action);
 

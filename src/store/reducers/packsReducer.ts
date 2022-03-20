@@ -1,15 +1,19 @@
 import {
+  PacksActionType,
   RERENDER_PACK,
   SET_CURRENT_PAGE_PACKS,
   SET_IS_MY_PACK,
   SET_MAX_CARDS_COUNT,
   SET_MIN_CARDS_COUNT,
   SET_PACKS,
+  SET_PAGE_COUNT_PACKS,
   SET_SEARCH_PACK,
   SET_SORT_PACKS,
-  SET_PAGE_COUNT_PACKS,
-  PacksActionType,
 } from 'store/actions';
+import {
+  SET_LOCAL_MAX_CARDS_COUNT,
+  SET_LOCAL_MIN_CARDS_COUNT,
+} from 'store/actions/packsAction';
 import { PacksType } from 'types';
 
 export type InitialStateType = {
@@ -18,14 +22,21 @@ export type InitialStateType = {
   searchPack: string;
   isMyPack: boolean;
   flagForRerender: string[]; // for delete
+  localMinRage: number | null;
+  localMaxRage: number | null;
 };
 
 const initialState: InitialStateType = {
-  packs: {} as PacksType,
+  packs: {
+    minCardsCount: 0,
+    maxCardsCount: 30,
+  } as PacksType,
   sort: '',
   searchPack: '',
   isMyPack: false,
   flagForRerender: ['rerender'],
+  localMinRage: null,
+  localMaxRage: null,
 };
 
 export const packsReducer = (
@@ -59,6 +70,16 @@ export const packsReducer = (
       return {
         ...state,
         packs: { ...state.packs, maxCardsCount: action.payload.maxCards },
+      };
+    case SET_LOCAL_MIN_CARDS_COUNT:
+      return {
+        ...state,
+        localMinRage: action.payload.minCards,
+      };
+    case SET_LOCAL_MAX_CARDS_COUNT:
+      return {
+        ...state,
+        localMaxRage: action.payload.maxCards,
       };
     default:
       return state;

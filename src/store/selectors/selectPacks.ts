@@ -45,11 +45,18 @@ export const selectPageCount = (state: RootReducerType): number =>
 export const selectCardPacksTotalCount = (state: RootReducerType): number =>
   state.packs.packs.cardPacksTotalCount;
 
+// for range
 export const selectMinCardsCount = (state: RootReducerType): number =>
   state.packs.packs.minCardsCount;
 
 export const selectMaxCardsCount = (state: RootReducerType): number =>
   state.packs.packs.maxCardsCount;
+
+export const selectLocalMinCardsCount = (state: RootReducerType): number | null =>
+  state.packs.localMinRage;
+
+export const selectLocalMaxCardsCount = (state: RootReducerType): number | null =>
+  state.packs.localMaxRage;
 
 // delete
 export const selectRerender = (state: RootReducerType): string[] =>

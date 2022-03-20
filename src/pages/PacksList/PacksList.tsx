@@ -18,6 +18,8 @@ import { setCurrentPagePacksAC, setPageCountPacksAC, setSearchPack } from 'store
 import {
   selectCurrentPage,
   selectIsMyPack,
+  selectLocalMaxCardsCount,
+  selectLocalMinCardsCount,
   selectMaxCardsCount,
   selectMinCardsCount,
   selectPageCount,
@@ -38,8 +40,10 @@ export const PacksList = memo((): ReactElement => {
   const pagesCount = useSelector(selectPageCount);
   const searchPack = useSelector(selectSearchPack);
   const currentPage = useSelector(selectCurrentPage);
-  const minRange = useSelector(selectMinCardsCount);
-  const maxRange = useSelector(selectMaxCardsCount);
+  let minRange = useSelector(selectMinCardsCount);
+  let maxRange = useSelector(selectMaxCardsCount);
+  const minRangeLocal = useSelector(selectLocalMinCardsCount);
+  const maxRangeLocal = useSelector(selectLocalMaxCardsCount);
 
   // rerender
   const rerender = useSelector(selectRerender);
@@ -58,6 +62,14 @@ export const PacksList = memo((): ReactElement => {
 
   if (!isMyPack) {
     userId = '';
+  }
+
+  if (minRangeLocal !== null) {
+    minRange = minRangeLocal;
+  }
+
+  if (maxRangeLocal !== null) {
+    maxRange = maxRangeLocal;
   }
 
   useEffect(() => {
@@ -93,7 +105,7 @@ export const PacksList = memo((): ReactElement => {
 
   return (
     <PackListWrapper>
-      <MultiRangeSlider min={0} max={100} onChange={rangeAPI} />
+      <MultiRangeSlider min={minRange} max={maxRange} onChange={rangeAPI} />
       <DebounceSearchField placeholder="Name" searchValue={searchByPacks} />
       <div style={{ display: 'flex' }}>
         <SwitcherMyAll />
