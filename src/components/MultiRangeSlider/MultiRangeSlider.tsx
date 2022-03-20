@@ -1,7 +1,9 @@
-import { useCallback, useEffect, useState, useRef, FC } from 'react';
+/* eslint-disable @typescript-eslint/no-magic-numbers */
+import { FC, useCallback, useEffect, useRef, useState } from 'react';
+
+import { ValueForRange } from 'enum';
 
 import './multiRangeSlider.css';
-import { ValueForRange } from 'enum';
 
 type DataOnChangeType = {
   minVal: number;
@@ -15,19 +17,19 @@ type MultiRangeSliderPropTypes = {
 };
 
 export const MultiRangeSlider: FC<MultiRangeSliderPropTypes> = ({
-  min,
-  max,
+  min = 0,
+  max = 100,
   onChange,
 }) => {
   const [minVal, setMinVal] = useState<number>(min);
   const [maxVal, setMaxVal] = useState<number>(max);
   const minValRef = useRef(min);
   const maxValRef = useRef(max);
-  const range = useRef(null);
+  const range = useRef<HTMLInputElement>(null);
 
   // Convert to percentage
   const getPercent = useCallback(
-    value => {
+    (value: number): void => {
       Math.round(((value - min) / (max - min)) * ValueForRange.HUNDRED_PERCENT);
     },
     [min, max],
@@ -39,10 +41,8 @@ export const MultiRangeSlider: FC<MultiRangeSliderPropTypes> = ({
     const maxPercent = getPercent(maxValRef.current);
 
     if (range.current) {
-      // @ts-ignore
       range.current.style.left = `${minPercent}%`;
-      // @ts-ignore
-      range.current.style.width = `${maxPercent - minPercent}%`;
+      range.current.style.width = `${Number(maxPercent) - Number(minPercent)}%`;
     }
   }, [minVal, getPercent]);
 
@@ -52,8 +52,7 @@ export const MultiRangeSlider: FC<MultiRangeSliderPropTypes> = ({
     const maxPercent = getPercent(maxVal);
 
     if (range.current) {
-      // @ts-ignore
-      range.current.style.width = `${maxPercent - minPercent}%`;
+      range.current.style.width = `${Number(maxPercent) - Number(minPercent)}%`;
     }
   }, [maxVal, getPercent]);
 
