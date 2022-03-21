@@ -14,7 +14,6 @@ export const Modal: FC<ModalPropsType> = ({
   children,
 }): ReactElement => (
   <div
-    onKeyUp={() => changeIsActive(false)}
     className={`${style.modal}  ${isActive ? style.active : ''}`}
     onClick={() => changeIsActive(false)}
   >

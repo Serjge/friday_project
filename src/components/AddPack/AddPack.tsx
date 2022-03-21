@@ -1,51 +1,49 @@
-import { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
 import style from './AddPack.module.css';
 
+import { Modal } from 'components/Modal/Modal';
 import { SuperButton, SuperInputText } from 'components/UI';
-import { setAddModAC, setResultMessageAddPackAC } from 'store/actions';
-import { selectIsAddMod, selectResultMessage } from 'store/selectors';
+import { setResultMessageAddPackAC } from 'store/actions';
+import { selectResultMessage } from 'store/selectors';
 import { addPackTC } from 'store/thunks';
 
 export const AddPack = (): ReactElement => {
   const dispatch = useDispatch();
+  const [isActive, setIsActive] = useState<boolean>(false);
 
   const newTitle = 'new title from EPIC TEAM'; // hard code
 
-  const isAddMod = useSelector(selectIsAddMod);
   const resultMessage = useSelector(selectResultMessage);
 
   const setNewPack = (): void => {
     dispatch(addPackTC(newTitle));
-    // dispatch(setAddModAC(!isAddMod));
   };
 
-  const setIsAddMod = (isAdd: boolean): void => {
-    dispatch(setAddModAC(isAdd));
+  const setIsAddMod = (): void => {
+    setIsActive(false);
     dispatch(setResultMessageAddPackAC(''));
   };
 
   return (
     <div>
-      {isAddMod && (
-        <div className={style.addBlock}>
-          <div className={style.form}>
-            <span className={style.title}>ADD NEW PACK</span>
-            <div className={style.input}>
-              <span>New title</span>
-              <SuperInputText defaultValue={newTitle} />
-            </div>
-            <div className={style.message}>{resultMessage}</div>
-            <div>
-              <SuperButton onClick={() => setIsAddMod(false)}>Cancel</SuperButton>
-              <SuperButton onClick={setNewPack}>Add</SuperButton>
-            </div>
+      <Modal isActive={isActive} changeIsActive={setIsActive}>
+        <div className={style.form}>
+          <span className={style.title}>ADD NEW PACK</span>
+          <div className={style.input}>
+            <span>New title</span>
+            <SuperInputText defaultValue={newTitle} />
+          </div>
+          <div className={style.message}>{resultMessage}</div>
+          <div>
+            <SuperButton onClick={() => setIsAddMod()}>Cancel</SuperButton>
+            <SuperButton onClick={setNewPack}>Add</SuperButton>
           </div>
         </div>
-      )}
-      <SuperButton onClick={() => setIsAddMod(true)}>Add Pack</SuperButton>
+      </Modal>
+      <SuperButton onClick={() => setIsActive(true)}>Add Pack</SuperButton>
     </div>
   );
 };

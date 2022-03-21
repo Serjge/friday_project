@@ -4,20 +4,15 @@ import { AddPack, SuperButton } from 'components';
 import { Modal } from 'components/Modal/Modal';
 
 export const Test = (): ReactElement => {
-  const [value, setValue] = useState(true);
+  const [isActive, setIsActive] = useState(true);
 
   return (
     <div>
       <AddPack />
       <h1>Test</h1>
 
-      <SuperButton onClick={() => setValue(true)}>Modal</SuperButton>
-      <Modal isActive={value} changeIsActive={setValue}>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aliquid cum
-          dicta dignissimos dolore ea eos eum iusto, modi praesentium qui sit unde?
-          Nesciunt, voluptas voluptate! Consectetur cupiditate nesciunt quo.
-        </div>{' '}
+      <SuperButton onClick={() => setIsActive(true)}>Modal</SuperButton>
+      <Modal isActive={isActive} changeIsActive={setIsActive}>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aliquid cum
           dicta dignissimos dolore ea eos eum iusto, modi praesentium qui sit unde?
