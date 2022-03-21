@@ -10,13 +10,13 @@ import { PacksType } from 'types';
 
 export const packApi = {
   getPacks(
-    packName: string = '',
-    min: number = 0,
-    max: number = 0,
-    sortPacks: string = '',
-    pageCount: number = 5,
-    page: number = 1,
-    userId: string = '',
+    packName: string,
+    min: number,
+    max: number,
+    sortPacks: string,
+    pageCount: number,
+    page: number,
+    userId: string,
   ) {
     return instance.get<PacksType>('/cards/pack', {
       params: {

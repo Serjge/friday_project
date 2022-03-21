@@ -5,36 +5,46 @@ import { Navigate, useParams } from 'react-router-dom';
 
 import { CardListWrapper, SearchWrapper } from './style';
 
-import { DebounceSearchField, SuperButton, TableCards } from 'components';
-import { PATH } from 'enum';
+import { DebounceSearchField, Pagination, SuperButton, TableCards } from 'components';
+import { CountDecksOnPage, PATH } from 'enum';
 import {
   rerenderCardAC,
+  setCurrentPageCardsAC,
+  setPageCountCardsAC,
   setSearchAnswerCards,
   setSearchQuestionCards,
 } from 'store/actions';
 import {
+  selectCurrentPageCards,
   selectIsLogin,
   selectPackUserId,
+  selectPageCountCards,
   selectRerenderCards,
+  selectTotalCountCards,
   selectUserId,
 } from 'store/selectors';
 import { addCardTC, getCardsTC } from 'store/thunks';
+import { getNumberValuesFromEnum } from 'utils';
 
 export const CardList = memo((): ReactElement => {
   const dispatch = useDispatch();
 
   const { id, name } = useParams<'id' | 'name'>();
 
-  const isLogin = useSelector(selectIsLogin);
-  const rerender = useSelector(selectRerenderCards);
   const userId = useSelector(selectUserId);
+  const isLogin = useSelector(selectIsLogin);
   const packUserId = useSelector(selectPackUserId);
+  const rerender = useSelector(selectRerenderCards);
+  const pagesCount = useSelector(selectPageCountCards);
+  const currentPage = useSelector(selectCurrentPageCards);
+  const totalCountCards = useSelector(selectTotalCountCards);
+  const countDecksOnPage = getNumberValuesFromEnum(CountDecksOnPage);
 
   useEffect(() => {
     if (id) {
       dispatch(getCardsTC(id));
     }
-  }, [rerender]);
+  }, [rerender, currentPage, pagesCount]);
 
   const searchByQuestion = useCallback((question: string): void => {
     dispatch(setSearchQuestionCards(question));
@@ -52,6 +62,14 @@ export const CardList = memo((): ReactElement => {
     }
   };
 
+  const setCurrentPageCards = useCallback((value: number): void => {
+    dispatch(setCurrentPageCardsAC(value));
+  }, []);
+
+  const setCardsCountCards = useCallback((value: number): void => {
+    dispatch(setPageCountCardsAC(value));
+  }, []);
+
   if (!isLogin) {
     return <Navigate to={PATH.LOGIN} />;
   }
@@ -67,6 +85,14 @@ export const CardList = memo((): ReactElement => {
         </SuperButton>
       </SearchWrapper>
       <TableCards />
+      <Pagination
+        currentPage={currentPage}
+        pagesCount={pagesCount}
+        countDecksOnPage={countDecksOnPage}
+        setCurrentPage={setCurrentPageCards}
+        setPacksCount={setCardsCountCards}
+        totalCount={totalCountCards}
+      />
     </CardListWrapper>
   );
 });

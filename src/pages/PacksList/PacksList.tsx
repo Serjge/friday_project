@@ -14,6 +14,7 @@ import {
 import { CountDecksOnPage, PATH, TimerForDeBounce } from 'enum';
 import { useDebounce } from 'hook';
 import {
+  rerenderPackAC,
   setCurrentPagePacksAC,
   setLocalMaxCardsCountAC,
   setLocalMinCardsCountAC,
@@ -21,6 +22,7 @@ import {
   setSearchPack,
 } from 'store/actions';
 import {
+  selectCardPacksTotalCount,
   selectCurrentPage,
   selectIsLogin,
   selectIsMyPack,
@@ -30,9 +32,6 @@ import {
   selectMinCardsCount,
   selectPageCount,
   selectRerender,
-  selectSearchPack,
-  selectSortPacks,
-  selectUserId,
 } from 'store/selectors';
 import { getPacksTC } from 'store/thunks';
 import { Flex } from 'styles';
@@ -41,23 +40,22 @@ import { getNumberValuesFromEnum } from 'utils';
 export const PacksList = memo((): ReactElement => {
   const dispatch = useDispatch();
 
-  let userId = useSelector(selectUserId);
   const isLogin = useSelector(selectIsLogin);
   const isMyPack = useSelector(selectIsMyPack);
   const rerender = useSelector(selectRerender);
-  const sortPacks = useSelector(selectSortPacks);
   const pagesCount = useSelector(selectPageCount);
-  const searchPack = useSelector(selectSearchPack);
-  const currentPage = useSelector(selectCurrentPage);
   const minRange = useSelector(selectMinCardsCount);
   const maxRange = useSelector(selectMaxCardsCount);
-  const minRangeLocal = useSelector(selectLocalMinCardsCount);
+  const currentPage = useSelector(selectCurrentPage);
   const maxRangeLocal = useSelector(selectLocalMaxCardsCount);
+  const minRangeLocal = useSelector(selectLocalMinCardsCount);
+  const cardPacksTotalCount = useSelector(selectCardPacksTotalCount);
 
   const countDecksOnPage = getNumberValuesFromEnum(CountDecksOnPage);
 
   const searchByPacks = useCallback((pack: string): void => {
     dispatch(setSearchPack(pack));
+    dispatch(rerenderPackAC());
   }, []);
 
   const setCurrentPage = useCallback((value: number): void => {
@@ -68,49 +66,19 @@ export const PacksList = memo((): ReactElement => {
     dispatch(setPageCountPacksAC(value));
   }, []);
 
-  if (!isMyPack) {
-    userId = '';
-  }
-
-  useEffect(() => {
-    // if (minRangeLocal !== null) {
-    //   minRange = minRangeLocal;
-    // }
-    //
-    // if (maxRangeLocal !== null) {
-    //   maxRange = maxRangeLocal;
-    // }
-
-    dispatch(
-      getPacksTC(
-        searchPack,
-        minRangeLocal,
-        maxRangeLocal,
-        sortPacks,
-        pagesCount,
-        currentPage,
-        userId,
-      ),
-    );
-  }, [
-    sortPacks,
-    searchPack,
-    pagesCount,
-    currentPage,
-    userId,
-    minRange,
-    maxRange,
-    minRangeLocal,
-    maxRangeLocal,
-    rerender,
-  ]);
-
-  const changeRange = ({ minVal, maxVal }: { minVal: number; maxVal: number }): void => {
-    dispatch(setLocalMinCardsCountAC(minVal));
-    dispatch(setLocalMaxCardsCountAC(maxVal));
-  };
+  const changeRange = useCallback(
+    ({ minVal, maxVal }: { minVal: number; maxVal: number }): void => {
+      dispatch(setLocalMinCardsCountAC(minVal));
+      dispatch(setLocalMaxCardsCountAC(maxVal));
+    },
+    [],
+  );
 
   const handleRange = useDebounce(changeRange, TimerForDeBounce.RANGE_DELAY);
+
+  useEffect(() => {
+    dispatch(getPacksTC());
+  }, [pagesCount, currentPage, rerender, minRangeLocal, maxRangeLocal, isMyPack]);
 
   if (!isLogin) {
     return <Navigate to={PATH.LOGIN} />;
@@ -131,6 +99,7 @@ export const PacksList = memo((): ReactElement => {
         countDecksOnPage={countDecksOnPage}
         setCurrentPage={setCurrentPage}
         setPacksCount={setPacksCount}
+        totalCount={cardPacksTotalCount}
       />
     </Flex>
   );

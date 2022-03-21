@@ -52,10 +52,10 @@ export const selectMinCardsCount = (state: RootReducerType): number =>
 export const selectMaxCardsCount = (state: RootReducerType): number =>
   state.packs.packs.maxCardsCount;
 
-export const selectLocalMinCardsCount = (state: RootReducerType): number | undefined =>
+export const selectLocalMinCardsCount = (state: RootReducerType): number =>
   state.packs.localMinRage;
 
-export const selectLocalMaxCardsCount = (state: RootReducerType): number | undefined =>
+export const selectLocalMaxCardsCount = (state: RootReducerType): number =>
   state.packs.localMaxRage;
 
 // delete

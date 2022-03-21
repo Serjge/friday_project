@@ -12,7 +12,7 @@ import {
   SET_SEARCH_PACK,
   SET_SORT_PACKS,
 } from 'store/actions';
-import { PacksType } from 'types';
+import { PacksType, PackType } from 'types';
 
 export type InitialStateType = {
   packs: PacksType;
@@ -20,14 +20,16 @@ export type InitialStateType = {
   searchPack: string;
   isMyPack: boolean;
   flagForRerender: string[]; // for delete
-  localMinRage: number | undefined;
-  localMaxRage: number | undefined;
+  localMinRage: number;
+  localMaxRage: number;
 };
 
 const initialState: InitialStateType = {
   packs: {
     minCardsCount: 0,
     maxCardsCount: 30,
+    pageCount: 5,
+    cardPacks: [] as PackType[],
   } as PacksType,
   sort: '',
   searchPack: '',

@@ -17,6 +17,15 @@ export const selectSearchAnswer = (state: RootReducerType): string =>
 export const selectRerenderCards = (state: RootReducerType): string[] =>
   state.cards.flagForRerender;
 
+export const selectPageCountCards = (state: RootReducerType): number =>
+  state.cards.pack.pageCount;
+
+export const selectCurrentPageCards = (state: RootReducerType): number =>
+  state.cards.pack.page;
+
+export const selectTotalCountCards = (state: RootReducerType): number =>
+  state.cards.pack.cardsTotalCount;
+
 export const selectPackUserId = (state: RootReducerType): string =>
   state.cards.pack.packUserId;
 
