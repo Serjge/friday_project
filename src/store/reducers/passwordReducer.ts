@@ -1,4 +1,4 @@
-import { PasswordActionType } from '../../types/PasswordType';
+import { PasswordActionType } from 'store/actions';
 
 export type IsPasswordChangeType = {
   isChange: boolean;

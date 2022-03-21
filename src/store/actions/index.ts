@@ -25,6 +25,8 @@ export {
   CHANGE_AVATAR,
 } from './profileAction';
 
+export { changePasswordAC, IS_CHANGE_PASSWORD } from './passwordAction';
+
 export {
   SET_PACKS,
   setPacksAC,

@@ -1,10 +1,8 @@
 export { Login } from 'pages/Login/Login';
 export { Profile } from './Profile';
 export { Test } from './Test';
-export { ForgotPassword } from './Password/ForgotPassword';
+export { ForgotPassword, NewPassword, InstructionSet } from './Password';
 export { Registration } from './Registration';
-export { NewPassword } from './Password/NewPassword';
 export { Page404 } from './Page404';
 export { Routers } from './Routers';
-export { InstructionSet } from './Password/InstructionSet';
 export { CardList } from './CardsList';

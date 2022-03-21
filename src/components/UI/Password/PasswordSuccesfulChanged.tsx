@@ -3,9 +3,10 @@ import React, { ReactElement } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { PATH } from '../../../enum';
-import { changePasswordAC } from '../../../store/actions/passwordAction';
 import { SuperButton } from '../SuperButton';
+
+import { PATH } from 'enum';
+import { changePasswordAC } from 'store/actions';
 
 export const PasswordSuccessfulChanged = (): ReactElement => {
   const dispatch = useDispatch();

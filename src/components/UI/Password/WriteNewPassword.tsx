@@ -4,13 +4,14 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { selectErrorMessage } from '../../../store/selectors';
-import { sendNewPasswordTC } from '../../../store/thunks';
-import { Wrapper } from '../../../styles';
-import { CreateNewPasswordType, SendNewPasswordType } from '../../../types';
-import { getErrorValidate } from '../../../utils';
 import { SuperButton } from '../SuperButton';
 import { TextField } from '../TextField';
+
+import { selectErrorMessage } from 'store/selectors';
+import { sendNewPasswordTC } from 'store/thunks';
+import { Wrapper } from 'styles';
+import { CreateNewPasswordType, SendNewPasswordType } from 'types';
+import { getErrorValidate } from 'utils';
 
 export const WriteNewPassword = (): ReactElement => {
   const dispatch = useDispatch();
