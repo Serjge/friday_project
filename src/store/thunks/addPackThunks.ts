@@ -2,8 +2,7 @@ import { AxiosError } from 'axios';
 
 import { packApi } from 'api/packApi';
 import { statusCode } from 'enum';
-import { TimeForSetTimeout } from 'enum/timeForSetTimeout';
-import { rerenderPackAC, setAddModAC, setResultMessageAddPackAC } from 'store/actions';
+import { rerenderPackAC, setResultMessageAddPackAC } from 'store/actions';
 import { AppThunkType } from 'types';
 
 export const addPackTC =
@@ -15,9 +14,6 @@ export const addPackTC =
       if (status === statusCode.created) {
         dispatch(setResultMessageAddPackAC('Pack created'));
         dispatch(rerenderPackAC());
-        setTimeout(() => {
-          dispatch(setAddModAC(false));
-        }, TimeForSetTimeout.hideAddComponentAfterSuccess);
       }
     } catch (errorCatch) {
       const { response, message } = errorCatch as AxiosError;

@@ -11,6 +11,7 @@ export const SET_MIN_CARDS_COUNT = 'PACKS/SET_MIN_CARDS_COUNT';
 export const SET_MAX_CARDS_COUNT = 'PACKS/SET_MAX_CARDS_COUNT';
 export const SET_LOCAL_MIN_CARDS_COUNT = 'PACKS/SET_LOCAL_MIN_CARDS_COUNT';
 export const SET_LOCAL_MAX_CARDS_COUNT = 'PACKS/SET_LOCAL_MAX_CARDS_COUNT';
+export const SET_RESULT_MESSAGE = 'PACKS/SET_RESULT_MESSAGE';
 
 export const setPacksAC = (cards: PacksType) =>
   ({
@@ -94,5 +95,13 @@ export const setLocalMaxCardsCountAC = (maxCards: number) =>
     type: SET_LOCAL_MAX_CARDS_COUNT,
     payload: {
       maxCards,
+    },
+  } as const);
+
+export const setResultMessageAddPackAC = (message: string) =>
+  ({
+    type: SET_RESULT_MESSAGE,
+    payload: {
+      message,
     },
   } as const);

@@ -50,6 +50,8 @@ export {
   setLocalMaxCardsCountAC,
   SET_LOCAL_MAX_CARDS_COUNT,
   SET_LOCAL_MIN_CARDS_COUNT,
+  setResultMessageAddPackAC,
+  SET_RESULT_MESSAGE,
 } from 'store/actions/packsAction';
 
 export {
@@ -68,12 +70,5 @@ export {
   SET_SEARCH_ANSWER_CARDS,
   SET_SEARCH_QUESTION_CARDS,
 } from 'store/actions/cardsAction';
-
-export {
-  setAddModAC,
-  SET_ADD_MOD,
-  SET_RESULT_MESSAGE,
-  setResultMessageAddPackAC,
-} from './addPackAction';
 
 export * from './type';

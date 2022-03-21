@@ -10,6 +10,7 @@ import {
   setLocalMinCardsCountAC,
   setMaxCardsCountAC,
   setMinCardsCountAC,
+  setResultMessageAddPackAC,
 } from 'store/actions';
 
 export type SetPacksType = ReturnType<typeof setPacksAC>;
@@ -31,4 +32,5 @@ export type PacksActionType =
   | ReturnType<typeof setMaxCardsCountAC>
   | ReturnType<typeof setMinCardsCountAC>
   | ReturnType<typeof setLocalMinCardsCountAC>
-  | ReturnType<typeof setLocalMaxCardsCountAC>;
+  | ReturnType<typeof setLocalMaxCardsCountAC>
+  | ReturnType<typeof setResultMessageAddPackAC>;

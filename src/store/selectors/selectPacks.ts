@@ -61,3 +61,7 @@ export const selectLocalMaxCardsCount = (state: RootReducerType): number =>
 // delete
 export const selectRerender = (state: RootReducerType): string[] =>
   state.packs.flagForRerender;
+
+// add pack resul Message
+export const selectResultMessage = (state: RootReducerType): string =>
+  state.packs.resultMessageAddPack;

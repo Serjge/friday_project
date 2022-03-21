@@ -6,6 +6,9 @@ import {
   setPageCountPacksAC,
   setSearchPack,
   setSortPacks,
+  setResultMessageAddPackAC,
+  setIsMyPack,
+  rerenderPackAC,
 } from 'store/actions';
 import { packsReducer, InitialStateType } from 'store/reducers/packsReducer';
 import { PacksType, PackType } from 'types';
@@ -19,6 +22,8 @@ const currentPage: number = 10; // Magic number must be here, not into beForeEac
 const pageCount: number = 100;
 const minCards: number = 12;
 const maxCards: number = 111;
+let message: string;
+let isMyPack: boolean;
 
 beforeEach(() => {
   initialState = {
@@ -29,6 +34,7 @@ beforeEach(() => {
     flagForRerender: ['remind'],
     localMinRage: 0,
     localMaxRage: 0,
+    resultMessageAddPack: '',
   };
 
   cards = [
@@ -63,6 +69,8 @@ beforeEach(() => {
   };
   sort = 'fame';
   searchPack = 'page';
+  message = 'supply';
+  isMyPack = true;
 });
 
 test('set Cards from API', () => {
@@ -111,9 +119,23 @@ test('set page count', () => {
   expect(endState.packs.pageCount).toBe(pageCount);
 });
 
-// SET_IS_MY_PACK
+test('set only my pack', () => {
+  const action = setIsMyPack(isMyPack);
 
-// RERENDER_PACK
+  const endState = packsReducer(initialState, action);
+
+  expect(endState).not.toBe(initialState);
+  expect(endState.isMyPack).toBe(isMyPack);
+});
+
+test('rerender for API request', () => {
+  const action = rerenderPackAC();
+
+  const endState = packsReducer(initialState, action);
+
+  expect(endState).not.toBe(initialState);
+  expect(endState.flagForRerender).not.toBe(initialState.flagForRerender);
+});
 
 test('set min cards count', () => {
   const action = setMinCardsCountAC(minCards);
@@ -131,4 +153,13 @@ test('set min cards count', () => {
 
   expect(endState).not.toBe(initialState);
   expect(endState.packs.maxCardsCount).toBe(maxCards);
+});
+
+test('set result message from API', () => {
+  const action = setResultMessageAddPackAC(message);
+
+  const endState = packsReducer(initialState, action);
+
+  expect(endState).not.toBe(initialState);
+  expect(endState.resultMessageAddPack).toBe(message);
 });

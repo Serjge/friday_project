@@ -8,7 +8,6 @@ export {
   selectPublicCardPacksCountProfile,
   selectUserId,
 } from './selectProfile';
-export { selectResultMessage, selectIsAddMod } from './selectAddPack';
 
 export * from './selectPacks';
 export * from './selectCard';

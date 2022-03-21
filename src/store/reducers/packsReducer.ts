@@ -9,6 +9,7 @@ import {
   SET_MIN_CARDS_COUNT,
   SET_PACKS,
   SET_PAGE_COUNT_PACKS,
+  SET_RESULT_MESSAGE,
   SET_SEARCH_PACK,
   SET_SORT_PACKS,
 } from 'store/actions';
@@ -22,6 +23,7 @@ export type InitialStateType = {
   flagForRerender: string[]; // for delete
   localMinRage: number;
   localMaxRage: number;
+  resultMessageAddPack: string;
 };
 
 const initialState: InitialStateType = {
@@ -37,6 +39,7 @@ const initialState: InitialStateType = {
   flagForRerender: ['rerender'],
   localMinRage: 0,
   localMaxRage: 30,
+  resultMessageAddPack: '',
 };
 
 export const packsReducer = (
@@ -81,6 +84,8 @@ export const packsReducer = (
         ...state,
         localMaxRage: action.payload.maxCards,
       };
+    case SET_RESULT_MESSAGE:
+      return { ...state, resultMessageAddPack: action.payload.message };
     default:
       return state;
   }
