@@ -4,12 +4,10 @@ import { useSelector } from 'react-redux';
 
 import { PasswordSuccessfulChanged } from '../../components/UI/Password/PasswordSuccesfulChanged';
 import { WriteNewPassword } from '../../components/UI/Password/WriteNewPassword';
-import { RootReducerType } from '../../store';
+import { selectPassword } from '../../store/selectors/selectPassword';
 
 export const NewPassword = (): ReactElement => {
-  const isChanged = useSelector<RootReducerType, boolean>(
-    state => state.password.isChange,
-  );
+  const isChanged = useSelector(selectPassword);
 
   return isChanged ? <WriteNewPassword /> : <PasswordSuccessfulChanged />;
 };

@@ -2,9 +2,8 @@ import { ReactElement } from 'react';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-import { PATH } from '../../../enum';
 import { selectErrorMessage } from '../../../store/selectors';
 import { sendNewPasswordTC } from '../../../store/thunks';
 import { Wrapper } from '../../../styles';
@@ -14,7 +13,6 @@ import { SuperButton } from '../SuperButton';
 import { TextField } from '../TextField';
 
 export const WriteNewPassword = (): ReactElement => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const param = useParams<'token'>();
 
@@ -38,7 +36,6 @@ export const WriteNewPassword = (): ReactElement => {
       resetPasswordToken,
     };
     dispatch(sendNewPasswordTC(newPasswordData));
-    navigate(PATH.LOGIN);
   };
 
   return (

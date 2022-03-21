@@ -5,7 +5,7 @@ export type IsPasswordChangeType = {
 };
 
 const initialState: IsPasswordChangeType = {
-  isChange: false,
+  isChange: true,
 };
 
 export const passwordReducer = (

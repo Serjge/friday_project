@@ -1,3 +1,5 @@
+import { PasswordActionType } from '../../../types/PasswordType';
+
 import {
   AddPackActionsType,
   AppActionsType,
@@ -15,4 +17,5 @@ export type AllAppActionsType =
   | ProfileActionType
   | PacksActionType
   | AddPackActionsType
-  | CardsActionType;
+  | CardsActionType
+  | PasswordActionType;

@@ -1,5 +1,7 @@
 import { AxiosError } from 'axios';
 
+import { changePasswordAC } from '../actions/passwordAction';
+
 import { passwordApi } from 'api';
 import { statusCode } from 'enum';
 import { setErrorMessage } from 'store/actions';
@@ -29,7 +31,11 @@ export const sendNewPasswordTC =
   (data: SendNewPasswordType): AppThunkType =>
   async dispatch => {
     try {
-      await passwordApi.sendNewPassword(data);
+      const { status } = await passwordApi.sendNewPassword(data);
+
+      if (status === statusCode.OK) {
+        dispatch(changePasswordAC(false));
+      }
     } catch (errorCatch) {
       const { response, message } = errorCatch as AxiosError;
       const error = response?.data.error;
