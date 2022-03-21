@@ -28,3 +28,5 @@ export type SendNewPasswordType = {
 export type SendNewPasswordAnswerType = {
   info: string;
 };
+
+export type PasswordActionType = ReturnType<typeof >

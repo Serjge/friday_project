@@ -1,0 +1,1 @@
+export const passwordReducer = (state=initialState, action: PasswordActionType)
