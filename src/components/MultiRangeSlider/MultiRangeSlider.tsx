@@ -25,7 +25,7 @@ export const MultiRangeSlider: FC<MultiRangeSliderPropTypes> = ({
   const [maxVal, setMaxVal] = useState<number>(max);
   const minValRef = useRef(min);
   const maxValRef = useRef(max);
-  const range = useRef<HTMLInputElement>(null);
+  const range = useRef<HTMLDivElement>(null);
 
   // Convert to percentage
   const getPercent = useCallback(

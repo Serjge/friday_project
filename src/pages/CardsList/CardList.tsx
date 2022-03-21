@@ -12,7 +12,12 @@ import {
   setSearchAnswerCards,
   setSearchQuestionCards,
 } from 'store/actions';
-import { selectIsLogin, selectRerenderCards } from 'store/selectors';
+import {
+  selectIsLogin,
+  selectPackUserId,
+  selectRerenderCards,
+  selectUserId,
+} from 'store/selectors';
 import { addCardTC, getCardsTC } from 'store/thunks';
 
 export const CardList = memo((): ReactElement => {
@@ -22,6 +27,8 @@ export const CardList = memo((): ReactElement => {
 
   const isLogin = useSelector(selectIsLogin);
   const rerender = useSelector(selectRerenderCards);
+  const userId = useSelector(selectUserId);
+  const packUserId = useSelector(selectPackUserId);
 
   useEffect(() => {
     if (id) {
@@ -55,7 +62,9 @@ export const CardList = memo((): ReactElement => {
       <SearchWrapper>
         <DebounceSearchField placeholder="Question:" searchValue={searchByQuestion} />
         <DebounceSearchField placeholder="Answer:" searchValue={searchByAnswer} />
-        <SuperButton onClick={onAddCardClick}> Add Card</SuperButton>
+        <SuperButton hidden={userId !== packUserId} onClick={onAddCardClick}>
+          Add Card
+        </SuperButton>
       </SearchWrapper>
       <TableCards />
     </CardListWrapper>
