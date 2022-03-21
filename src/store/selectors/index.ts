@@ -12,3 +12,4 @@ export { selectResultMessage, selectIsAddMod } from './selectAddPack';
 
 export * from './selectPacks';
 export * from './selectCard';
+export { selectPassword } from './selectPassword';

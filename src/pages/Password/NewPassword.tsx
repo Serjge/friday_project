@@ -1,13 +1,16 @@
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 
 import { useSelector } from 'react-redux';
 
-import { PasswordSuccessfulChanged } from '../../components/UI/Password/PasswordSuccesfulChanged';
-import { WriteNewPassword } from '../../components/UI/Password/WriteNewPassword';
-import { selectPassword } from '../../store/selectors/selectPassword';
+import { WriteNewPassword, PasswordSuccessfulChanged } from 'components';
+import { selectPassword } from 'store/selectors';
 
 export const NewPassword = (): ReactElement => {
   const isChanged = useSelector(selectPassword);
 
-  return isChanged ? <WriteNewPassword /> : <PasswordSuccessfulChanged />;
+  if (isChanged) {
+    return <WriteNewPassword />;
+  }
+
+  return <PasswordSuccessfulChanged />;
 };
