@@ -2,28 +2,43 @@ import { AxiosError } from 'axios';
 
 import { packApi } from 'api';
 import { statusCode } from 'enum';
-import { setPacksAC, setErrorMessage } from 'store/actions';
+import { setErrorMessage, setPacksAC } from 'store/actions';
+import {
+  selectCurrentPage,
+  selectIsMyPack,
+  selectLocalMaxCardsCount,
+  selectLocalMinCardsCount,
+  selectPageCount,
+  selectSearchPack,
+  selectSortPacks,
+  selectUserId,
+} from 'store/selectors';
+import { RootReducerType } from 'store/store';
 import { AppThunkType } from 'types';
 
 export const getPacksTC =
-  (
-    packName?: string,
-    min?: number,
-    max?: number,
-    sortPacks?: string,
-    pageCount?: number,
-    page?: number,
-    userId?: string,
-  ): AppThunkType =>
-  async dispatch => {
+  (): AppThunkType => async (dispatch, getState: () => RootReducerType) => {
     try {
+      const isMyPack = selectIsMyPack(getState());
+      const sortPacks = selectSortPacks(getState());
+      const searchPack = selectSearchPack(getState());
+      const minRangeLocal = selectLocalMinCardsCount(getState());
+      const maxRangeLocal = selectLocalMaxCardsCount(getState());
+      const pagesCount = selectPageCount(getState());
+      const currentPage = selectCurrentPage(getState());
+      let userId = selectUserId(getState());
+
+      if (!isMyPack) {
+        userId = '';
+      }
+
       const { status, data } = await packApi.getPacks(
-        packName,
-        min,
-        max,
+        searchPack,
+        minRangeLocal,
+        maxRangeLocal,
         sortPacks,
-        pageCount,
-        page,
+        pagesCount,
+        currentPage,
         userId,
       );
 
