@@ -44,7 +44,7 @@ export const ForgotPassword = (): ReactElement => {
 
   return (
     <Wrapper>
-      <h1>Login</h1>
+      <h1>Forgot your password?</h1>
       <form onSubmit={handleSubmit(onSetInstructions)}>
         <TextField
           {...register('email', {
