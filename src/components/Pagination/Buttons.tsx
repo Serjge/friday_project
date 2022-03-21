@@ -1,22 +1,18 @@
 import { FC, ReactElement } from 'react';
 
-import { useSelector } from 'react-redux';
-
 import style from 'components/Pagination/Pagination.module.css';
 import { SuperButton } from 'components/UI';
 import { ButtonsPagination } from 'enum';
-import { selectCardPacksTotalCount } from 'store/selectors';
 import { ButtonsPropsType } from 'types';
 
 export const Buttons: FC<ButtonsPropsType> = ({
   setCurrentPage,
   currentPage,
   pagesCount,
+  totalCount,
 }): ReactElement => {
-  const cardPacksTotalCount = useSelector(selectCardPacksTotalCount);
-
   const { one, two, four, three } = ButtonsPagination;
-  const lastPage = Math.ceil(cardPacksTotalCount / pagesCount);
+  const lastPage = Math.ceil(totalCount / pagesCount);
   let buttons = [];
 
   for (let index = 1; index <= lastPage; index += one) {

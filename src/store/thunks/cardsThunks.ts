@@ -5,6 +5,8 @@ import { statusCode } from 'enum';
 import { rerenderCardAC, setCards, setErrorMessage } from 'store/actions';
 import {
   selectCard,
+  selectCurrentPageCards,
+  selectPageCountCards,
   selectSearchAnswer,
   selectSearchQuestion,
   selectSortCard,
@@ -13,18 +15,14 @@ import { RootReducerType } from 'store/store';
 import { AddCardType, AppThunkType } from 'types';
 
 export const getCardsTC =
-  (
-    cardsPackId: string,
-    min?: number,
-    max?: number,
-    pageCount?: number,
-    page?: number,
-  ): AppThunkType =>
+  (cardsPackId: string, min?: number, max?: number): AppThunkType =>
   async (dispatch, getState: () => RootReducerType) => {
     try {
       const sortCards = selectSortCard(getState());
       const searchAnswer = selectSearchAnswer(getState());
       const searchQuestion = selectSearchQuestion(getState());
+      const pagesCount = selectPageCountCards(getState());
+      const currentPage = selectCurrentPageCards(getState());
 
       const { status, data } = await cardsApi.getCards(
         cardsPackId,
@@ -33,8 +31,8 @@ export const getCardsTC =
         min,
         max,
         sortCards,
-        pageCount,
-        page,
+        pagesCount,
+        currentPage,
       );
 
       if (status === statusCode.OK) {

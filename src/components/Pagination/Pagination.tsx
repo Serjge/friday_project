@@ -7,6 +7,7 @@ export type PaginationPropsType = {
   currentPage: number;
   pagesCount: number;
   countDecksOnPage: number[];
+  totalCount: number;
   setCurrentPage: (pageNumber: number) => void;
   setPacksCount: (countPack: number) => void;
 };
@@ -16,6 +17,7 @@ export const Pagination: FC<PaginationPropsType> = ({
   pagesCount,
   setPacksCount,
   setCurrentPage,
+  totalCount,
   countDecksOnPage,
 }): ReactElement => {
   const setPageCount = (e: ChangeEvent<HTMLSelectElement>): void => {
@@ -37,6 +39,7 @@ export const Pagination: FC<PaginationPropsType> = ({
         setCurrentPage={setCurrentPage}
         currentPage={currentPage}
         pagesCount={pagesCount}
+        totalCount={totalCount}
       />
     </div>
   );

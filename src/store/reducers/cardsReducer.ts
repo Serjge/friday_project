@@ -2,6 +2,8 @@ import {
   CardsActionType,
   RERENDER_CARD,
   SET_CARDS,
+  SET_CURRENT_PAGE_CARDS,
+  SET_PAGE_COUNT_CARDS,
   SET_SEARCH_ANSWER_CARDS,
   SET_SEARCH_QUESTION_CARDS,
   SET_SORT_CARDS,
@@ -39,6 +41,10 @@ export const cardsReducer = (
       return { ...state, searchQuestion: action.payload.searchValue };
     case RERENDER_CARD:
       return { ...state, flagForRerender: { ...state.flagForRerender } };
+    case SET_CURRENT_PAGE_CARDS:
+      return { ...state, pack: { ...state.pack, page: action.payload.currentPage } };
+    case SET_PAGE_COUNT_CARDS:
+      return { ...state, pack: { ...state.pack, pageCount: action.payload.pageCount } };
     default:
       return state;
   }
