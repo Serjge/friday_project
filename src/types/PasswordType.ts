@@ -1,3 +1,5 @@
+import { changePasswordAC } from '../store/actions/passwordAction';
+
 export type ForgotPasswordSendType = {
   email: string;
   from: string;
@@ -29,4 +31,4 @@ export type SendNewPasswordAnswerType = {
   info: string;
 };
 
-export type PasswordActionType = ReturnType<typeof >
+export type PasswordActionType = ReturnType<typeof changePasswordAC>;
