@@ -22,6 +22,7 @@ import {
   setSearchPack,
 } from 'store/actions';
 import {
+  selectCardPacksTotalCount,
   selectCurrentPage,
   selectIsLogin,
   selectIsMyPack,
@@ -43,11 +44,12 @@ export const PacksList = memo((): ReactElement => {
   const isMyPack = useSelector(selectIsMyPack);
   const rerender = useSelector(selectRerender);
   const pagesCount = useSelector(selectPageCount);
-  const currentPage = useSelector(selectCurrentPage);
   const minRange = useSelector(selectMinCardsCount);
   const maxRange = useSelector(selectMaxCardsCount);
-  const minRangeLocal = useSelector(selectLocalMinCardsCount);
+  const currentPage = useSelector(selectCurrentPage);
   const maxRangeLocal = useSelector(selectLocalMaxCardsCount);
+  const minRangeLocal = useSelector(selectLocalMinCardsCount);
+  const cardPacksTotalCount = useSelector(selectCardPacksTotalCount);
 
   const countDecksOnPage = getNumberValuesFromEnum(CountDecksOnPage);
 
@@ -97,6 +99,7 @@ export const PacksList = memo((): ReactElement => {
         countDecksOnPage={countDecksOnPage}
         setCurrentPage={setCurrentPage}
         setPacksCount={setPacksCount}
+        totalCount={cardPacksTotalCount}
       />
     </Flex>
   );

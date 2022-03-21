@@ -6,6 +6,7 @@ import {
   ProfileActionType,
   RegistrationActionType,
   CardsActionType,
+  PasswordActionType,
 } from 'store/actions';
 
 export type AllAppActionsType =
@@ -15,4 +16,5 @@ export type AllAppActionsType =
   | ProfileActionType
   | PacksActionType
   | AddPackActionsType
-  | CardsActionType;
+  | CardsActionType
+  | PasswordActionType;

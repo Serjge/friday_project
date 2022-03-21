@@ -6,3 +6,4 @@ export * from './UI';
 export { TableCards, CardItem, HeadTableCards } from './TableCards';
 export { MultiRangeSlider } from './MultiRangeSlider';
 export { PackItem, TablePacks, HeadTablePacks } from './TablePacks';
+export { EditProfilePage, EditAvatar, EditName } from './EditProfilePage';

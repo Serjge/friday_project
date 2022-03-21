@@ -16,6 +16,8 @@ export type {
 
 export type { ProfileActionType } from 'store/actions/type/ProfileActionType';
 
+export type { PasswordActionType } from './PasswordActionType';
+
 export type {
   PacksActionType,
   SetPacksType,
