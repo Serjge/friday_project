@@ -8,7 +8,7 @@ import { SuperButton, TextField } from 'components';
 import { PATH } from 'enum';
 import { selectErrorMessage } from 'store/selectors';
 import { forgotPasswordTC } from 'store/thunks';
-import { Wrapper } from 'styles';
+import { Flex, Wrapper } from 'styles';
 import { ForgotPasswordFormType, ForgotPasswordSendType } from 'types';
 import { getErrorValidate } from 'utils';
 
@@ -57,8 +57,7 @@ export const ForgotPassword = (): ReactElement => {
           autoComplete="on"
           error={getErrorValidate(email?.type)}
         />
-
-        <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+        <Flex alignItems="center" flexDirection="column">
           <p>Enter you email address and we will send you further instructions</p>
 
           <SuperButton type="submit" value="send">
@@ -72,7 +71,7 @@ export const ForgotPassword = (): ReactElement => {
           <SuperButton onClick={tryLoginIn} type="button">
             Try logging in
           </SuperButton>
-        </div>
+        </Flex>
       </form>
       {errorMessage || null}
     </Wrapper>
