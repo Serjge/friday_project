@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-magic-numbers */
 import { useCallback, useEffect, useState, useRef, FC } from 'react';
 
 import './multiRangeSlider.css';
