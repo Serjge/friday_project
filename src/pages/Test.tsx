@@ -1,5 +1,7 @@
 import { ReactElement, useState } from 'react';
 
+import { PasswordField } from '../components/UI/PasswordField';
+
 import { AddPack, SuperButton } from 'components';
 import { Modal } from 'components/Modal/Modal';
 
@@ -19,6 +21,7 @@ export const Test = (): ReactElement => {
           Nesciunt, voluptas voluptate! Consectetur cupiditate nesciunt quo.
         </div>
       </Modal>
+      <PasswordField />
     </div>
   );
 };
