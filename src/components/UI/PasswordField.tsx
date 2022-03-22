@@ -1,26 +1,29 @@
 import React, { ReactElement } from 'react';
 
-import { EyeIcon } from '../../icon/eyeIcon';
+import { Flex } from '../../styles';
 
+import { SuperCheckbox } from './SuperCheckbox';
 import { TextField } from './TextField';
 
 export const PasswordField = (): ReactElement => {
-  // const showPassword = (): void => {
-  //   const input = document.getElementById('passwordInput');
-  //   const type = input!.getAttribute('type');
-  //   if (type === 'password') {
-  //     input!.setAttribute('type', 'text');
-  //   } else {
-  //     input!.setAttribute('type', 'password');
-  //   }
-  // };
-  console.log('password');
+  const showPassword = (): void => {
+    const input = document.getElementById('passwordInput');
+    const type = input!.getAttribute('type');
+    if (type === 'password') {
+      input!.setAttribute('type', 'text');
+    } else {
+      input!.setAttribute('type', 'password');
+    }
+  };
   return (
-    <div>
+    <Flex flexDirection="row" alignItems="center">
       <TextField />
-      <EyeIcon />
-      {/* <input id="inputPassword" placeholder="write-password" type="password" /> */}
-      {/* <input type="checkbox" onClick={showPassword} /> */}
-    </div>
+      <SuperCheckbox onClick={showPassword} />
+      <div>
+        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
+        <img src="./../../icon/img/eye.svg" alt="showPassword" onClick={showPassword} />
+      </div>
+      {/* <EyeIcon /> */}
+    </Flex>
   );
 };
