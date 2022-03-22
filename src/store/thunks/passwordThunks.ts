@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 
 import { passwordApi } from 'api';
 import { statusCode } from 'enum';
-import { setErrorMessage, changePasswordAC } from 'store/actions';
+import { setErrorMessageAC, changePasswordAC } from 'store/actions';
 import { AppThunkType, ForgotPasswordSendType, SendNewPasswordType } from 'types';
 
 export const forgotPasswordTC =
@@ -18,9 +18,9 @@ export const forgotPasswordTC =
       const status = response?.status;
 
       if (status === statusCode.Bad_Request) {
-        dispatch(setErrorMessage(error));
+        dispatch(setErrorMessageAC(error));
       } else {
-        dispatch(setErrorMessage(message));
+        dispatch(setErrorMessageAC(message));
       }
     }
   };
@@ -40,9 +40,9 @@ export const sendNewPasswordTC =
       const status = response?.status;
 
       if (status === statusCode.Unauthorized || status === statusCode.Bad_Request) {
-        dispatch(setErrorMessage(error));
+        dispatch(setErrorMessageAC(error));
       } else {
-        dispatch(setErrorMessage(message));
+        dispatch(setErrorMessageAC(message));
       }
     }
   };

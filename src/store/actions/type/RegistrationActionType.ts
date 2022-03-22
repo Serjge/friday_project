@@ -1,6 +1,6 @@
-import { setRegistrationIsCompleted, setStatus } from 'store/actions';
+import { setRegistrationIsCompletedAC, setStatusAC } from 'store/actions';
 
-export type SetIsCompletedType = ReturnType<typeof setRegistrationIsCompleted>;
-export type SetStatusType = ReturnType<typeof setStatus>;
+export type SetIsCompletedType = ReturnType<typeof setRegistrationIsCompletedAC>;
+export type SetStatusType = ReturnType<typeof setStatusAC>;
 
 export type RegistrationActionType = SetIsCompletedType | SetStatusType;

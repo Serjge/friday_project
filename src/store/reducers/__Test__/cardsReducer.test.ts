@@ -1,11 +1,11 @@
 import {
   rerenderCardAC,
-  setCards,
+  setCardsAC,
   setCurrentPageCardsAC,
   setPageCountCardsAC,
-  setSearchAnswerCards,
-  setSearchQuestionCards,
-  setSortCards,
+  setSearchAnswerCardsAC,
+  setSearchQuestionCardsAC,
+  setSortCardsAC,
 } from 'store/actions';
 import { cardsReducer, InitialStateType } from 'store/reducers/cardsReducer';
 import { CardsType, CardType } from 'types';
@@ -68,7 +68,7 @@ beforeEach(() => {
 });
 
 test('set Cards from API', () => {
-  const action = setCards(pack);
+  const action = setCardsAC(pack);
 
   const endState = cardsReducer(initialState, action);
 
@@ -77,7 +77,7 @@ test('set Cards from API', () => {
 });
 
 test('set sort cards value', () => {
-  const action = setSortCards(sort);
+  const action = setSortCardsAC(sort);
 
   const endState = cardsReducer(initialState, action);
 
@@ -86,7 +86,7 @@ test('set sort cards value', () => {
 });
 
 test('set search answer cards', () => {
-  const action = setSearchAnswerCards(searchValue);
+  const action = setSearchAnswerCardsAC(searchValue);
 
   const endState = cardsReducer(initialState, action);
 
@@ -95,7 +95,7 @@ test('set search answer cards', () => {
 });
 
 test('set search question cards', () => {
-  const action = setSearchQuestionCards(searchValue);
+  const action = setSearchQuestionCardsAC(searchValue);
 
   const endState = cardsReducer(initialState, action);
 

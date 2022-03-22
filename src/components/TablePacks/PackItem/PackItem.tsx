@@ -7,7 +7,7 @@ import { DeletePack, SuperButton } from 'components';
 import { PATH } from 'enum';
 import { PenIcon } from 'icon';
 import { RootReducerType } from 'store';
-import { setSearchAnswerCards, setSearchQuestionCards } from 'store/actions';
+import { setSearchAnswerCardsAC, setSearchQuestionCardsAC } from 'store/actions';
 import {
   selectCardsCount,
   selectPackName,
@@ -51,8 +51,8 @@ export const PackItem = memo(({ packId }: PackItemPropsType) => {
   };
 
   const onOpenPackClick = (): void => {
-    dispatch(setSearchQuestionCards(''));
-    dispatch(setSearchAnswerCards(''));
+    dispatch(setSearchQuestionCardsAC(''));
+    dispatch(setSearchAnswerCardsAC(''));
     navigate(`${PATH.CARD}${packId}/${namePack}`);
   };
 

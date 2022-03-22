@@ -11,8 +11,8 @@ import {
   rerenderCardAC,
   setCurrentPageCardsAC,
   setPageCountCardsAC,
-  setSearchAnswerCards,
-  setSearchQuestionCards,
+  setSearchAnswerCardsAC,
+  setSearchQuestionCardsAC,
 } from 'store/actions';
 import {
   selectCurrentPageCards,
@@ -47,12 +47,12 @@ export const CardList = memo((): ReactElement => {
   }, [rerender, currentPage, pagesCount]);
 
   const searchByQuestion = useCallback((question: string): void => {
-    dispatch(setSearchQuestionCards(question));
+    dispatch(setSearchQuestionCardsAC(question));
     dispatch(rerenderCardAC());
   }, []);
 
   const searchByAnswer = useCallback((answer: string): void => {
-    dispatch(setSearchAnswerCards(answer));
+    dispatch(setSearchAnswerCardsAC(answer));
     dispatch(rerenderCardAC());
   }, []);
 

@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, useEffect } from 'react';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,6 +6,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 
 import { SuperButton, TextField } from 'components';
 import { PATH } from 'enum';
+import { setErrorMessageAC } from 'store/actions';
 import {
   selectErrorMessage,
   selectRegistrationIsCompleted,
@@ -29,6 +30,10 @@ export const Registration = (): ReactElement => {
   const status = useSelector(selectStatus);
   const errorMessage = useSelector(selectErrorMessage);
   const RegistrationIsCompleted = useSelector(selectRegistrationIsCompleted);
+
+  useEffect(() => {
+    dispatch(setErrorMessageAC(''));
+  }, []);
 
   const {
     register,

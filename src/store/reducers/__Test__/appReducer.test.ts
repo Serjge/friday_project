@@ -1,4 +1,4 @@
-import { initializeMe, setErrorMessage } from 'store/actions';
+import { initializeMeAC, setErrorMessageAC } from 'store/actions';
 import { appReducer, InitialStateType } from 'store/reducers/appReducer';
 
 let initialState: InitialStateType;
@@ -17,7 +17,7 @@ beforeEach(() => {
 });
 
 test('set error message', () => {
-  const action = setErrorMessage(error);
+  const action = setErrorMessageAC(error);
 
   const endState = appReducer(initialState, action);
 
@@ -27,7 +27,7 @@ test('set error message', () => {
 });
 
 test('set initialized', () => {
-  const action = initializeMe(newInitializeValue);
+  const action = initializeMeAC(newInitializeValue);
 
   const endState = appReducer(initialState, action);
 

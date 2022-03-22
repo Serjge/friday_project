@@ -3,7 +3,7 @@ import { StatusType } from 'types';
 export const SET_REGISTRATION_IS_COMPLETED = 'REGISTRATION/SET_REGISTRATION_IS_COMPLETED';
 export const SET_STATUS = 'REGISTRATION/SET_STATUS';
 
-export const setRegistrationIsCompleted = (isCompleted: boolean) =>
+export const setRegistrationIsCompletedAC = (isCompleted: boolean) =>
   ({
     type: SET_REGISTRATION_IS_COMPLETED,
     payload: {
@@ -11,7 +11,7 @@ export const setRegistrationIsCompleted = (isCompleted: boolean) =>
     },
   } as const);
 
-export const setStatus = (status: StatusType) =>
+export const setStatusAC = (status: StatusType) =>
   ({
     type: SET_STATUS,
     payload: {

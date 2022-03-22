@@ -1,16 +1,16 @@
 export {
-  setStatus,
+  setStatusAC,
   SET_STATUS,
-  setRegistrationIsCompleted,
+  setRegistrationIsCompletedAC,
   SET_REGISTRATION_IS_COMPLETED,
 } from 'store/actions/registrationAction';
 
 export { setIsLoginAC, SET_IS_LOGIN } from './loginAction';
 
 export {
-  initializeMe,
+  initializeMeAC,
   INITIALIZE_ME,
-  setErrorMessage,
+  setErrorMessageAC,
   SET_ERROR_MESSAGE,
 } from './appAction';
 
@@ -30,9 +30,9 @@ export { changePasswordAC, IS_CHANGE_PASSWORD } from './passwordAction';
 export {
   SET_PACKS,
   setPacksAC,
-  setIsMyPack,
-  setSortPacks,
-  setSearchPack,
+  setIsMyPackAC,
+  setSortPacksAC,
+  setSearchPackAC,
   RERENDER_PACK,
   rerenderPackAC,
   SET_IS_MY_PACK,
@@ -55,17 +55,17 @@ export {
 } from 'store/actions/packsAction';
 
 export {
-  setCards,
+  setCardsAC,
   SET_CARDS,
-  setSortCards,
+  setSortCardsAC,
   RERENDER_CARD,
   rerenderCardAC,
   SET_SORT_CARDS,
   setPageCountCardsAC,
-  setSearchAnswerCards,
+  setSearchAnswerCardsAC,
   SET_PAGE_COUNT_CARDS,
   setCurrentPageCardsAC,
-  setSearchQuestionCards,
+  setSearchQuestionCardsAC,
   SET_CURRENT_PAGE_CARDS,
   SET_SEARCH_ANSWER_CARDS,
   SET_SEARCH_QUESTION_CARDS,

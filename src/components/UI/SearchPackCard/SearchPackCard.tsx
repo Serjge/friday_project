@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { TextField } from 'components';
 import { TimerForDeBounce } from 'enum';
 import { useDebounce } from 'hook/useDebounce';
-import { setSearchPack } from 'store/actions';
+import { setSearchPackAC } from 'store/actions';
 
 export const SearchPackCard = (): ReactElement => {
   const dispatch = useDispatch();
@@ -14,9 +14,9 @@ export const SearchPackCard = (): ReactElement => {
 
   const search = useCallback(
     (searchValue: string): void => {
-      dispatch(setSearchPack(searchValue));
+      dispatch(setSearchPackAC(searchValue));
     },
-    [setSearchPack],
+    [setSearchPackAC],
   );
 
   const debounceSearch = useDebounce(search, TimerForDeBounce.SEARCH_DELAY);

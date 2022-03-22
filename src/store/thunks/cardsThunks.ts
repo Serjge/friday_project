@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 
 import { cardsApi } from 'api';
 import { statusCode } from 'enum';
-import { rerenderCardAC, setCards, setErrorMessage } from 'store/actions';
+import { rerenderCardAC, setCardsAC, setErrorMessageAC } from 'store/actions';
 import {
   selectCard,
   selectCurrentPageCards,
@@ -36,7 +36,7 @@ export const getCardsTC =
       );
 
       if (status === statusCode.OK) {
-        dispatch(setCards(data));
+        dispatch(setCardsAC(data));
       }
     } catch (errorCatch) {
       const { response, message } = errorCatch as AxiosError;
@@ -44,9 +44,9 @@ export const getCardsTC =
       const status = response?.status;
 
       if (status === statusCode.Bad_Request) {
-        dispatch(setErrorMessage(error));
+        dispatch(setErrorMessageAC(error));
       } else {
-        dispatch(setErrorMessage(message));
+        dispatch(setErrorMessageAC(message));
       }
     }
   };
@@ -66,9 +66,9 @@ export const addCardTC =
       const status = response?.status;
 
       if (status === statusCode.Bad_Request) {
-        dispatch(setErrorMessage(error));
+        dispatch(setErrorMessageAC(error));
       } else {
-        dispatch(setErrorMessage(message));
+        dispatch(setErrorMessageAC(message));
       }
     }
   };
@@ -88,9 +88,9 @@ export const deleteCardTC =
       const status = response?.status;
 
       if (status === statusCode.Bad_Request) {
-        dispatch(setErrorMessage(error));
+        dispatch(setErrorMessageAC(error));
       } else {
-        dispatch(setErrorMessage(message));
+        dispatch(setErrorMessageAC(message));
       }
     }
   };
@@ -111,9 +111,9 @@ export const updateCardTC =
       const status = response?.status;
 
       if (status === statusCode.Bad_Request) {
-        dispatch(setErrorMessage(error));
+        dispatch(setErrorMessageAC(error));
       } else {
-        dispatch(setErrorMessage(message));
+        dispatch(setErrorMessageAC(message));
       }
     }
   };

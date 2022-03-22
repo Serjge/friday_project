@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 
 import { loginAPI } from 'api';
 import { statusCode } from 'enum';
-import { authMeAC, setErrorMessage, setIsLoginAC } from 'store/actions';
+import { authMeAC, setErrorMessageAC, setIsLoginAC } from 'store/actions';
 import { AppThunkType, LoginApiPayloadType } from 'types';
 
 export const setLoginDataThunkCreator =
@@ -14,7 +14,7 @@ export const setLoginDataThunkCreator =
       if (status === statusCode.OK) {
         dispatch(authMeAC(data));
         dispatch(setIsLoginAC(true));
-        dispatch(setErrorMessage(''));
+        dispatch(setErrorMessageAC(''));
       }
     } catch (errorCatch) {
       const { response, message } = errorCatch as AxiosError;
@@ -22,9 +22,9 @@ export const setLoginDataThunkCreator =
       const status = response?.status;
 
       if (status === statusCode.Unauthorized) {
-        dispatch(setErrorMessage(error));
+        dispatch(setErrorMessageAC(error));
       } else {
-        dispatch(setErrorMessage(message));
+        dispatch(setErrorMessageAC(message));
       }
     }
   };
@@ -42,9 +42,9 @@ export const logOutThunkCreator = (): AppThunkType => async dispatch => {
     const status = response?.status;
 
     if (status === statusCode.Bad_Request) {
-      dispatch(setErrorMessage(error));
+      dispatch(setErrorMessageAC(error));
     } else {
-      dispatch(setErrorMessage(message));
+      dispatch(setErrorMessageAC(message));
     }
   }
 };

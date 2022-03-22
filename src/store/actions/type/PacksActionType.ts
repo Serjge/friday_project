@@ -1,10 +1,10 @@
 import {
   setPacksAC,
-  setSearchPack,
-  setSortPacks,
+  setSearchPackAC,
+  setSortPacksAC,
   setCurrentPagePacksAC,
   setPageCountPacksAC,
-  setIsMyPack,
+  setIsMyPackAC,
   rerenderPackAC,
   setLocalMaxCardsCountAC,
   setLocalMinCardsCountAC,
@@ -14,11 +14,11 @@ import {
 } from 'store/actions';
 
 export type SetPacksType = ReturnType<typeof setPacksAC>;
-export type SetSortPacksType = ReturnType<typeof setSortPacks>;
-export type SetSearchPack = ReturnType<typeof setSearchPack>;
+export type SetSortPacksType = ReturnType<typeof setSortPacksAC>;
+export type SetSearchPack = ReturnType<typeof setSearchPackAC>;
 export type SetPagesCountPacks = ReturnType<typeof setPageCountPacksAC>;
 export type SetCurrentPagePacksType = ReturnType<typeof setCurrentPagePacksAC>;
-export type SetIsMyPackType = ReturnType<typeof setIsMyPack>;
+export type SetIsMyPackType = ReturnType<typeof setIsMyPackAC>;
 export type RerenderPackType = ReturnType<typeof rerenderPackAC>;
 
 export type PacksActionType =

@@ -4,10 +4,10 @@ import {
   setCurrentPagePacksAC,
   setPacksAC,
   setPageCountPacksAC,
-  setSearchPack,
-  setSortPacks,
+  setSearchPackAC,
+  setSortPacksAC,
   setResultMessageAddPackAC,
-  setIsMyPack,
+  setIsMyPackAC,
   rerenderPackAC,
 } from 'store/actions';
 import { packsReducer, InitialStateType } from 'store/reducers/packsReducer';
@@ -84,7 +84,7 @@ test('set Cards from API', () => {
 });
 
 test('change sort value for cards', () => {
-  const action = setSortPacks(sort);
+  const action = setSortPacksAC(sort);
 
   const endState = packsReducer(initialState, action);
 
@@ -93,7 +93,7 @@ test('change sort value for cards', () => {
 });
 
 test('set value for search pack', () => {
-  const action = setSearchPack(searchPack);
+  const action = setSearchPackAC(searchPack);
 
   const endState = packsReducer(initialState, action);
 
@@ -120,7 +120,7 @@ test('set page count', () => {
 });
 
 test('set only my pack', () => {
-  const action = setIsMyPack(isMyPack);
+  const action = setIsMyPackAC(isMyPack);
 
   const endState = packsReducer(initialState, action);
 

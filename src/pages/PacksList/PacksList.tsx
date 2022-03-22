@@ -19,7 +19,7 @@ import {
   setLocalMaxCardsCountAC,
   setLocalMinCardsCountAC,
   setPageCountPacksAC,
-  setSearchPack,
+  setSearchPackAC,
 } from 'store/actions';
 import {
   selectCardPacksTotalCount,
@@ -54,7 +54,7 @@ export const PacksList = memo((): ReactElement => {
   const countDecksOnPage = getNumberValuesFromEnum(CountDecksOnPage);
 
   const searchByPacks = useCallback((pack: string): void => {
-    dispatch(setSearchPack(pack));
+    dispatch(setSearchPackAC(pack));
     dispatch(rerenderPackAC());
   }, []);
 

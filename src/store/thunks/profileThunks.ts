@@ -6,8 +6,8 @@ import {
   authMeAC,
   changePersonalAvatarAC,
   changePersonalNameAC,
-  initializeMe,
-  setErrorMessage,
+  initializeMeAC,
+  setErrorMessageAC,
   setIsLoginAC,
 } from 'store/actions';
 import { AppThunkType } from 'types';
@@ -26,12 +26,12 @@ export const authMeTC = (): AppThunkType => async dispatch => {
     const status = response?.status;
 
     if (status === statusCode.Unauthorized) {
-      dispatch(setErrorMessage(error));
+      dispatch(setErrorMessageAC(error));
     } else {
-      dispatch(setErrorMessage(message));
+      dispatch(setErrorMessageAC(message));
     }
   } finally {
-    dispatch(initializeMe(true));
+    dispatch(initializeMeAC(true));
   }
 };
 
@@ -50,9 +50,9 @@ export const editProfileNameTC =
       const status = response?.status;
 
       if (status === statusCode.Unauthorized) {
-        dispatch(setErrorMessage(error));
+        dispatch(setErrorMessageAC(error));
       } else {
-        dispatch(setErrorMessage(message));
+        dispatch(setErrorMessageAC(message));
       }
     }
   };
@@ -72,9 +72,9 @@ export const editPersonalAvatarTC =
       const status = response?.status;
 
       if (status === statusCode.Unauthorized) {
-        dispatch(setErrorMessage(error));
+        dispatch(setErrorMessageAC(error));
       } else {
-        dispatch(setErrorMessage(message));
+        dispatch(setErrorMessageAC(message));
       }
     }
   };
