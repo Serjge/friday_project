@@ -3,6 +3,7 @@ import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
+import { PATH } from 'enum';
 import {
   Login,
   NewPassword,
@@ -12,11 +13,9 @@ import {
   Registration,
   Test,
   InstructionSet,
-} from '.';
-
-import { PATH } from 'enum';
-import { CardList } from 'pages/CardsList/CardList';
-import { PacksList } from 'pages/PacksList/PacksList';
+  CardList,
+  PacksList,
+} from 'pages';
 import { selectIsLogin } from 'store/selectors';
 
 export const Routers = (): ReactElement => {

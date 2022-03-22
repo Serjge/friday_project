@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { FC, ReactElement } from 'react';
 
 import style from './Modal.module.css';
@@ -14,10 +13,12 @@ export const Modal: FC<ModalPropsType> = ({
   children,
 }): ReactElement => (
   <div
+    role="presentation"
     className={`${style.modal}  ${isActive ? style.active : ''}`}
     onClick={() => changeIsActive(false)}
   >
     <div
+      role="presentation"
       className={`${style.modal__content} ${isActive ? style.active : ''} `}
       onClick={e => e.stopPropagation()}
     >

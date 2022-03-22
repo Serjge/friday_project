@@ -6,3 +6,4 @@ export { Registration } from './Registration';
 export { Page404 } from './Page404';
 export { Routers } from './Routers';
 export { CardList } from './CardsList';
+export { PacksList } from './PacksList';
