@@ -15,7 +15,7 @@ export type InitialStateType = {
   sort: string;
   searchAnswer: string;
   searchQuestion: string;
-  flagForRerender: string[];
+  rerenderFlag: string[];
 };
 
 const initialState: InitialStateType = {
@@ -23,7 +23,7 @@ const initialState: InitialStateType = {
   sort: '',
   searchAnswer: '',
   searchQuestion: '',
-  flagForRerender: ['rerender'],
+  rerenderFlag: ['rerender'],
 };
 
 export const cardsReducer = (
@@ -40,7 +40,7 @@ export const cardsReducer = (
     case SET_SEARCH_QUESTION_CARDS:
       return { ...state, searchQuestion: action.payload.searchValue };
     case RERENDER_CARD:
-      return { ...state, flagForRerender: { ...state.flagForRerender } };
+      return { ...state, rerenderFlag: { ...state.rerenderFlag } };
     case SET_CURRENT_PAGE_CARDS:
       return { ...state, pack: { ...state.pack, page: action.payload.currentPage } };
     case SET_PAGE_COUNT_CARDS:

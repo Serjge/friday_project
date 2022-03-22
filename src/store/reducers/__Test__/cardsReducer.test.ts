@@ -25,7 +25,7 @@ beforeEach(() => {
     sort: '',
     searchAnswer: '',
     searchQuestion: '',
-    flagForRerender: ['rerender'],
+    rerenderFlag: ['rerender'],
   };
   card = {
     answer: '',
@@ -109,7 +109,7 @@ test('rerender', () => {
   const endState = cardsReducer(initialState, action);
 
   expect(endState).not.toBe(initialState);
-  expect(endState.flagForRerender).not.toBe(initialState.flagForRerender);
+  expect(endState.rerenderFlag).not.toBe(initialState.rerenderFlag);
 });
 
 test('set current page', () => {

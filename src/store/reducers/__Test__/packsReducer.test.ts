@@ -31,7 +31,7 @@ beforeEach(() => {
     sort: '',
     searchPack: '',
     isMyPack: false,
-    flagForRerender: ['remind'],
+    rerenderFlag: ['remind'],
     localMinRage: 0,
     localMaxRage: 0,
     resultMessageAddPack: '',
@@ -134,7 +134,7 @@ test('rerender for API request', () => {
   const endState = packsReducer(initialState, action);
 
   expect(endState).not.toBe(initialState);
-  expect(endState.flagForRerender).not.toBe(initialState.flagForRerender);
+  expect(endState.rerenderFlag).not.toBe(initialState.rerenderFlag);
 });
 
 test('set min cards count', () => {

@@ -5,3 +5,4 @@ export { CountDecksOnPage } from './decksOnPage';
 export { ButtonsPagination } from './buttonsPagination';
 export { TimerForDeBounce } from './timerForDeBounce';
 export { ValueForRange } from './valueForRange';
+export { PATHS_API } from './pathAPI';
