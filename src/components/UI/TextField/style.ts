@@ -31,7 +31,7 @@ type inputPropsType = {
 };
 
 export const Input = styled.input<inputPropsType>`
-  width: 300px;
+  width: ${({ width }) => width || '300px'};
   height: 30px;
   margin: 5px;
   font-family: inherit;

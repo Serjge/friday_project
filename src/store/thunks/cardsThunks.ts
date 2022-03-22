@@ -52,10 +52,10 @@ export const getCardsTC =
   };
 
 export const addCardTC =
-  (cardsPackId: string): AppThunkType =>
+  (cardsPackId: string, question: string, answer: string): AppThunkType =>
   async dispatch => {
     try {
-      const { status } = await cardsApi.addCard(cardsPackId);
+      const { status } = await cardsApi.addCard(cardsPackId, question, answer);
 
       if (status === statusCode.created) {
         dispatch(rerenderCardAC());
