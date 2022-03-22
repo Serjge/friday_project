@@ -4,8 +4,8 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { PasswordField } from '../PasswordField';
 import { SuperButton } from '../SuperButton';
-import { TextField } from '../TextField';
 
 import { selectErrorMessage } from 'store/selectors';
 import { sendNewPasswordTC } from 'store/thunks';
@@ -43,15 +43,23 @@ export const WriteNewPassword = (): ReactElement => {
     <Wrapper>
       <h1>Create new password</h1>
       <form onSubmit={handleSubmit(createNewPassword)}>
-        <TextField
+        {/* <TextField */}
+        {/*  {...register('password', { required: true, minLength: 8 })} */}
+        {/*  type="password" */}
+        {/*  labelTitle="New Password:" */}
+        {/*  placeholder="Password" */}
+        {/*  autoComplete="on" */}
+        {/*  error={getErrorValidate(password?.type)} */}
+        {/* /> */}
+        <PasswordField
           {...register('password', { required: true, minLength: 8 })}
           type="password"
           labelTitle="New Password:"
           placeholder="Password"
-          autoComplete="on"
+          autoComplete="no"
           error={getErrorValidate(password?.type)}
         />
-        <TextField
+        <PasswordField
           labelTitle="Confirm password"
           type="password"
           {...register('confirmPassword', {
