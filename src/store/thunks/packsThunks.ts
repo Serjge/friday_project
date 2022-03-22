@@ -1,8 +1,8 @@
 import { AxiosError } from 'axios';
 
 import { packApi } from 'api';
-import { statusCode } from 'enum';
-import { setErrorMessage, setPacksAC } from 'store/actions';
+import { StatusCode } from 'enum';
+import { setErrorMessageAC, setPacksAC } from 'store/actions';
 import {
   selectCurrentPage,
   selectIsMyPack,
@@ -42,7 +42,7 @@ export const getPacksTC =
         userId,
       );
 
-      if (status === statusCode.OK) {
+      if (status === StatusCode.Success) {
         dispatch(setPacksAC(data));
       }
     } catch (errorCatch) {
@@ -50,10 +50,10 @@ export const getPacksTC =
       const error = response?.data.error;
       const status = response?.status;
 
-      if (status === statusCode.Bad_Request) {
-        dispatch(setErrorMessage(error));
+      if (status === StatusCode.Bad_Request) {
+        dispatch(setErrorMessageAC(error));
       } else {
-        dispatch(setErrorMessage(message));
+        dispatch(setErrorMessageAC(message));
       }
     }
   };

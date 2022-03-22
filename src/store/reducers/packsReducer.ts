@@ -20,7 +20,7 @@ export type InitialStateType = {
   sort: string;
   searchPack: string;
   isMyPack: boolean;
-  flagForRerender: string[]; // for delete
+  rerenderFlag: string[]; // for delete
   localMinRage: number;
   localMaxRage: number;
   resultMessageAddPack: string;
@@ -36,7 +36,7 @@ const initialState: InitialStateType = {
   sort: '',
   searchPack: '',
   isMyPack: false,
-  flagForRerender: ['rerender'],
+  rerenderFlag: ['rerender'],
   localMinRage: 0,
   localMaxRage: 30,
   resultMessageAddPack: '',
@@ -63,7 +63,7 @@ export const packsReducer = (
     case SET_IS_MY_PACK:
       return { ...state, isMyPack: action.payload.isMyPack };
     case RERENDER_PACK:
-      return { ...state, flagForRerender: { ...state.flagForRerender } };
+      return { ...state, rerenderFlag: { ...state.rerenderFlag } };
     case SET_MIN_CARDS_COUNT:
       return {
         ...state,

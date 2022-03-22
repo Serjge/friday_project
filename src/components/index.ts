@@ -9,3 +9,4 @@ export { PackItem, TablePacks, HeadTablePacks } from './TablePacks';
 export { EditProfilePage, EditAvatar, EditName } from './EditProfilePage';
 export { Modal } from './Modal';
 export { AddCard, EditCard, DeleteCard } from './ModalCard';
+export { DeletePack } from './DeletePack';

@@ -1,8 +1,8 @@
 import { AxiosError } from 'axios';
 
 import { loginAPI } from 'api';
-import { statusCode } from 'enum';
-import { authMeAC, setErrorMessage, setIsLoginAC } from 'store/actions';
+import { StatusCode } from 'enum';
+import { authMeAC, setErrorMessageAC, setIsLoginAC } from 'store/actions';
 import { AppThunkType, LoginApiPayloadType } from 'types';
 
 export const setLoginDataThunkCreator =
@@ -11,20 +11,20 @@ export const setLoginDataThunkCreator =
     try {
       const { data, status } = await loginAPI.login(loginData);
 
-      if (status === statusCode.OK) {
+      if (status === StatusCode.Success) {
         dispatch(authMeAC(data));
         dispatch(setIsLoginAC(true));
-        dispatch(setErrorMessage(''));
+        dispatch(setErrorMessageAC(''));
       }
     } catch (errorCatch) {
       const { response, message } = errorCatch as AxiosError;
       const error = response?.data.error;
       const status = response?.status;
 
-      if (status === statusCode.Unauthorized) {
-        dispatch(setErrorMessage(error));
+      if (status === StatusCode.Unauthorized) {
+        dispatch(setErrorMessageAC(error));
       } else {
-        dispatch(setErrorMessage(message));
+        dispatch(setErrorMessageAC(message));
       }
     }
   };
@@ -33,7 +33,7 @@ export const logOutThunkCreator = (): AppThunkType => async dispatch => {
   try {
     const { status } = await loginAPI.logOut();
 
-    if (status === statusCode.OK) {
+    if (status === StatusCode.Success) {
       dispatch(setIsLoginAC(false));
     }
   } catch (errorCatch) {
@@ -41,10 +41,10 @@ export const logOutThunkCreator = (): AppThunkType => async dispatch => {
     const error = response?.data.error;
     const status = response?.status;
 
-    if (status === statusCode.Bad_Request) {
-      dispatch(setErrorMessage(error));
+    if (status === StatusCode.Bad_Request) {
+      dispatch(setErrorMessageAC(error));
     } else {
-      dispatch(setErrorMessage(message));
+      dispatch(setErrorMessageAC(message));
     }
   }
 };

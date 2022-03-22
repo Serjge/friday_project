@@ -1,7 +1,7 @@
 export const SET_ERROR_MESSAGE = 'APP/SET_ERROR_MESSAGE';
 export const INITIALIZE_ME = 'APP/INITIALIZE_ME';
 
-export const setErrorMessage = (errorMessage: string) =>
+export const setErrorMessageAC = (errorMessage: string) =>
   ({
     type: SET_ERROR_MESSAGE,
     payload: {
@@ -9,7 +9,7 @@ export const setErrorMessage = (errorMessage: string) =>
     },
   } as const);
 
-export const initializeMe = (isInitialize: boolean) =>
+export const initializeMeAC = (isInitialize: boolean) =>
   ({
     type: INITIALIZE_ME,
     payload: {

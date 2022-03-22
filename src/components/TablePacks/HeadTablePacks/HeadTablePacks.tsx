@@ -3,14 +3,14 @@ import { memo, ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 
 import { useSort } from 'hook';
-import { rerenderPackAC, setSortPacks } from 'store/actions';
+import { rerenderPackAC, setSortPacksAC } from 'store/actions';
 import { selectSortPacks } from 'store/selectors';
 import { Flex, TableHeadWithSorts } from 'styles';
 
 export const HeadTablePacks = memo((): ReactElement => {
   const sortPacks = useSelector(selectSortPacks);
 
-  const onSortPacksClick = useSort(setSortPacks, rerenderPackAC, selectSortPacks);
+  const onSortPacksClick = useSort(setSortPacksAC, rerenderPackAC, selectSortPacks);
 
   const tableHeadData = [
     {

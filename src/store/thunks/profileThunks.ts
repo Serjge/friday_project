@@ -1,13 +1,13 @@
 import { AxiosError } from 'axios';
 
 import { profileApi } from 'api';
-import { statusCode } from 'enum';
+import { StatusCode } from 'enum';
 import {
   authMeAC,
   changePersonalAvatarAC,
   changePersonalNameAC,
-  initializeMe,
-  setErrorMessage,
+  initializeMeAC,
+  setErrorMessageAC,
   setIsLoginAC,
 } from 'store/actions';
 import { AppThunkType } from 'types';
@@ -16,7 +16,7 @@ export const authMeTC = (): AppThunkType => async dispatch => {
   try {
     const { status, data } = await profileApi.authMe();
 
-    if (status === statusCode.OK) {
+    if (status === StatusCode.Success) {
       dispatch(authMeAC(data));
       dispatch(setIsLoginAC(true));
     }
@@ -25,13 +25,13 @@ export const authMeTC = (): AppThunkType => async dispatch => {
     const error = response?.data.error;
     const status = response?.status;
 
-    if (status === statusCode.Unauthorized) {
-      dispatch(setErrorMessage(error));
+    if (status === StatusCode.Unauthorized) {
+      dispatch(setErrorMessageAC(error));
     } else {
-      dispatch(setErrorMessage(message));
+      dispatch(setErrorMessageAC(message));
     }
   } finally {
-    dispatch(initializeMe(true));
+    dispatch(initializeMeAC(true));
   }
 };
 
@@ -41,7 +41,7 @@ export const editProfileNameTC =
     try {
       const { status, data } = await profileApi.editPersonalName(name);
 
-      if (status === statusCode.OK) {
+      if (status === StatusCode.Success) {
         dispatch(changePersonalNameAC(data.updatedUser.name));
       }
     } catch (errorCatch) {
@@ -49,10 +49,10 @@ export const editProfileNameTC =
       const error = response?.data.error;
       const status = response?.status;
 
-      if (status === statusCode.Unauthorized) {
-        dispatch(setErrorMessage(error));
+      if (status === StatusCode.Unauthorized) {
+        dispatch(setErrorMessageAC(error));
       } else {
-        dispatch(setErrorMessage(message));
+        dispatch(setErrorMessageAC(message));
       }
     }
   };
@@ -63,7 +63,7 @@ export const editPersonalAvatarTC =
     try {
       const { data, status } = await profileApi.editPersonalAvatar(avatar);
 
-      if (status === statusCode.OK) {
+      if (status === StatusCode.Success) {
         dispatch(changePersonalAvatarAC(data.updatedUser.avatar));
       }
     } catch (errorCatch) {
@@ -71,10 +71,10 @@ export const editPersonalAvatarTC =
       const error = response?.data.error;
       const status = response?.status;
 
-      if (status === statusCode.Unauthorized) {
-        dispatch(setErrorMessage(error));
+      if (status === StatusCode.Unauthorized) {
+        dispatch(setErrorMessageAC(error));
       } else {
-        dispatch(setErrorMessage(message));
+        dispatch(setErrorMessageAC(message));
       }
     }
   };

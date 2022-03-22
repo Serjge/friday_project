@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { SwitcherBox, WrapperSwitcher } from './style';
 
-import { setIsMyPack } from 'store/actions';
+import { setIsMyPackAC } from 'store/actions';
 import { selectIsMyPack } from 'store/selectors';
 
 export const SwitcherMyAll = memo((): ReactElement => {
@@ -13,11 +13,11 @@ export const SwitcherMyAll = memo((): ReactElement => {
   const isMyPack = useSelector(selectIsMyPack);
 
   const onMyPackClick = (): void => {
-    dispatch(setIsMyPack(true));
+    dispatch(setIsMyPackAC(true));
   };
 
   const onAllPackClick = (): void => {
-    dispatch(setIsMyPack(false));
+    dispatch(setIsMyPackAC(false));
   };
 
   return (

@@ -21,7 +21,7 @@ export const setPacksAC = (cards: PacksType) =>
     },
   } as const);
 
-export const setSortPacks = (sort: string) =>
+export const setSortPacksAC = (sort: string) =>
   ({
     type: SET_SORT_PACKS,
     payload: {
@@ -29,7 +29,7 @@ export const setSortPacks = (sort: string) =>
     },
   } as const);
 
-export const setSearchPack = (searchValue: string) =>
+export const setSearchPackAC = (searchValue: string) =>
   ({
     type: SET_SEARCH_PACK,
     payload: {
@@ -53,7 +53,7 @@ export const setPageCountPacksAC = (pageCount: number) =>
     },
   } as const);
 
-export const setIsMyPack = (isMyPack: boolean) =>
+export const setIsMyPackAC = (isMyPack: boolean) =>
   ({
     type: SET_IS_MY_PACK,
     payload: {
