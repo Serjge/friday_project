@@ -3,7 +3,7 @@ import { memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { SuperButton } from 'components';
+import { DeletePack, SuperButton } from 'components';
 import { PATH } from 'enum';
 import { PenIcon } from 'icon';
 import { RootReducerType } from 'store';
@@ -70,13 +70,10 @@ export const PackItem = memo(({ packId }: PackItemPropsType) => {
         <SuperButton size="small" onClick={onOpenPackClick}>
           Open
         </SuperButton>
-        <SuperButton
-          size="small"
-          hidden={hiddenEditPackButton}
-          onClick={onDeletePackClick}
-        >
-          Delete
-        </SuperButton>
+        <DeletePack
+          hiddenEditPackButton={hiddenEditPackButton}
+          onDeletePackClick={onDeletePackClick}
+        />
       </TableItem>
     </Flex>
   );
