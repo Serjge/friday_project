@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 
 import { registrationApi } from 'api';
-import { statusCode } from 'enum';
+import { StatusCode } from 'enum';
 import {
   setErrorMessageAC,
   setRegistrationIsCompletedAC,
@@ -17,7 +17,7 @@ export const registrationTC =
 
       const { status } = await registrationApi.registration({ email, password });
 
-      if (status === statusCode.created) {
+      if (status === StatusCode.Created) {
         dispatch(setRegistrationIsCompletedAC(true));
       }
     } catch (errorCatch) {
@@ -25,7 +25,7 @@ export const registrationTC =
       const error = response?.data.error;
       const status = response?.status;
 
-      if (status === statusCode.Bad_Request) {
+      if (status === StatusCode.Bad_Request) {
         dispatch(setErrorMessageAC(error));
       } else {
         dispatch(setErrorMessageAC(message));

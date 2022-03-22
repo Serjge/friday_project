@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 
 import { packApi } from 'api';
-import { statusCode } from 'enum';
+import { StatusCode } from 'enum';
 import { setErrorMessageAC, setPacksAC } from 'store/actions';
 import {
   selectCurrentPage,
@@ -42,7 +42,7 @@ export const getPacksTC =
         userId,
       );
 
-      if (status === statusCode.OK) {
+      if (status === StatusCode.Success) {
         dispatch(setPacksAC(data));
       }
     } catch (errorCatch) {
@@ -50,7 +50,7 @@ export const getPacksTC =
       const error = response?.data.error;
       const status = response?.status;
 
-      if (status === statusCode.Bad_Request) {
+      if (status === StatusCode.Bad_Request) {
         dispatch(setErrorMessageAC(error));
       } else {
         dispatch(setErrorMessageAC(message));

@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 
 import { packApi } from 'api/packApi';
-import { statusCode } from 'enum';
+import { StatusCode } from 'enum';
 import { rerenderPackAC, setResultMessageAddPackAC } from 'store/actions';
 import { AppThunkType } from 'types';
 
@@ -11,7 +11,7 @@ export const addPackTC =
     try {
       const { status } = await packApi.setNewPack(newTitle);
 
-      if (status === statusCode.created) {
+      if (status === StatusCode.Created) {
         dispatch(setResultMessageAddPackAC('Pack created'));
         dispatch(rerenderPackAC());
       }
@@ -20,7 +20,7 @@ export const addPackTC =
       const error = response?.data.error;
       const status = response?.status;
 
-      if (status === statusCode.Bad_Request) {
+      if (status === StatusCode.Bad_Request) {
         dispatch(setResultMessageAddPackAC(error));
       } else {
         dispatch(setResultMessageAddPackAC(message));
@@ -33,7 +33,7 @@ export const deletePackTC =
   async dispatch => {
     try {
       const response = await packApi.deletePack(packId);
-      if (response.status === statusCode.OK) {
+      if (response.status === StatusCode.Success) {
         dispatch(rerenderPackAC());
       }
     } catch (errorCatch) {

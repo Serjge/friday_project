@@ -11,7 +11,7 @@ import {
   SwitcherMyAll,
   TablePacks,
 } from 'components';
-import { CountDecksOnPage, PATH, TimerForDeBounce } from 'enum';
+import { CountDecksOnPage, PATH, DeBounceTimer } from 'enum';
 import { useDebounce } from 'hook';
 import {
   rerenderPackAC,
@@ -74,7 +74,7 @@ export const PacksList = memo((): ReactElement => {
     [],
   );
 
-  const handleRange = useDebounce(changeRange, TimerForDeBounce.RANGE_DELAY);
+  const handleRange = useDebounce(changeRange, DeBounceTimer.RANGE_DELAY);
 
   useEffect(() => {
     dispatch(getPacksTC());
