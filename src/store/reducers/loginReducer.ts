@@ -14,7 +14,7 @@ export const loginReducer = (
 ): LoginStateWithErrorKey => {
   switch (action.type) {
     case SET_IS_LOGIN:
-      return { ...state, isLogin: action.payload.isLogin };
+      return { ...state, ...action.payload };
     default:
       return state;
   }

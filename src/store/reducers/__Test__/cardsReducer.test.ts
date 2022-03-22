@@ -1,4 +1,12 @@
-import { setCards, setSearchAnswerCards, setSortCards } from 'store/actions';
+import {
+  rerenderCardAC,
+  setCards,
+  setCurrentPageCardsAC,
+  setPageCountCardsAC,
+  setSearchAnswerCards,
+  setSearchQuestionCards,
+  setSortCards,
+} from 'store/actions';
 import { cardsReducer, InitialStateType } from 'store/reducers/cardsReducer';
 import { CardsType, CardType } from 'types';
 
@@ -8,6 +16,8 @@ let cards: CardType[];
 let card: CardType;
 let sort: string;
 let searchValue: string;
+const currentPage: number = 10;
+const pageCount: number = 100;
 
 beforeEach(() => {
   initialState = {
@@ -84,4 +94,38 @@ test('set search answer cards', () => {
   expect(endState.searchAnswer).toBe(searchValue);
 });
 
-// to be continued
+test('set search question cards', () => {
+  const action = setSearchQuestionCards(searchValue);
+
+  const endState = cardsReducer(initialState, action);
+
+  expect(endState).not.toBe(initialState);
+  expect(endState.searchQuestion).toBe(searchValue);
+});
+
+test('rerender', () => {
+  const action = rerenderCardAC();
+
+  const endState = cardsReducer(initialState, action);
+
+  expect(endState).not.toBe(initialState);
+  expect(endState.flagForRerender).not.toBe(initialState.flagForRerender);
+});
+
+test('set current page', () => {
+  const action = setCurrentPageCardsAC(currentPage);
+
+  const endState = cardsReducer(initialState, action);
+
+  expect(endState).not.toBe(initialState);
+  expect(endState.pack.page).toBe(currentPage);
+});
+
+test('set page count', () => {
+  const action = setPageCountCardsAC(pageCount);
+
+  const endState = cardsReducer(initialState, action);
+
+  expect(endState).not.toBe(initialState);
+  expect(endState.pack.pageCount).toBe(pageCount);
+});
