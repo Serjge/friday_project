@@ -9,10 +9,6 @@
     background-color: rgb(7, 20, 28);
 }
 
-.title {
-    margin-top: 20px;
-}
-
 .input {
     display: flex;
     flex-direction: column;
