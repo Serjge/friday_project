@@ -1,5 +1,3 @@
-import { setAddModAC, setResultMessageAddPackAC } from 'store/actions';
+import { setResultMessageAddPackAC } from 'store/actions';
 
-export type AddPackActionsType =
-  | ReturnType<typeof setAddModAC>
-  | ReturnType<typeof setResultMessageAddPackAC>;
+export type AddPackActionsType = ReturnType<typeof setResultMessageAddPackAC>;
