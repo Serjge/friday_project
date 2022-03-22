@@ -32,11 +32,7 @@ export const AddPack = (): ReactElement => {
       <Modal isActive={isActive} changeIsActive={setIsActive}>
         <div className={style.form}>
           <h3>ADD NEW PACK</h3>
-          <div className={style.input}>
-            <h4>New title</h4>
-            {/* add width TextField */}
-            <TextField defaultValue={newTitle} />
-          </div>
+          <TextField labelTitle="New title" width="200px" defaultValue={newTitle} />
           <div className={style.message}>{resultMessage}</div>
           <div>
             <SuperButton onClick={setIsAddMod}>Cancel</SuperButton>

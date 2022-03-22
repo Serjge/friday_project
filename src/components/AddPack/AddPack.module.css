@@ -9,11 +9,6 @@
     background-color: rgb(7, 20, 28);
 }
 
-.input {
-    display: flex;
-    flex-direction: column;
-}
-
 .input span {
     margin: 5px;
 }
