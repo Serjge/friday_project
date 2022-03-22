@@ -8,5 +8,4 @@ export { MultiRangeSlider } from './MultiRangeSlider';
 export { PackItem, TablePacks, HeadTablePacks } from './TablePacks';
 export { EditProfilePage, EditAvatar, EditName } from './EditProfilePage';
 export { Modal } from './Modal';
-export { AddCard } from './AddCard';
-export { EditCard } from './EditCard';
+export { AddCard, EditCard, DeleteCard } from './ModalCard';

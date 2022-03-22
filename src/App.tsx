@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Header, Loading } from 'components';
 import { Routers } from 'pages';
 import { selectIsInitialize } from 'store/selectors';
-import { authMeTC } from 'store/thunks/profileThunks';
+import { authMeTC } from 'store/thunks';
 import { Wrapper } from 'styles';
 
 export const App = (): ReactElement => {

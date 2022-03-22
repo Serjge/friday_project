@@ -1,8 +1,9 @@
-import { memo, ReactElement, useCallback, useRef, useState } from 'react';
+import { memo, ReactElement, useCallback, useRef } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Modal, SuperButton, TextField } from 'components';
+import { useModal } from 'hook';
 import { selectPackUserId, selectUserId } from 'store/selectors';
 import { addCardTC } from 'store/thunks';
 import { WrapperModal } from 'styles';
@@ -16,26 +17,21 @@ export const AddCard = memo(
 
     const answer = useRef<HTMLInputElement>(null);
     const question = useRef<HTMLInputElement>(null);
-    const [isActive, setIsActive] = useState<boolean>(false);
+
+    const { isActiveModal, openModal, closeModal } = useModal();
 
     const onAddCardClick = useCallback((): void => {
       if (packId) {
         dispatch(addCardTC(packId, question.current!.value, answer.current!.value));
       }
-      setIsActive(false);
+      question.current!.value = '';
+      answer.current!.value = '';
+      closeModal();
     }, []);
-
-    const onCloseModalClick = useCallback((): void => {
-      setIsActive(false);
-    }, []);
-
-    const onOpenModalClick = (): void => {
-      setIsActive(true);
-    };
 
     return (
       <>
-        <Modal isActive={isActive} changeIsActive={setIsActive}>
+        <Modal isActive={isActiveModal} changeIsActive={closeModal}>
           <WrapperModal>
             <h3>Add new card.</h3>
             <div>
@@ -43,12 +39,12 @@ export const AddCard = memo(
               <TextField labelTitle="Answer" width="200px" ref={answer} />
             </div>
             <div>
-              <SuperButton onClick={onCloseModalClick}>Cancel</SuperButton>
+              <SuperButton onClick={openModal}>Cancel</SuperButton>
               <SuperButton onClick={onAddCardClick}>Add</SuperButton>
             </div>
           </WrapperModal>
         </Modal>
-        <SuperButton hidden={userId !== packUserId} onClick={onOpenModalClick}>
+        <SuperButton hidden={userId !== packUserId} onClick={openModal}>
           Add Card
         </SuperButton>
       </>
