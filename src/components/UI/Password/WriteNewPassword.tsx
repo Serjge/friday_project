@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { PasswordField } from '../PasswordField';
+import { PasswordField } from '../PasswordField/PasswordField';
 import { SuperButton } from '../SuperButton';
 
 import { selectErrorMessage } from 'store/selectors';
