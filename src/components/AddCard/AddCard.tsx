@@ -38,8 +38,10 @@ export const AddCard = memo(
         <Modal isActive={isActive} changeIsActive={setIsActive}>
           <WrapperModal>
             <h3>Add new card.</h3>
-            <TextField labelTitle="Question" width="200px" ref={question} />
-            <TextField labelTitle="Answer" width="200px" ref={answer} />
+            <div>
+              <TextField labelTitle="Question" width="200px" ref={question} />
+              <TextField labelTitle="Answer" width="200px" ref={answer} />
+            </div>
             <div>
               <SuperButton onClick={onCloseModalClick}>Cancel</SuperButton>
               <SuperButton onClick={onAddCardClick}>Add</SuperButton>

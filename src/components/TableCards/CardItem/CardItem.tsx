@@ -2,7 +2,7 @@ import { memo } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { SuperButton } from 'components';
+import { SuperButton, EditCard } from 'components';
 import { RootReducerType } from 'store';
 import {
   selectAnswer,
@@ -10,7 +10,7 @@ import {
   selectQuestion,
   selectUpdateCard,
 } from 'store/selectors';
-import { deleteCardTC, updateCardTC } from 'store/thunks';
+import { deleteCardTC } from 'store/thunks';
 import { Flex, TableItem } from 'styles';
 
 type CardItemPropsType = {
@@ -23,21 +23,15 @@ export const CardItem = memo(({ cardId, isMyPack }: CardItemPropsType) => {
 
   const question = useSelector((state: RootReducerType) => selectQuestion(state, cardId));
   const answer = useSelector((state: RootReducerType) => selectAnswer(state, cardId));
+  const grade = useSelector((state: RootReducerType) => selectGradeCard(state, cardId));
   const updated = useSelector((state: RootReducerType) =>
     selectUpdateCard(state, cardId),
   );
-  const grade = useSelector((state: RootReducerType) => selectGradeCard(state, cardId));
 
   const dataNew = new Date(updated);
 
   const onDeleteCardClick = (): void => {
     dispatch(deleteCardTC(cardId));
-  };
-
-  const onUpdateCardClick = (): void => {
-    dispatch(
-      updateCardTC(cardId, { question: 'updateQuestion', answer: 'updateAnswer' }),
-    );
   };
 
   if (isMyPack) {
@@ -48,9 +42,7 @@ export const CardItem = memo(({ cardId, isMyPack }: CardItemPropsType) => {
         <TableItem flexBasis="10%">{dataNew.toLocaleDateString()}</TableItem>
         <TableItem flexBasis="10%">{grade}</TableItem>
         <TableItem flexBasis="10%">
-          <SuperButton size="small" onClick={onUpdateCardClick}>
-            Edit
-          </SuperButton>
+          <EditCard cardId={cardId} />
           <SuperButton size="small" onClick={onDeleteCardClick}>
             Delete
           </SuperButton>
