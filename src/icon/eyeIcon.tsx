@@ -5,8 +5,8 @@ export const EyeIcon = (): ReactElement => (
     <svg
       version="1.0"
       xmlns="http://www.w3.org/2000/svg"
-      width="1280.000000pt"
-      height="662.000000pt"
+      width="50px"
+      height="50px"
       viewBox="0 0 1280.000000 662.000000"
       preserveAspectRatio="xMidYMid meet"
     >

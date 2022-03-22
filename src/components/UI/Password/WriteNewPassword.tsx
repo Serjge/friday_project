@@ -67,6 +67,7 @@ export const WriteNewPassword = (): ReactElement => {
             minLength: 8,
             validate: value => value === getValues('password'),
           })}
+          id="confirmPassword"
           placeholder="Confirm password"
           error={getErrorValidate(confirmPassword?.type)}
         />

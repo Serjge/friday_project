@@ -25,6 +25,7 @@ export type TextFieldPropsType = DefaultInputPropsType &
     error?: string;
     spanClassName?: string;
     labelTitle?: string;
+    id?: string;
   };
 
 export const TextField: FC<TextFieldPropsType> = memo(
