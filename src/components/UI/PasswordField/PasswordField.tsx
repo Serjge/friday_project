@@ -1,15 +1,42 @@
 import React, { FC, forwardRef, ReactElement, useState } from 'react';
 
+import styled from 'styled-components';
+
 import { EyeIcon } from '../../../icon/eyeIcon';
-import { Flex } from '../../../styles';
 import { TextField } from '../TextField';
 import { TextFieldPropsType } from '../TextField/TextField';
+
+const PasswordWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+`;
+
+const EyeDivButton = styled.div`
+  position: absolute;
+  top: 5px;
+  margin-left: 260px;
+  &::after {
+    position: absolute;
+    content: '';
+    top: 13px;
+    right: 0;
+    width: 30px;
+    height: 3px;
+    background: black;
+    transform: rotate(45deg);
+  }
+`;
 
 type PasswordFieldPropsType = TextFieldPropsType;
 export const PasswordField: FC<PasswordFieldPropsType> = forwardRef(
   ({ ...props }: PasswordFieldPropsType, ref): ReactElement => {
-    const [eye, setEye] = useState(false);
+    const [eye, setEye] = useState(true);
     let type;
+
     if (eye) {
       type = 'password';
     } else {
@@ -17,12 +44,12 @@ export const PasswordField: FC<PasswordFieldPropsType> = forwardRef(
     }
 
     return (
-      <Flex flexDirection="row" alignItems="center">
+      <PasswordWrapper>
         <TextField {...props} type={type} ref={ref} />
-        <div onClick={() => setEye(!eye)} role="presentation">
+        <EyeDivButton onClick={() => setEye(!eye)} role="presentation">
           <EyeIcon />
-        </div>
-      </Flex>
+        </EyeDivButton>
+      </PasswordWrapper>
     );
   },
 );
