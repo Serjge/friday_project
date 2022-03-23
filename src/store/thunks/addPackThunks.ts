@@ -1,9 +1,8 @@
-import { AxiosError } from 'axios';
-
 import { packApi } from 'api/packApi';
 import { StatusCode } from 'enum';
 import { rerenderPackAC, setResultMessageAddPackAC } from 'store/actions';
 import { AppThunkType } from 'types';
+import { handleError } from 'utils';
 
 export const addPackTC =
   (newTitle: string): AppThunkType =>
@@ -15,16 +14,8 @@ export const addPackTC =
         dispatch(setResultMessageAddPackAC('Pack created'));
         dispatch(rerenderPackAC());
       }
-    } catch (errorCatch) {
-      const { response, message } = errorCatch as AxiosError;
-      const error = response?.data.error;
-      const status = response?.status;
-
-      if (status === StatusCode.Bad_Request) {
-        dispatch(setResultMessageAddPackAC(error));
-      } else {
-        dispatch(setResultMessageAddPackAC(message));
-      }
+    } catch (error) {
+      handleError(error, dispatch, StatusCode.Bad_Request);
     }
   };
 
@@ -36,8 +27,7 @@ export const deletePackTC =
       if (response.status === StatusCode.Success) {
         dispatch(rerenderPackAC());
       }
-    } catch (errorCatch) {
-      const { message } = errorCatch as AxiosError;
-      console.warn(message);
+    } catch (error) {
+      handleError(error, dispatch, StatusCode.Bad_Request);
     }
   };

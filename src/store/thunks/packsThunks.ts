@@ -1,8 +1,6 @@
-import { AxiosError } from 'axios';
-
 import { packApi } from 'api';
 import { StatusCode } from 'enum';
-import { setErrorMessageAC, setPacksAC } from 'store/actions';
+import { setPacksAC } from 'store/actions';
 import {
   selectCurrentPage,
   selectIsMyPack,
@@ -15,6 +13,7 @@ import {
 } from 'store/selectors';
 import { RootReducerType } from 'store/store';
 import { AppThunkType } from 'types';
+import { handleError } from 'utils';
 
 export const getPacksTC =
   (): AppThunkType => async (dispatch, getState: () => RootReducerType) => {
@@ -45,15 +44,7 @@ export const getPacksTC =
       if (status === StatusCode.Success) {
         dispatch(setPacksAC(data));
       }
-    } catch (errorCatch) {
-      const { response, message } = errorCatch as AxiosError;
-      const error = response?.data.error;
-      const status = response?.status;
-
-      if (status === StatusCode.Bad_Request) {
-        dispatch(setErrorMessageAC(error));
-      } else {
-        dispatch(setErrorMessageAC(message));
-      }
+    } catch (error) {
+      handleError(error, dispatch, StatusCode.Bad_Request);
     }
   };

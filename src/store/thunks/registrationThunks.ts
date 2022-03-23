@@ -1,13 +1,8 @@
-import { AxiosError } from 'axios';
-
 import { registrationApi } from 'api';
 import { StatusCode } from 'enum';
-import {
-  setErrorMessageAC,
-  setRegistrationIsCompletedAC,
-  setStatusAC,
-} from 'store/actions';
+import { setRegistrationIsCompletedAC, setStatusAC } from 'store/actions';
 import { AppThunkType } from 'types';
+import { handleError } from 'utils';
 
 export const registrationTC =
   (email: string, password: string): AppThunkType =>
@@ -20,16 +15,8 @@ export const registrationTC =
       if (status === StatusCode.Created) {
         dispatch(setRegistrationIsCompletedAC(true));
       }
-    } catch (errorCatch) {
-      const { response, message } = errorCatch as AxiosError;
-      const error = response?.data.error;
-      const status = response?.status;
-
-      if (status === StatusCode.Bad_Request) {
-        dispatch(setErrorMessageAC(error));
-      } else {
-        dispatch(setErrorMessageAC(message));
-      }
+    } catch (error) {
+      handleError(error, dispatch, StatusCode.Bad_Request);
     } finally {
       dispatch(setStatusAC('completed'));
     }

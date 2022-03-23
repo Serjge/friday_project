@@ -1,5 +1,3 @@
-import { AxiosError } from 'axios';
-
 import { profileApi } from 'api';
 import { StatusCode } from 'enum';
 import {
@@ -11,6 +9,7 @@ import {
   setIsLoginAC,
 } from 'store/actions';
 import { AppThunkType } from 'types';
+import { handleError } from 'utils';
 
 export const authMeTC = (): AppThunkType => async dispatch => {
   try {
@@ -20,16 +19,8 @@ export const authMeTC = (): AppThunkType => async dispatch => {
       dispatch(authMeAC(data));
       dispatch(setIsLoginAC(true));
     }
-  } catch (errorCatch) {
-    const { response, message } = errorCatch as AxiosError;
-    // const error = response?.data.error;
-    const status = response?.status;
-
-    if (status === StatusCode.Unauthorized) {
-      // dispatch(setErrorMessageAC(error));
-    } else {
-      dispatch(setErrorMessageAC(message));
-    }
+  } catch (e) {
+    dispatch(setErrorMessageAC(null));
   } finally {
     dispatch(initializeMeAC(true));
   }
@@ -44,16 +35,8 @@ export const editProfileNameTC =
       if (status === StatusCode.Success) {
         dispatch(changePersonalNameAC(data.updatedUser.name));
       }
-    } catch (errorCatch) {
-      const { response, message } = errorCatch as AxiosError;
-      const error = response?.data.error;
-      const status = response?.status;
-
-      if (status === StatusCode.Unauthorized) {
-        dispatch(setErrorMessageAC(error));
-      } else {
-        dispatch(setErrorMessageAC(message));
-      }
+    } catch (error) {
+      handleError(error, dispatch, StatusCode.Unauthorized);
     }
   };
 
@@ -66,15 +49,7 @@ export const editPersonalAvatarTC =
       if (status === StatusCode.Success) {
         dispatch(changePersonalAvatarAC(data.updatedUser.avatar));
       }
-    } catch (errorCatch) {
-      const { response, message } = errorCatch as AxiosError;
-      const error = response?.data.error;
-      const status = response?.status;
-
-      if (status === StatusCode.Unauthorized) {
-        dispatch(setErrorMessageAC(error));
-      } else {
-        dispatch(setErrorMessageAC(message));
-      }
+    } catch (error) {
+      handleError(error, dispatch, StatusCode.Unauthorized);
     }
   };

@@ -1,8 +1,6 @@
-import { AxiosError } from 'axios';
-
 import { cardsApi } from 'api';
 import { StatusCode } from 'enum';
-import { rerenderCardAC, setCardsAC, setErrorMessageAC } from 'store/actions';
+import { rerenderCardAC, setCardsAC } from 'store/actions';
 import {
   selectCard,
   selectCurrentPageCards,
@@ -13,6 +11,7 @@ import {
 } from 'store/selectors';
 import { RootReducerType } from 'store/store';
 import { AddCardType, AppThunkType } from 'types';
+import { handleError } from 'utils';
 
 export const getCardsTC =
   (cardsPackId: string, min?: number, max?: number): AppThunkType =>
@@ -38,16 +37,8 @@ export const getCardsTC =
       if (status === StatusCode.Success) {
         dispatch(setCardsAC(data));
       }
-    } catch (errorCatch) {
-      const { response, message } = errorCatch as AxiosError;
-      const error = response?.data.error;
-      const status = response?.status;
-
-      if (status === StatusCode.Bad_Request) {
-        dispatch(setErrorMessageAC(error));
-      } else {
-        dispatch(setErrorMessageAC(message));
-      }
+    } catch (error) {
+      handleError(error, dispatch, StatusCode.Bad_Request);
     }
   };
 
@@ -60,16 +51,8 @@ export const addCardTC =
       if (status === StatusCode.Created) {
         dispatch(rerenderCardAC());
       }
-    } catch (errorCatch) {
-      const { response, message } = errorCatch as AxiosError;
-      const error = response?.data.error;
-      const status = response?.status;
-
-      if (status === StatusCode.Bad_Request) {
-        dispatch(setErrorMessageAC(error));
-      } else {
-        dispatch(setErrorMessageAC(message));
-      }
+    } catch (error) {
+      handleError(error, dispatch, StatusCode.Bad_Request);
     }
   };
 
@@ -82,16 +65,8 @@ export const deleteCardTC =
       if (status === StatusCode.Success) {
         dispatch(rerenderCardAC());
       }
-    } catch (errorCatch) {
-      const { response, message } = errorCatch as AxiosError;
-      const error = response?.data.error;
-      const status = response?.status;
-
-      if (status === StatusCode.Bad_Request) {
-        dispatch(setErrorMessageAC(error));
-      } else {
-        dispatch(setErrorMessageAC(message));
-      }
+    } catch (error) {
+      handleError(error, dispatch, StatusCode.Bad_Request);
     }
   };
 
@@ -105,15 +80,7 @@ export const updateCardTC =
       if (status === StatusCode.Success) {
         dispatch(rerenderCardAC());
       }
-    } catch (errorCatch) {
-      const { response, message } = errorCatch as AxiosError;
-      const error = response?.data.error;
-      const status = response?.status;
-
-      if (status === StatusCode.Bad_Request) {
-        dispatch(setErrorMessageAC(error));
-      } else {
-        dispatch(setErrorMessageAC(message));
-      }
+    } catch (error) {
+      handleError(error, dispatch, StatusCode.Bad_Request);
     }
   };

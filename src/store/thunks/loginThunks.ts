@@ -1,9 +1,8 @@
-import { AxiosError } from 'axios';
-
 import { loginAPI } from 'api';
 import { StatusCode } from 'enum';
 import { authMeAC, setErrorMessageAC, setIsLoginAC } from 'store/actions';
 import { AppThunkType, LoginApiPayloadType } from 'types';
+import { handleError } from 'utils';
 
 export const setLoginDataThunkCreator =
   (loginData: LoginApiPayloadType): AppThunkType =>
@@ -16,35 +15,18 @@ export const setLoginDataThunkCreator =
         dispatch(setIsLoginAC(true));
         dispatch(setErrorMessageAC(''));
       }
-    } catch (errorCatch) {
-      const { response, message } = errorCatch as AxiosError;
-      const error = response?.data.error;
-      const status = response?.status;
-
-      if (status === StatusCode.Unauthorized) {
-        dispatch(setErrorMessageAC(error));
-      } else {
-        dispatch(setErrorMessageAC(message));
-      }
+    } catch (error) {
+      handleError(error, dispatch, StatusCode.Bad_Request);
     }
   };
 
 export const logOutThunkCreator = (): AppThunkType => async dispatch => {
   try {
     const { status } = await loginAPI.logOut();
-
     if (status === StatusCode.Success) {
       dispatch(setIsLoginAC(false));
     }
-  } catch (errorCatch) {
-    const { response, message } = errorCatch as AxiosError;
-    const error = response?.data.error;
-    const status = response?.status;
-
-    if (status === StatusCode.Bad_Request) {
-      dispatch(setErrorMessageAC(error));
-    } else {
-      dispatch(setErrorMessageAC(message));
-    }
+  } catch (error) {
+    handleError(error, dispatch, StatusCode.Bad_Request);
   }
 };

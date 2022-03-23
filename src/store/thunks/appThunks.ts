@@ -1,9 +1,8 @@
-import { AxiosError } from 'axios';
-
 import { loginAPI } from 'api';
 import { StatusCode } from 'enum';
-import { initializeMeAC, setErrorMessageAC, setIsLoginAC } from 'store/actions';
+import { initializeMeAC, setIsLoginAC } from 'store/actions';
 import { AppThunkType } from 'types';
+import { handleError } from 'utils';
 
 export const initializeMeTC = (): AppThunkType => async dispatch => {
   try {
@@ -12,16 +11,8 @@ export const initializeMeTC = (): AppThunkType => async dispatch => {
     if (status === StatusCode.Success) {
       dispatch(setIsLoginAC(true));
     }
-  } catch (errorCatch) {
-    const { response, message } = errorCatch as AxiosError;
-    const error = response?.data.error;
-    const status = response?.status;
-
-    if (status === StatusCode.Unauthorized) {
-      dispatch(setErrorMessageAC(error));
-    } else {
-      dispatch(setErrorMessageAC(message));
-    }
+  } catch (error) {
+    handleError(error, dispatch, StatusCode.Unauthorized);
   } finally {
     dispatch(initializeMeAC(true));
   }
