@@ -22,11 +22,11 @@ export const authMeTC = (): AppThunkType => async dispatch => {
     }
   } catch (errorCatch) {
     const { response, message } = errorCatch as AxiosError;
-    const error = response?.data.error;
+    // const error = response?.data.error;
     const status = response?.status;
 
     if (status === StatusCode.Unauthorized) {
-      dispatch(setErrorMessageAC(error));
+      // dispatch(setErrorMessageAC(error));
     } else {
       dispatch(setErrorMessageAC(message));
     }

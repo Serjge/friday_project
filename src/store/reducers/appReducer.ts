@@ -1,12 +1,12 @@
 import { INITIALIZE_ME, SET_ERROR_MESSAGE, AppActionsType } from 'store/actions';
 
 export type InitialStateType = {
-  errorMessage: string;
+  errorMessage: string | null;
   isInitialize: boolean;
 };
 
 const initialState: InitialStateType = {
-  errorMessage: '',
+  errorMessage: null,
   isInitialize: false,
 };
 
