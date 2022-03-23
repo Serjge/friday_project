@@ -1,4 +1,4 @@
-import { ReactElement, useState } from 'react';
+import { memo, ReactElement, useCallback, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -10,7 +10,7 @@ import { setResultMessageAddPackAC } from 'store/actions';
 import { selectResultMessage } from 'store/selectors';
 import { addPackTC } from 'store/thunks';
 
-export const AddPack = (): ReactElement => {
+export const AddPack = memo((): ReactElement => {
   const dispatch = useDispatch();
   const [isActive, setIsActive] = useState<boolean>(false);
 
@@ -18,14 +18,18 @@ export const AddPack = (): ReactElement => {
 
   const resultMessage = useSelector(selectResultMessage);
 
-  const setNewPack = (): void => {
+  const setNewPack = useCallback((): void => {
     dispatch(addPackTC(newTitle));
-  };
+  }, []);
 
-  const setIsAddMod = (): void => {
+  const setIsAddMod = useCallback((): void => {
     setIsActive(false);
     dispatch(setResultMessageAddPackAC(''));
-  };
+  }, []);
+
+  const addPack = useCallback((): void => {
+    setIsActive(true);
+  }, []);
 
   return (
     <div>
@@ -38,12 +42,12 @@ export const AddPack = (): ReactElement => {
           </div>
           <div className={style.message}>{resultMessage}</div>
           <div>
-            <SuperButton onClick={() => setIsAddMod()}>Cancel</SuperButton>
+            <SuperButton onClick={setIsAddMod}>Cancel</SuperButton>
             <SuperButton onClick={setNewPack}>Add</SuperButton>
           </div>
         </div>
       </Modal>
-      <SuperButton onClick={() => setIsActive(true)}>Add Pack</SuperButton>
+      <SuperButton onClick={addPack}>Add Pack</SuperButton>
     </div>
   );
-};
+});
