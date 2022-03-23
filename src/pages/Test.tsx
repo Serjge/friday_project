@@ -1,10 +1,7 @@
 import { ReactElement, useState } from 'react';
 
+import { AddPack, Modal, SuperButton } from '../components';
 import { PasswordField } from '../components/UI/PasswordField/PasswordField';
-
-import { AddPack, SuperButton } from 'components';
-import { Modal } from 'components/Modal/Modal';
-import { AddPack, SuperButton, Modal } from 'components';
 
 export const Test = (): ReactElement => {
   const [isActive, setIsActive] = useState(true);
