@@ -1,8 +1,8 @@
 import { AxiosError } from 'axios';
 
 import { cardsApi } from 'api';
-import { statusCode } from 'enum';
-import { rerenderCardAC, setCards, setErrorMessage } from 'store/actions';
+import { StatusCode } from 'enum';
+import { rerenderCardAC, setCardsAC, setErrorMessageAC } from 'store/actions';
 import {
   selectCard,
   selectCurrentPageCards,
@@ -35,29 +35,29 @@ export const getCardsTC =
         currentPage,
       );
 
-      if (status === statusCode.OK) {
-        dispatch(setCards(data));
+      if (status === StatusCode.Success) {
+        dispatch(setCardsAC(data));
       }
     } catch (errorCatch) {
       const { response, message } = errorCatch as AxiosError;
       const error = response?.data.error;
       const status = response?.status;
 
-      if (status === statusCode.Bad_Request) {
-        dispatch(setErrorMessage(error));
+      if (status === StatusCode.Bad_Request) {
+        dispatch(setErrorMessageAC(error));
       } else {
-        dispatch(setErrorMessage(message));
+        dispatch(setErrorMessageAC(message));
       }
     }
   };
 
 export const addCardTC =
-  (cardsPackId: string): AppThunkType =>
+  (cardsPackId: string, question: string, answer: string): AppThunkType =>
   async dispatch => {
     try {
-      const { status } = await cardsApi.addCard(cardsPackId);
+      const { status } = await cardsApi.addCard(cardsPackId, question, answer);
 
-      if (status === statusCode.created) {
+      if (status === StatusCode.Created) {
         dispatch(rerenderCardAC());
       }
     } catch (errorCatch) {
@@ -65,10 +65,10 @@ export const addCardTC =
       const error = response?.data.error;
       const status = response?.status;
 
-      if (status === statusCode.Bad_Request) {
-        dispatch(setErrorMessage(error));
+      if (status === StatusCode.Bad_Request) {
+        dispatch(setErrorMessageAC(error));
       } else {
-        dispatch(setErrorMessage(message));
+        dispatch(setErrorMessageAC(message));
       }
     }
   };
@@ -79,7 +79,7 @@ export const deleteCardTC =
     try {
       const { status } = await cardsApi.deleteCard(cardId);
 
-      if (status === statusCode.OK) {
+      if (status === StatusCode.Success) {
         dispatch(rerenderCardAC());
       }
     } catch (errorCatch) {
@@ -87,10 +87,10 @@ export const deleteCardTC =
       const error = response?.data.error;
       const status = response?.status;
 
-      if (status === statusCode.Bad_Request) {
-        dispatch(setErrorMessage(error));
+      if (status === StatusCode.Bad_Request) {
+        dispatch(setErrorMessageAC(error));
       } else {
-        dispatch(setErrorMessage(message));
+        dispatch(setErrorMessageAC(message));
       }
     }
   };
@@ -102,7 +102,7 @@ export const updateCardTC =
       const stateCard = selectCard(getState(), cardsId);
       const { status } = await cardsApi.updateCard(cardsId, { ...stateCard, ...card });
 
-      if (status === statusCode.OK) {
+      if (status === StatusCode.Success) {
         dispatch(rerenderCardAC());
       }
     } catch (errorCatch) {
@@ -110,10 +110,10 @@ export const updateCardTC =
       const error = response?.data.error;
       const status = response?.status;
 
-      if (status === statusCode.Bad_Request) {
-        dispatch(setErrorMessage(error));
+      if (status === StatusCode.Bad_Request) {
+        dispatch(setErrorMessageAC(error));
       } else {
-        dispatch(setErrorMessage(message));
+        dispatch(setErrorMessageAC(message));
       }
     }
   };

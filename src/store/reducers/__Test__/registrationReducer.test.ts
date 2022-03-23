@@ -1,4 +1,4 @@
-import { setRegistrationIsCompleted, setStatus } from 'store/actions';
+import { setRegistrationIsCompletedAC, setStatusAC } from 'store/actions';
 import {
   InitialStateType,
   registrationReducer,
@@ -19,7 +19,7 @@ beforeEach(() => {
 });
 
 test('set statue', () => {
-  const action = setStatus(newStatus);
+  const action = setStatusAC(newStatus);
 
   const endState = registrationReducer(initialState, action);
 
@@ -28,7 +28,7 @@ test('set statue', () => {
 });
 
 test('set registration', () => {
-  const action = setRegistrationIsCompleted(isCompleted);
+  const action = setRegistrationIsCompletedAC(isCompleted);
 
   const endState = registrationReducer(initialState, action);
 

@@ -7,3 +7,7 @@ export { TableCards, CardItem, HeadTableCards } from './TableCards';
 export { MultiRangeSlider } from './MultiRangeSlider';
 export { PackItem, TablePacks, HeadTablePacks } from './TablePacks';
 export { EditProfilePage, EditAvatar, EditName } from './EditProfilePage';
+export { Modal } from './Modal';
+export { AddCard, EditCard, DeleteCard } from './ModalCard';
+export { DeletePack } from './DeletePack';
+export { ModalError } from './ModalError';

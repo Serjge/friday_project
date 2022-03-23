@@ -7,11 +7,11 @@ import { ButtonsPropsType } from 'types';
 
 export const Buttons: FC<ButtonsPropsType> = memo(
   ({ setCurrentPage, currentPage, pagesCount, totalCount }): ReactElement => {
-    const { one, two, four, three } = ButtonsPagination;
+    const { One, Two, Four, Three } = ButtonsPagination;
     const lastPage = Math.ceil(totalCount / pagesCount);
     let buttons = [];
 
-    for (let index = 1; index <= lastPage; index += one) {
+    for (let index = 1; index <= lastPage; index += One) {
       buttons.push(
         <SuperButton
           key={index}
@@ -25,21 +25,21 @@ export const Buttons: FC<ButtonsPropsType> = memo(
     }
 
     // 1 ... 10 11 (12) 13 14 ... 100
-    if (currentPage + two < lastPage) {
-      buttons[currentPage + two] = (
-        <span className={style.points} key={currentPage + three}>
+    if (currentPage + Two < lastPage) {
+      buttons[currentPage + Two] = (
+        <span className={style.points} key={currentPage + Three}>
           {' ... '}
         </span>
       );
-      buttons = buttons.filter((p, i) => i < currentPage + three || i === lastPage - one);
+      buttons = buttons.filter((p, i) => i < currentPage + Three || i === lastPage - One);
     }
-    if (currentPage > four) {
-      buttons[one] = (
-        <span className={style.points} key={two}>
+    if (currentPage > Four) {
+      buttons[One] = (
+        <span className={style.points} key={Two}>
           {' ... '}
         </span>
       );
-      buttons = buttons.filter((button, i) => i < two || i > currentPage - four);
+      buttons = buttons.filter((button, i) => i < Two || i > currentPage - Four);
     }
 
     return <div className={style.generalBlock}>{buttons}</div>;

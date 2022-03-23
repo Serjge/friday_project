@@ -5,25 +5,23 @@ import { Navigate, useParams } from 'react-router-dom';
 
 import { CardListWrapper, SearchWrapper } from './style';
 
-import { DebounceSearchField, Pagination, SuperButton, TableCards } from 'components';
+import { DebounceSearchField, Pagination, TableCards, AddCard } from 'components';
 import { CountDecksOnPage, PATH } from 'enum';
 import {
   rerenderCardAC,
   setCurrentPageCardsAC,
   setPageCountCardsAC,
-  setSearchAnswerCards,
-  setSearchQuestionCards,
+  setSearchAnswerCardsAC,
+  setSearchQuestionCardsAC,
 } from 'store/actions';
 import {
   selectCurrentPageCards,
   selectIsLogin,
-  selectPackUserId,
   selectPageCountCards,
   selectRerenderCards,
   selectTotalCountCards,
-  selectUserId,
 } from 'store/selectors';
-import { addCardTC, getCardsTC } from 'store/thunks';
+import { getCardsTC } from 'store/thunks';
 import { getNumberValuesFromEnum } from 'utils';
 
 export const CardList = memo((): ReactElement => {
@@ -31,9 +29,7 @@ export const CardList = memo((): ReactElement => {
 
   const { id, name } = useParams<'id' | 'name'>();
 
-  const userId = useSelector(selectUserId);
   const isLogin = useSelector(selectIsLogin);
-  const packUserId = useSelector(selectPackUserId);
   const rerender = useSelector(selectRerenderCards);
   const pagesCount = useSelector(selectPageCountCards);
   const currentPage = useSelector(selectCurrentPageCards);
@@ -47,20 +43,14 @@ export const CardList = memo((): ReactElement => {
   }, [rerender, currentPage, pagesCount]);
 
   const searchByQuestion = useCallback((question: string): void => {
-    dispatch(setSearchQuestionCards(question));
+    dispatch(setSearchQuestionCardsAC(question));
     dispatch(rerenderCardAC());
   }, []);
 
   const searchByAnswer = useCallback((answer: string): void => {
-    dispatch(setSearchAnswerCards(answer));
+    dispatch(setSearchAnswerCardsAC(answer));
     dispatch(rerenderCardAC());
   }, []);
-
-  const onAddCardClick = (): void => {
-    if (id) {
-      dispatch(addCardTC(id));
-    }
-  };
 
   const setCurrentPageCards = useCallback((value: number): void => {
     dispatch(setCurrentPageCardsAC(value));
@@ -80,9 +70,7 @@ export const CardList = memo((): ReactElement => {
       <SearchWrapper>
         <DebounceSearchField placeholder="Question:" searchValue={searchByQuestion} />
         <DebounceSearchField placeholder="Answer:" searchValue={searchByAnswer} />
-        <SuperButton hidden={userId !== packUserId} onClick={onAddCardClick}>
-          Add Card
-        </SuperButton>
+        <AddCard packId={id} />
       </SearchWrapper>
       <TableCards />
       <Pagination

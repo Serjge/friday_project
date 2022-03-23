@@ -3,7 +3,7 @@ import React, { memo, ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 
 import { useSort } from 'hook';
-import { rerenderCardAC, setSortCards } from 'store/actions';
+import { rerenderCardAC, setSortCardsAC } from 'store/actions';
 import { selectSortCard } from 'store/selectors';
 import { Flex, TableHeadWithSorts } from 'styles';
 
@@ -11,7 +11,7 @@ export const HeadTableCards = memo(
   ({ isMyPack }: { isMyPack: boolean }): ReactElement => {
     const sortPacks = useSelector(selectSortCard);
 
-    const onSortCardsClick = useSort(setSortCards, rerenderCardAC, selectSortCard);
+    const onSortCardsClick = useSort(setSortCardsAC, rerenderCardAC, selectSortCard);
 
     const tableHeadData = [
       {

@@ -2,7 +2,7 @@ import { memo, ReactElement, useCallback, useState } from 'react';
 
 import { TextField } from 'components';
 import { TextFieldPropsType } from 'components/UI/TextField/TextField';
-import { TimerForDeBounce } from 'enum';
+import { DeBounceTimer } from 'enum';
 import { useDebounce } from 'hook';
 
 type DebounceSearchFieldPropsType = TextFieldPropsType & {
@@ -17,7 +17,7 @@ export const DebounceSearchField = memo(
       searchValue(question);
     };
 
-    const debounceSearch = useDebounce(search, TimerForDeBounce.SEARCH_DELAY);
+    const debounceSearch = useDebounce(search, DeBounceTimer.SEARCH_DELAY);
 
     const onSearchQuestionChange = useCallback((question: string): void => {
       setValue(question);

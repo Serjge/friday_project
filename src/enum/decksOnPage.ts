@@ -1,6 +1,6 @@
 export enum CountDecksOnPage {
-  five = 5,
-  ten = 10,
-  twenty = 20,
-  fourty = 40,
+  Five = 5,
+  Ten = 10,
+  Twenty = 20,
+  Fourty = 40,
 }

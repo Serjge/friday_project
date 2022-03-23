@@ -26,15 +26,3 @@ export const Modal: FC<ModalPropsType> = ({
     </div>
   </div>
 );
-
-// "lit-a11y/click-events-have-key-events": [
-//   "error",
-//   {
-//     "allowList": [
-//       "div"
-//     ],
-//     "allowCustomElements": true
-//   }
-// ]
-// },
-// https://open-wc.org/docs/linting/eslint-plugin-lit-a11y/rules/click-events-have-key-events/

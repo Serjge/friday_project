@@ -1,7 +1,7 @@
 export enum ButtonsPagination {
-  zero,
-  one,
-  two,
-  three,
-  four,
+  Zero,
+  One,
+  Two,
+  Three,
+  Four,
 }

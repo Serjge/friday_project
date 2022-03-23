@@ -8,9 +8,9 @@ test('error validate', () => {
   const result4 = getErrorValidate('pattern');
   const result5 = getErrorValidate('some text');
 
-  expect(result1).toBe(ErrorValidateMessage.required);
-  expect(result2).toBe(ErrorValidateMessage.minLength);
-  expect(result3).toBe(ErrorValidateMessage.validate);
+  expect(result1).toBe(ErrorValidateMessage.Required);
+  expect(result2).toBe(ErrorValidateMessage.MinLength);
+  expect(result3).toBe(ErrorValidateMessage.Validate);
   expect(result4).toBe(ErrorValidateMessage.pattern);
   expect(result5).toBe(undefined);
 });

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState, useRef, FC } from 'react';
 
 import './multiRangeSlider.css';
 
-import { ValueForRange } from 'enum';
+import { RangeValue } from 'enum';
 
 type DataOnChangeType = {
   minVal: number;
@@ -29,7 +29,7 @@ export const MultiRangeSlider: FC<MultiRangeSliderPropTypes> = ({
   // Convert to percentage
   const getPercent = useCallback(
     value => {
-      Math.round(((value - min) / (max - min)) * ValueForRange.HUNDRED_PERCENT);
+      Math.round(((value - min) / (max - min)) * RangeValue.HUNDRED_PERCENT);
     },
     [min, max],
   );
@@ -69,7 +69,7 @@ export const MultiRangeSlider: FC<MultiRangeSliderPropTypes> = ({
         max={max}
         value={minVal}
         onChange={event => {
-          const value = Math.min(Number(event.target.value), maxVal - ValueForRange.STEP);
+          const value = Math.min(Number(event.target.value), maxVal - RangeValue.STEP);
           setMinVal(value);
           minValRef.current = value;
         }}
@@ -83,7 +83,7 @@ export const MultiRangeSlider: FC<MultiRangeSliderPropTypes> = ({
         max={max}
         value={maxVal}
         onChange={event => {
-          const value = Math.max(Number(event.target.value), minVal + ValueForRange.STEP);
+          const value = Math.max(Number(event.target.value), minVal + RangeValue.STEP);
           setMaxVal(value);
           maxValRef.current = value;
         }}

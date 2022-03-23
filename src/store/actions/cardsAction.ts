@@ -8,7 +8,7 @@ export const SET_CURRENT_PAGE_CARDS = 'CARDS/SET_CURRENT_PAGE_CARDS';
 export const SET_SEARCH_ANSWER_CARDS = 'CARDS/SET_SEARCH_ANSWER_CARDS';
 export const SET_SEARCH_QUESTION_CARDS = 'CARDS/SET_SEARCH_QUESTION_CARDS';
 
-export const setCards = (cards: CardsType) =>
+export const setCardsAC = (cards: CardsType) =>
   ({
     type: SET_CARDS,
     payload: {
@@ -16,7 +16,7 @@ export const setCards = (cards: CardsType) =>
     },
   } as const);
 
-export const setSortCards = (sort: string) =>
+export const setSortCardsAC = (sort: string) =>
   ({
     type: SET_SORT_CARDS,
     payload: {
@@ -24,7 +24,7 @@ export const setSortCards = (sort: string) =>
     },
   } as const);
 
-export const setSearchQuestionCards = (searchValue: string) =>
+export const setSearchQuestionCardsAC = (searchValue: string) =>
   ({
     type: SET_SEARCH_QUESTION_CARDS,
     payload: {
@@ -32,7 +32,7 @@ export const setSearchQuestionCards = (searchValue: string) =>
     },
   } as const);
 
-export const setSearchAnswerCards = (searchValue: string) =>
+export const setSearchAnswerCardsAC = (searchValue: string) =>
   ({
     type: SET_SEARCH_ANSWER_CARDS,
     payload: {

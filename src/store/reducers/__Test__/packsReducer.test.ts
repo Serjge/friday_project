@@ -4,10 +4,10 @@ import {
   setCurrentPagePacksAC,
   setPacksAC,
   setPageCountPacksAC,
-  setSearchPack,
-  setSortPacks,
+  setSearchPackAC,
+  setSortPacksAC,
   setResultMessageAddPackAC,
-  setIsMyPack,
+  setIsMyPackAC,
   rerenderPackAC,
 } from 'store/actions';
 import { packsReducer, InitialStateType } from 'store/reducers/packsReducer';
@@ -31,7 +31,7 @@ beforeEach(() => {
     sort: '',
     searchPack: '',
     isMyPack: false,
-    flagForRerender: ['remind'],
+    rerenderFlag: ['remind'],
     localMinRage: 0,
     localMaxRage: 0,
     resultMessageAddPack: '',
@@ -84,7 +84,7 @@ test('set Cards from API', () => {
 });
 
 test('change sort value for cards', () => {
-  const action = setSortPacks(sort);
+  const action = setSortPacksAC(sort);
 
   const endState = packsReducer(initialState, action);
 
@@ -93,7 +93,7 @@ test('change sort value for cards', () => {
 });
 
 test('set value for search pack', () => {
-  const action = setSearchPack(searchPack);
+  const action = setSearchPackAC(searchPack);
 
   const endState = packsReducer(initialState, action);
 
@@ -120,7 +120,7 @@ test('set page count', () => {
 });
 
 test('set only my pack', () => {
-  const action = setIsMyPack(isMyPack);
+  const action = setIsMyPackAC(isMyPack);
 
   const endState = packsReducer(initialState, action);
 
@@ -134,7 +134,7 @@ test('rerender for API request', () => {
   const endState = packsReducer(initialState, action);
 
   expect(endState).not.toBe(initialState);
-  expect(endState.flagForRerender).not.toBe(initialState.flagForRerender);
+  expect(endState.rerenderFlag).not.toBe(initialState.rerenderFlag);
 });
 
 test('set min cards count', () => {

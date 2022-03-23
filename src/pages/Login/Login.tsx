@@ -1,4 +1,4 @@
-import { ReactElement, useEffect } from 'react';
+import { ReactElement } from 'react';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,8 +7,7 @@ import { Navigate } from 'react-router-dom';
 import { SuperButton, TextField } from 'components';
 import { PATH } from 'enum';
 import { ForgotPassword, SingUp, Text } from 'pages/Login/style';
-import { setErrorMessage } from 'store/actions';
-import { selectErrorMessage, selectIsLogin } from 'store/selectors';
+import { selectIsLogin } from 'store/selectors';
 import { setLoginDataThunkCreator } from 'store/thunks';
 import { Flex, Wrapper } from 'styles';
 import { LoginApiPayloadType } from 'types';
@@ -17,9 +16,7 @@ import { getErrorValidate } from 'utils';
 export const Login = (): ReactElement => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    setErrorMessage('');
-  });
+  const isLogin = useSelector(selectIsLogin);
 
   const onLoginClick: SubmitHandler<LoginApiPayloadType> = data => {
     dispatch(setLoginDataThunkCreator(data));
@@ -32,9 +29,7 @@ export const Login = (): ReactElement => {
       errors: { email, password },
     },
   } = useForm<LoginApiPayloadType>();
-  const isLogin = useSelector(selectIsLogin);
-  const errorMessage = useSelector(selectErrorMessage);
-  // нужна проверка авторизации, но это скорее можно всунуть в санку authMe, типо если не залогинен то редирект на логин. Так по крайней мере написано в описании запроса(проверка, сохранены ли куки)
+
   if (isLogin) {
     return <Navigate to={PATH.PROFILE} />;
   }
@@ -77,7 +72,6 @@ export const Login = (): ReactElement => {
           <SingUp to={PATH.REGISTRATION}>Sing Up</SingUp>
         </Flex>
       </form>
-      {errorMessage || null}
     </Wrapper>
   );
 };

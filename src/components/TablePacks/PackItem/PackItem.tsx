@@ -3,11 +3,11 @@ import { memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { SuperButton } from 'components';
+import { DeletePack, SuperButton } from 'components';
 import { PATH } from 'enum';
 import { PenIcon } from 'icon';
 import { RootReducerType } from 'store';
-import { setSearchAnswerCards, setSearchQuestionCards } from 'store/actions';
+import { setSearchAnswerCardsAC, setSearchQuestionCardsAC } from 'store/actions';
 import {
   selectCardsCount,
   selectPackName,
@@ -51,8 +51,8 @@ export const PackItem = memo(({ packId }: PackItemPropsType) => {
   };
 
   const onOpenPackClick = (): void => {
-    dispatch(setSearchQuestionCards(''));
-    dispatch(setSearchAnswerCards(''));
+    dispatch(setSearchQuestionCardsAC(''));
+    dispatch(setSearchAnswerCardsAC(''));
     navigate(`${PATH.CARD}${packId}/${namePack}`);
   };
 
@@ -70,13 +70,10 @@ export const PackItem = memo(({ packId }: PackItemPropsType) => {
         <SuperButton size="small" onClick={onOpenPackClick}>
           Open
         </SuperButton>
-        <SuperButton
-          size="small"
-          hidden={hiddenEditPackButton}
-          onClick={onDeletePackClick}
-        >
-          Delete
-        </SuperButton>
+        <DeletePack
+          hiddenEditPackButton={hiddenEditPackButton}
+          onDeletePackClick={onDeletePackClick}
+        />
       </TableItem>
     </Flex>
   );

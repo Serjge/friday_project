@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 import { instance } from 'api';
+import { PATHS_API } from 'enum';
 import { AddCardType, CardsType } from 'types';
 
 export const cardsApi = {
@@ -13,7 +14,7 @@ export const cardsApi = {
     pageCount: number = 0,
     page: number = 0,
   ) {
-    return instance.get<CardsType>('/cards/card', {
+    return instance.get<CardsType>(PATHS_API.Cards_card, {
       params: {
         cardAnswer,
         cardQuestion,
@@ -27,14 +28,16 @@ export const cardsApi = {
     });
   },
   addCard(cardsPackId: string, question = 'New', answer = 'new') {
-    return instance.post('/cards/card', {
+    return instance.post(PATHS_API.Cards_card, {
       card: { cardsPack_id: cardsPackId, question, answer },
     });
   },
   deleteCard(cardId: string) {
-    return instance.delete('/cards/card', { params: { id: cardId } });
+    return instance.delete(PATHS_API.Cards_card, { params: { id: cardId } });
   },
   updateCard(cardId: string, card: Partial<Omit<AddCardType, 'cardsPackId'>>) {
-    return instance.put('/cards/card', { card: { cardsPack_id: cardId, ...card } });
+    return instance.put(PATHS_API.Cards_card, {
+      card: { cardsPack_id: cardId, ...card },
+    });
   },
 };

@@ -6,11 +6,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 
 import { SuperButton, TextField } from 'components';
 import { PATH } from 'enum';
-import {
-  selectErrorMessage,
-  selectRegistrationIsCompleted,
-  selectStatus,
-} from 'store/selectors';
+import { selectRegistrationIsCompleted, selectStatus } from 'store/selectors';
 import { registrationTC } from 'store/thunks';
 import { Wrapper } from 'styles';
 import { getErrorValidate } from 'utils';
@@ -27,7 +23,6 @@ export const Registration = (): ReactElement => {
   const navigate = useNavigate();
 
   const status = useSelector(selectStatus);
-  const errorMessage = useSelector(selectErrorMessage);
   const RegistrationIsCompleted = useSelector(selectRegistrationIsCompleted);
 
   const {
@@ -93,7 +88,6 @@ export const Registration = (): ReactElement => {
         <SuperButton disabled={status === 'loading'} type="submit">
           Register
         </SuperButton>
-        <div>{errorMessage}</div>
       </form>
     </Wrapper>
   );

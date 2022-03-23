@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 import { instance } from 'api/instance';
+import { PATHS_API } from 'enum';
 import { PacksType } from 'types';
 
 // type AddPackPayload = {
@@ -31,10 +32,10 @@ export const packApi = {
     });
   },
   setNewPack(newTitle: string) {
-    return instance.post('/cards/pack', { cardsPack: { name: newTitle } });
+    return instance.post(PATHS_API.Cards_pack, { cardsPack: { name: newTitle } });
   },
   deletePack(id: string) {
-    return instance.delete('/cards/pack', {
+    return instance.delete(PATHS_API.Cards_pack, {
       params: {
         id,
       },
