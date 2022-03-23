@@ -1,25 +1,61 @@
-import { ReactElement, useState } from 'react';
+/* eslint-disable */
+import { FC, ReactElement, useEffect, useState } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
+
+import style from './LearnPack.module.css';
 
 import { Modal } from 'components/Modal';
 import { SuperButton } from 'components/UI';
+import { selectPackCards } from 'store/selectors';
+import { getCardsTC } from 'store/thunks';
 
-export const LearnPack = (): ReactElement => {
-  // const dispatch = useDispatch();
+type LearnPackPropsType = {
+  packUserId: string;
+  handleCardsCount: () => void;
+};
+
+export const LearnPack: FC<LearnPackPropsType> = ({
+  packUserId,
+  handleCardsCount,
+}): ReactElement => {
+  const dispatch = useDispatch();
   const [isActive, setIsActive] = useState<boolean>(false);
   const [isActive2, setIsActive2] = useState<boolean>(false);
+  const [card, setCard] = useState<number>(0);
+  // const [arrCards, setArrCards] = useState<CardType[]>([]);
+
+  const cards = useSelector(selectPackCards);
+
+  useEffect(() => {
+    dispatch(getCardsTC(packUserId));
+  }, [isActive]);
+
+  const handleOpenLearn = (): void => {
+    setIsActive(true);
+    handleCardsCount();
+  };
+
+  const handleOpenAnswer = (): void => {
+    setCard(card+1)
+    setIsActive2(false);
+  };
 
   return (
     <div>
-      <SuperButton size="small" onClick={() => setIsActive(true)}>
+      <SuperButton size="small" onClick={handleOpenLearn}>
         Learn
       </SuperButton>
       <Modal isActive={isActive} changeIsActive={setIsActive}>
-        <div>
-          <div>Title</div>
-          <div>Question</div>
-
-          <SuperButton onClick={() => setIsActive(false)}>Cancel</SuperButton>
-          <SuperButton onClick={() => setIsActive2(true)}>Show answer</SuperButton>
+        <div className={style.blockWithQuestion}>
+          <span>Question:</span>
+          <div>{cards[card].question}</div>
+          <div>Answer:</div>
+          <div>{cards[card].answer}</div>
+          <div>
+            <SuperButton onClick={() => setIsActive(false)}>Cancel</SuperButton>
+            <SuperButton onClick={handleOpenAnswer}>Show answer</SuperButton>
+          </div>
         </div>
       </Modal>
       <Modal isActive={isActive2} changeIsActive={setIsActive2}>
