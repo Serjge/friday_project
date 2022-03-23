@@ -9,7 +9,6 @@ import { SuperButton } from '../SuperButton';
 
 import { selectErrorMessage } from 'store/selectors';
 import { sendNewPasswordTC } from 'store/thunks';
-import { Wrapper } from 'styles';
 import { CreateNewPasswordType, SendNewPasswordType } from 'types';
 import { getErrorValidate } from 'utils';
 
@@ -40,7 +39,7 @@ export const WriteNewPassword = (): ReactElement => {
   };
 
   return (
-    <Wrapper>
+    <div>
       <h1>Create new password</h1>
       <form onSubmit={handleSubmit(createNewPassword)}>
         {/* <TextField */}
@@ -79,6 +78,6 @@ export const WriteNewPassword = (): ReactElement => {
         </div>
       </form>
       {errorMessage || null}
-    </Wrapper>
+    </div>
   );
 };
