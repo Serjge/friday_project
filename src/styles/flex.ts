@@ -11,6 +11,8 @@ type FlexPropsType = {
   flexDirection?: 'column' | 'column-reverse' | 'row' | 'row-reverse';
 
   alignItems?: 'flex-end' | 'flex-start' | 'center' | 'self-end' | 'self-start';
+
+  alignSelf?: 'self-start' | 'self-end' | 'center' | 'auto';
 };
 
 export const Flex = styled.div<FlexPropsType>`
@@ -18,4 +20,5 @@ export const Flex = styled.div<FlexPropsType>`
   justify-content: ${({ justifyContent }) => justifyContent};
   align-items: ${({ alignItems }) => alignItems};
   flex-direction: ${({ flexDirection }) => flexDirection};
+  align-self: ${({ alignSelf }) => alignSelf};
 `;

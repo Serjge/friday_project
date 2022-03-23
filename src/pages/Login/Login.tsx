@@ -1,4 +1,4 @@
-import { ReactElement, useEffect } from 'react';
+import { ReactElement } from 'react';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,8 +7,7 @@ import { Navigate } from 'react-router-dom';
 import { SuperButton, TextField } from 'components';
 import { PATH } from 'enum';
 import { ForgotPassword, SingUp, Text } from 'pages/Login/style';
-import { setErrorMessageAC } from 'store/actions';
-import { selectErrorMessage, selectIsLogin } from 'store/selectors';
+import { selectIsLogin } from 'store/selectors';
 import { setLoginDataThunkCreator } from 'store/thunks';
 import { Flex, Wrapper } from 'styles';
 import { LoginApiPayloadType } from 'types';
@@ -18,11 +17,6 @@ export const Login = (): ReactElement => {
   const dispatch = useDispatch();
 
   const isLogin = useSelector(selectIsLogin);
-  const errorMessage = useSelector(selectErrorMessage);
-
-  useEffect(() => {
-    dispatch(setErrorMessageAC(''));
-  }, []);
 
   const onLoginClick: SubmitHandler<LoginApiPayloadType> = data => {
     dispatch(setLoginDataThunkCreator(data));
@@ -78,7 +72,6 @@ export const Login = (): ReactElement => {
           <SingUp to={PATH.REGISTRATION}>Sing Up</SingUp>
         </Flex>
       </form>
-      {errorMessage || null}
     </Wrapper>
   );
 };
