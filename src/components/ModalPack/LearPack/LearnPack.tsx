@@ -20,25 +20,35 @@ export const LearnPack: FC<LearnPackPropsType> = ({
   handleCardsCount,
 }): ReactElement => {
   const dispatch = useDispatch();
-  const [isActive, setIsActive] = useState<boolean>(false);
-  const [isActive2, setIsActive2] = useState<boolean>(false);
+  const [isActiveQuestion, setIsActiveQuestion] = useState<boolean>(false);
+  const [isActiveAnswer, setIsActiveAnswer] = useState<boolean>(false);
+  const [error, seError] = useState<boolean>(false);
   const [card, setCard] = useState<number>(0);
-  // const [arrCards, setArrCards] = useState<CardType[]>([]);
 
   const cards = useSelector(selectPackCards);
 
   useEffect(() => {
     dispatch(getCardsTC(packUserId));
-  }, [isActive]);
+  }, [isActiveQuestion]);
 
   const handleOpenLearn = (): void => {
-    setIsActive(true);
+    setIsActiveQuestion(true);
     handleCardsCount();
   };
 
+  const closeLearnWindow = () => {
+    setIsActiveQuestion(false)
+    setCard(0)
+  };
+
   const handleOpenAnswer = (): void => {
+    if(card === cards.length - 1){
+      console.log('end');
+      seError(true)
+      return
+    }
+    setIsActiveAnswer(false);
     setCard(card+1)
-    setIsActive2(false);
   };
 
   return (
@@ -46,28 +56,28 @@ export const LearnPack: FC<LearnPackPropsType> = ({
       <SuperButton size="small" onClick={handleOpenLearn}>
         Learn
       </SuperButton>
-      <Modal isActive={isActive} changeIsActive={setIsActive}>
+      <Modal isActive={isActiveQuestion} changeIsActive={setIsActiveQuestion}>
         <div className={style.blockWithQuestion}>
           <span>Question:</span>
           <div>{cards[card].question}</div>
-          <div>Answer:</div>
-          <div>{cards[card].answer}</div>
           <div>
-            <SuperButton onClick={() => setIsActive(false)}>Cancel</SuperButton>
-            <SuperButton onClick={handleOpenAnswer}>Show answer</SuperButton>
+            <SuperButton onClick={closeLearnWindow}>Cancel</SuperButton>
+            <SuperButton onClick={()=>setIsActiveAnswer(true)}>Show answer</SuperButton>
           </div>
         </div>
       </Modal>
-      <Modal isActive={isActive2} changeIsActive={setIsActive2}>
-        <div>
-          <div>Title</div>
-          <div>Question</div>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi ducimus est id
-          mollitia, nisi quibusdam quis rem rerum tempore, vel voluptate voluptates! Eos
-          error magni maxime molestiae nostrum perspiciatis tempore!
-          <SuperButton onClick={() => setIsActive2(false)}>Cancel</SuperButton>
-          <SuperButton>Show answer</SuperButton>
+      <Modal isActive={isActiveAnswer} changeIsActive={setIsActiveAnswer}>
+        <div className={style.blockWithQuestion}>
+          <div>Answer:</div>
+          <div>{cards[card].answer}</div>
+          <SuperButton onClick={() => setIsActiveAnswer(false)}>Cancel</SuperButton>
+          <SuperButton onClick={handleOpenAnswer} >Next</SuperButton>
         </div>
+      </Modal>
+      <Modal isActive={error} changeIsActive={seError}>
+        <div className={style.blockWithQuestion}>
+          <h1 >End Pack</h1>
+          <SuperButton onClick={() => seError(false)}>Back</SuperButton></div>
       </Modal>
     </div>
   );
