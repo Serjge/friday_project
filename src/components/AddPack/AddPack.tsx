@@ -1,53 +1,40 @@
-import { memo, ReactElement, useCallback, useState } from 'react';
+import { memo, ReactElement, useCallback, useRef } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-import style from './AddPack.module.css';
-
-import { Modal } from 'components/Modal/Modal';
-import { SuperButton, SuperInputText } from 'components/UI';
-import { setResultMessageAddPackAC } from 'store/actions';
-import { selectResultMessage } from 'store/selectors';
+import { Modal, SuperButton, TextField } from 'components';
+import { useModal } from 'hook';
 import { addPackTC } from 'store/thunks';
+import { WrapperModal } from 'styles';
 
 export const AddPack = memo((): ReactElement => {
   const dispatch = useDispatch();
-  const [isActive, setIsActive] = useState<boolean>(false);
 
-  const newTitle = 'new title from EPIC TEAM'; // hard code
+  const { isActiveModal, openModal, closeModal } = useModal();
 
-  const resultMessage = useSelector(selectResultMessage);
+  const titleRef = useRef<HTMLInputElement>(null);
 
   const setNewPack = useCallback((): void => {
-    dispatch(addPackTC(newTitle));
-  }, []);
-
-  const setIsAddMod = useCallback((): void => {
-    setIsActive(false);
-    dispatch(setResultMessageAddPackAC(''));
-  }, []);
-
-  const addPack = useCallback((): void => {
-    setIsActive(true);
+    dispatch(addPackTC(titleRef.current!.value));
+    closeModal();
+    titleRef.current!.value = '';
   }, []);
 
   return (
-    <div>
-      <Modal isActive={isActive} changeIsActive={setIsActive}>
-        <div className={style.form}>
-          <span className={style.title}>ADD NEW PACK</span>
-          <div className={style.input}>
-            <span>New title</span>
-            <SuperInputText defaultValue={newTitle} />
-          </div>
-          <div className={style.message}>{resultMessage}</div>
+    <>
+      <Modal isActive={isActiveModal} changeIsActive={closeModal}>
+        <WrapperModal>
+          <h3>Add new pack</h3>
           <div>
-            <SuperButton onClick={setIsAddMod}>Cancel</SuperButton>
+            <TextField labelTitle="Title pack" width="250px" ref={titleRef} />
+          </div>
+          <div>
+            <SuperButton onClick={openModal}>Cancel</SuperButton>
             <SuperButton onClick={setNewPack}>Add</SuperButton>
           </div>
-        </div>
+        </WrapperModal>
       </Modal>
-      <SuperButton onClick={addPack}>Add Pack</SuperButton>
-    </div>
+      <SuperButton onClick={openModal}>Add Pack</SuperButton>
+    </>
   );
 });

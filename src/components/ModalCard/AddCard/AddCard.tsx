@@ -12,13 +12,13 @@ export const AddCard = memo(
   ({ packId }: { packId: undefined | string }): ReactElement => {
     const dispatch = useDispatch();
 
+    const { isActiveModal, openModal, closeModal } = useModal();
+
     const userId = useSelector(selectUserId);
     const packUserId = useSelector(selectPackUserId);
 
     const answer = useRef<HTMLInputElement>(null);
     const question = useRef<HTMLInputElement>(null);
-
-    const { isActiveModal, openModal, closeModal } = useModal();
 
     const onAddCardClick = useCallback((): void => {
       if (packId) {

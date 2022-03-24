@@ -13,7 +13,7 @@ export const setLoginDataThunkCreator =
       if (status === StatusCode.Success) {
         dispatch(authMeAC(data));
         dispatch(setIsLoginAC(true));
-        dispatch(setErrorMessageAC(''));
+        dispatch(setErrorMessageAC(null));
       }
     } catch (error) {
       handleError(error, dispatch, StatusCode.Bad_Request);
