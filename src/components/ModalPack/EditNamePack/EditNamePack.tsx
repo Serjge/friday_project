@@ -6,15 +6,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setResultMessageAddPackAC } from '../../../store/actions';
 import { selectResultMessage } from '../../../store/selectors';
 // import { addPackTC } from '../../../store/thunks';
+import { editTitlePackTC } from '../../../store/thunks/addPackThunks';
 import { Modal } from '../../Modal';
 import { SuperButton, TextField } from '../../UI';
 import style from '../AddPack/AddPack.module.css';
 
 type EditNamePackPropsType = {
+  id: string;
   namePack: string;
 };
 
-export const EditNamePack: FC<EditNamePackPropsType> = ({ namePack }): ReactElement => {
+export const EditNamePack: FC<EditNamePackPropsType> = ({
+  id,
+  namePack,
+}): ReactElement => {
   const dispatch = useDispatch();
 
   const resultMessage = useSelector(selectResultMessage);
@@ -22,8 +27,8 @@ export const EditNamePack: FC<EditNamePackPropsType> = ({ namePack }): ReactElem
   const [newPackTitle, setNewPackTitle] = useState<string>('');
 
   const editNamePack = (): void => {
-    // dispatch(addPackTC(newTitle));
-    console.log(newPackTitle);
+    dispatch(editTitlePackTC(id, newPackTitle));
+    // console.log(newPackTitle);
   };
 
   const setIsEditMod = (): void => {
