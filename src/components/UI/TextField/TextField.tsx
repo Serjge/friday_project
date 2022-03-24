@@ -85,7 +85,6 @@ export const TextField: FC<TextFieldPropsType> = memo(
           {labelTitle}
           <InputWrapper>
             <Input
-              id="passwordInput"
               error={error}
               onChange={onChangeCallback}
               onKeyPress={onKeyPressCallback}
