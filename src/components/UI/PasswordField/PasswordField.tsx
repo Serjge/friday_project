@@ -7,21 +7,24 @@ import { TextField } from '../TextField';
 import { TextFieldPropsType } from '../TextField/TextField';
 
 const PasswordWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+  //display: flex;
+  //flex-direction: column;
   position: relative;
   // justify-content: center;
-  align-items: center;
+  //align-items: center;
 `;
 
 const EyeDivButton = styled.div`
   position: absolute;
-  top: 5px;
-  margin-left: 260px;
+  bottom: 27px;
+  right: 20px;
+  //top: 5px;
+  //margin-left: 260px;
   &::after {
     position: absolute;
     content: '';
-    top: 13px;
+    bottom: 15px;
+    //top: 13px;
     right: 0;
     width: 30px;
     height: 3px;
