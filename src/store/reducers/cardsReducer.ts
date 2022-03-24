@@ -55,7 +55,11 @@ export const cardsReducer = (
 ): InitialStateType => {
   switch (action.type) {
     case SET_CARDS:
+      if (action.payload.cards === null) {
+        return { ...state, pack: initialState.pack };
+      }
       return { ...state, pack: action.payload.cards };
+
     case SET_SORT_CARDS:
       return { ...state, sort: action.payload.sort };
     case SET_SEARCH_ANSWER_CARDS:

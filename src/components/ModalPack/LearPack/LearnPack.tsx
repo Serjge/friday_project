@@ -1,76 +1,99 @@
-import { FC, ReactElement, useEffect, useState } from 'react';
+/* eslint-disable */
+import { FC, ReactElement, useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Answer } from 'components/ModalPack/LearPack/Answer/Answer';
-import { Error } from 'components/ModalPack/LearPack/Error/Error';
+import { EndLearning } from 'components/ModalPack/LearPack/EndLearning/EndLearning';
 import { Question } from 'components/ModalPack/LearPack/Question/Question';
 import { SuperButton } from 'components/UI';
+import { setCardsAC, setPageCountCardsAC } from "store/actions";
 import { selectPackCards } from 'store/selectors';
 import { getCardsTC } from 'store/thunks';
+import { setGradeCardTC } from 'store/thunks/cardsThunks';
 
 type LearnPackPropsType = {
-  packUserId: string;
-  handleCardsCount: () => void;
+  packId: string;
+  cardsCount: number;
 };
 
 const NEXT_CARD = 1;
 const INITIAL_NUMBER_CARD = 0;
 
-export const LearnPack: FC<LearnPackPropsType> = ({
-  packUserId,
-  handleCardsCount,
-}): ReactElement => {
+export const LearnPack: FC<LearnPackPropsType> = ({ packId, cardsCount }): ReactElement => {
   const dispatch = useDispatch();
-  const [isActiveQuestion, setIsActiveQuestion] = useState<boolean>(false);
-  const [isActiveAnswer, setIsActiveAnswer] = useState<boolean>(false);
-  const [error, setError] = useState<boolean>(false);
-  const [cardNumber, setCardNumber] = useState<number>(INITIAL_NUMBER_CARD);
+
+  let question = ''
+  let answer = ''
 
   const cards = useSelector(selectPackCards);
 
-  useEffect(() => {
-    dispatch(getCardsTC(packUserId));
-  }, [isActiveQuestion]);
+  const [isActiveQuestion, setIsActiveQuestion] = useState<boolean>(false);
+  const [isActiveAnswer, setIsActiveAnswer] = useState<boolean>(false);
+  const [isActiveEnd, setIsActiveEnd] = useState<boolean>(false);
+  const [cardNumber, setCardNumber] = useState<number>(INITIAL_NUMBER_CARD);
 
-  const handleOpenLearn = (): void => {
+
+  const closeQuestion = (value: boolean): void => {
+    setCardNumber(INITIAL_NUMBER_CARD);
+    dispatch(setCardsAC(null));
+    setIsActiveQuestion(value);
+  };
+  const openLearn = (): void => {
+    dispatch(setPageCountCardsAC(cardsCount))  // чтобы заменить значение в санке по умолчанию
+    dispatch(getCardsTC(packId));
     setIsActiveQuestion(true);
-    handleCardsCount();
   };
 
-  const closeLearnWindow = (): void => {
+  const cancelLearnButton = (): void => {
     setIsActiveQuestion(false);
     setCardNumber(INITIAL_NUMBER_CARD);
+    dispatch(setCardsAC(null));
+
+    dispatch(setGradeCardTC(cards[cardNumber]._id, 3));
   };
 
-  const handleOpenAnswer = (): void => {
+  const openAnswer = (): void => {
     if (cardNumber === cards.length - NEXT_CARD) {
-      setError(true);
+      setIsActiveEnd(true);
       return;
     }
     setIsActiveAnswer(false);
     setCardNumber(cardNumber + NEXT_CARD);
   };
 
+  const closeLearnWindows = (value:boolean) => {
+    setIsActiveAnswer(false)
+    setIsActiveQuestion(false)
+    setIsActiveEnd(value)
+    dispatch(setCardsAC(null));
+    setCardNumber(INITIAL_NUMBER_CARD);
+  };
+
+  if(!!cards.length){
+    question = cards[cardNumber].question
+    answer = cards[cardNumber].answer
+  }
+
   return (
     <div>
-      <SuperButton size="small" onClick={handleOpenLearn}>
+      <SuperButton size="small" onClick={openLearn}>
         Learn
       </SuperButton>
       <Question
-        question={cards[cardNumber].question}
+        question={question}
         isActiveQuestion={isActiveQuestion}
         setIsActiveAnswer={setIsActiveAnswer}
-        setIsActiveQuestion={setIsActiveQuestion}
-        closeLearnWindow={closeLearnWindow}
+        setIsActiveQuestion={closeQuestion}
+        closeLearnWindow={cancelLearnButton}
       />
       <Answer
-        answer={cards[cardNumber].answer}
+        answer={answer}
         isActiveAnswer={isActiveAnswer}
         setIsActiveAnswer={setIsActiveAnswer}
-        handleOpenAnswer={handleOpenAnswer}
+        handleOpenAnswer={openAnswer}
       />
-      <Error active={error} closeErrorWindow={setError} />
+      <EndLearning active={isActiveEnd} closeErrorWindow={closeLearnWindows} />
     </div>
   );
 };

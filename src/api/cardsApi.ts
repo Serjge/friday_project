@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 import { instance } from 'api';
 import { PATHS_API } from 'enum';
+import { GradeCardResponse } from 'store/thunks/cardsThunks';
 import { AddCardType, CardsType } from 'types';
 
 export const cardsApi = {
@@ -39,5 +40,8 @@ export const cardsApi = {
     return instance.put(PATHS_API.Cards_card, {
       card: { cardsPack_id: cardId, ...card },
     });
+  },
+  setGrade(data: GradeCardResponse) {
+    return instance.put(PATHS_API.Cards_grade, data);
   },
 };

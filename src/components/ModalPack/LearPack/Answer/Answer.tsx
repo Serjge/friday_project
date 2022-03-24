@@ -16,6 +16,15 @@ export const Answer: FC<AnswerType> = ({
       <div>Answer:</div>
       <div>{answer}</div>
       <div>
+        <select>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+      <div>
         <SuperButton onClick={() => setIsActiveAnswer(false)}>Cancel</SuperButton>
         <SuperButton onClick={handleOpenAnswer}>Next</SuperButton>
       </div>

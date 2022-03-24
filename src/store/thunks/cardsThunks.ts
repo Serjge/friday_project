@@ -117,3 +117,30 @@ export const updateCardTC =
       }
     }
   };
+
+export type GradeCardResponse = {
+  grade: number;
+  card_id: string;
+};
+
+export const setGradeCardTC =
+  (id: string, grade: number): AppThunkType =>
+  async dispatch => {
+    try {
+      const { status } = await cardsApi.setGrade({ card_id: id, grade });
+
+      if (status === StatusCode.Success) {
+        dispatch(rerenderCardAC());
+      }
+    } catch (errorCatch) {
+      const { response, message } = errorCatch as AxiosError;
+      const error = response?.data.error;
+      const status = response?.status;
+
+      if (status === StatusCode.Bad_Request) {
+        dispatch(setErrorMessageAC(error));
+      } else {
+        dispatch(setErrorMessageAC(message));
+      }
+    }
+  };
