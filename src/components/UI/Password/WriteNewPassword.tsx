@@ -4,29 +4,16 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { PasswordField } from '../PasswordField/PasswordField';
+import { PasswordField } from '../PasswordField';
 import { SuperButton } from '../SuperButton';
+
+import { CreatePasswordDiv } from './style';
 
 import { selectErrorMessage } from 'store/selectors';
 import { sendNewPasswordTC } from 'store/thunks';
 import { Wrapper } from 'styles';
 import { CreateNewPasswordType, SendNewPasswordType } from 'types';
 import { getErrorValidate } from 'utils';
-
-// const FormStyle = styled.form`
-//   display: flex;
-//   flex-direction: column;
-//   height: auto;
-//   padding: 30px;
-//   // align-items: center;
-//   border: 1px solid #3498db;
-// `;
-
-// export const PasswordLabel = styled.label`
-//   display: flex;
-//   flex-direction: column;
-//   margin: 5px;
-// `;
 
 export const WriteNewPassword = (): ReactElement => {
   const dispatch = useDispatch();
@@ -58,7 +45,6 @@ export const WriteNewPassword = (): ReactElement => {
     <Wrapper>
       <h1>Create new password</h1>
       <form onSubmit={handleSubmit(createNewPassword)}>
-        {/* <h3 style={{ marginLeft: '30px' }}>New password:</h3> */}
         <PasswordField
           {...register('password', { required: true, minLength: 8 })}
           type="password"
@@ -67,7 +53,6 @@ export const WriteNewPassword = (): ReactElement => {
           autoComplete="no"
           error={getErrorValidate(password?.type)}
         />
-        {/* <h3 style={{ marginLeft: '30px' }}>Confirm password:</h3> */}
         <PasswordField
           labelTitle="Confirm password"
           type="password"
@@ -81,11 +66,11 @@ export const WriteNewPassword = (): ReactElement => {
           error={getErrorValidate(confirmPassword?.type)}
         />
 
-        <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+        <CreatePasswordDiv>
           <SuperButton type="submit" value="create">
             Create new password
           </SuperButton>
-        </div>
+        </CreatePasswordDiv>
       </form>
       {errorMessage || null}
     </Wrapper>
