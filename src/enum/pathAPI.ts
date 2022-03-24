@@ -4,4 +4,5 @@ export enum PATHS_API {
   Auth_register = '/auth/register',
   Cards_card = '/cards/card',
   Cards_pack = '/cards/pack',
+  Cards_grade = '/cards/grade',
 }

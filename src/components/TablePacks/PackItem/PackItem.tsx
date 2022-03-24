@@ -66,7 +66,7 @@ export const PackItem = memo(({ packId }: PackItemPropsType) => {
       <TableItem flexBasis="10%">{dataNew.toLocaleDateString()}</TableItem>
       <TableItem flexBasis="30%">{userNamePack}</TableItem>
       <TableItem flexBasis="20%">
-        {cardsCount && <LearnPack packId={packId} />}
+        {!!cardsCount && <LearnPack packId={packId} cardsCount={cardsCount} />}
         <SuperButton size="small" onClick={onOpenPackClick}>
           Open
         </SuperButton>
