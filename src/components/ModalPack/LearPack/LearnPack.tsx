@@ -1,51 +1,51 @@
-import { FC, ReactElement, useEffect, useState } from 'react';
+import { FC, ReactElement, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Answer } from 'components/ModalPack/LearPack/Answer/Answer';
-import { Error } from 'components/ModalPack/LearPack/Error/Error';
+import { EndLearning } from 'components/ModalPack/LearPack/EndLearning/EndLearning';
 import { Question } from 'components/ModalPack/LearPack/Question/Question';
 import { SuperButton } from 'components/UI';
+import { setCardsAC } from 'store/actions';
 import { selectPackCards } from 'store/selectors';
 import { getCardsTC } from 'store/thunks';
 
 type LearnPackPropsType = {
-  packUserId: string;
-  handleCardsCount: () => void;
+  packId: string;
 };
 
 const NEXT_CARD = 1;
 const INITIAL_NUMBER_CARD = 0;
 
-export const LearnPack: FC<LearnPackPropsType> = ({
-  packUserId,
-  handleCardsCount,
-}): ReactElement => {
+export const LearnPack: FC<LearnPackPropsType> = ({ packId }): ReactElement => {
   const dispatch = useDispatch();
-  const [isActiveQuestion, setIsActiveQuestion] = useState<boolean>(false);
-  const [isActiveAnswer, setIsActiveAnswer] = useState<boolean>(false);
-  const [error, setError] = useState<boolean>(false);
-  const [cardNumber, setCardNumber] = useState<number>(INITIAL_NUMBER_CARD);
 
   const cards = useSelector(selectPackCards);
 
-  useEffect(() => {
-    dispatch(getCardsTC(packUserId));
-  }, [isActiveQuestion]);
+  const [isActiveQuestion, setIsActiveQuestion] = useState<boolean>(false);
+  const [isActiveAnswer, setIsActiveAnswer] = useState<boolean>(false);
+  const [isActiveEnd, setIsActiveEnd] = useState<boolean>(false);
+  const [cardNumber, setCardNumber] = useState<number>(INITIAL_NUMBER_CARD);
 
-  const handleOpenLearn = (): void => {
+  const closeQuestion = (value: boolean): void => {
+    setCardNumber(INITIAL_NUMBER_CARD);
+    dispatch(setCardsAC(null));
+    setIsActiveQuestion(value);
+  };
+  const openLearn = (): void => {
+    dispatch(getCardsTC(packId));
     setIsActiveQuestion(true);
-    handleCardsCount();
   };
 
-  const closeLearnWindow = (): void => {
+  const cancelLearnButton = (): void => {
     setIsActiveQuestion(false);
     setCardNumber(INITIAL_NUMBER_CARD);
+    dispatch(setCardsAC(null));
   };
 
-  const handleOpenAnswer = (): void => {
+  const openAnswer = (): void => {
     if (cardNumber === cards.length - NEXT_CARD) {
-      setError(true);
+      setIsActiveEnd(true);
       return;
     }
     setIsActiveAnswer(false);
@@ -54,23 +54,23 @@ export const LearnPack: FC<LearnPackPropsType> = ({
 
   return (
     <div>
-      <SuperButton size="small" onClick={handleOpenLearn}>
+      <SuperButton size="small" onClick={openLearn}>
         Learn
       </SuperButton>
       <Question
         question={cards[cardNumber].question}
         isActiveQuestion={isActiveQuestion}
         setIsActiveAnswer={setIsActiveAnswer}
-        setIsActiveQuestion={setIsActiveQuestion}
-        closeLearnWindow={closeLearnWindow}
+        setIsActiveQuestion={closeQuestion}
+        closeLearnWindow={cancelLearnButton}
       />
       <Answer
         answer={cards[cardNumber].answer}
         isActiveAnswer={isActiveAnswer}
         setIsActiveAnswer={setIsActiveAnswer}
-        handleOpenAnswer={handleOpenAnswer}
+        handleOpenAnswer={openAnswer}
       />
-      <Error active={error} closeErrorWindow={setError} />
+      <EndLearning active={isActiveEnd} closeErrorWindow={setIsActiveEnd} />
     </div>
   );
 };
