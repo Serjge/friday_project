@@ -20,11 +20,11 @@ export const DeleteCard = memo(({ cardId }: { cardId: string }): ReactElement =>
   return (
     <>
       <Modal isActive={isActiveModal} changeIsActive={closeModal}>
-        <WrapperModal>
-          <h3>Delete card?</h3>
+        <WrapperModal height="200px">
+          <h3>Do you want to delete this card?</h3>
           <div>
-            <SuperButton onClick={closeModal}>Cancel</SuperButton>
-            <SuperButton onClick={onDeleteCardClick}>Delete</SuperButton>
+            <SuperButton onClick={closeModal}>No</SuperButton>
+            <SuperButton onClick={onDeleteCardClick}>Yes</SuperButton>
           </div>
         </WrapperModal>
       </Modal>
