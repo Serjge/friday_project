@@ -58,7 +58,8 @@ export const PackItem = memo(({ packId }: PackItemPropsType) => {
 
   return (
     <Flex justifyContent="center">
-      <TableItem cursorPointer flexBasis="30%">
+      {/* eslint-disable-next-line no-alert */}
+      <TableItem cursorPointer flexBasis="30%" onClick={(): void => alert('hoy')}>
         {namePack}
         {!hiddenEditPackButton && <PenIcon />}
       </TableItem>
