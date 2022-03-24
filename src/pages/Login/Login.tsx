@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
-import { SuperButton, TextField } from 'components';
+import { PasswordField, SuperButton, TextField } from 'components';
 import { PATH } from 'enum';
 import { ForgotPassword, SingUp, Text } from 'pages/Login/style';
 import { selectIsLogin } from 'store/selectors';
@@ -35,43 +35,45 @@ export const Login = (): ReactElement => {
   }
 
   return (
-    <Wrapper>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit(onLoginClick)}>
-        <TextField
-          {...register('email', {
-            required: true,
-            pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-          })}
-          labelTitle="login:"
-          placeholder="Email"
-          type="text"
-          autoComplete="on"
-          error={getErrorValidate(email?.type)}
-        />
-        <TextField
-          {...register('password', { required: true, minLength: 8 })}
-          type="password"
-          labelTitle="Password:"
-          placeholder="Password"
-          autoComplete="on"
-          error={getErrorValidate(password?.type)}
-        />
-        <TextField
-          {...register('rememberMe')}
-          labelTitle="Remember me:"
-          type="checkbox"
-          autoComplete="on"
-        />
-        <Flex flexDirection="column" alignItems="center">
-          <ForgotPassword to={PATH.FORGOT_PASSWORD}>Forgot Password?</ForgotPassword>
-          <SuperButton style={{ marginTop: '20px' }} type="submit" value="login">
-            login
-          </SuperButton>
-          <Text>Don’t have an account?</Text>
-          <SingUp to={PATH.REGISTRATION}>Sing Up</SingUp>
-        </Flex>
-      </form>
-    </Wrapper>
+    <div>
+      <Wrapper>
+        <h1>Login</h1>
+        <form onSubmit={handleSubmit(onLoginClick)}>
+          <TextField
+            {...register('email', {
+              required: true,
+              pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+            })}
+            labelTitle="Login:"
+            placeholder="Email"
+            type="text"
+            autoComplete="on"
+            error={getErrorValidate(email?.type)}
+          />
+          <PasswordField
+            {...register('password', { required: true, minLength: 8 })}
+            type="password"
+            labelTitle="Password:"
+            placeholder="Password"
+            autoComplete="on"
+            error={getErrorValidate(password?.type)}
+          />
+          <TextField
+            {...register('rememberMe')}
+            labelTitle="Remember me:"
+            type="checkbox"
+            autoComplete="on"
+          />
+          <Flex flexDirection="column" alignItems="center">
+            <ForgotPassword to={PATH.FORGOT_PASSWORD}>Forgot Password?</ForgotPassword>
+            <SuperButton style={{ marginTop: '20px' }} type="submit" value="login">
+              login
+            </SuperButton>
+            <Text>Don’t have an account?</Text>
+            <SingUp to={PATH.REGISTRATION}>Sing Up</SingUp>
+          </Flex>
+        </form>
+      </Wrapper>
+    </div>
   );
 };

@@ -5,7 +5,7 @@ export * from './UI';
 export { TableCards, CardItem, HeadTableCards } from './TableCards';
 export { MultiRangeSlider } from './MultiRangeSlider';
 export { PackItem, TablePacks, HeadTablePacks } from './TablePacks';
-export { EditProfilePage, EditAvatar, EditName } from './EditProfilePage';
+export { EditProfilePage, EditName, EditAvatar } from './EditProfilePage';
 export { Modal } from './Modal';
 export { AddCard, EditCard, DeleteCard } from './ModalCard';
 export { ModalError } from './ModalError';

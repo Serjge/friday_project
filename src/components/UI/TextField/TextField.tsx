@@ -25,6 +25,7 @@ export type TextFieldPropsType = DefaultInputPropsType &
     error?: string;
     spanClassName?: string;
     labelTitle?: string;
+    id?: string;
   };
 
 export const TextField: FC<TextFieldPropsType> = memo(
@@ -84,7 +85,6 @@ export const TextField: FC<TextFieldPropsType> = memo(
           {labelTitle}
           <InputWrapper>
             <Input
-              type="text"
               error={error}
               onChange={onChangeCallback}
               onKeyPress={onKeyPressCallback}

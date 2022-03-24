@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useNavigate } from 'react-router-dom';
 
-import { SuperButton, TextField } from 'components';
+import { PasswordField, SuperButton, TextField } from 'components';
 import { PATH } from 'enum';
 import { selectRegistrationIsCompleted, selectStatus } from 'store/selectors';
 import { registrationTC } from 'store/thunks';
@@ -62,7 +62,7 @@ export const Registration = (): ReactElement => {
           placeholder="Email"
           error={getErrorValidate(email?.type)}
         />
-        <TextField
+        <PasswordField
           type="password"
           labelTitle="Password"
           disabled={status === 'loading'}
@@ -70,7 +70,7 @@ export const Registration = (): ReactElement => {
           error={getErrorValidate(password?.type)}
           placeholder="Password"
         />
-        <TextField
+        <PasswordField
           labelTitle="Confirm password"
           type="password"
           disabled={status === 'loading'}

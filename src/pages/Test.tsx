@@ -1,6 +1,7 @@
 import { ReactElement, useState } from 'react';
 
-import { AddPack, SuperButton, Modal } from 'components';
+import { AddPack, Modal, SuperButton } from '../components';
+import { PasswordField } from '../components/UI/PasswordField/PasswordField';
 
 export const Test = (): ReactElement => {
   const [isActive, setIsActive] = useState(true);
@@ -14,6 +15,7 @@ export const Test = (): ReactElement => {
       <Modal isActive={isActive} changeIsActive={setIsActive}>
         {/* <DeletePack /> */}
       </Modal>
+      <PasswordField />
     </div>
   );
 };
