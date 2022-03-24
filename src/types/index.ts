@@ -17,3 +17,10 @@ export type {
   SendNewPasswordType,
   SendNewPasswordAnswerType,
 } from './PasswordType';
+
+export type {
+  ErrorType,
+  LearnPackPropsType,
+  QuestionType,
+  AnswerType,
+} from './LearnPackTypes';

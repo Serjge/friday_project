@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState, useRef, FC } from 'react';
+import { useCallback, useEffect, useState, useRef, FC, ChangeEvent } from 'react';
 
 import './multiRangeSlider.css';
 
@@ -56,6 +56,18 @@ export const MultiRangeSlider: FC<MultiRangeSliderPropTypes> = ({
     }
   }, [maxVal, getPercent]);
 
+  const handleLeftRange = (event: ChangeEvent<HTMLInputElement>): void => {
+    const value = Math.min(Number(event.target.value), maxVal - RangeValue.STEP);
+    setMinVal(value);
+    minValRef.current = value;
+  };
+
+  const handleRightRange = (event: ChangeEvent<HTMLInputElement>): void => {
+    const value = Math.max(Number(event.target.value), minVal - RangeValue.STEP);
+    setMaxVal(value);
+    maxValRef.current = value;
+  };
+
   // Get min and max values when their state changes
   useEffect(() => {
     onChange({ minVal, maxVal });
@@ -68,11 +80,7 @@ export const MultiRangeSlider: FC<MultiRangeSliderPropTypes> = ({
         min={min}
         max={max}
         value={minVal}
-        onChange={event => {
-          const value = Math.min(Number(event.target.value), maxVal - RangeValue.STEP);
-          setMinVal(value);
-          minValRef.current = value;
-        }}
+        onChange={handleLeftRange}
         className="thumb thumb--left"
         // @ts-ignore
         // style={{ zIndex: minVal > max - ValueForRange.HUNDRED_PERCENT && '5' }}
@@ -82,11 +90,7 @@ export const MultiRangeSlider: FC<MultiRangeSliderPropTypes> = ({
         min={min}
         max={max}
         value={maxVal}
-        onChange={event => {
-          const value = Math.max(Number(event.target.value), minVal + RangeValue.STEP);
-          setMaxVal(value);
-          maxValRef.current = value;
-        }}
+        onChange={handleRightRange}
         className="thumb thumb--right"
       />
 

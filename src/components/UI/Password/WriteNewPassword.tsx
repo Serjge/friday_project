@@ -4,8 +4,10 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { PasswordField } from '../PasswordField';
 import { SuperButton } from '../SuperButton';
-import { TextField } from '../TextField';
+
+import { CreatePasswordDiv } from './style';
 
 import { selectErrorMessage } from 'store/selectors';
 import { sendNewPasswordTC } from 'store/thunks';
@@ -43,15 +45,15 @@ export const WriteNewPassword = (): ReactElement => {
     <Wrapper>
       <h1>Create new password</h1>
       <form onSubmit={handleSubmit(createNewPassword)}>
-        <TextField
+        <PasswordField
           {...register('password', { required: true, minLength: 8 })}
           type="password"
           labelTitle="New Password:"
           placeholder="Password"
-          autoComplete="on"
+          autoComplete="no"
           error={getErrorValidate(password?.type)}
         />
-        <TextField
+        <PasswordField
           labelTitle="Confirm password"
           type="password"
           {...register('confirmPassword', {
@@ -59,15 +61,16 @@ export const WriteNewPassword = (): ReactElement => {
             minLength: 8,
             validate: value => value === getValues('password'),
           })}
+          id="confirmPassword"
           placeholder="Confirm password"
           error={getErrorValidate(confirmPassword?.type)}
         />
 
-        <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+        <CreatePasswordDiv>
           <SuperButton type="submit" value="create">
             Create new password
           </SuperButton>
-        </div>
+        </CreatePasswordDiv>
       </form>
       {errorMessage || null}
     </Wrapper>

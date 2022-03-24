@@ -3,7 +3,7 @@ import { memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { DeletePack, SuperButton } from 'components';
+import { DeletePack, LearnPack, SuperButton } from 'components';
 import { PATH } from 'enum';
 import { PenIcon } from 'icon';
 import { RootReducerType } from 'store';
@@ -53,7 +53,8 @@ export const PackItem = memo(({ packId }: PackItemPropsType) => {
 
   return (
     <Flex justifyContent="center">
-      <TableItem cursorPointer flexBasis="30%">
+      {/* eslint-disable-next-line no-alert */}
+      <TableItem cursorPointer flexBasis="30%" onClick={(): void => alert('hoy')}>
         {namePack}
         {!hiddenEditPackButton && <PenIcon />}
       </TableItem>
@@ -61,7 +62,7 @@ export const PackItem = memo(({ packId }: PackItemPropsType) => {
       <TableItem flexBasis="10%">{dataNew.toLocaleDateString()}</TableItem>
       <TableItem flexBasis="30%">{userNamePack}</TableItem>
       <TableItem flexBasis="20%">
-        <SuperButton size="small">Learn</SuperButton>
+        {!!cardsCount && <LearnPack packId={packId} cardsCount={cardsCount} />}
         <SuperButton size="small" onClick={onOpenPackClick}>
           Open
         </SuperButton>

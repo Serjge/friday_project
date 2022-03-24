@@ -7,3 +7,4 @@ export { SearchField } from './SearchField';
 export { SearchPackCard } from './SearchPackCard';
 export { DebounceSearchField } from './DebounceSearchField';
 export { PasswordSuccessfulChanged, WriteNewPassword } from './Password';
+export { PasswordPosition, PasswordField, EyeDivButton } from './PasswordField';

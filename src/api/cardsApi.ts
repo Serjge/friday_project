@@ -40,4 +40,7 @@ export const cardsApi = {
       card: { cardsPack_id: cardId, ...card },
     });
   },
+  setGrade(data: { grade: number; card_id: string }) {
+    return instance.put(PATHS_API.Cards_grade, data);
+  },
 };

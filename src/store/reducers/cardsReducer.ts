@@ -19,7 +19,30 @@ export type InitialStateType = {
 };
 
 const initialState: InitialStateType = {
-  pack: {} as CardsType,
+  pack: {
+    cards: [
+      {
+        answer: '',
+        answerImg: '',
+        answerVideo: '',
+        cardsPack_id: '',
+        comments: '',
+        created: '',
+        grade: 0,
+        more_id: '',
+        rating: 0,
+        shots: 0,
+        type: '',
+        updated: '',
+        user_id: '',
+        __v: 0,
+        _id: '',
+        question: '',
+        questionImg: '',
+        questionVideo: '',
+      },
+    ],
+  } as CardsType,
   sort: '',
   searchAnswer: '',
   searchQuestion: '',
@@ -32,7 +55,11 @@ export const cardsReducer = (
 ): InitialStateType => {
   switch (action.type) {
     case SET_CARDS:
+      if (action.payload.cards === null) {
+        return { ...state, pack: initialState.pack };
+      }
       return { ...state, pack: action.payload.cards };
+
     case SET_SORT_CARDS:
       return { ...state, sort: action.payload.sort };
     case SET_SEARCH_ANSWER_CARDS:

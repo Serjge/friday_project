@@ -1,6 +1,6 @@
-export { EditProfilePage } from 'components/EditProfilePage/EditProfilePage';
-export { EditAvatar } from 'components/EditProfilePage/EditAvatar';
-export { EditName } from 'components/EditProfilePage/EditName';
+export { EditProfilePage } from './EditProfilePage';
+export { EditAvatar } from './EditAvatar';
+export { EditName } from './EditName';
 export {
   EditBlock,
   EditNameBlock,
@@ -11,4 +11,4 @@ export {
   UserImgProfile,
   EditAvatarBlock,
   EditPersonalInfo,
-} from 'components/EditProfilePage/style';
+} from './style';

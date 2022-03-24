@@ -8,6 +8,7 @@ export {
   deleteCardTC,
   addCardTC,
   updateCardTC,
+  setGradeCardTC,
 } from 'store/thunks/cardsThunks';
 export { forgotPasswordTC, sendNewPasswordTC } from './passwordThunks';
 export { addPackTC, deletePackTC } from './addPackThunks';
