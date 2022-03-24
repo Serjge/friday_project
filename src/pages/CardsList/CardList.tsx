@@ -56,7 +56,7 @@ export const CardList = memo((): ReactElement => {
     dispatch(setCurrentPageCardsAC(value));
   }, []);
 
-  const setCardsCountCards = useCallback((value: number): void => {
+  const setCountCards = useCallback((value: number): void => {
     dispatch(setPageCountCardsAC(value));
   }, []);
 
@@ -78,7 +78,7 @@ export const CardList = memo((): ReactElement => {
         pagesCount={pagesCount}
         countDecksOnPage={countDecksOnPage}
         setCurrentPage={setCurrentPageCards}
-        setPacksCount={setCardsCountCards}
+        setPacksCount={setCountCards}
         totalCount={totalCountCards}
       />
     </CardListWrapper>

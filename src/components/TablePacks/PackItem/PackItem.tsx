@@ -1,13 +1,17 @@
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { DeletePack, SuperButton } from 'components';
+import { DeletePack, LearnPack, SuperButton } from 'components';
 import { PATH } from 'enum';
 import { PenIcon } from 'icon';
 import { RootReducerType } from 'store';
-import { setSearchAnswerCardsAC, setSearchQuestionCardsAC } from 'store/actions';
+import {
+  setPageCountCardsAC,
+  setSearchAnswerCardsAC,
+  setSearchQuestionCardsAC,
+} from 'store/actions';
 import {
   selectCardsCount,
   selectPackName,
@@ -56,6 +60,10 @@ export const PackItem = memo(({ packId }: PackItemPropsType) => {
     navigate(`${PATH.CARD}${packId}/${namePack}`);
   };
 
+  const setCountCards = useCallback((): void => {
+    dispatch(setPageCountCardsAC(cardsCount));
+  }, []);
+
   return (
     <Flex justifyContent="center">
       <TableItem cursorPointer flexBasis="30%">
@@ -66,7 +74,10 @@ export const PackItem = memo(({ packId }: PackItemPropsType) => {
       <TableItem flexBasis="10%">{dataNew.toLocaleDateString()}</TableItem>
       <TableItem flexBasis="30%">{userNamePack}</TableItem>
       <TableItem flexBasis="20%">
-        <SuperButton size="small">Learn</SuperButton>
+        {/* eslint-disable-next-line @typescript-eslint/no-magic-numbers */}
+        {cardsCount !== 0 ? (
+          <LearnPack packUserId={packId} handleCardsCount={setCountCards} />
+        ) : null}
         <SuperButton size="small" onClick={onOpenPackClick}>
           Open
         </SuperButton>

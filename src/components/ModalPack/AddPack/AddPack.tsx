@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import style from './AddPack.module.css';
 
-import { Modal } from 'components/Modal/Modal';
-import { SuperButton, SuperInputText } from 'components/UI';
+import { Modal } from 'components';
+import { SuperButton, TextField } from 'components/UI';
 import { setResultMessageAddPackAC } from 'store/actions';
 import { selectResultMessage } from 'store/selectors';
 import { addPackTC } from 'store/thunks';
@@ -31,14 +31,11 @@ export const AddPack = (): ReactElement => {
     <div>
       <Modal isActive={isActive} changeIsActive={setIsActive}>
         <div className={style.form}>
-          <span className={style.title}>ADD NEW PACK</span>
-          <div className={style.input}>
-            <span>New title</span>
-            <SuperInputText defaultValue={newTitle} />
-          </div>
+          <h3>ADD NEW PACK</h3>
+          <TextField labelTitle="New title" width="200px" defaultValue={newTitle} />
           <div className={style.message}>{resultMessage}</div>
           <div>
-            <SuperButton onClick={() => setIsAddMod()}>Cancel</SuperButton>
+            <SuperButton onClick={setIsAddMod}>Cancel</SuperButton>
             <SuperButton onClick={setNewPack}>Add</SuperButton>
           </div>
         </div>

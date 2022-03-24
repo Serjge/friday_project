@@ -32,7 +32,7 @@ export const DeletePack: FC<DeletePackPropsType> = ({
       </SuperButton>
       <Modal isActive={isActive} changeIsActive={setIsActive}>
         <div className={style.main}>
-          <span>Do you want to delete this pack ?</span>
+          <h3>Do you want to delete this pack ?</h3>
           <div>
             <SuperButton onClick={() => setIsActive(false)}>No</SuperButton>
             <SuperButton onClick={deletePack}>Yes</SuperButton>

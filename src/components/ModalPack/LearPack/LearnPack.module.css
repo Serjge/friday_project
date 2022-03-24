@@ -1,0 +1,9 @@
+.mainBlock {
+  min-width: 300px;
+  min-height: 200px;
+  background-color: #17212b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
