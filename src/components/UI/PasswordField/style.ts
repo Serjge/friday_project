@@ -1,10 +1,7 @@
 import styled from 'styled-components';
 
-import { POSITIVE, NEGATIVE } from './PasswordField';
-
 type EyePropsType = {
-  // @ts-ignore
-  visibility: POSITIVE | NEGATIVE;
+  visibility: number;
 };
 
 export const PasswordPosition = styled.div`
