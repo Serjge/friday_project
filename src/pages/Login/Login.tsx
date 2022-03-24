@@ -52,16 +52,14 @@ export const Login = (): ReactElement => {
             autoComplete="on"
             error={getErrorValidate(email?.type)}
           />
-          <div>
-            <PasswordField
-              {...register('password', { required: true, minLength: 8 })}
-              type="password"
-              labelTitle="Password:"
-              placeholder="Password"
-              autoComplete="on"
-              error={getErrorValidate(password?.type)}
-            />
-          </div>
+          <PasswordField
+            {...register('password', { required: true, minLength: 8 })}
+            type="password"
+            labelTitle="Password:"
+            placeholder="Password"
+            autoComplete="on"
+            error={getErrorValidate(password?.type)}
+          />
           <TextField
             {...register('rememberMe')}
             labelTitle="Remember me:"
