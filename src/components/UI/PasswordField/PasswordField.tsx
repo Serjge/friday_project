@@ -1,10 +1,10 @@
 import React, { FC, forwardRef, ReactElement, useState } from 'react';
 
-import { EyeIcon } from '../../../icon/eyeIcon';
-import { TextField } from '../TextField';
-import { TextFieldPropsType } from '../TextField/TextField';
+import { TextField, TextFieldPropsType } from '../TextField/TextField';
 
-import { EyeDivButton, PasswordPosition } from './style';
+import { PasswordPosition, EyeDivButton } from './style';
+
+import { EyeIcon } from 'icon';
 
 type PasswordFieldPropsType = TextFieldPropsType;
 export const PasswordField: FC<PasswordFieldPropsType> = forwardRef(
