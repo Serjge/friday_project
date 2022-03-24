@@ -4,6 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
+import { PasswordLabel } from '../../components/UI/Password/WriteNewPassword';
 import { PasswordField } from '../../components/UI/PasswordField/PasswordField';
 
 import { SuperButton, TextField } from 'components';
@@ -52,14 +53,17 @@ export const Login = (): ReactElement => {
             autoComplete="on"
             error={getErrorValidate(email?.type)}
           />
-          <PasswordField
-            {...register('password', { required: true, minLength: 8 })}
-            type="password"
-            labelTitle="Password:"
-            placeholder="Password"
-            autoComplete="on"
-            error={getErrorValidate(password?.type)}
-          />
+          <PasswordLabel>
+            <h3 style={{ marginLeft: '30px' }}>Password:</h3>
+            <PasswordField
+              {...register('password', { required: true, minLength: 8 })}
+              type="password"
+              // labelTitle="Password:"
+              placeholder="Password"
+              autoComplete="on"
+              error={getErrorValidate(password?.type)}
+            />
+          </PasswordLabel>
           <TextField
             {...register('rememberMe')}
             labelTitle="Remember me:"
@@ -76,7 +80,6 @@ export const Login = (): ReactElement => {
           </Flex>
         </form>
       </Wrapper>
-      <PasswordField />
     </div>
   );
 };

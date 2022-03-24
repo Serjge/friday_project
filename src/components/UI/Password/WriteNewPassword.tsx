@@ -18,7 +18,7 @@ const FormStyle = styled.form`
   display: flex;
   flex-direction: column;
   height: auto;
-  padding: 50px;
+  padding: 30px;
   // align-items: center;
   border: 1px solid #3498db;
 `;
@@ -26,6 +26,7 @@ const FormStyle = styled.form`
 export const PasswordLabel = styled.label`
   display: flex;
   flex-direction: column;
+  margin: 5px;
 `;
 
 export const WriteNewPassword = (): ReactElement => {
@@ -59,7 +60,7 @@ export const WriteNewPassword = (): ReactElement => {
       <h1>Create new password</h1>
       <FormStyle onSubmit={handleSubmit(createNewPassword)}>
         <PasswordLabel>
-          New password:
+          <h3 style={{ marginLeft: '30px' }}>New password:</h3>
           <PasswordField
             {...register('password', { required: true, minLength: 8 })}
             type="password"
@@ -70,7 +71,7 @@ export const WriteNewPassword = (): ReactElement => {
           />
         </PasswordLabel>
         <PasswordLabel>
-          Confirm password:
+          <h3 style={{ marginLeft: '30px' }}>Confirm password:</h3>
           <PasswordField
             // labelTitle="Confirm password"
             type="password"

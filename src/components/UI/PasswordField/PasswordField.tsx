@@ -9,9 +9,8 @@ import { TextFieldPropsType } from '../TextField/TextField';
 const PasswordWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 400px;
   position: relative;
-  justify-content: center;
+  // justify-content: center;
   align-items: center;
 `;
 
