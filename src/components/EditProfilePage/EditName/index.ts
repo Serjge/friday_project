@@ -1,1 +1,1 @@
-export { EditName } from 'components/EditProfilePage/EditName/EditName';
+export { EditName } from './EditName';

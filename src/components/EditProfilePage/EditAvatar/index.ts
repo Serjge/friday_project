@@ -1,1 +1,1 @@
-export { EditAvatar } from 'components/EditProfilePage/EditAvatar/EditAvatar';
+export { EditAvatar } from './EditAvatar';
