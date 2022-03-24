@@ -4,9 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
-import { PasswordField } from '../../components/UI/PasswordField/PasswordField';
-
-import { SuperButton, TextField } from 'components';
+import { PasswordField, SuperButton, TextField } from 'components';
 import { PATH } from 'enum';
 import { ForgotPassword, SingUp, Text } from 'pages/Login/style';
 import { selectIsLogin } from 'store/selectors';
@@ -46,13 +44,12 @@ export const Login = (): ReactElement => {
               required: true,
               pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
             })}
-            labelTitle="login:"
+            labelTitle="Login:"
             placeholder="Email"
             type="text"
             autoComplete="on"
             error={getErrorValidate(email?.type)}
           />
-          {/* <h3 style={{ marginLeft: '30px' }}>Password:</h3> */}
           <PasswordField
             {...register('password', { required: true, minLength: 8 })}
             type="password"
