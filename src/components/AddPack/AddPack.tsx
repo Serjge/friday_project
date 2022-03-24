@@ -29,7 +29,7 @@ export const AddPack = memo((): ReactElement => {
             <TextField labelTitle="Title pack" width="250px" ref={titleRef} />
           </div>
           <div>
-            <SuperButton onClick={openModal}>Cancel</SuperButton>
+            <SuperButton onClick={closeModal}>Cancel</SuperButton>
             <SuperButton onClick={setNewPack}>Add</SuperButton>
           </div>
         </WrapperModal>
