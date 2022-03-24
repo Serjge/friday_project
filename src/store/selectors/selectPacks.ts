@@ -1,7 +1,7 @@
 import { RootReducerType } from 'store/store';
 import { PackType } from 'types';
 
-const zeroElement = 0;
+export const zeroElement = 0;
 
 export const selectPacks = (state: RootReducerType): PackType[] =>
   state.packs.packs.cardPacks;

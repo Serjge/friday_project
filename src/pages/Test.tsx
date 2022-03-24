@@ -15,9 +15,6 @@ export const Test = (): ReactElement => {
       <Modal isActive={isActive} changeIsActive={setIsActive}>
         {/* <DeletePack /> */}
       </Modal>
-      <EditNamePack namePack="qqqqqq" />
-      <EditNamePack namePack="wwwww" />
-      <EditNamePack namePack="zzzzz" />
     </div>
   );
 };
