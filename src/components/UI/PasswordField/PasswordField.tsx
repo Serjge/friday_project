@@ -7,6 +7,7 @@ import { PasswordPosition, EyeDivButton } from './style';
 import { EyeIcon } from 'icon';
 
 type PasswordFieldPropsType = TextFieldPropsType;
+
 export const PasswordField: FC<PasswordFieldPropsType> = forwardRef(
   ({ ...props }: PasswordFieldPropsType, ref): ReactElement => {
     const [eye, setEye] = useState(true);
@@ -18,10 +19,12 @@ export const PasswordField: FC<PasswordFieldPropsType> = forwardRef(
       type = 'text';
     }
 
+    const isPasswordInvisibilityHandle = (): void => setEye(!eye);
+
     return (
       <PasswordPosition>
         <TextField {...props} type={type} ref={ref} />
-        <EyeDivButton onClick={() => setEye(!eye)} role="presentation">
+        <EyeDivButton onClick={isPasswordInvisibilityHandle} role="presentation">
           <EyeIcon />
         </EyeDivButton>
       </PasswordPosition>
