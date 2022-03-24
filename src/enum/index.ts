@@ -7,3 +7,4 @@ export { DeBounceTimer } from 'enum/deBounceTimer';
 export { RangeValue } from 'enum/rangeValue';
 export { PATHS_API } from './pathAPI';
 export { ModalErrorTimer } from './ModalErrorTimer';
+export { GradesCards } from './GradesCards';

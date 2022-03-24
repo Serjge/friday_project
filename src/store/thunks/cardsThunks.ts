@@ -118,12 +118,7 @@ export const updateCardTC =
     }
   };
 
-export type GradeCardResponse = {
-  grade: number;
-  card_id: string;
-};
-
-export const setGradeCardTC =
+export const setGradeCardTC =  // точно такая санка как и deleteCardTC, как сократить код?
   (id: string, grade: number): AppThunkType =>
   async dispatch => {
     try {

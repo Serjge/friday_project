@@ -1,33 +1,63 @@
-import { FC, ReactElement } from 'react';
+import { ChangeEvent, FC, ReactElement, useState } from 'react';
 
-import { Modal } from 'components/Modal';
-import style from 'components/ModalPack/LearPack/LearnPack.module.css';
-import { AnswerType } from 'components/ModalPack/LearPack/Types/Types';
-import { SuperButton } from 'components/UI';
+import { Modal, SuperButton, SuperCheckbox } from 'components';
+import { GradesCards } from 'enum';
+import { AnswerType } from 'types';
+import { getNumberValuesFromEnum } from 'utils';
 
 export const Answer: FC<AnswerType> = ({
   setIsActiveAnswer,
   answer,
-  handleOpenAnswer,
+  handleNextQuestion,
   isActiveAnswer,
-}): ReactElement => (
-  <Modal isActive={isActiveAnswer} changeIsActive={setIsActiveAnswer}>
-    <div className={style.mainBlock}>
+}): ReactElement => {
+  const [currentGrade, setCurrentGrade] = useState<number | null>(null);
+
+  const setNextQuestion = (): void => {
+    if (currentGrade) {
+      handleNextQuestion(currentGrade);
+    }
+    setCurrentGrade(null);
+  };
+
+  const handleGrade = (value: ChangeEvent<HTMLInputElement>): void => {
+    setCurrentGrade(Number(value.currentTarget.value));
+  };
+
+  const ranges = getNumberValuesFromEnum(GradesCards);
+  // const ranges = getKeysAndValuesFromEnum(GradesCards);
+
+  const checkBoxes = ranges.map(grade => (
+    // let key = ''
+    // let value = 0
+    //
+    // if(typeof grade === "number"){
+    //   value = grade
+    // }
+    //
+    // if(typeof grade === "string"){
+    //   key = grade
+    // }
+
+    <SuperCheckbox
+      key={grade}
+      checked={grade === currentGrade}
+      onChange={handleGrade}
+      value={grade}
+    >
+      {grade}
+    </SuperCheckbox>
+  ));
+
+  return (
+    <Modal isActive={isActiveAnswer} changeIsActive={setIsActiveAnswer}>
       <div>Answer:</div>
       <div>{answer}</div>
-      <div>
-        <select>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
-      </div>
+      <div style={{ display: 'flex', flexDirection: 'column' }}>{checkBoxes}</div>
       <div>
         <SuperButton onClick={() => setIsActiveAnswer(false)}>Cancel</SuperButton>
-        <SuperButton onClick={handleOpenAnswer}>Next</SuperButton>
+        <SuperButton onClick={setNextQuestion}>Next</SuperButton>
       </div>
-    </div>
-  </Modal>
-);
+    </Modal>
+  );
+};
