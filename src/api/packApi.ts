@@ -34,6 +34,9 @@ export const packApi = {
   setNewPack(newTitle: string) {
     return instance.post(PATHS_API.Cards_pack, { cardsPack: { name: newTitle } });
   },
+  editTitlePack(id: string, newTitle: string) {
+    return instance.put(PATHS_API.Cards_pack, { cardsPack: { _id: id, name: newTitle } });
+  },
   deletePack(id: string) {
     return instance.delete(PATHS_API.Cards_pack, {
       params: {
