@@ -28,6 +28,29 @@ export const addPackTC =
     }
   };
 
+export const editTitlePackTC =
+  (id: string, newTitle: string): AppThunkType =>
+  async dispatch => {
+    try {
+      const { status } = await packApi.editTitlePack(id, newTitle);
+
+      if (status === StatusCode.Success) {
+        dispatch(setResultMessageAddPackAC('Pack name changed'));
+        dispatch(rerenderPackAC());
+      }
+    } catch (errorCatch) {
+      const { response, message } = errorCatch as AxiosError;
+      const error = response?.data.error;
+      const status = response?.status;
+
+      if (status === StatusCode.Bad_Request) {
+        dispatch(setResultMessageAddPackAC(error));
+      } else {
+        dispatch(setResultMessageAddPackAC(message));
+      }
+    }
+  };
+
 export const deletePackTC =
   (packId: string): AppThunkType =>
   async dispatch => {
