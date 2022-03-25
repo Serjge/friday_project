@@ -13,13 +13,13 @@ import { selectNeedEditProfile } from 'store/selectors';
 export const EditProfilePage = (): ReactElement => {
   const dispatch = useDispatch();
 
-  const needEdit = useSelector(selectNeedEditProfile);
+  const isEditNeed = useSelector(selectNeedEditProfile);
 
   const exitEditModule = (): void => {
     dispatch(editProfileAC(false));
   };
 
-  if (!needEdit) {
+  if (!isEditNeed) {
     return <Navigate to={PATH.PROFILE} />;
   }
 
