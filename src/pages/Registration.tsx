@@ -8,7 +8,7 @@ import { PasswordField, SuperButton, TextField } from 'components';
 import { PATH } from 'enum';
 import { selectRegistrationIsCompleted, selectStatus } from 'store/selectors';
 import { registrationTC } from 'store/thunks';
-import { Wrapper } from 'styles';
+import { Flex, Wrapper } from 'styles';
 import { getErrorValidate } from 'utils';
 
 type Inputs = {
@@ -82,12 +82,14 @@ export const Registration = (): ReactElement => {
           placeholder="Confirm password"
           error={getErrorValidate(confirmPassword?.type)}
         />
-        <SuperButton onClick={onBackLoginClick} type="button">
-          Cancel
-        </SuperButton>
-        <SuperButton disabled={status === 'loading'} type="submit">
-          Register
-        </SuperButton>
+        <Flex justifyContent="space-around">
+          <SuperButton onClick={onBackLoginClick} type="button">
+            Cancel
+          </SuperButton>
+          <SuperButton disabled={status === 'loading'} type="submit">
+            Register
+          </SuperButton>
+        </Flex>
       </form>
     </Wrapper>
   );
