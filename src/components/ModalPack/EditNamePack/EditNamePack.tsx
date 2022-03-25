@@ -2,38 +2,41 @@ import { ChangeEvent, FC, ReactElement, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
+import { PenIcon } from '../../../icon';
 // import { RootReducerType } from '../../../store';
-import { RootReducerType } from '../../../store';
 import { setResultMessageAddPackAC } from '../../../store/actions';
-import { selectResultMessage, zeroElement } from '../../../store/selectors';
-// import { addPackTC } from '../../../store/thunks';
+import { selectResultMessage } from '../../../store/selectors';
 import { editTitlePackTC } from '../../../store/thunks/addPackThunks';
-import { PackType } from '../../../types';
+// import { PackType } from '../../../types';
 import { Modal } from '../../Modal';
 import { SuperButton, TextField } from '../../UI';
 import style from '../AddPack/AddPack.module.css';
 
 type EditNamePackPropsType = {
   namePack: string;
+  packId: string;
 };
 
-export const EditNamePack: FC<EditNamePackPropsType> = ({ namePack }): ReactElement => {
+export const EditNamePack: FC<EditNamePackPropsType> = ({
+  namePack,
+  packId,
+}): ReactElement => {
   const dispatch = useDispatch();
 
   // кое как достал id, нужен рефакторинг
-  const selectPackName = (state: RootReducerType, name: string): PackType[] =>
-    state.packs.packs.cardPacks.filter(pack => pack.name === name);
-  const pack = useSelector((state: RootReducerType) => selectPackName(state, namePack));
-  // eslint-disable-next-line no-underscore-dangle
-  const id = pack[zeroElement]._id;
+  // const selectPackName = (state: RootReducerType, name: string): PackType[] =>
+  //   state.packs.packs.cardPacks.filter(pack => pack.name === name);
+  // const pack = useSelector((state: RootReducerType) => selectPackName(state, namePack));
+  //
+  // // eslint-disable-next-line no-underscore-dangle
+  // const id = pack[zeroElement]._id;
 
   const resultMessage = useSelector(selectResultMessage);
   const [isActive, setIsActive] = useState<boolean>(false);
   const [newPackTitle, setNewPackTitle] = useState<string>('');
 
   const editNamePack = (): void => {
-    dispatch(editTitlePackTC(id, newPackTitle));
-    // console.log(newPackTitle);
+    dispatch(editTitlePackTC(packId, newPackTitle));
   };
 
   const setIsEditMod = (): void => {
@@ -63,7 +66,9 @@ export const EditNamePack: FC<EditNamePackPropsType> = ({ namePack }): ReactElem
           </div>
         </div>
       </Modal>
-      <SuperButton onClick={() => setIsActive(true)}>Edit Name Pack</SuperButton>
+      <div onClick={() => setIsActive(true)} role="presentation">
+        <PenIcon />
+      </div>
     </div>
   );
 };

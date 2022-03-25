@@ -1,7 +1,6 @@
 import { ReactElement, useState } from 'react';
 
 import { AddPack, Modal, SuperButton } from '../components';
-import { EditNamePack } from '../components/ModalPack/EditNamePack/EditNamePack';
 
 export const Test = (): ReactElement => {
   const [isActive, setIsActive] = useState(true);
