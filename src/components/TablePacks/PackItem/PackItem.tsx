@@ -7,7 +7,6 @@ import { EditNamePack } from '../../ModalPack/EditNamePack/EditNamePack';
 
 import { DeletePack, LearnPack, SuperButton } from 'components';
 import { PATH } from 'enum';
-// import { PenIcon } from 'icon';
 import { RootReducerType } from 'store';
 import { setSearchAnswerCardsAC, setSearchQuestionCardsAC } from 'store/actions';
 import {
