@@ -11,6 +11,6 @@ test('error validate', () => {
   expect(result1).toBe(ErrorValidateMessage.Required);
   expect(result2).toBe(ErrorValidateMessage.MinLength);
   expect(result3).toBe(ErrorValidateMessage.Validate);
-  expect(result4).toBe(ErrorValidateMessage.pattern);
+  expect(result4).toBe(ErrorValidateMessage.Pattern);
   expect(result5).toBe(undefined);
 });

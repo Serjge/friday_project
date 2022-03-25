@@ -38,31 +38,30 @@ export const HeadTableCards = memo(
         flexBasis: '10%',
         flexBasisIsMyPack: '10%',
       },
-      {
-        name: 'Action',
-        sortType: '',
-        flexBasis: '0%',
-        flexBasisIsMyPack: '10%',
-      },
     ];
 
+    const mapTableHead = tableHeadData.map(
+      ({ name, flexBasis, sortType, flexBasisIsMyPack }) => (
+        <TableHeadWithSorts
+          key={name + flexBasis}
+          sortPack={sortPacks}
+          sortType={sortType}
+          flexBasis={isMyPack ? flexBasisIsMyPack : flexBasis}
+          onClick={() => onSortCardsClick(sortType)}
+        >
+          {name}
+        </TableHeadWithSorts>
+      ),
+    );
+
     if (!isMyPack) {
-      tableHeadData.pop();
+      return <Flex justifyContent="center">{mapTableHead}</Flex>;
     }
 
     return (
       <Flex justifyContent="center">
-        {tableHeadData.map(({ name, flexBasis, sortType, flexBasisIsMyPack }) => (
-          <TableHeadWithSorts
-            key={name + flexBasis}
-            sortPack={sortPacks}
-            sortType={sortType}
-            flexBasis={isMyPack ? flexBasisIsMyPack : flexBasis}
-            onClick={() => onSortCardsClick(sortType)}
-          >
-            {name}
-          </TableHeadWithSorts>
-        ))}
+        {mapTableHead}
+        <TableHeadWithSorts flexBasis="10%">Action</TableHeadWithSorts>
       </Flex>
     );
   },

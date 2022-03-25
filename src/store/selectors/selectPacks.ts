@@ -1,7 +1,7 @@
 import { RootReducerType } from 'store/store';
 import { PackType } from 'types';
 
-export const zeroElement = 0;
+const ZERO_ELEMENT = 0;
 
 export const selectPacks = (state: RootReducerType): PackType[] =>
   state.packs.packs.cardPacks;
@@ -9,26 +9,26 @@ export const selectPacks = (state: RootReducerType): PackType[] =>
 export const selectIsMyPack = (state: RootReducerType): boolean => state.packs.isMyPack;
 
 export const selectPack = (state: RootReducerType, packId: string): PackType =>
-  state.packs.packs.cardPacks.filter(({ _id }) => _id === packId)[zeroElement];
+  state.packs.packs.cardPacks.filter(({ _id }) => _id === packId)[ZERO_ELEMENT];
 
 export const selectPackName = (state: RootReducerType, packId: string): string =>
-  state.packs.packs.cardPacks.filter(({ _id }) => _id === packId)[zeroElement].name;
+  selectPack(state, packId).name;
 
 export const selectUpdateDataPack = (state: RootReducerType, packId: string): string =>
-  state.packs.packs.cardPacks.filter(({ _id }) => _id === packId)[zeroElement].updated;
+  selectPack(state, packId).updated;
 
 export const selectCardsCount = (state: RootReducerType, packId: string): number =>
-  state.packs.packs.cardPacks.filter(({ _id }) => _id === packId)[zeroElement].cardsCount;
+  selectPack(state, packId).cardsCount;
 
 export const selectUserNamePack = (state: RootReducerType, packId: string): string =>
-  state.packs.packs.cardPacks.filter(({ _id }) => _id === packId)[zeroElement].user_name;
+  selectPack(state, packId).user_name;
 
 export const selectUserIdPack = (state: RootReducerType, packId: string): string =>
-  state.packs.packs.cardPacks.filter(({ _id }) => _id === packId)[zeroElement].user_id;
+  selectPack(state, packId).user_id;
 
 export const selectPackId = (state: RootReducerType, packId: string): string =>
   // eslint-disable-next-line no-underscore-dangle
-  state.packs.packs.cardPacks.filter(({ _id }) => _id === packId)[zeroElement]._id;
+  selectPack(state, packId)._id;
 
 export const selectSortPacks = (state: RootReducerType): string => state.packs.sort;
 

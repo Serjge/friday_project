@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 export const useModal = (): {
   isActiveModal: boolean;
@@ -7,13 +7,13 @@ export const useModal = (): {
 } => {
   const [isActive, setIsActive] = useState<boolean>(false);
 
-  const openModal = (): void => {
+  const openModal = useCallback((): void => {
     setIsActive(true);
-  };
+  }, []);
 
-  const closeModal = (): void => {
+  const closeModal = useCallback((): void => {
     setIsActive(false);
-  };
+  }, []);
 
   return { isActiveModal: isActive, openModal, closeModal };
 };

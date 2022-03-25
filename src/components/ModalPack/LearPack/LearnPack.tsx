@@ -1,30 +1,29 @@
-/* eslint-disable */
-import { FC, ReactElement, useEffect, useState } from "react";
+import { FC, ReactElement, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Answer } from 'components/ModalPack/LearPack/Answer/Answer';
-import { EndLearning } from 'components/ModalPack/LearPack/EndLearning/EndLearning';
-import { Question } from 'components/ModalPack/LearPack/Question/Question';
-import { SuperButton } from 'components/UI';
-import { setCardsAC, setPageCountCardsAC } from "store/actions";
-import { selectPackCards } from 'store/selectors';
-import { getCardsTC } from 'store/thunks';
-import { setGradeCardTC } from 'store/thunks/cardsThunks';
+import { Answer } from './Answer';
+import { EndLearning } from './EndLearning';
+import { Question } from './Question';
 
-type LearnPackPropsType = {
-  packId: string;
-  cardsCount: number;
-};
+import { SuperButton } from 'components/UI';
+import { setCardsAC, setPageCountCardsAC } from 'store/actions';
+import { selectPackCards } from 'store/selectors';
+import { getCardsTC, setGradeCardTC } from 'store/thunks';
+import { LearnPackPropsType } from 'types';
 
 const NEXT_CARD = 1;
 const INITIAL_NUMBER_CARD = 0;
+const TIMER_FOR_SET_NEXT_CARD = 300;
 
-export const LearnPack: FC<LearnPackPropsType> = ({ packId, cardsCount }): ReactElement => {
+export const LearnPack: FC<LearnPackPropsType> = ({
+  packId,
+  cardsCount,
+}): ReactElement => {
   const dispatch = useDispatch();
 
-  let question = ''
-  let answer = ''
+  let question = '';
+  let answer = '';
 
   const cards = useSelector(selectPackCards);
 
@@ -33,14 +32,8 @@ export const LearnPack: FC<LearnPackPropsType> = ({ packId, cardsCount }): React
   const [isActiveEnd, setIsActiveEnd] = useState<boolean>(false);
   const [cardNumber, setCardNumber] = useState<number>(INITIAL_NUMBER_CARD);
 
-
-  const closeQuestion = (value: boolean): void => {
-    setCardNumber(INITIAL_NUMBER_CARD);
-    dispatch(setCardsAC(null));
-    setIsActiveQuestion(value);
-  };
   const openLearn = (): void => {
-    dispatch(setPageCountCardsAC(cardsCount))  // чтобы заменить значение в санке по умолчанию
+    dispatch(setPageCountCardsAC(cardsCount)); // чтобы заменить значение в санке по умолчанию
     dispatch(getCardsTC(packId));
     setIsActiveQuestion(true);
   };
@@ -49,30 +42,32 @@ export const LearnPack: FC<LearnPackPropsType> = ({ packId, cardsCount }): React
     setIsActiveQuestion(false);
     setCardNumber(INITIAL_NUMBER_CARD);
     dispatch(setCardsAC(null));
-
-    dispatch(setGradeCardTC(cards[cardNumber]._id, 3));
   };
 
-  const openAnswer = (): void => {
+  const handleNextQuestion = (grade: number): void => {
     if (cardNumber === cards.length - NEXT_CARD) {
       setIsActiveEnd(true);
       return;
     }
     setIsActiveAnswer(false);
-    setCardNumber(cardNumber + NEXT_CARD);
+    setTimeout(() => {
+      setCardNumber(cardNumber + NEXT_CARD);
+    }, TIMER_FOR_SET_NEXT_CARD);
+    // eslint-disable-next-line no-underscore-dangle
+    dispatch(setGradeCardTC(cards[cardNumber]._id, grade));
   };
 
-  const closeLearnWindows = (value:boolean) => {
-    setIsActiveAnswer(false)
-    setIsActiveQuestion(false)
-    setIsActiveEnd(value)
+  const closeLearnWindows = (value: boolean): void => {
+    setIsActiveAnswer(false);
+    setIsActiveQuestion(false);
+    setIsActiveEnd(value);
     dispatch(setCardsAC(null));
     setCardNumber(INITIAL_NUMBER_CARD);
   };
 
-  if(!!cards.length){
-    question = cards[cardNumber].question
-    answer = cards[cardNumber].answer
+  if (cards.length) {
+    question = cards[cardNumber].question;
+    answer = cards[cardNumber].answer;
   }
 
   return (
@@ -84,14 +79,14 @@ export const LearnPack: FC<LearnPackPropsType> = ({ packId, cardsCount }): React
         question={question}
         isActiveQuestion={isActiveQuestion}
         setIsActiveAnswer={setIsActiveAnswer}
-        setIsActiveQuestion={closeQuestion}
+        setIsActiveQuestion={closeLearnWindows}
         closeLearnWindow={cancelLearnButton}
       />
       <Answer
         answer={answer}
         isActiveAnswer={isActiveAnswer}
-        setIsActiveAnswer={setIsActiveAnswer}
-        handleOpenAnswer={openAnswer}
+        setIsActiveAnswer={closeLearnWindows}
+        handleNextQuestion={handleNextQuestion}
       />
       <EndLearning active={isActiveEnd} closeErrorWindow={closeLearnWindows} />
     </div>

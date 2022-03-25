@@ -1,27 +1,16 @@
-import { AxiosError } from 'axios';
-
 import { passwordApi } from 'api';
 import { StatusCode } from 'enum';
-import { setErrorMessageAC, changePasswordAC } from 'store/actions';
+import { changePasswordAC } from 'store/actions';
 import { AppThunkType, ForgotPasswordSendType, SendNewPasswordType } from 'types';
+import { handleError } from 'utils';
 
 export const forgotPasswordTC =
   (data: ForgotPasswordSendType): AppThunkType =>
   async dispatch => {
     try {
-      // true
       await passwordApi.forgotPassword(data);
-      // false
-    } catch (errorCatch) {
-      const { response, message } = errorCatch as AxiosError;
-      const error = response?.data.error;
-      const status = response?.status;
-
-      if (status === StatusCode.Bad_Request) {
-        dispatch(setErrorMessageAC(error));
-      } else {
-        dispatch(setErrorMessageAC(message));
-      }
+    } catch (error) {
+      handleError(error, dispatch, StatusCode.Bad_Request);
     }
   };
 
@@ -34,15 +23,7 @@ export const sendNewPasswordTC =
       if (status === StatusCode.Success) {
         dispatch(changePasswordAC(false));
       }
-    } catch (errorCatch) {
-      const { response, message } = errorCatch as AxiosError;
-      const error = response?.data.error;
-      const status = response?.status;
-
-      if (status === StatusCode.Unauthorized || status === StatusCode.Bad_Request) {
-        dispatch(setErrorMessageAC(error));
-      } else {
-        dispatch(setErrorMessageAC(message));
-      }
+    } catch (error) {
+      handleError(error, dispatch, StatusCode.Unauthorized, StatusCode.Bad_Request);
     }
   };

@@ -1,44 +1,43 @@
-import { FC, ReactElement, useState } from 'react';
+import { FC, memo, ReactElement, useCallback } from 'react';
 
-import style from './DeletePack.module.css';
+import { useDispatch } from 'react-redux';
 
-import { Modal } from 'components/Modal';
-import { SuperButton } from 'components/UI';
+import { Modal, SuperButton } from 'components';
+import { useModal } from 'hook';
+import { deletePackTC } from 'store/thunks';
+import { WrapperModal } from 'styles';
 
 type DeletePackPropsType = {
   hiddenEditPackButton: boolean;
-  onDeletePackClick: () => void;
+  packId: string;
 };
 
-export const DeletePack: FC<DeletePackPropsType> = ({
-  onDeletePackClick,
-  hiddenEditPackButton,
-}): ReactElement => {
-  const [isActive, setIsActive] = useState(false);
+export const DeletePack: FC<DeletePackPropsType> = memo(
+  ({ packId, hiddenEditPackButton }): ReactElement => {
+    const dispatch = useDispatch();
 
-  const deletePack = (): void => {
-    onDeletePackClick();
-    setIsActive(false);
-  };
+    const { isActiveModal, openModal, closeModal } = useModal();
 
-  return (
-    <div>
-      <SuperButton
-        size="small"
-        hidden={hiddenEditPackButton}
-        onClick={() => setIsActive(true)}
-      >
-        Delete
-      </SuperButton>
-      <Modal isActive={isActive} changeIsActive={setIsActive}>
-        <div className={style.main}>
-          <h3>Do you want to delete this pack ?</h3>
-          <div>
-            <SuperButton onClick={() => setIsActive(false)}>No</SuperButton>
-            <SuperButton onClick={deletePack}>Yes</SuperButton>
-          </div>
-        </div>
-      </Modal>
-    </div>
-  );
-};
+    const deletePack = useCallback((): void => {
+      dispatch(deletePackTC(packId));
+      closeModal();
+    }, []);
+
+    return (
+      <>
+        <Modal isActive={isActiveModal} changeIsActive={closeModal}>
+          <WrapperModal height="200px">
+            <h3>Do you want to delete this pack?</h3>
+            <div>
+              <SuperButton onClick={closeModal}>No</SuperButton>
+              <SuperButton onClick={deletePack}>Yes</SuperButton>
+            </div>
+          </WrapperModal>
+        </Modal>
+        <SuperButton size="small" hidden={hiddenEditPackButton} onClick={openModal}>
+          Delete
+        </SuperButton>
+      </>
+    );
+  },
+);

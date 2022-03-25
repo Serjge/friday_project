@@ -15,7 +15,6 @@ import {
   selectUserIdPack,
   selectUserNamePack,
 } from 'store/selectors';
-import { deletePackTC } from 'store/thunks';
 import { Flex, TableItem } from 'styles';
 
 type PackItemPropsType = {
@@ -45,10 +44,6 @@ export const PackItem = memo(({ packId }: PackItemPropsType) => {
   const dataNew = new Date(updateDataPack);
   const hiddenEditPackButton = userId !== userIdPack;
 
-  const onDeletePackClick = (): void => {
-    dispatch(deletePackTC(packId));
-  };
-
   const onOpenPackClick = (): void => {
     dispatch(setSearchQuestionCardsAC(''));
     dispatch(setSearchAnswerCardsAC(''));
@@ -69,10 +64,7 @@ export const PackItem = memo(({ packId }: PackItemPropsType) => {
         <SuperButton size="small" onClick={onOpenPackClick}>
           Open
         </SuperButton>
-        <DeletePack
-          hiddenEditPackButton={hiddenEditPackButton}
-          onDeletePackClick={onDeletePackClick}
-        />
+        <DeletePack hiddenEditPackButton={hiddenEditPackButton} packId={packId} />
       </TableItem>
     </Flex>
   );
