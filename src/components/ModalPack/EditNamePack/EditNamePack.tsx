@@ -2,7 +2,7 @@ import { ChangeEvent, FC, ReactElement, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import style from '../AddPack/AddPack.module.css';
+import { FormDiv, MessageDiv } from './style';
 
 import { Modal } from 'components';
 import { SuperButton, TextField } from 'components/UI';
@@ -42,7 +42,7 @@ export const EditNamePack: FC<EditNamePackPropsType> = ({
   return (
     <div>
       <Modal isActive={isActive} changeIsActive={setIsActive}>
-        <div className={style.form}>
+        <FormDiv>
           <h3>EDIT NAME PACK</h3>
           <TextField
             labelTitle="New title"
@@ -50,12 +50,12 @@ export const EditNamePack: FC<EditNamePackPropsType> = ({
             defaultValue={namePack}
             onChange={newPackTitleHandle}
           />
-          <div className={style.message}>{resultMessage}</div>
+          <MessageDiv>{resultMessage}</MessageDiv>
           <div>
             <SuperButton onClick={setIsEditMod}>Cancel</SuperButton>
             <SuperButton onClick={editNamePack}>Edit</SuperButton>
           </div>
-        </div>
+        </FormDiv>
       </Modal>
       <div onClick={() => setIsActive(true)} role="presentation">
         <PenIcon />
