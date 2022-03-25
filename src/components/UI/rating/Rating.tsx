@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 
-import { Star } from 'components';
 import { NumberStars } from 'enum';
+import { StarIcon } from 'icon';
 
 type RatingPropsType = {
   activeStars: number;
@@ -12,11 +12,11 @@ export const Rating = ({ activeStars }: RatingPropsType): ReactElement => {
 
   return (
     <>
-      <Star isActive={roundActiveStars > NumberStars.Zero} />
-      <Star isActive={roundActiveStars > NumberStars.One} />
-      <Star isActive={roundActiveStars > NumberStars.Two} />
-      <Star isActive={roundActiveStars > NumberStars.Three} />
-      <Star isActive={roundActiveStars > NumberStars.Fore} />
+      <StarIcon isActive={roundActiveStars > NumberStars.Zero} />
+      <StarIcon isActive={roundActiveStars > NumberStars.One} />
+      <StarIcon isActive={roundActiveStars > NumberStars.Two} />
+      <StarIcon isActive={roundActiveStars > NumberStars.Three} />
+      <StarIcon isActive={roundActiveStars > NumberStars.Fore} />
     </>
   );
 };
