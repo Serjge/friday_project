@@ -52,7 +52,7 @@ export const PackItem = memo(({ packId }: PackItemPropsType) => {
 
   return (
     <Flex justifyContent="center">
-      <TableItem cursorPointer flexBasis="30%">
+      <TableItem flexBasis="30%">
         {namePack}
         {!hiddenEditPackButton && <EditNamePack namePack={namePack} packId={packId} />}
       </TableItem>
