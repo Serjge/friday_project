@@ -9,4 +9,4 @@ export { EditProfilePage, EditName, EditAvatar } from './EditProfilePage';
 export { Modal } from './Modal';
 export { AddCard, EditCard, DeleteCard } from './ModalCard';
 export { ModalError } from './ModalError';
-export { DeletePack, AddPack, LearnPack } from './ModalPack';
+export { DeletePack, AddPack, LearnPack, EditNamePack } from './ModalPack';

@@ -2,13 +2,14 @@ import { ChangeEvent, FC, ReactElement, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { PenIcon } from '../../../icon';
-import { setResultMessageAddPackAC } from '../../../store/actions';
-import { selectResultMessage } from '../../../store/selectors';
-import { editTitlePackTC } from '../../../store/thunks/addPackThunks';
-import { Modal } from '../../Modal';
-import { SuperButton, TextField } from '../../UI';
 import style from '../AddPack/AddPack.module.css';
+
+import { Modal } from 'components';
+import { SuperButton, TextField } from 'components/UI';
+import { PenIcon } from 'icon';
+import { setResultMessageAddPackAC } from 'store/actions';
+import { selectResultMessage } from 'store/selectors';
+import { editTitlePackTC } from 'store/thunks';
 
 type EditNamePackPropsType = {
   namePack: string;

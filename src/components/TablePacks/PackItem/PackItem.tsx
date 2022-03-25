@@ -3,9 +3,7 @@ import { memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { EditNamePack } from '../../ModalPack/EditNamePack/EditNamePack';
-
-import { DeletePack, LearnPack, SuperButton } from 'components';
+import { EditNamePack, DeletePack, LearnPack, SuperButton } from 'components';
 import { PATH } from 'enum';
 import { RootReducerType } from 'store';
 import { setSearchAnswerCardsAC, setSearchQuestionCardsAC } from 'store/actions';
@@ -59,10 +57,8 @@ export const PackItem = memo(({ packId }: PackItemPropsType) => {
 
   return (
     <Flex justifyContent="center">
-      {/* eslint-disable-next-line no-alert */}
       <TableItem cursorPointer flexBasis="30%">
         {namePack}
-        {/* {!hiddenEditPackButton && <PenIcon />} */}
         {!hiddenEditPackButton && <EditNamePack namePack={namePack} packId={packId} />}
       </TableItem>
       <TableItem flexBasis="10%">{cardsCount}</TableItem>
