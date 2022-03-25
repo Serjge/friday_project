@@ -3,10 +3,11 @@ import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { RootReducerType } from 'store';
+import { AllAppActionsType } from 'store/actions';
 
 export const useSort = (
-  action: (sort: string) => any,
-  rerenderAction: () => any,
+  action: (sort: string) => AllAppActionsType,
+  rerenderAction: () => AllAppActionsType,
   select: (state: RootReducerType) => string,
 ): ((sortType: string) => void) => {
   const dispatch = useDispatch();
