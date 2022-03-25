@@ -31,6 +31,7 @@ const initialState: InitialStateType = {
     minCardsCount: 0,
     maxCardsCount: 30,
     pageCount: 5,
+    page: 1,
     cardPacks: [] as PackType[],
   } as PacksType,
   sort: '',

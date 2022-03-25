@@ -42,6 +42,8 @@ const initialState: InitialStateType = {
         questionVideo: '',
       },
     ],
+    pageCount: 5,
+    page: 1,
   } as CardsType,
   sort: '',
   searchAnswer: '',

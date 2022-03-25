@@ -2,7 +2,7 @@ import { memo } from 'react';
 
 import { useSelector } from 'react-redux';
 
-import { EditCard, DeleteCard } from 'components';
+import { EditCard, DeleteCard, Rating } from 'components';
 import { RootReducerType } from 'store';
 import {
   selectAnswer,
@@ -32,7 +32,9 @@ export const CardItem = memo(({ cardId, isMyPack }: CardItemPropsType) => {
       <TableItem flexBasis="40%">{question}</TableItem>
       <TableItem flexBasis="40%">{answer}</TableItem>
       <TableItem flexBasis="10%">{dataNew.toLocaleDateString()}</TableItem>
-      <TableItem flexBasis="10%">{grade}</TableItem>
+      <TableItem flexBasis="10%">
+        <Rating activeStars={grade} />
+      </TableItem>
       {isMyPack && (
         <TableItem flexBasis="10%">
           <EditCard cardId={cardId} />
