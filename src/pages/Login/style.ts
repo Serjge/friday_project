@@ -19,7 +19,6 @@ export const ForgotPassword = styled(Link)`
   line-height: 17px;
   color: #bdbdbd;
   text-align: right;
-  align-self: flex-end;
 `;
 
 export const Text = styled.p`

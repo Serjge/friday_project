@@ -19,7 +19,7 @@ export const InputWrapper = styled.div`
 
 export const Label = styled.label`
   height: 30px;
-  margin-left: 20px;
+  margin-top: 20px;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;

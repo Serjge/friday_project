@@ -1,6 +1,7 @@
 import { ChangeEvent, FC, ReactElement, useState } from 'react';
 
-import { Modal, SuperButton, SuperCheckbox } from 'components';
+import { Modal, SuperButton } from 'components';
+import { CheckBox } from 'components/UI/Checkbox/CheckBox';
 import { GradesCards } from 'enum';
 import { AnswerType } from 'types';
 import { getNumberValuesFromEnum } from 'utils';
@@ -39,14 +40,14 @@ export const Answer: FC<AnswerType> = ({
     //   key = grade
     // }
 
-    <SuperCheckbox
+    <CheckBox
       key={grade}
       checked={grade === currentGrade}
       onChange={handleGrade}
       value={grade}
     >
       {grade}
-    </SuperCheckbox>
+    </CheckBox>
   ));
 
   return (

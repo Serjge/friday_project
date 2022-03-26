@@ -3,6 +3,7 @@ export type ThemeType = {
   fontColor: string;
   borderColor: string;
   errorColor: string;
+  mainColor: string;
 };
 
 export const darkTheme: ThemeType = {
@@ -10,4 +11,5 @@ export const darkTheme: ThemeType = {
   fontColor: '#fefefe',
   borderColor: '#fefefe',
   errorColor: 'darkred',
+  mainColor: '#4676d7',
 };

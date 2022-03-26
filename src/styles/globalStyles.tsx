@@ -22,4 +22,7 @@ export const GlobalStyle = createGlobalStyle`
       backgroundColor};
     color: ${({ theme: { fontColor } }: GlobalThemeProps) => fontColor};
   }
+  h1 {
+    margin-bottom: 40px;
+  }
 `;

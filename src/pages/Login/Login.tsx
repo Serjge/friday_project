@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
 import { PasswordField, SuperButton, TextField } from 'components';
+import { CheckBox } from 'components/UI/Checkbox/CheckBox';
 import { PATH } from 'enum';
 import { ForgotPassword, SingUp, Text } from 'pages/Login/style';
 import { selectIsLogin } from 'store/selectors';
@@ -58,14 +59,16 @@ export const Login = (): ReactElement => {
             autoComplete="on"
             error={getErrorValidate(password?.type)}
           />
-          <TextField
-            {...register('rememberMe')}
-            labelTitle="Remember me:"
-            type="checkbox"
-            autoComplete="on"
-          />
-          <Flex flexDirection="column" alignItems="center">
+          <Flex justifyContent="space-between">
+            <CheckBox
+              {...register('rememberMe')}
+              labelTitle="Remember me:"
+              type="checkbox"
+              autoComplete="on"
+            />
             <ForgotPassword to={PATH.FORGOT_PASSWORD}>Forgot Password?</ForgotPassword>
+          </Flex>
+          <Flex flexDirection="column" alignItems="center">
             <SuperButton style={{ marginTop: '20px' }} type="submit" value="login">
               login
             </SuperButton>
