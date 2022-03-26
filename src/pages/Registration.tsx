@@ -82,11 +82,11 @@ export const Registration = (): ReactElement => {
           placeholder="Confirm password"
           error={getErrorValidate(confirmPassword?.type)}
         />
-        <Flex justifyContent="space-around">
+        <Flex justifyContent="space-around" alignItems="flex-end">
           <SuperButton onClick={onBackLoginClick} type="button">
             Cancel
           </SuperButton>
-          <SuperButton disabled={status === 'loading'} type="submit">
+          <SuperButton marginTop="90px" disabled={status === 'loading'} type="submit">
             Register
           </SuperButton>
         </Flex>

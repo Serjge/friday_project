@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, ReactElement, useState } from 'react';
+import { ChangeEvent, FC, ReactElement, useCallback, useState } from 'react';
 
 import { Modal, SuperButton } from 'components';
 import { CheckBox } from 'components/UI/Checkbox/CheckBox';
@@ -21,9 +21,9 @@ export const Answer: FC<AnswerType> = ({
     setCurrentGrade(null);
   };
 
-  const handleGrade = (value: ChangeEvent<HTMLInputElement>): void => {
+  const handleGrade = useCallback((value: ChangeEvent<HTMLInputElement>): void => {
     setCurrentGrade(Number(value.currentTarget.value));
-  };
+  }, []);
 
   const ranges = getNumberValuesFromEnum(GradesCards);
   // const ranges = getKeysAndValuesFromEnum(GradesCards);
@@ -41,13 +41,13 @@ export const Answer: FC<AnswerType> = ({
     // }
 
     <CheckBox
+      type="checkbox"
       key={grade}
       checked={grade === currentGrade}
       onChange={handleGrade}
       value={grade}
-    >
-      {grade}
-    </CheckBox>
+      labelTitle={grade.toString()}
+    />
   ));
 
   return (

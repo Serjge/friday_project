@@ -1,14 +1,13 @@
 import { ReactElement } from 'react';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { SuperButton, TextField } from 'components';
 import { PATH } from 'enum';
-import { selectErrorMessage } from 'store/selectors';
 import { forgotPasswordTC } from 'store/thunks';
-import { Flex, Wrapper } from 'styles';
+import { Flex, HelpText, LinkStyle, Wrapper } from 'styles';
 import { ForgotPasswordFormType, ForgotPasswordSendType } from 'types';
 import { getErrorValidate } from 'utils';
 
@@ -28,10 +27,6 @@ export const ForgotPassword = (): ReactElement => {
     navigate(PATH.INSTRUCTION);
   };
 
-  const tryLoginIn = (): void => {
-    navigate(PATH.LOGIN);
-  };
-
   const {
     register,
     handleSubmit,
@@ -39,8 +34,6 @@ export const ForgotPassword = (): ReactElement => {
       errors: { email },
     },
   } = useForm<ForgotPasswordFormType>();
-
-  const errorMessage = useSelector(selectErrorMessage);
 
   return (
     <Wrapper>
@@ -58,22 +51,21 @@ export const ForgotPassword = (): ReactElement => {
           error={getErrorValidate(email?.type)}
         />
         <Flex alignItems="center" flexDirection="column">
-          <p>Enter you email address and we will send you further instructions</p>
+          <HelpText>
+            Enter you email address and we will send you further instructions
+          </HelpText>
 
-          <SuperButton type="submit" value="send">
+          <SuperButton marginTop="90px" type="submit" value="send">
             Send Instructions
           </SuperButton>
 
           <div>
-            <p>Did you remember you password?</p>
+            <HelpText>Did you remember you password?</HelpText>
           </div>
 
-          <SuperButton onClick={tryLoginIn} type="button">
-            Try logging in
-          </SuperButton>
+          <LinkStyle to={PATH.LOGIN}>Try logging in</LinkStyle>
         </Flex>
       </form>
-      {errorMessage || null}
     </Wrapper>
   );
 };

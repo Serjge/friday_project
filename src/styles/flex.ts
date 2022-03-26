@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { CSSProp } from 'styled-components';
 
 type FlexPropsType = {
   justifyContent?:
@@ -13,9 +13,11 @@ type FlexPropsType = {
   alignItems?: 'flex-end' | 'flex-start' | 'center' | 'self-end' | 'self-start';
 
   alignSelf?: 'self-start' | 'self-end' | 'center' | 'auto';
+  margin?: CSSProp;
 };
 
 export const Flex = styled.div<FlexPropsType>`
+  margin: ${({ margin }) => margin};
   display: flex;
   justify-content: ${({ justifyContent }) => justifyContent};
   align-items: ${({ alignItems }) => alignItems};

@@ -3,7 +3,7 @@ import { memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { EditNamePack, DeletePack, LearnPack, SuperButton } from 'components';
+import { DeletePack, EditNamePack, LearnPack, SuperButton } from 'components';
 import { PATH } from 'enum';
 import { RootReducerType } from 'store';
 import { setSearchAnswerCardsAC, setSearchQuestionCardsAC } from 'store/actions';

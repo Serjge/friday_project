@@ -7,6 +7,8 @@ import {
   RefAttributes,
 } from 'react';
 
+import { CSSProp } from 'styled-components';
+
 import { Button } from './style';
 
 type DefaultButtonPropsType = DetailedHTMLProps<
@@ -17,10 +19,9 @@ type DefaultButtonPropsType = DetailedHTMLProps<
 type SuperButtonPropsType = DefaultButtonPropsType &
   RefAttributes<any> & {
     size?: 'small' | 'normal';
+    marginTop?: CSSProp;
   };
 
 export const SuperButton: FC<SuperButtonPropsType> = memo(
-  forwardRef(({ ...restProps }, ref) => (
-    <Button type="button" ref={ref} {...restProps} />
-  )),
+  forwardRef(({ ...restProps }, ref) => <Button ref={ref} {...restProps} />),
 );

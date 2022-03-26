@@ -2,7 +2,7 @@ import React, { FC, forwardRef, ReactElement, useState } from 'react';
 
 import { TextField, TextFieldPropsType } from '../TextField/TextField';
 
-import { PasswordPosition, EyeDivButton } from './style';
+import { EyeDivButton, PasswordPosition } from './style';
 
 import { EyeIcon } from 'icon';
 

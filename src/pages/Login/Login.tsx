@@ -7,10 +7,10 @@ import { Navigate } from 'react-router-dom';
 import { PasswordField, SuperButton, TextField } from 'components';
 import { CheckBox } from 'components/UI/Checkbox/CheckBox';
 import { PATH } from 'enum';
-import { ForgotPassword, SingUp, Text } from 'pages/Login/style';
+import { ForgotPassword } from 'pages/Login/style';
 import { selectIsLogin } from 'store/selectors';
 import { setLoginDataThunkCreator } from 'store/thunks';
-import { Flex, Wrapper } from 'styles';
+import { Flex, HelpText, LinkStyle, Wrapper } from 'styles';
 import { LoginApiPayloadType } from 'types';
 import { getErrorValidate } from 'utils';
 
@@ -68,12 +68,12 @@ export const Login = (): ReactElement => {
             />
             <ForgotPassword to={PATH.FORGOT_PASSWORD}>Forgot Password?</ForgotPassword>
           </Flex>
-          <Flex flexDirection="column" alignItems="center">
+          <Flex margin="90px 0 0" flexDirection="column" alignItems="center">
             <SuperButton style={{ marginTop: '20px' }} type="submit" value="login">
-              login
+              Login
             </SuperButton>
-            <Text>Don’t have an account?</Text>
-            <SingUp to={PATH.REGISTRATION}>Sing Up</SingUp>
+            <HelpText>Don’t have an account?</HelpText>
+            <LinkStyle to={PATH.REGISTRATION}>Sing Up</LinkStyle>
           </Flex>
         </form>
       </Wrapper>

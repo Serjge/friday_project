@@ -1,12 +1,10 @@
-import { createGlobalStyle } from 'styled-components';
-
-import { ThemeType } from 'styles/theme';
+import { createGlobalStyle, DefaultTheme } from 'styled-components';
 
 export type GlobalThemeProps = {
-  theme: ThemeType;
+  theme: DefaultTheme;
 };
 
-export const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle<GlobalThemeProps>`
 
   * {
     margin: 0;
@@ -18,11 +16,10 @@ export const GlobalStyle = createGlobalStyle`
   body {
     -webkit-font-smoothing: antialiased;
     margin: 0 auto;
-    background-color: ${({ theme: { backgroundColor } }: GlobalThemeProps) =>
-      backgroundColor};
-    color: ${({ theme: { fontColor } }: GlobalThemeProps) => fontColor};
+    background-color: ${({ theme: { backgroundColor } }) => backgroundColor};
+    color: ${({ theme: { fontColor } }) => fontColor};
   }
   h1 {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
 `;

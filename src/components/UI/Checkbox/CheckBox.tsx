@@ -3,6 +3,7 @@ import {
   FC,
   forwardRef,
   InputHTMLAttributes,
+  memo,
   RefAttributes,
 } from 'react';
 
@@ -18,12 +19,12 @@ export type CheckBoxPropsType = DefaultInputPropsType &
     labelTitle?: string;
   };
 
-export const CheckBox: FC<CheckBoxPropsType> = forwardRef(
-  ({ labelTitle, ...res }, ref) => (
+export const CheckBox: FC<CheckBoxPropsType> = memo(
+  forwardRef(({ labelTitle, ...res }, ref) => (
     <Label>
       {labelTitle}
       <Input hidden={false} ref={ref} {...res} type="checkbox" />
       <Checkmark />
     </Label>
-  ),
+  )),
 );
