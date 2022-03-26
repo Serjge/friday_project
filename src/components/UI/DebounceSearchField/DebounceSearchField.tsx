@@ -1,16 +1,32 @@
-import { memo, ReactElement, useCallback, useState } from 'react';
+import {
+  ChangeEvent,
+  DetailedHTMLProps,
+  FC,
+  forwardRef,
+  InputHTMLAttributes,
+  memo,
+  ReactElement,
+  RefAttributes,
+  useCallback,
+  useState,
+} from 'react';
 
-import { TextField } from 'components';
-import { TextFieldPropsType } from 'components/UI/TextField/TextField';
 import { DeBounceTimer } from 'enum';
 import { useDebounce } from 'hook';
+import { Input } from 'styles';
 
-type DebounceSearchFieldPropsType = TextFieldPropsType & {
-  searchValue: (value: string) => void;
-};
+type DefaultInputPropsType = DetailedHTMLProps<
+  InputHTMLAttributes<HTMLInputElement>,
+  HTMLInputElement
+>;
 
-export const DebounceSearchField = memo(
-  ({ searchValue, ...restProps }: DebounceSearchFieldPropsType): ReactElement => {
+type DebounceSearchFieldPropsType = DefaultInputPropsType &
+  RefAttributes<HTMLInputElement> & {
+    searchValue: (value: string) => void;
+  };
+
+export const DebounceSearchField: FC<DebounceSearchFieldPropsType> = memo(
+  forwardRef(({ searchValue, ...restProps }, ref): ReactElement => {
     const [Value, setValue] = useState('');
 
     const search = (question: string): void => {
@@ -19,15 +35,16 @@ export const DebounceSearchField = memo(
 
     const debounceSearch = useDebounce(search, DeBounceTimer.SEARCH_DELAY);
 
-    const onSearchQuestionChange = useCallback((question: string): void => {
-      setValue(question);
-      debounceSearch(question);
-    }, []);
+    const onSearchQuestionChange = useCallback(
+      (e: ChangeEvent<HTMLInputElement>): void => {
+        setValue(e.currentTarget.value);
+        debounceSearch(e.currentTarget.value);
+      },
+      [],
+    );
 
     return (
-      <div>
-        <TextField value={Value} onChangeText={onSearchQuestionChange} {...restProps} />
-      </div>
+      <Input ref={ref} value={Value} onChange={onSearchQuestionChange} {...restProps} />
     );
-  },
+  }),
 );

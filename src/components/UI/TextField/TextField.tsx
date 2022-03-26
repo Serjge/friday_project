@@ -10,7 +10,9 @@ import {
   useCallback,
 } from 'react';
 
-import { ErrorWrapper, Input, InputWrapper, Label } from './style';
+import { ErrorWrapper, InputWrapper, Label } from './style';
+
+import { Input } from 'styles';
 
 type DefaultInputPropsType = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
@@ -89,6 +91,7 @@ export const TextField: FC<TextFieldPropsType> = memo(
               onChange={onChangeCallback}
               onKeyPress={onKeyPressCallback}
               onKeyDown={onKeyPressCtrlEnterCallback}
+              className="text"
               ref={ref}
               {...restProps}
             />
