@@ -1,5 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
 
+import { ThemeType } from 'styles/theme';
+
+export type GlobalThemeProps = {
+  theme: ThemeType;
+};
+
 export const GlobalStyle = createGlobalStyle`
 
   * {
@@ -12,7 +18,8 @@ export const GlobalStyle = createGlobalStyle`
   body {
     -webkit-font-smoothing: antialiased;
     margin: 0 auto;
-    background-color: #282c34;
-    color: white;
+    background-color: ${({ theme: { backgroundColor } }: GlobalThemeProps) =>
+      backgroundColor};
+    color: ${({ theme: { fontColor } }: GlobalThemeProps) => fontColor};
   }
 `;

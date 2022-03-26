@@ -5,23 +5,28 @@ export type inputPropsType = {
 };
 
 export const Input = styled.input<inputPropsType>`
-  border: none;
+  display: block;
   width: ${({ width }) => width || '300px'};
-  border-bottom: ${({ error }) => (error ? '1px solid darkred' : '1px solid #fefefe')};
+  height: 35px;
+  border: none;
+  border-bottom: ${({ error, theme: { errorColor, borderColor } }) => {
+    if (error) {
+      return `1px solid ${errorColor}`;
+    }
+    return `1px solid ${borderColor}`;
+  }};
   background: none;
   margin-top: 10px;
   padding: 10px 15px;
   outline: none;
-  color: #fefefe;
-
-  display: block;
-  height: 35px;
+  color: ${({ theme: { fontColor } }) => fontColor};
 
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus,
   &:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px #282c34 inset !important;
-    -webkit-text-fill-color: #fefefe !important;
+    -webkit-box-shadow: 0 0 0 30px ${({ theme: { backgroundColor } }) => backgroundColor}
+      inset !important;
+    -webkit-text-fill-color: ${({ theme: { fontColor } }) => fontColor} !important;
   }
 `;

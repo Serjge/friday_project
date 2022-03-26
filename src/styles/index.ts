@@ -5,3 +5,4 @@ export { TableItem } from './tableItem';
 export { WrapperModal } from './WrapperModal';
 export { Input } from './Input';
 export type { inputPropsType } from './Input';
+export { darkTheme } from './theme';

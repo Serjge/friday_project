@@ -11,7 +11,7 @@ import {
   SwitcherMyAll,
   TablePacks,
 } from 'components';
-import { CountDecksOnPage, PATH, DeBounceTimer } from 'enum';
+import { CountDecksOnPage, DeBounceTimer, PATH } from 'enum';
 import { useDebounce } from 'hook';
 import {
   rerenderPackAC,
