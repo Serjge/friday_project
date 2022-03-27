@@ -1,6 +1,6 @@
 import { packApi } from 'api';
 import { StatusCode } from 'enum';
-import { setPacksAC } from 'store/actions';
+import { isLoadingAC, setPacksAC } from 'store/actions';
 import {
   selectCurrentPage,
   selectIsMyPack,
@@ -18,6 +18,7 @@ import { handleError } from 'utils';
 export const getPacksTC =
   (): AppThunkType => async (dispatch, getState: () => RootReducerType) => {
     try {
+      dispatch(isLoadingAC(false));
       const isMyPack = selectIsMyPack(getState());
       const sortPacks = selectSortPacks(getState());
       const searchPack = selectSearchPack(getState());
@@ -46,5 +47,7 @@ export const getPacksTC =
       }
     } catch (error) {
       handleError(error, dispatch, StatusCode.Bad_Request);
+    } finally {
+      dispatch(isLoadingAC(true));
     }
   };

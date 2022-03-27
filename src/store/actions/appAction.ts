@@ -1,5 +1,6 @@
 export const SET_ERROR_MESSAGE = 'APP/SET_ERROR_MESSAGE';
 export const INITIALIZE_ME = 'APP/INITIALIZE_ME';
+export const IS_LOADING = 'APP/IS_LOADING';
 
 export const setErrorMessageAC = (errorMessage: string | null) =>
   ({
@@ -14,5 +15,13 @@ export const initializeMeAC = (isInitialize: boolean) =>
     type: INITIALIZE_ME,
     payload: {
       isInitialize,
+    },
+  } as const);
+
+export const isLoadingAC = (isLoading: boolean) =>
+  ({
+    type: IS_LOADING,
+    payload: {
+      isLoading,
     },
   } as const);

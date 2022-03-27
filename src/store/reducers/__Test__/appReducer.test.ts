@@ -10,6 +10,7 @@ beforeEach(() => {
   initialState = {
     errorMessage: '',
     isInitialize: false,
+    isLoading: false,
   };
   error = 'some error';
   notError = '';
