@@ -31,10 +31,10 @@ export const Input = styled.input`
   opacity: 0;
   cursor: pointer;
 
-  &:checked ~ div:after {
+  &:checked ~ ${Checkmark}:after {
     display: block;
   }
-  &:checked ~ div {
+  &:checked ~ ${Checkmark} {
     background-color: ${({ theme: { mainColor } }) => mainColor};
     animation: pop 0.5s;
     animation-direction: alternate;

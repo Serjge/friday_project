@@ -81,6 +81,9 @@
         ]
       }
     ],
+    "react/default-props-match-prop-types": [
+      "error", { "allowRequiredDefaults": false }
+    ],
     "react/function-component-definition": [
       2,
       {

@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 
 export const PenIcon = (): ReactElement => (
-  <div style={{ marginLeft: '10px' }}>
+  <div style={{ marginLeft: '10px', cursor: 'pointer' }}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="15"
