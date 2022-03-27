@@ -34,7 +34,12 @@ export const EditAvatar = (): ReactElement => {
         <SuperButton onClick={changeAvatarHandler}>Change avatar</SuperButton>
       ) : (
         <EditRowBlock>
-          <TextField type="url" onChange={changeAvatarUrlHandler} autoFocus />
+          <TextField
+            type="url"
+            placeholder="Please, insert new avatar URL"
+            onChange={changeAvatarUrlHandler}
+            autoFocus
+          />
           <SuperButton onClick={changePersonalAvatarHandler}>Save</SuperButton>
           <SuperButton onClick={cancelChangeAvatar}>Cancel</SuperButton>
         </EditRowBlock>
