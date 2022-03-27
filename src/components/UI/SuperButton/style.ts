@@ -1,28 +1,42 @@
-import styled from 'styled-components';
+import styled, { CSSProp } from 'styled-components';
 
 type ButtonPropsType = {
   size?: 'small' | 'normal';
+  marginTop?: CSSProp;
 };
 
 export const Button = styled.button<ButtonPropsType>`
-  margin: ${({ size }) => (size === 'small' ? '0px 5px' : '5px 10px')};
+  margin: ${({ size, marginTop }) =>
+    size === 'small'
+      ? `${marginTop || '0'} 0 5px `
+      : `${marginTop || '15px'} 15px 15px `};
   font-style: normal;
   font-weight: 600;
   line-height: 14px;
   appearance: none;
-  border: 0;
-  border-radius: 5px;
-  background: #4676d7;
-  color: #fff;
-  padding: ${({ size }) => (size === 'small' ? '5px' : '8px 16px')};
-  font-size: ${({ size }) => (size === 'small' ? '12px' : '14px')};
+  padding: ${({ size }) => (size === 'small' ? '5px' : '15px 30px')};
+  font-size: ${({ size }) => (size === 'small' ? '12px' : '18px')};
+  border-radius: 2px;
+  position: relative;
+  display: inline-block;
+
+  text-align: center;
+  letter-spacing: 1px;
+  text-decoration: none;
+  color: ${({ theme: { mainColor } }) => mainColor};
+  background: transparent;
+  cursor: pointer;
+  transition: ease-out 0.5s;
+  border: 2px solid ${({ theme: { mainColor } }) => mainColor};
+  box-shadow: inset 0 0 0 0 ${({ theme: { mainColor } }) => mainColor};
 
   &:hover {
-    background: #8daee5;
+    color: ${({ theme: { fontColor } }) => fontColor};
+    box-shadow: inset 0 -100px 0 0 ${({ theme: { mainColor } }) => mainColor};
   }
 
   &:active {
-    background: #1d49aa;
+    transform: scale(0.9);
   }
 
   &:disabled {

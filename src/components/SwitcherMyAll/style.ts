@@ -6,17 +6,37 @@ type SwitcherBoxPropsType = {
 };
 
 export const SwitcherBox = styled.div<SwitcherBoxPropsType>`
-  background-color: ${({ isActive }) => (isActive ? '#4676d7' : '#1d49aa')};
+  margin: 0;
+  font-style: normal;
   font-weight: 600;
   line-height: 14px;
-  width: 100px;
-  height: 36px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 0;
-  cursor: default;
-  border-radius: ${({ side }) => (side === 'left' ? '5px 0 0 5px' : '0 5px 5px 0')};
+  appearance: none;
+  padding: 15px 30px;
+  font-size: 18px;
+  border-radius: 2px;
+  position: relative;
+  display: inline-block;
+
+  text-align: center;
+  letter-spacing: 1px;
+  text-decoration: none;
+  color: ${({ isActive, theme: { mainColor, fontColor } }) =>
+    isActive ? mainColor : fontColor};
+  background: ${({ isActive, theme: { mainColor } }) =>
+    isActive ? 'transparent' : mainColor};
+  cursor: pointer;
+  transition: ease-out 0.5s;
+  border: 2px solid ${({ theme: { mainColor } }) => mainColor};
+  box-shadow: inset 0 0 0 0 ${({ theme: { mainColor } }) => mainColor};
+
+  &:hover {
+    color: ${({ theme: { fontColor } }) => fontColor};
+    box-shadow: inset 0 -100px 0 0 ${({ theme: { mainColor } }) => mainColor};
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
 `;
 
 export const WrapperSwitcher = styled.div`

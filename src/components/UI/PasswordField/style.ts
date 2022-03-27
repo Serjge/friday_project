@@ -19,7 +19,7 @@ export const EyeDivButton = styled.div<EyePropsType>`
     right: 0;
     width: 30px;
     height: 3px;
-    background: black;
+    background: ${({ theme: { fontColor } }) => fontColor};
     transform: rotate(45deg);
     opacity: ${({ visibility }) => visibility};
   }

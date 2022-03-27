@@ -1,0 +1,54 @@
+import styled from 'styled-components';
+
+export const Checkmark = styled.div`
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 1.3em;
+  width: 1.3em;
+  background-color: #ccc;
+  transition: all 0.3s;
+  border-radius: 2px;
+
+  &:after {
+    left: 0.45em;
+    top: 0.25em;
+    width: 0.25em;
+    height: 0.5em;
+    border: solid white;
+    border-width: 0 0.15em 0.15em 0;
+    transform: rotate(45deg);
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    display: none;
+  }
+`;
+
+export const Input = styled.input`
+  opacity: 0;
+  cursor: pointer;
+
+  &:checked ~ div:after {
+    display: block;
+  }
+  &:checked ~ div {
+    background-color: ${({ theme: { mainColor } }) => mainColor};
+    animation: pop 0.5s;
+    animation-direction: alternate;
+  }
+`;
+
+export const Label = styled.label`
+  height: 30px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 20px;
+  display: flex;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+`;

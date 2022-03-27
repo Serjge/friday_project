@@ -1,5 +1,10 @@
 export { Wrapper } from './wrapper';
 export { Flex } from './flex';
-export { TableHeadWithSorts } from 'styles/TableHeadWithSorts';
+export { TableHeadWithSorts } from 'styles/tableHeadWithSorts';
 export { TableItem } from './tableItem';
-export { WrapperModal } from './WrapperModal';
+export { WrapperModal } from 'styles/wrapperModal';
+export { Input } from 'styles/input';
+export type { inputPropsType } from 'styles/input';
+export { darkTheme } from './theme';
+export { LinkStyle } from './linkStyle';
+export { HelpText } from './helpText';
