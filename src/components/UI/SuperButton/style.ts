@@ -46,6 +46,6 @@ export const Button = styled.button<ButtonPropsType>`
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px #cbd6ee;
+    box-shadow: 0 0 0 2px ${({ theme: { borderColor } }) => borderColor};
   }
 `;
