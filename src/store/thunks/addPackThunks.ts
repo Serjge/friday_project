@@ -1,6 +1,8 @@
+import { AxiosError } from 'axios';
+
 import { packApi } from 'api/packApi';
 import { StatusCode } from 'enum';
-import { rerenderPackAC } from 'store/actions';
+import { rerenderPackAC, setResultMessageAddPackAC } from 'store/actions';
 import { AppThunkType } from 'types';
 import { handleError } from 'utils';
 
