@@ -86,11 +86,13 @@ export const PacksList = memo((): ReactElement => {
 
   return (
     <Flex flexDirection="column" alignItems="center">
-      <MultiRangeSlider min={minRange} max={maxRange} onChange={handleRange} />
-      <DebounceSearchField placeholder="Name" searchValue={searchByPacks} />
-      <Flex>
-        <SwitcherMyAll />
+      <Flex style={{ width: '80vw' }} justifyContent="space-around">
+        <DebounceSearchField placeholder="Name" searchValue={searchByPacks} />
         <AddPack />
+      </Flex>
+      <Flex style={{ width: '80vw' }} justifyContent="space-around" alignItems="center">
+        <MultiRangeSlider min={minRange} max={maxRange} onChange={handleRange} />
+        <SwitcherMyAll />
       </Flex>
       <TablePacks />
       <Pagination
