@@ -90,16 +90,16 @@ beforeEach(() => {
   searchValue = 'collect';
 });
 
-// test('set initial Card', () => {
-//   // спросить о замыкании в редьюсоре
-//
-//   const action = setCardsAC(null);
-//
-//   const endState = cardsReducer(initialState, action);
-//
-//   expect(endState).not.toBe(initialState);
-//   expect(endState.pack).toEqual(initialState.pack); //
-// });
+test('set initial Card', () => {
+  // спросить о замыкании в редьюсоре
+
+  const action = setCardsAC(pack);
+
+  const endState = cardsReducer(initialState, action);
+
+  expect(endState).not.toBe(initialState);
+  expect(endState.pack).toEqual(pack); //
+});
 
 test('set Cards from API', () => {
   const action = setCardsAC(pack);

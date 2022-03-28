@@ -18,7 +18,7 @@ export type InitialStateType = {
   rerenderFlag: string[];
 };
 
-const initialState: InitialStateType = {
+export const initialState: InitialStateType = {
   pack: {
     cards: [
       {
@@ -57,11 +57,7 @@ export const cardsReducer = (
 ): InitialStateType => {
   switch (action.type) {
     case SET_CARDS:
-      if (action.payload.cards === null) {
-        return { ...state, pack: initialState.pack };
-      }
       return { ...state, pack: action.payload.cards };
-
     case SET_SORT_CARDS:
       return { ...state, ...action.payload };
     case SET_SEARCH_ANSWER_CARDS:

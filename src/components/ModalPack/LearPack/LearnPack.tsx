@@ -7,6 +7,7 @@ import { EndLearning } from './EndLearning';
 import { Question } from './Question';
 
 import { SuperButton } from 'components/UI';
+import { initialState } from 'store';
 import { setCardsAC, setPageCountCardsAC } from 'store/actions';
 import { selectPackCards } from 'store/selectors';
 import { getCardsTC, setGradeCardTC } from 'store/thunks';
@@ -41,7 +42,7 @@ export const LearnPack: FC<LearnPackPropsType> = ({
   const cancelLearnButton = (): void => {
     setIsActiveQuestion(false);
     setCardNumber(INITIAL_NUMBER_CARD);
-    dispatch(setCardsAC(null));
+    dispatch(setCardsAC(initialState.pack));
   };
 
   const handleNextQuestion = (grade: number): void => {
@@ -61,7 +62,7 @@ export const LearnPack: FC<LearnPackPropsType> = ({
     setIsActiveAnswer(false);
     setIsActiveQuestion(false);
     setIsActiveEnd(value);
-    dispatch(setCardsAC(null));
+    dispatch(setCardsAC(initialState.pack));
     setCardNumber(INITIAL_NUMBER_CARD);
   };
 

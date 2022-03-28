@@ -8,7 +8,7 @@ export const SET_CURRENT_PAGE_CARDS = 'CARDS/SET_CURRENT_PAGE_CARDS';
 export const SET_SEARCH_ANSWER_CARDS = 'CARDS/SET_SEARCH_ANSWER_CARDS';
 export const SET_SEARCH_QUESTION_CARDS = 'CARDS/SET_SEARCH_QUESTION_CARDS';
 
-export const setCardsAC = (cards: CardsType | null) =>
+export const setCardsAC = (cards: CardsType) =>
   ({
     type: SET_CARDS,
     payload: {

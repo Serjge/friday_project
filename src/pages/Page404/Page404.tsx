@@ -1,12 +1,12 @@
 import React, { ReactElement } from 'react';
 
-import style from 'pages/Page404/Page404.module.css';
+import { Background, MainDiv } from 'pages/Page404/style';
 
 export const Page404 = (): ReactElement => (
-  <div className={style.dive}>
+  <MainDiv>
     <div>404</div>
-    <div className={style.diveImg} />
+    <Background />
     <div>Page not found!</div>
     <div>—ฅ/ᐠ.̫ .ᐟ\ฅ—</div>
-  </div>
+  </MainDiv>
 );
