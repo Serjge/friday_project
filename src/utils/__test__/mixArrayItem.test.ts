@@ -10,6 +10,9 @@ beforeEach(() => {
 test('get numbers from enum', () => {
   const newArray = mixArrayItems(initArray);
 
+  const randomInitItem = initArray[Math.floor(Math.random() * initArray.length)];
+
   expect(newArray).not.toBe(initArray);
   expect(newArray.length).toBe(initArray.length);
+  expect(newArray.find(number => number === randomInitItem)).not.toBeUndefined();
 });
