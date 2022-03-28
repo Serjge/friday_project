@@ -1,7 +1,6 @@
 import { ChangeEvent, FC, ReactElement, useCallback, useState } from 'react';
 
-import { Modal, SuperButton } from 'components';
-import { CheckBox } from 'components/UI/Checkbox/CheckBox';
+import { Modal, SuperButton, CheckBox } from 'components';
 import { GradesCards } from 'enum';
 import { AnswerType } from 'types';
 

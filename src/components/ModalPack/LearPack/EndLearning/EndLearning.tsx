@@ -1,7 +1,6 @@
 import { FC, ReactElement, useCallback } from 'react';
 
-import { Modal } from 'components/Modal';
-import { SuperButton } from 'components/UI';
+import { Modal, SuperButton } from 'components';
 import { ErrorType } from 'types';
 
 export const EndLearning: FC<ErrorType> = ({

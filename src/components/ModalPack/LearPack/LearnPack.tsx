@@ -28,8 +28,6 @@ export const LearnPack: FC<LearnPackPropsType> = ({
   let answer = '';
 
   let initCards = useSelector(selectPackCards);
-  // let cards = useSelector(selectPackCards);
-  // let initCards = mixArrayItems(cards)
 
   const [isActiveQuestion, setIsActiveQuestion] = useState<boolean>(false);
   const [isActiveAnswer, setIsActiveAnswer] = useState<boolean>(false);
