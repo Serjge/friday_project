@@ -88,7 +88,7 @@ export const LearnPack: FC<LearnPackPropsType> = ({
         setIsActiveAnswer={closeLearnWindows}
         handleNextQuestion={handleNextQuestion}
       />
-      <EndLearning active={isActiveEnd} closeErrorWindow={closeLearnWindows} />
+      <EndLearning active={isActiveEnd} closeLearningWindow={closeLearnWindows} />
     </div>
   );
 };

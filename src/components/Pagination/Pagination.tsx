@@ -30,11 +30,11 @@ export const Pagination: FC<PaginationPropsType> = memo(
 
     return (
       <div className={style.generalBlock}>
-        {'Count decks on page '}
+        <h4>Count decks on page </h4>
         <select value={pagesCount} onChange={setPageCount}>
-          {countDecksOnPage.map(op => (
-            <option key={op} value={op}>
-              {op}
+          {countDecksOnPage.map(count => (
+            <option key={count} value={count}>
+              {count}
             </option>
           ))}
         </select>

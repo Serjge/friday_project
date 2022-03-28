@@ -4,7 +4,6 @@ import { Modal, SuperButton } from 'components';
 import { CheckBox } from 'components/UI/Checkbox/CheckBox';
 import { GradesCards } from 'enum';
 import { AnswerType } from 'types';
-import { getNumberValuesFromEnum } from 'utils';
 
 export const Answer: FC<AnswerType> = ({
   setIsActiveAnswer,
@@ -25,38 +24,28 @@ export const Answer: FC<AnswerType> = ({
     setCurrentGrade(Number(value.currentTarget.value));
   }, []);
 
-  const ranges = getNumberValuesFromEnum(GradesCards);
-  // const ranges = getKeysAndValuesFromEnum(GradesCards);
+  const setIsActiveAnswerCB = useCallback(() => {
+    setIsActiveAnswer(false);
+  }, []);
 
-  const checkBoxes = ranges.map(grade => (
-    // let key = ''
-    // let value = 0
-    //
-    // if(typeof grade === "number"){
-    //   value = grade
-    // }
-    //
-    // if(typeof grade === "string"){
-    //   key = grade
-    // }
-
+  const checkBoxes = GradesCards.map(grade => (
     <CheckBox
       type="checkbox"
-      key={grade}
-      checked={grade === currentGrade}
+      key={grade.value}
+      checked={grade.value === currentGrade}
       onChange={handleGrade}
-      value={grade}
-      labelTitle={grade.toString()}
+      value={grade.value}
+      labelTitle={grade.name}
     />
   ));
 
   return (
     <Modal isActive={isActiveAnswer} changeIsActive={setIsActiveAnswer}>
-      <div>Answer:</div>
+      <h3>Answer:</h3>
       <div>{answer}</div>
       <div style={{ display: 'flex', flexDirection: 'column' }}>{checkBoxes}</div>
       <div>
-        <SuperButton onClick={() => setIsActiveAnswer(false)}>Cancel</SuperButton>
+        <SuperButton onClick={setIsActiveAnswerCB}>Cancel</SuperButton>
         <SuperButton onClick={setNextQuestion}>Next</SuperButton>
       </div>
     </Modal>
