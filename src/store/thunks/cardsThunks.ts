@@ -84,8 +84,8 @@ export const updateCardTC =
       handleError(error, dispatch, StatusCode.Bad_Request);
     }
   };
-
-export const setGradeCardTC =  // точно такая санка как и deleteCardTC, как сократить код?
+// точно такая санка как и deleteCardTC, как сократить код?
+export const setGradeCardTC =
   (id: string, grade: number): AppThunkType =>
   async dispatch => {
     try {
