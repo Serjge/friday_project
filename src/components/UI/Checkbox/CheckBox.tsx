@@ -21,7 +21,7 @@ export type CheckBoxPropsType = DefaultInputPropsType &
 
 export const CheckBox: FC<CheckBoxPropsType> = memo(
   forwardRef(({ labelTitle, ...res }, ref) => (
-    <Label>
+    <Label justifyContent="flex-end">
       {labelTitle}
       <Input hidden={false} ref={ref} {...res} type="checkbox" />
       <Checkmark />

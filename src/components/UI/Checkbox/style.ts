@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { CSSProp } from 'styled-components';
 
 export const Checkmark = styled.div`
   position: relative;
@@ -41,7 +41,8 @@ export const Input = styled.input`
   }
 `;
 
-export const Label = styled.label`
+export const Label = styled.label<{ justifyContent?: CSSProp }>`
+  justify-content: ${({ justifyContent }) => justifyContent};
   height: 30px;
   font-style: normal;
   font-weight: normal;
