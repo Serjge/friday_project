@@ -45,6 +45,7 @@ export const Login = (): ReactElement => {
               required: true,
               pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
             })}
+            defaultValue="test@test.ru"
             labelTitle="Login:"
             placeholder="Email"
             type="text"
@@ -53,6 +54,7 @@ export const Login = (): ReactElement => {
           />
           <PasswordField
             {...register('password', { required: true, minLength: 8 })}
+            defaultValue="test@test.ru"
             type="password"
             labelTitle="Password:"
             placeholder="Password"
@@ -69,7 +71,12 @@ export const Login = (): ReactElement => {
             <ForgotPassword to={PATH.FORGOT_PASSWORD}>Forgot Password?</ForgotPassword>
           </Flex>
           <Flex margin="90px 0 0" flexDirection="column" alignItems="center">
-            <SuperButton style={{ marginTop: '20px' }} type="submit" value="login">
+            <SuperButton
+              size="big"
+              style={{ marginTop: '20px' }}
+              type="submit"
+              value="login"
+            >
               Login
             </SuperButton>
             <HelpText>Don’t have an account?</HelpText>
