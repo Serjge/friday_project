@@ -1,4 +1,4 @@
-import { FC, ReactElement, useState } from 'react';
+import { FC, ReactElement, useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -11,7 +11,8 @@ import { initialState } from 'store';
 import { setCardsAC, setPageCountCardsAC } from 'store/actions';
 import { selectPackCards } from 'store/selectors';
 import { getCardsTC, setGradeCardTC } from 'store/thunks';
-import { LearnPackPropsType } from 'types';
+import { CardType, LearnPackPropsType } from 'types';
+import { mixArrayItems } from 'utils';
 
 const NEXT_CARD = 1;
 const INITIAL_NUMBER_CARD = 0;
@@ -26,12 +27,18 @@ export const LearnPack: FC<LearnPackPropsType> = ({
   let question = '';
   let answer = '';
 
-  const cards = useSelector(selectPackCards);
+  let initCards = useSelector(selectPackCards);
 
   const [isActiveQuestion, setIsActiveQuestion] = useState<boolean>(false);
   const [isActiveAnswer, setIsActiveAnswer] = useState<boolean>(false);
   const [isActiveEnd, setIsActiveEnd] = useState<boolean>(false);
   const [cardNumber, setCardNumber] = useState<number>(INITIAL_NUMBER_CARD);
+  const [cards, setCards] = useState<CardType[]>(initCards);
+
+  useEffect(() => {
+    initCards = mixArrayItems<CardType>(initCards);
+    setCards(initCards);
+  }, [initCards]);
 
   const openLearn = (): void => {
     dispatch(setPageCountCardsAC(cardsCount)); // чтобы заменить значение в санке по умолчанию
@@ -66,6 +73,7 @@ export const LearnPack: FC<LearnPackPropsType> = ({
     setCardNumber(INITIAL_NUMBER_CARD);
   };
 
+  // нормально ли оставлять условие вне функции или useEffect ?
   if (cards.length) {
     question = cards[cardNumber].question;
     answer = cards[cardNumber].answer;
