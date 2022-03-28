@@ -41,7 +41,7 @@ export const setCurrentPagePacksAC = (currentPage: number) =>
   ({
     type: SET_CURRENT_PAGE_PACKS,
     payload: {
-      currentPage,
+      page: currentPage,
     },
   } as const);
 

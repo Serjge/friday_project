@@ -15,7 +15,7 @@ export type AnswerType = {
 
 export type ErrorType = {
   active: boolean;
-  closeErrorWindow: (isActive: boolean) => void;
+  closeLearningWindow: (isActive: boolean) => void;
 };
 
 export type LearnPackPropsType = {
