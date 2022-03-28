@@ -45,7 +45,7 @@ export const Answer: FC<AnswerType> = ({
       onChange={handleGrade}
       value={grade}
     >
-      {grade}
+      {grade} {/* // lable */}
     </SuperCheckbox>
   ));
 

@@ -63,17 +63,17 @@ export const cardsReducer = (
       return { ...state, pack: action.payload.cards };
 
     case SET_SORT_CARDS:
-      return { ...state, sort: action.payload.sort };
+      return { ...state, ...action.payload };
     case SET_SEARCH_ANSWER_CARDS:
-      return { ...state, searchAnswer: action.payload.searchValue };
+      return { ...state, ...action.payload };
     case SET_SEARCH_QUESTION_CARDS:
-      return { ...state, searchQuestion: action.payload.searchValue };
+      return { ...state, ...action.payload };
     case RERENDER_CARD:
       return { ...state, rerenderFlag: { ...state.rerenderFlag } };
     case SET_CURRENT_PAGE_CARDS:
-      return { ...state, pack: { ...state.pack, page: action.payload.currentPage } };
+      return { ...state, pack: { ...state.pack, ...action.payload } };
     case SET_PAGE_COUNT_CARDS:
-      return { ...state, pack: { ...state.pack, pageCount: action.payload.pageCount } };
+      return { ...state, pack: { ...state.pack, ...action.payload } };
     default:
       return state;
   }

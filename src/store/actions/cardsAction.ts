@@ -24,19 +24,19 @@ export const setSortCardsAC = (sort: string) =>
     },
   } as const);
 
-export const setSearchQuestionCardsAC = (searchValue: string) =>
+export const setSearchQuestionCardsAC = (searchQuestion: string) =>
   ({
     type: SET_SEARCH_QUESTION_CARDS,
     payload: {
-      searchValue,
+      searchQuestion,
     },
   } as const);
 
-export const setSearchAnswerCardsAC = (searchValue: string) =>
+export const setSearchAnswerCardsAC = (searchAnswer: string) =>
   ({
     type: SET_SEARCH_ANSWER_CARDS,
     payload: {
-      searchValue,
+      searchAnswer,
     },
   } as const);
 
@@ -49,7 +49,7 @@ export const setCurrentPageCardsAC = (currentPage: number) =>
   ({
     type: SET_CURRENT_PAGE_CARDS,
     payload: {
-      currentPage,
+      page: currentPage,
     },
   } as const);
 

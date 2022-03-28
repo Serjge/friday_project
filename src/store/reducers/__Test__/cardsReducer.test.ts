@@ -22,28 +22,28 @@ const pageCount: number = 100;
 beforeEach(() => {
   initialState = {
     pack: {
-      cards: [
-        {
-          answer: '',
-          answerImg: '',
-          answerVideo: '',
-          cardsPack_id: '',
-          comments: '',
-          created: '',
-          grade: 0,
-          more_id: '',
-          rating: 0,
-          shots: 0,
-          type: '',
-          updated: '',
-          user_id: '',
-          __v: 0,
-          _id: '',
-          question: '',
-          questionImg: '',
-          questionVideo: '',
-        },
-      ],
+      // cards: [
+      //   {
+      //     answer: '',
+      //     answerImg: '',
+      //     answerVideo: '',
+      //     cardsPack_id: '',
+      //     comments: '',
+      //     created: '',
+      //     grade: 0,
+      //     more_id: '',
+      //     rating: 0,
+      //     shots: 0,
+      //     type: '',
+      //     updated: '',
+      //     user_id: '',
+      //     __v: 0,
+      //     _id: '',
+      //     question: '',
+      //     questionImg: '',
+      //     questionVideo: '',
+      //   },
+      // ],
     } as CardsType,
     sort: '',
     searchAnswer: '',
@@ -90,6 +90,17 @@ beforeEach(() => {
   searchValue = 'collect';
 });
 
+// test('set initial Card', () => {
+//   // спросить о замыкании в редьюсоре
+//
+//   const action = setCardsAC(null);
+//
+//   const endState = cardsReducer(initialState, action);
+//
+//   expect(endState).not.toBe(initialState);
+//   expect(endState.pack).toEqual(initialState.pack); //
+// });
+
 test('set Cards from API', () => {
   const action = setCardsAC(pack);
 
@@ -97,15 +108,6 @@ test('set Cards from API', () => {
 
   expect(endState).not.toBe(initialState);
   expect(endState.pack.cards).toBe(cards);
-});
-
-test('set initial Card', () => {
-  const action = setCardsAC(null);
-
-  const endState = cardsReducer(initialState, action);
-
-  expect(endState).not.toBe(initialState);
-  expect(endState.pack).toEqual(initialState.pack);
 });
 
 test('set sort cards value', () => {
