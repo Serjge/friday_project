@@ -7,4 +7,6 @@ export const darkTheme: DefaultTheme = {
   errorColor: 'darkred',
   mainColor: '#4676d7',
   helpTextColor: '#bdbdbd',
+  tableLineColor: '#383e49',
+  tableHeadColor: '#21252b',
 };

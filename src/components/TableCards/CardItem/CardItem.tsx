@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { FC, memo } from 'react';
 
 import { useSelector } from 'react-redux';
 
@@ -15,32 +15,42 @@ import { Flex, TableItem } from 'styles';
 type CardItemPropsType = {
   cardId: string;
   isMyPack: boolean;
+  // eslint-disable-next-line react/no-unused-prop-types
+  background?: string;
 };
 
-export const CardItem = memo(({ cardId, isMyPack }: CardItemPropsType) => {
-  const question = useSelector((state: RootReducerType) => selectQuestion(state, cardId));
-  const answer = useSelector((state: RootReducerType) => selectAnswer(state, cardId));
-  const grade = useSelector((state: RootReducerType) => selectGradeCard(state, cardId));
-  const updated = useSelector((state: RootReducerType) =>
-    selectUpdateCard(state, cardId),
-  );
+export const CardItem: FC<CardItemPropsType> = memo(
+  ({ background, cardId, isMyPack }) => {
+    CardItem.defaultProps = {
+      background: undefined,
+    };
 
-  const dataNew = new Date(updated);
+    const question = useSelector((state: RootReducerType) =>
+      selectQuestion(state, cardId),
+    );
+    const answer = useSelector((state: RootReducerType) => selectAnswer(state, cardId));
+    const grade = useSelector((state: RootReducerType) => selectGradeCard(state, cardId));
+    const updated = useSelector((state: RootReducerType) =>
+      selectUpdateCard(state, cardId),
+    );
 
-  return (
-    <Flex justifyContent="center">
-      <TableItem flexBasis="40%">{question}</TableItem>
-      <TableItem flexBasis="40%">{answer}</TableItem>
-      <TableItem flexBasis="10%">{dataNew.toLocaleDateString()}</TableItem>
-      <TableItem flexBasis="10%">
-        <Rating activeStars={grade} />
-      </TableItem>
-      {isMyPack && (
+    const dataNew = new Date(updated);
+
+    return (
+      <Flex background={background} justifyContent="center" alignItems="center">
+        <TableItem flexBasis="40%">{question}</TableItem>
+        <TableItem flexBasis="40%">{answer}</TableItem>
+        <TableItem flexBasis="10%">{dataNew.toLocaleDateString()}</TableItem>
         <TableItem flexBasis="10%">
-          <EditCard cardId={cardId} />
-          <DeleteCard cardId={cardId} />
+          <Rating activeStars={grade} />
         </TableItem>
-      )}
-    </Flex>
-  );
-});
+        {isMyPack && (
+          <TableItem flexBasis="10%">
+            <EditCard cardId={cardId} />
+            <DeleteCard cardId={cardId} />
+          </TableItem>
+        )}
+      </Flex>
+    );
+  },
+);

@@ -14,6 +14,7 @@ type FlexPropsType = {
 
   alignSelf?: 'self-start' | 'self-end' | 'center' | 'auto';
   margin?: CSSProp;
+  background?: CSSProp;
 };
 
 export const Flex = styled.div<FlexPropsType>`
@@ -23,4 +24,5 @@ export const Flex = styled.div<FlexPropsType>`
   align-items: ${({ alignItems }) => alignItems};
   flex-direction: ${({ flexDirection }) => flexDirection};
   align-self: ${({ alignSelf }) => alignSelf};
+  background: ${({ background }) => background};
 `;

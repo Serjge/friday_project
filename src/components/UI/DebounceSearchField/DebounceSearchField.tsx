@@ -23,11 +23,12 @@ type DefaultInputPropsType = DetailedHTMLProps<
 type DebounceSearchFieldPropsType = DefaultInputPropsType &
   RefAttributes<HTMLInputElement> & {
     searchValue: (value: string) => void;
+    width?: string;
   };
 
 export const DebounceSearchField: FC<DebounceSearchFieldPropsType> = memo(
   forwardRef(({ searchValue, ...restProps }, ref): ReactElement => {
-    const [Value, setValue] = useState('');
+    const [value, setValue] = useState('');
 
     const search = (question: string): void => {
       searchValue(question);
@@ -44,7 +45,7 @@ export const DebounceSearchField: FC<DebounceSearchFieldPropsType> = memo(
     );
 
     return (
-      <Input ref={ref} value={Value} onChange={onSearchQuestionChange} {...restProps} />
+      <Input ref={ref} value={value} onChange={onSearchQuestionChange} {...restProps} />
     );
   }),
 );

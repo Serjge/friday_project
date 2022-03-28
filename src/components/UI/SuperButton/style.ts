@@ -1,25 +1,48 @@
 import styled, { CSSProp } from 'styled-components';
 
 type ButtonPropsType = {
-  size?: 'small' | 'normal';
+  size?: 'small' | 'normal' | 'big';
   marginTop?: CSSProp;
 };
 
 export const Button = styled.button<ButtonPropsType>`
-  margin: ${({ size, marginTop }) =>
-    size === 'small'
-      ? `${marginTop || '0'} 0 5px `
-      : `${marginTop || '15px'} 15px 15px `};
   font-style: normal;
   font-weight: 600;
   line-height: 14px;
   appearance: none;
-  padding: ${({ size }) => (size === 'small' ? '5px' : '15px 30px')};
-  font-size: ${({ size }) => (size === 'small' ? '12px' : '18px')};
+  margin: ${({ size, marginTop }) => {
+    switch (size) {
+      case 'small':
+        return `${marginTop || '0'} 5px 5px `;
+      case 'big':
+        return `${marginTop || '15px'} 15px 15px `;
+      default:
+        return `${marginTop || '10px'} 10px 10px `;
+    }
+  }};
+  padding: ${({ size }) => {
+    switch (size) {
+      case 'small':
+        return '5px 10px';
+      case 'big':
+        return '15px 30px';
+      default:
+        return '10px 20px';
+    }
+  }};
+  font-size: ${({ size }) => {
+    switch (size) {
+      case 'small':
+        return '12px';
+      case 'big':
+        return '18px';
+      default:
+        return '15px';
+    }
+  }};
   border-radius: 2px;
   position: relative;
   display: inline-block;
-
   text-align: center;
   letter-spacing: 1px;
   text-decoration: none;

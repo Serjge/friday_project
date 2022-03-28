@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { FC, memo } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -19,9 +19,14 @@ import { Flex, TableItem } from 'styles';
 
 type PackItemPropsType = {
   packId: string;
+  // eslint-disable-next-line react/no-unused-prop-types
+  background?: string;
 };
 
-export const PackItem = memo(({ packId }: PackItemPropsType) => {
+export const PackItem: FC<PackItemPropsType> = memo(({ packId, background }) => {
+  PackItem.defaultProps = {
+    background: undefined,
+  };
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -42,7 +47,7 @@ export const PackItem = memo(({ packId }: PackItemPropsType) => {
   );
 
   const dataNew = new Date(updateDataPack);
-  const hiddenEditPackButton = userId !== userIdPack;
+  const hiddenEditPackButton = userId === userIdPack;
 
   const onOpenPackClick = (): void => {
     dispatch(setSearchQuestionCardsAC(''));
@@ -51,20 +56,20 @@ export const PackItem = memo(({ packId }: PackItemPropsType) => {
   };
 
   return (
-    <Flex justifyContent="center">
+    <Flex background={background} justifyContent="center" alignItems="center">
       <TableItem flexBasis="30%">
         {namePack}
-        {!hiddenEditPackButton && <EditNamePack namePack={namePack} packId={packId} />}
+        {hiddenEditPackButton && <EditNamePack namePack={namePack} packId={packId} />}
       </TableItem>
       <TableItem flexBasis="10%">{cardsCount}</TableItem>
       <TableItem flexBasis="10%">{dataNew.toLocaleDateString()}</TableItem>
       <TableItem flexBasis="30%">{userNamePack}</TableItem>
       <TableItem flexBasis="20%">
-        {!!cardsCount && <LearnPack packId={packId} cardsCount={cardsCount} />}
         <SuperButton size="small" onClick={onOpenPackClick}>
           Open
         </SuperButton>
-        <DeletePack hiddenEditPackButton={hiddenEditPackButton} packId={packId} />
+        {hiddenEditPackButton && <DeletePack packId={packId} />}
+        {!!cardsCount && <LearnPack packId={packId} cardsCount={cardsCount} />}
       </TableItem>
     </Flex>
   );

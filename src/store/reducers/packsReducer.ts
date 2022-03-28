@@ -49,7 +49,10 @@ export const packsReducer = (
 ): InitialStateType => {
   switch (action.type) {
     case SET_PACKS:
-      return { ...state, packs: action.payload.cards };
+      return {
+        ...state,
+        packs: action.payload.cards,
+      };
     case SET_SORT_PACKS:
       return { ...state, sort: action.payload.sort };
     case SET_SEARCH_PACK:

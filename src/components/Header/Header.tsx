@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { memo, ReactElement, useCallback } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -31,7 +30,7 @@ export const Header = memo((): ReactElement => {
           <NavLink to={PATH.PROFILE}>
             {({ isActive }) => <HeaderButton isActive={isActive}>Profile</HeaderButton>}
           </NavLink>
-          <HeaderButton onClick={logOut}>logOut</HeaderButton>
+          <HeaderButton onClick={logOut}>LogOut</HeaderButton>
         </>
       )}
     </HeaderWrapper>

@@ -18,7 +18,7 @@ type DefaultButtonPropsType = DetailedHTMLProps<
 
 type SuperButtonPropsType = DefaultButtonPropsType &
   RefAttributes<any> & {
-    size?: 'small' | 'normal';
+    size?: 'small' | 'normal' | 'big';
     marginTop?: CSSProp;
   };
 
