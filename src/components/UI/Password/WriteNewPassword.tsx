@@ -1,15 +1,12 @@
 import { ReactElement } from 'react';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-
-import { PasswordField } from '../PasswordField';
-import { SuperButton } from '../SuperButton';
 
 import { CreatePasswordDiv } from './style';
 
-import { selectErrorMessage } from 'store/selectors';
+import { PasswordField, SuperButton } from 'components';
 import { sendNewPasswordTC } from 'store/thunks';
 import { Wrapper } from 'styles';
 import { CreateNewPasswordType, SendNewPasswordType } from 'types';
@@ -21,8 +18,6 @@ export const WriteNewPassword = (): ReactElement => {
 
   const { token } = param;
   const resetPasswordToken = String(token);
-
-  const errorMessage = useSelector(selectErrorMessage);
 
   const {
     register,
@@ -67,12 +62,11 @@ export const WriteNewPassword = (): ReactElement => {
         />
 
         <CreatePasswordDiv>
-          <SuperButton type="submit" value="create">
+          <SuperButton marginTop="90px" type="submit" value="create">
             Create new password
           </SuperButton>
         </CreatePasswordDiv>
       </form>
-      {errorMessage || null}
     </Wrapper>
   );
 };
