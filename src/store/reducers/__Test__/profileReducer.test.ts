@@ -62,9 +62,9 @@ describe('profile reducer', () => {
 
     const endState = ProfileReducer(initialState, action);
 
-  expect(endState).not.toBe(initialState);
-  expect(endState.isEditProfileOpen).toBeTruthy();
-});
+    expect(endState).not.toBe(initialState);
+    expect(endState.isEditProfileOpen).toBeTruthy();
+  });
 
   test('check Auth me', () => {
     const action = authMeAC(dataFromAPI);
