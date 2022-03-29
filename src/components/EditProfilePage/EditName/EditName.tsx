@@ -22,15 +22,15 @@ export const EditName = (): ReactElement => {
   const [editName, setEditName] = useState<boolean>(true);
   const [newName, setNewName] = useState<string>(name);
 
-  const applyNewNameHandler = (): void => setEditName(false);
+  const openChangeProfileNameModuleOnClick = (): void => setEditName(false);
 
-  const cancelWriteNewNameHandler = (): void => setEditName(true);
+  const closeChangeProfileNameModuleOnClick = (): void => setEditName(true);
 
-  const changeNameHandler = (e: ChangeEvent<HTMLInputElement>): void => {
+  const writeNewProfileNameOnChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setNewName(e.currentTarget.value);
   };
 
-  const changePersonalNameHandler = (): void => {
+  const handleNewProfileNameOnClick = (): void => {
     dispatch(editProfileNameTC(newName));
     setEditName(true);
   };
@@ -42,7 +42,9 @@ export const EditName = (): ReactElement => {
           <h3>Name</h3>
           <EditRowBlock>
             <SpanEditProfile>{name}</SpanEditProfile>
-            <SuperButton onClick={applyNewNameHandler}>Change Name</SuperButton>
+            <SuperButton onClick={openChangeProfileNameModuleOnClick}>
+              Change Name
+            </SuperButton>
           </EditRowBlock>
           <ShadowEditProfileBlock>{}</ShadowEditProfileBlock>
         </EditBlock>
@@ -51,12 +53,14 @@ export const EditName = (): ReactElement => {
           <h3>Name</h3>
           <EditRowBlock>
             <SpanEditProfile>{name}</SpanEditProfile>
-            <SuperButton onClick={cancelWriteNewNameHandler}>Cancel</SuperButton>
+            <SuperButton onClick={closeChangeProfileNameModuleOnClick}>
+              Cancel
+            </SuperButton>
           </EditRowBlock>
           <h3>New Name</h3>
           <EditRowBlock>
-            <TextField value={newName} onChange={changeNameHandler} autoFocus />
-            <SuperButton onClick={changePersonalNameHandler}>Save</SuperButton>
+            <TextField value={newName} onChange={writeNewProfileNameOnChange} autoFocus />
+            <SuperButton onClick={handleNewProfileNameOnClick}>Save</SuperButton>
           </EditRowBlock>
         </EditBlock>
       )}

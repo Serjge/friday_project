@@ -10,13 +10,13 @@ import { AuthMeType } from 'types';
 export type ProfileStateWithErrorKeyType = {
   profileData: AuthMeType;
   error: string;
-  needEdit: boolean;
+  isEditProfileOpen: boolean;
 };
 
 const initialState: ProfileStateWithErrorKeyType = {
   profileData: {} as AuthMeType,
   error: '',
-  needEdit: false,
+  isEditProfileOpen: false,
 };
 
 export const ProfileReducer = (
@@ -28,7 +28,7 @@ export const ProfileReducer = (
       return { ...state, profileData: action.payload.state };
     }
     case CHANGE_PERSONAL_DATA: {
-      return { ...state, needEdit: action.payload.needEdit };
+      return { ...state, isEditProfileOpen: action.payload.needEdit };
     }
     case CHANGE_NAME: {
       return {
