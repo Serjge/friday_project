@@ -75,111 +75,113 @@ beforeEach(() => {
   isMyPack = true;
 });
 
-test('set Cards from API', () => {
-  const action = setPacksAC(packs);
+describe('pack reducer', () => {
+  test('set Cards from API', () => {
+    const action = setPacksAC(packs);
 
-  const endState = packsReducer(initialState, action);
+    const endState = packsReducer(initialState, action);
 
-  expect(endState).not.toBe(initialState);
-  expect(endState.packs).toBe(packs);
-  expect(endState.packs.cardPacks).toBe(cards);
-});
+    expect(endState).not.toBe(initialState);
+    expect(endState.packs).toBe(packs);
+    expect(endState.packs.cardPacks).toBe(cards);
+  });
 
-test('change sort value for cards', () => {
-  const action = setSortPacksAC(sort);
+  test('change sort value for cards', () => {
+    const action = setSortPacksAC(sort);
 
-  const endState = packsReducer(initialState, action);
+    const endState = packsReducer(initialState, action);
 
-  expect(endState).not.toBe(initialState);
-  expect(endState.sort).toBe(sort);
-});
+    expect(endState).not.toBe(initialState);
+    expect(endState.sort).toBe(sort);
+  });
 
-test('set value for search pack', () => {
-  const action = setSearchPackAC(searchPack);
+  test('set value for search pack', () => {
+    const action = setSearchPackAC(searchPack);
 
-  const endState = packsReducer(initialState, action);
+    const endState = packsReducer(initialState, action);
 
-  expect(endState).not.toBe(initialState);
-  expect(endState.searchPack).toBe(searchPack);
-});
+    expect(endState).not.toBe(initialState);
+    expect(endState.searchPack).toBe(searchPack);
+  });
 
-test('set current page', () => {
-  const action = setCurrentPagePacksAC(currentPage);
+  test('set current page', () => {
+    const action = setCurrentPagePacksAC(currentPage);
 
-  const endState = packsReducer(initialState, action);
+    const endState = packsReducer(initialState, action);
 
-  expect(endState).not.toBe(initialState);
-  expect(endState.packs.page).toBe(currentPage);
-});
+    expect(endState).not.toBe(initialState);
+    expect(endState.packs.page).toBe(currentPage);
+  });
 
-test('set page count', () => {
-  const action = setPageCountPacksAC(pageCount);
+  test('set page count', () => {
+    const action = setPageCountPacksAC(pageCount);
 
-  const endState = packsReducer(initialState, action);
+    const endState = packsReducer(initialState, action);
 
-  expect(endState).not.toBe(initialState);
-  expect(endState.packs.pageCount).toBe(pageCount);
-});
+    expect(endState).not.toBe(initialState);
+    expect(endState.packs.pageCount).toBe(pageCount);
+  });
 
-test('set only my pack', () => {
-  const action = setIsMyPackAC(isMyPack);
+  test('set only my pack', () => {
+    const action = setIsMyPackAC(isMyPack);
 
-  const endState = packsReducer(initialState, action);
+    const endState = packsReducer(initialState, action);
 
-  expect(endState).not.toBe(initialState);
-  expect(endState.isMyPack).toBe(isMyPack);
-});
+    expect(endState).not.toBe(initialState);
+    expect(endState.isMyPack).toBe(isMyPack);
+  });
 
-test('rerender for API request', () => {
-  const action = rerenderPackAC();
+  test('rerender for API request', () => {
+    const action = rerenderPackAC();
 
-  const endState = packsReducer(initialState, action);
+    const endState = packsReducer(initialState, action);
 
-  expect(endState).not.toBe(initialState);
-  expect(endState.rerenderFlag).not.toBe(initialState.rerenderFlag);
-});
+    expect(endState).not.toBe(initialState);
+    expect(endState.rerenderFlag).not.toBe(initialState.rerenderFlag);
+  });
 
-test('set min cards count', () => {
-  const action = setMinCardsCountAC(minCards);
+  test('set min cards count', () => {
+    const action = setMinCardsCountAC(minCards);
 
-  const endState = packsReducer(initialState, action);
+    const endState = packsReducer(initialState, action);
 
-  expect(endState).not.toBe(initialState);
-  expect(endState.packs.minCardsCount).toBe(minCards);
-});
+    expect(endState).not.toBe(initialState);
+    expect(endState.packs.minCardsCount).toBe(minCards);
+  });
 
-test('set min cards count', () => {
-  const action = setMaxCardsCountAC(maxCards);
+  test('set min cards count', () => {
+    const action = setMaxCardsCountAC(maxCards);
 
-  const endState = packsReducer(initialState, action);
+    const endState = packsReducer(initialState, action);
 
-  expect(endState).not.toBe(initialState);
-  expect(endState.packs.maxCardsCount).toBe(maxCards);
-});
+    expect(endState).not.toBe(initialState);
+    expect(endState.packs.maxCardsCount).toBe(maxCards);
+  });
 
-test('set min local cards count', () => {
-  const action = setLocalMinCardsCountAC(minCards);
+  test('set min local cards count', () => {
+    const action = setLocalMinCardsCountAC(minCards);
 
-  const endState = packsReducer(initialState, action);
+    const endState = packsReducer(initialState, action);
 
-  expect(endState).not.toBe(initialState);
-  expect(endState.localMinRage).toBe(minCards);
-});
+    expect(endState).not.toBe(initialState);
+    expect(endState.localMinRage).toBe(minCards);
+  });
 
-test('set max local cards count', () => {
-  const action = setLocalMaxCardsCountAC(maxCards);
+  test('set max local cards count', () => {
+    const action = setLocalMaxCardsCountAC(maxCards);
 
-  const endState = packsReducer(initialState, action);
+    const endState = packsReducer(initialState, action);
 
-  expect(endState).not.toBe(initialState);
-  expect(endState.localMaxRage).toBe(maxCards);
-});
+    expect(endState).not.toBe(initialState);
+    expect(endState.localMaxRage).toBe(maxCards);
+  });
 
-test('set result message from API', () => {
-  const action = setResultMessageAddPackAC(message);
+  test('set result message from API', () => {
+    const action = setResultMessageAddPackAC(message);
 
-  const endState = packsReducer(initialState, action);
+    const endState = packsReducer(initialState, action);
 
-  expect(endState).not.toBe(initialState);
-  expect(endState.resultMessageAddPack).toBe(message);
+    expect(endState).not.toBe(initialState);
+    expect(endState.resultMessageAddPack).toBe(message);
+  });
 });

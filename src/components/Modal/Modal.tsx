@@ -1,6 +1,6 @@
 import { FC, ReactElement, useCallback } from 'react';
 
-import style from './Modal.module.css';
+import { ContentBlock, MainBlock } from './style';
 
 type ModalPropsType = {
   isActive: boolean;
@@ -17,18 +17,14 @@ export const Modal: FC<ModalPropsType> = ({
   }, []);
 
   return (
-    <div
-      role="presentation"
-      className={`${style.modal}  ${isActive ? style.active : ''}`}
-      onClick={closeModalCB}
-    >
-      <div
+    <MainBlock role="presentation" onClick={closeModalCB} isActive={isActive}>
+      <ContentBlock
         role="presentation"
-        className={`${style.modal__content} ${isActive ? style.active : ''} `}
+        isActive={isActive}
         onClick={e => e.stopPropagation()}
       >
         {children}
-      </div>
-    </div>
+      </ContentBlock>
+    </MainBlock>
   );
 };

@@ -11,5 +11,8 @@ export const MainBlock = styled.div`
 
 export const Points = styled.span`
   font-size: xx-large;
-  font-weight: bolder;
+`;
+
+export const Title = styled.span`
+  padding: 10px;
 `;

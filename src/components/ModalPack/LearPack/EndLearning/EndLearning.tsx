@@ -13,7 +13,7 @@ export const EndLearning: FC<ErrorType> = ({
 
   return (
     <Modal isActive={active} changeIsActive={closeLearningWindow}>
-      <h1>End Pack</h1>
+      <h2>End Pack</h2>
       <SuperButton onClick={closeLearning}>Back</SuperButton>
     </Modal>
   );

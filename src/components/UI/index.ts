@@ -10,3 +10,4 @@ export { PasswordSuccessfulChanged, WriteNewPassword } from './Password';
 export { PasswordPosition, PasswordField, EyeDivButton } from './PasswordField';
 export { Rating } from './rating';
 export { CheckBox } from './Checkbox';
+export { Select } from './Select';
