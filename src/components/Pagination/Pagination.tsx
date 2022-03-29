@@ -1,7 +1,9 @@
-import { ChangeEvent, FC, memo, ReactElement, useCallback } from 'react';
+import { FC, memo, ReactElement, useCallback } from 'react';
 
 import { Buttons } from './Buttons';
 import { MainBlock, Title } from './style';
+
+import { Select } from 'components';
 
 export type PaginationPropsType = {
   currentPage: number;
@@ -22,24 +24,20 @@ export const Pagination: FC<PaginationPropsType> = memo(
     countDecksOnPage,
   }): ReactElement => {
     const setPageCount = useCallback(
-      (e: ChangeEvent<HTMLSelectElement>): void => {
-        setPacksCount(Number(e.currentTarget.value));
+      (value: number): void => {
+        setPacksCount(value);
       },
       [setPacksCount],
     );
 
-    const selectElements = countDecksOnPage.map(count => (
-      <option key={count} value={count}>
-        {count}
-      </option>
-    ));
-
     return (
       <MainBlock>
-        <Title>Count decks on page </Title>
-        <select value={pagesCount} onChange={setPageCount}>
-          {selectElements}
-        </select>
+        <Title>Count decks on page: </Title>
+        <Select
+          currentCount={pagesCount}
+          handleCurrentCount={setPageCount}
+          counts={countDecksOnPage}
+        />
         <Buttons
           setCurrentPage={setCurrentPage}
           currentPage={currentPage}
