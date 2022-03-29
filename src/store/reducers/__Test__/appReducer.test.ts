@@ -19,31 +19,33 @@ beforeEach(() => {
   isLoading = true;
 });
 
-test('set error message', () => {
-  const action = setErrorMessageAC(error);
+describe('app reducer', () => {
+  test('set error message', () => {
+    const action = setErrorMessageAC(error);
 
-  const endState = appReducer(initialState, action);
+    const endState = appReducer(initialState, action);
 
-  expect(endState).not.toBe(initialState);
-  expect(endState.errorMessage).toBe(error);
-  expect(initialState.errorMessage).toBe(notError);
-});
+    expect(endState).not.toBe(initialState);
+    expect(endState.errorMessage).toBe(error);
+    expect(initialState.errorMessage).toBe(notError);
+  });
 
-test('set initialized', () => {
-  const action = initializeMeAC(newInitializeValue);
+  test('set initialized', () => {
+    const action = initializeMeAC(newInitializeValue);
 
-  const endState = appReducer(initialState, action);
+    const endState = appReducer(initialState, action);
 
-  expect(endState).not.toBe(initialState);
-  expect(endState.isInitialize).toBeTruthy();
-  expect(initialState.isInitialize).toBeFalsy();
-});
+    expect(endState).not.toBe(initialState);
+    expect(endState.isInitialize).toBeTruthy();
+    expect(initialState.isInitialize).toBeFalsy();
+  });
 
-test('set loading', () => {
-  const action = isLoadingAC(isLoading);
+  test('set loading', () => {
+    const action = isLoadingAC(isLoading);
 
-  const endState = appReducer(initialState, action);
+    const endState = appReducer(initialState, action);
 
-  expect(endState).not.toBe(initialState);
-  expect(endState.isLoading).toBeTruthy();
+    expect(endState).not.toBe(initialState);
+    expect(endState.isLoading).toBeTruthy();
+  });
 });

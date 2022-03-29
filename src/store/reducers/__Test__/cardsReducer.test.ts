@@ -67,76 +67,76 @@ beforeEach(() => {
   searchValue = 'collect';
 });
 
-test('set initial Card', () => {
-  // спросить о замыкании в редьюсоре
+describe('cards reducer', () => {
+  test('set initial Card', () => {
+    const action = setCardsAC(pack);
 
-  const action = setCardsAC(pack);
+    const endState = cardsReducer(initialState, action);
 
-  const endState = cardsReducer(initialState, action);
+    expect(endState).not.toBe(initialState);
+    expect(endState.pack).toEqual(pack);
+  });
 
-  expect(endState).not.toBe(initialState);
-  expect(endState.pack).toEqual(pack); //
-});
+  test('set Cards from API', () => {
+    const action = setCardsAC(pack);
 
-test('set Cards from API', () => {
-  const action = setCardsAC(pack);
+    const endState = cardsReducer(initialState, action);
 
-  const endState = cardsReducer(initialState, action);
+    expect(endState).not.toBe(initialState);
+    expect(endState.pack.cards).toBe(cards);
+  });
 
-  expect(endState).not.toBe(initialState);
-  expect(endState.pack.cards).toBe(cards);
-});
+  test('set sort cards value', () => {
+    const action = setSortCardsAC(sort);
 
-test('set sort cards value', () => {
-  const action = setSortCardsAC(sort);
+    const endState = cardsReducer(initialState, action);
 
-  const endState = cardsReducer(initialState, action);
+    expect(endState).not.toBe(initialState);
+    expect(endState.sort).toBe(sort);
+  });
 
-  expect(endState).not.toBe(initialState);
-  expect(endState.sort).toBe(sort);
-});
+  test('set search answer cards', () => {
+    const action = setSearchAnswerCardsAC(searchValue);
 
-test('set search answer cards', () => {
-  const action = setSearchAnswerCardsAC(searchValue);
+    const endState = cardsReducer(initialState, action);
 
-  const endState = cardsReducer(initialState, action);
+    expect(endState).not.toBe(initialState);
+    expect(endState.searchAnswer).toBe(searchValue);
+  });
 
-  expect(endState).not.toBe(initialState);
-  expect(endState.searchAnswer).toBe(searchValue);
-});
+  test('set search question cards', () => {
+    const action = setSearchQuestionCardsAC(searchValue);
 
-test('set search question cards', () => {
-  const action = setSearchQuestionCardsAC(searchValue);
+    const endState = cardsReducer(initialState, action);
 
-  const endState = cardsReducer(initialState, action);
+    expect(endState).not.toBe(initialState);
+    expect(endState.searchQuestion).toBe(searchValue);
+  });
 
-  expect(endState).not.toBe(initialState);
-  expect(endState.searchQuestion).toBe(searchValue);
-});
+  test('rerender', () => {
+    const action = rerenderCardAC();
 
-test('rerender', () => {
-  const action = rerenderCardAC();
+    const endState = cardsReducer(initialState, action);
 
-  const endState = cardsReducer(initialState, action);
+    expect(endState).not.toBe(initialState);
+    expect(endState.rerenderFlag).not.toBe(initialState.rerenderFlag);
+  });
 
-  expect(endState).not.toBe(initialState);
-  expect(endState.rerenderFlag).not.toBe(initialState.rerenderFlag);
-});
+  test('set current page', () => {
+    const action = setCurrentPageCardsAC(currentPage);
 
-test('set current page', () => {
-  const action = setCurrentPageCardsAC(currentPage);
+    const endState = cardsReducer(initialState, action);
 
-  const endState = cardsReducer(initialState, action);
+    expect(endState).not.toBe(initialState);
+    expect(endState.pack.page).toBe(currentPage);
+  });
 
-  expect(endState).not.toBe(initialState);
-  expect(endState.pack.page).toBe(currentPage);
-});
+  test('set page count', () => {
+    const action = setPageCountCardsAC(pageCount);
 
-test('set page count', () => {
-  const action = setPageCountCardsAC(pageCount);
+    const endState = cardsReducer(initialState, action);
 
-  const endState = cardsReducer(initialState, action);
-
-  expect(endState).not.toBe(initialState);
-  expect(endState.pack.pageCount).toBe(pageCount);
+    expect(endState).not.toBe(initialState);
+    expect(endState.pack.pageCount).toBe(pageCount);
+  });
 });

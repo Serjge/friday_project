@@ -56,42 +56,44 @@ beforeEach(() => {
   newAvatarURL = 'http://always';
 });
 
-test('change isEdit view', () => {
-  const action = editProfileAC(newNeedEditValue);
+describe('profile reducer', () => {
+  test('change isEdit view', () => {
+    const action = editProfileAC(newNeedEditValue);
 
-  const endState = ProfileReducer(initialState, action);
+    const endState = ProfileReducer(initialState, action);
 
-  expect(endState).not.toBe(initialState);
-  expect(endState.needEdit).toBeTruthy();
-});
+    expect(endState).not.toBe(initialState);
+    expect(endState.needEdit).toBeTruthy();
+  });
 
-test('check Auth me', () => {
-  const action = authMeAC(dataFromAPI);
+  test('check Auth me', () => {
+    const action = authMeAC(dataFromAPI);
 
-  const endState = ProfileReducer(initialState, action);
+    const endState = ProfileReducer(initialState, action);
 
-  expect(endState).not.toBe(initialState);
-  expect(endState.profileData.email).toBe(dataFromAPI.email);
-  expect(endState.profileData.rememberMe).toBe(dataFromAPI.rememberMe);
-  expect(endState.profileData.name).toBe(dataFromAPI.name);
-  expect(endState.profileData.token).toBe(dataFromAPI.token);
-  expect(endState.profileData.isAdmin).toBe(dataFromAPI.isAdmin);
-});
+    expect(endState).not.toBe(initialState);
+    expect(endState.profileData.email).toBe(dataFromAPI.email);
+    expect(endState.profileData.rememberMe).toBe(dataFromAPI.rememberMe);
+    expect(endState.profileData.name).toBe(dataFromAPI.name);
+    expect(endState.profileData.token).toBe(dataFromAPI.token);
+    expect(endState.profileData.isAdmin).toBe(dataFromAPI.isAdmin);
+  });
 
-test('change Name', () => {
-  const action = changePersonalNameAC(newNameUser);
+  test('change Name', () => {
+    const action = changePersonalNameAC(newNameUser);
 
-  const endState = ProfileReducer(initialState, action);
+    const endState = ProfileReducer(initialState, action);
 
-  expect(endState).not.toBe(initialState);
-  expect(endState.profileData.name).toBe(newNameUser);
-});
+    expect(endState).not.toBe(initialState);
+    expect(endState.profileData.name).toBe(newNameUser);
+  });
 
-test('change person Avatar', () => {
-  const action = changePersonalAvatarAC(newAvatarURL);
+  test('change person Avatar', () => {
+    const action = changePersonalAvatarAC(newAvatarURL);
 
-  const endState = ProfileReducer(initialState, action);
+    const endState = ProfileReducer(initialState, action);
 
-  expect(endState).not.toBe(initialState);
-  expect(endState.profileData.avatar).toBe(newAvatarURL);
+    expect(endState).not.toBe(initialState);
+    expect(endState.profileData.avatar).toBe(newAvatarURL);
+  });
 });

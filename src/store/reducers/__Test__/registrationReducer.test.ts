@@ -18,20 +18,22 @@ beforeEach(() => {
   newStatus = 'completed';
 });
 
-test('set statue', () => {
-  const action = setStatusAC(newStatus);
+describe('registration reducer', () => {
+  test('set statue', () => {
+    const action = setStatusAC(newStatus);
 
-  const endState = registrationReducer(initialState, action);
+    const endState = registrationReducer(initialState, action);
 
-  expect(endState).not.toBe(initialState);
-  expect(endState.status).toBe(newStatus);
-});
+    expect(endState).not.toBe(initialState);
+    expect(endState.status).toBe(newStatus);
+  });
 
-test('set registration', () => {
-  const action = setRegistrationIsCompletedAC(isCompleted);
+  test('set registration', () => {
+    const action = setRegistrationIsCompletedAC(isCompleted);
 
-  const endState = registrationReducer(initialState, action);
+    const endState = registrationReducer(initialState, action);
 
-  expect(endState).not.toBe(initialState);
-  expect(endState.isCompleted).toBeTruthy();
+    expect(endState).not.toBe(initialState);
+    expect(endState.isCompleted).toBeTruthy();
+  });
 });
