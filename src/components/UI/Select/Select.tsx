@@ -1,4 +1,4 @@
-import React, { FC, KeyboardEvent, ReactElement, useState } from 'react';
+import React, { FC, KeyboardEvent, ReactElement, useRef, useState } from 'react';
 
 import { Item, Items, SelectBody, Title } from './style';
 
@@ -19,8 +19,10 @@ export const Select: FC<SelectType> = ({
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
   const [localCurrentCount, setLocalCurrentCount] = useState<number>(currentCount);
 
+  const qwe = useRef<HTMLDivElement>(null);
+
   document.onclick = event => {
-    if (!document.getElementById('select')?.contains(event.target as Node)) {
+    if (!qwe.current!.contains(event.target as Node)) {
       setIsCollapsed(false);
     }
   };
@@ -71,7 +73,7 @@ export const Select: FC<SelectType> = ({
   ));
 
   return (
-    <SelectBody id="select" onKeyUp={onKeyUp}>
+    <SelectBody ref={qwe} id="select" onKeyUp={onKeyUp}>
       <Items isActive={isCollapsed}>{isCollapsed && selectElements}</Items>
       <Title onClick={handleViewSelector} tabIndex={FIRST_TAB_INDEX}>
         {localCurrentCount}
