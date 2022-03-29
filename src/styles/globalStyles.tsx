@@ -14,6 +14,7 @@ export const GlobalStyle = createGlobalStyle<GlobalThemeProps>`
   }
 
   body {
+    font-family: "Kanit", sans-serif;
     -webkit-font-smoothing: antialiased;
     margin: 0 auto;
     background-color: ${({ theme: { backgroundColor } }) => backgroundColor};

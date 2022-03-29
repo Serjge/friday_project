@@ -51,6 +51,8 @@ const LEFT_Z_INDEX_INPUT = 3;
 const RIGHT_Z_INDEX_INPUT = 4;
 
 export const Input = styled.input<{ currentSide: 'left' | 'right' }>`
+  -webkit-appearance: none;
+  background-color: red;
   pointer-events: none;
   position: absolute;
   height: 0;
@@ -62,10 +64,10 @@ export const Input = styled.input<{ currentSide: 'left' | 'right' }>`
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
     -webkit-tap-highlight-color: transparent;
-    background-color: #f1f5f7;
+    background-color: #15c79f;
     border: none;
     border-radius: 50%;
-    box-shadow: 0 0 1px 1px #ced4da;
+    box-shadow: 0 0 1px 1px #ffffff;
     cursor: pointer;
     height: 18px;
     width: 18px;
@@ -75,10 +77,10 @@ export const Input = styled.input<{ currentSide: 'left' | 'right' }>`
   }
 
   &::-webkit-slider-thumb {
-    background-color: #f1f5f7;
+    background-color: #15c79f;
     border: none;
     border-radius: 50%;
-    box-shadow: 0 0 1px 1px #ced4da;
+    box-shadow: 0 0 1px 1px #ffffff;
     cursor: pointer;
     height: 18px;
     width: 18px;

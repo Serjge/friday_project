@@ -1,7 +1,7 @@
 import { ChangeEvent, FC, memo, ReactElement, useCallback } from 'react';
 
 import { Buttons } from './Buttons';
-import { MainBlock } from './style';
+import { MainBlock, Title } from './style';
 
 export type PaginationPropsType = {
   currentPage: number;
@@ -36,7 +36,7 @@ export const Pagination: FC<PaginationPropsType> = memo(
 
     return (
       <MainBlock>
-        <h4>Count decks on page </h4>
+        <Title>Count decks on page </Title>
         <select value={pagesCount} onChange={setPageCount}>
           {selectElements}
         </select>

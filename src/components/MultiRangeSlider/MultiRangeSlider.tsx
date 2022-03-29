@@ -109,7 +109,7 @@ export const MultiRangeSlider: FC<MultiRangeSliderPropTypes> = ({
         </Slider>
       </Container>
       <Title>
-        <h4>min - cards count - max</h4>
+        <span>min - cards count - max</span>
       </Title>
     </div>
   );

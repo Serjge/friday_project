@@ -41,7 +41,7 @@ export const LearnPack: FC<LearnPackPropsType> = ({
   }, [initCards]);
 
   const openLearn = (): void => {
-    dispatch(setPageCountCardsAC(cardsCount)); // чтобы заменить значение в санке по умолчанию
+    dispatch(setPageCountCardsAC(cardsCount));
     dispatch(getCardsTC(packId));
     setIsActiveQuestion(true);
   };
@@ -73,7 +73,6 @@ export const LearnPack: FC<LearnPackPropsType> = ({
     setCardNumber(INITIAL_NUMBER_CARD);
   };
 
-  // нормально ли оставлять условие вне функции или useEffect ?
   if (cards.length) {
     question = cards[cardNumber].question;
     answer = cards[cardNumber].answer;
