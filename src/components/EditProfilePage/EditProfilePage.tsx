@@ -15,7 +15,7 @@ export const EditProfilePage = (): ReactElement => {
 
   const isEditNeed = useSelector(selectNeedEditProfile);
 
-  const exitEditModule = (): void => {
+  const exitEditModuleOnClick = (): void => {
     dispatch(editProfileAC(false));
   };
 
@@ -29,7 +29,7 @@ export const EditProfilePage = (): ReactElement => {
         <h1>Personal information</h1>
         <EditAvatar />
         <EditName />
-        <SuperButton onClick={exitEditModule}>Cancel</SuperButton>
+        <SuperButton onClick={exitEditModuleOnClick}>Cancel</SuperButton>
       </EditPersonalInfo>
     </EditProfileBlock>
   );
