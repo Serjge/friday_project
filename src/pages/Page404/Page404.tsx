@@ -1,6 +1,6 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 
-import { Background, MainDiv } from 'pages/Page404/style';
+import { Background, MainDiv } from './style';
 
 export const Page404 = (): ReactElement => (
   <MainDiv>
