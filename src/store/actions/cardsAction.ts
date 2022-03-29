@@ -8,7 +8,7 @@ export const SET_CURRENT_PAGE_CARDS = 'CARDS/SET_CURRENT_PAGE_CARDS';
 export const SET_SEARCH_ANSWER_CARDS = 'CARDS/SET_SEARCH_ANSWER_CARDS';
 export const SET_SEARCH_QUESTION_CARDS = 'CARDS/SET_SEARCH_QUESTION_CARDS';
 
-export const setCardsAC = (cards: CardsType | null) =>
+export const setCardsAC = (cards: CardsType) =>
   ({
     type: SET_CARDS,
     payload: {
@@ -24,19 +24,19 @@ export const setSortCardsAC = (sort: string) =>
     },
   } as const);
 
-export const setSearchQuestionCardsAC = (searchValue: string) =>
+export const setSearchQuestionCardsAC = (searchQuestion: string) =>
   ({
     type: SET_SEARCH_QUESTION_CARDS,
     payload: {
-      searchValue,
+      searchQuestion,
     },
   } as const);
 
-export const setSearchAnswerCardsAC = (searchValue: string) =>
+export const setSearchAnswerCardsAC = (searchAnswer: string) =>
   ({
     type: SET_SEARCH_ANSWER_CARDS,
     payload: {
-      searchValue,
+      searchAnswer,
     },
   } as const);
 
@@ -49,7 +49,7 @@ export const setCurrentPageCardsAC = (currentPage: number) =>
   ({
     type: SET_CURRENT_PAGE_CARDS,
     payload: {
-      currentPage,
+      page: currentPage,
     },
   } as const);
 

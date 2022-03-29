@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { CSSProp } from 'styled-components';
 
 export const Checkmark = styled.div`
   position: relative;
@@ -31,17 +31,18 @@ export const Input = styled.input`
   opacity: 0;
   cursor: pointer;
 
-  &:checked ~ div:after {
+  &:checked ~ ${Checkmark}:after {
     display: block;
   }
-  &:checked ~ div {
+  &:checked ~ ${Checkmark} {
     background-color: ${({ theme: { mainColor } }) => mainColor};
     animation: pop 0.5s;
     animation-direction: alternate;
   }
 `;
 
-export const Label = styled.label`
+export const Label = styled.label<{ justifyContent?: CSSProp }>`
+  justify-content: ${({ justifyContent }) => justifyContent};
   height: 30px;
   font-style: normal;
   font-weight: normal;

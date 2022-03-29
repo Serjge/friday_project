@@ -13,7 +13,7 @@ export const TableHeadWithSorts = styled.div<TableHeadWithSortsPropsType>`
   flex-basis: ${({ flexBasis }) => flexBasis};
   width: ${({ width }) => width};
   cursor: ${({ sortType }) => (sortType ? 'pointer' : '')};
-
+  background: ${({ theme: { tableHeadColor } }) => tableHeadColor};
   &::after {
     content: '';
     width: 0;

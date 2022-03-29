@@ -25,7 +25,6 @@ export const MultiRangeSlider: FC<MultiRangeSliderPropTypes> = ({
   const minValRef = useRef(min);
   const maxValRef = useRef(max);
   const range = useRef<HTMLDivElement>(null);
-
   // Convert to percentage
   const getPercent = useCallback(
     value => {
@@ -33,6 +32,10 @@ export const MultiRangeSlider: FC<MultiRangeSliderPropTypes> = ({
     },
     [min, max],
   );
+
+  useEffect(() => {
+    setMaxVal(max);
+  }, [max]);
 
   // Set width of the range to decrease from the left side
   useEffect(() => {

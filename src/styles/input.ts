@@ -16,7 +16,7 @@ export const Input = styled.input<inputPropsType>`
     return `1px solid ${borderColor}`;
   }};
   background: none;
-  margin-top: 10px;
+  margin: 10px;
   padding: 10px 15px;
   outline: none;
   color: ${({ theme: { fontColor } }) => fontColor};

@@ -1,6 +1,7 @@
 import { FC, memo, ReactElement } from 'react';
 
-import style from 'components/Pagination/Pagination.module.css';
+import { MainBlock, Points } from './style';
+
 import { SuperButton } from 'components/UI';
 import { ButtonsPagination } from 'enum';
 import { ButtonsPropsType } from 'types';
@@ -16,7 +17,7 @@ export const Buttons: FC<ButtonsPropsType> = memo(
         <SuperButton
           key={index}
           size="small"
-          style={{ background: currentPage === index ? 'aqua' : undefined }}
+          style={{ background: currentPage === index ? 'azure' : undefined }}
           onClick={() => setCurrentPage(index)}
         >
           {index}
@@ -26,22 +27,14 @@ export const Buttons: FC<ButtonsPropsType> = memo(
 
     // 1 ... 10 11 (12) 13 14 ... 100
     if (currentPage + Two < lastPage) {
-      buttons[currentPage + Two] = (
-        <span className={style.points} key={currentPage + Three}>
-          {' ... '}
-        </span>
-      );
+      buttons[currentPage + Two] = <Points key={currentPage + Three}>{' ... '}</Points>;
       buttons = buttons.filter((p, i) => i < currentPage + Three || i === lastPage - One);
     }
     if (currentPage > Four) {
-      buttons[One] = (
-        <span className={style.points} key={Two}>
-          {' ... '}
-        </span>
-      );
+      buttons[One] = <Points key={Two}>{' ... '}</Points>;
       buttons = buttons.filter((button, i) => i < Two || i > currentPage - Four);
     }
 
-    return <div className={style.generalBlock}>{buttons}</div>;
+    return <MainBlock>{buttons}</MainBlock>;
   },
 );

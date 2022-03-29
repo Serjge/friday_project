@@ -8,5 +8,7 @@ declare module 'styled-components' {
   errorColor: string;
   mainColor: string;
   helpTextColor: string;
+  tableLineColor:string;
+  tableHeadColor:string;
   }
 }

@@ -9,6 +9,8 @@ import {
   setResultMessageAddPackAC,
   setIsMyPackAC,
   rerenderPackAC,
+  setLocalMinCardsCountAC,
+  setLocalMaxCardsCountAC,
 } from 'store/actions';
 import { packsReducer, InitialStateType } from 'store/reducers/packsReducer';
 import { PacksType, PackType } from 'types';
@@ -153,6 +155,24 @@ test('set min cards count', () => {
 
   expect(endState).not.toBe(initialState);
   expect(endState.packs.maxCardsCount).toBe(maxCards);
+});
+
+test('set min local cards count', () => {
+  const action = setLocalMinCardsCountAC(minCards);
+
+  const endState = packsReducer(initialState, action);
+
+  expect(endState).not.toBe(initialState);
+  expect(endState.localMinRage).toBe(minCards);
+});
+
+test('set max local cards count', () => {
+  const action = setLocalMaxCardsCountAC(maxCards);
+
+  const endState = packsReducer(initialState, action);
+
+  expect(endState).not.toBe(initialState);
+  expect(endState.localMaxRage).toBe(maxCards);
 });
 
 test('set result message from API', () => {

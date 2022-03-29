@@ -1,4 +1,4 @@
-import { FC, ReactElement } from 'react';
+import { FC, ReactElement, useCallback } from 'react';
 
 import style from './Modal.module.css';
 
@@ -11,18 +11,24 @@ export const Modal: FC<ModalPropsType> = ({
   isActive,
   changeIsActive,
   children,
-}): ReactElement => (
-  <div
-    role="presentation"
-    className={`${style.modal}  ${isActive ? style.active : ''}`}
-    onClick={() => changeIsActive(false)}
-  >
+}): ReactElement => {
+  const closeModalCB = useCallback(() => {
+    changeIsActive(false);
+  }, []);
+
+  return (
     <div
       role="presentation"
-      className={`${style.modal__content} ${isActive ? style.active : ''} `}
-      onClick={e => e.stopPropagation()}
+      className={`${style.modal}  ${isActive ? style.active : ''}`}
+      onClick={closeModalCB}
     >
-      {children}
+      <div
+        role="presentation"
+        className={`${style.modal__content} ${isActive ? style.active : ''} `}
+        onClick={e => e.stopPropagation()}
+      >
+        {children}
+      </div>
     </div>
-  </div>
-);
+  );
+};

@@ -66,7 +66,7 @@ export const CardList = memo((): ReactElement => {
 
   return (
     <CardListWrapper>
-      {name}
+      <h3> Name pack: {name}</h3>
       <SearchWrapper>
         <DebounceSearchField placeholder="Question:" searchValue={searchByQuestion} />
         <DebounceSearchField placeholder="Answer:" searchValue={searchByAnswer} />

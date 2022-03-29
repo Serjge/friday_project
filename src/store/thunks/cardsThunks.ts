@@ -84,18 +84,17 @@ export const updateCardTC =
       handleError(error, dispatch, StatusCode.Bad_Request);
     }
   };
+// точно такая санка как и deleteCardTC, как сократить код?
+export const setGradeCardTC =
+  (id: string, grade: number): AppThunkType =>
+  async dispatch => {
+    try {
+      const { status } = await cardsApi.setGrade({ card_id: id, grade });
 
-export const setGradeCardTC = // точно такая санка как и deleteCardTC, как сократить код?
-
-    (id: string, grade: number): AppThunkType =>
-    async dispatch => {
-      try {
-        const { status } = await cardsApi.setGrade({ card_id: id, grade });
-
-        if (status === StatusCode.Success) {
-          dispatch(rerenderCardAC());
-        }
-      } catch (error) {
-        handleError(error, dispatch, StatusCode.Bad_Request);
+      if (status === StatusCode.Success) {
+        dispatch(rerenderCardAC());
       }
-    };
+    } catch (error) {
+      handleError(error, dispatch, StatusCode.Bad_Request);
+    }
+  };

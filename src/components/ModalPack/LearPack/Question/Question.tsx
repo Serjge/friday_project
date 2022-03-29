@@ -1,4 +1,4 @@
-import { FC, ReactElement } from 'react';
+import { FC, ReactElement, useCallback } from 'react';
 
 import { Modal } from 'components/Modal';
 import { SuperButton } from 'components/UI';
@@ -10,13 +10,19 @@ export const Question: FC<QuestionType> = ({
   question,
   closeLearnWindow,
   setIsActiveAnswer,
-}): ReactElement => (
-  <Modal isActive={isActiveQuestion} changeIsActive={setIsActiveQuestion}>
-    <span>Question:</span>
-    <div>{question}</div>
-    <div>
-      <SuperButton onClick={closeLearnWindow}>Cancel</SuperButton>
-      <SuperButton onClick={() => setIsActiveAnswer(true)}>Show answer</SuperButton>
-    </div>
-  </Modal>
-);
+}): ReactElement => {
+  const openAnswer = useCallback(() => {
+    setIsActiveAnswer(true);
+  }, []);
+
+  return (
+    <Modal isActive={isActiveQuestion} changeIsActive={setIsActiveQuestion}>
+      <h3>Question:</h3>
+      <div>{question}</div>
+      <div>
+        <SuperButton onClick={closeLearnWindow}>Cancel</SuperButton>
+        <SuperButton onClick={openAnswer}>Show answer</SuperButton>
+      </div>
+    </Modal>
+  );
+};

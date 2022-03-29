@@ -87,7 +87,11 @@ export const PacksList = memo((): ReactElement => {
   return (
     <Flex flexDirection="column" alignItems="center">
       <Flex style={{ width: '80vw' }} justifyContent="space-around">
-        <DebounceSearchField placeholder="Name" searchValue={searchByPacks} />
+        <DebounceSearchField
+          width="500px"
+          placeholder="Name"
+          searchValue={searchByPacks}
+        />
         <AddPack />
       </Flex>
       <Flex style={{ width: '80vw' }} justifyContent="space-around" alignItems="center">

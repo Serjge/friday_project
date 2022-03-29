@@ -14,7 +14,7 @@ export const AddPack = memo((): ReactElement => {
 
   const titleRef = useRef<HTMLInputElement>(null);
 
-  const setNewPack = useCallback((): void => {
+  const addNewPack = useCallback((): void => {
     dispatch(addPackTC(titleRef.current!.value));
     closeModal();
     titleRef.current!.value = '';
@@ -30,7 +30,7 @@ export const AddPack = memo((): ReactElement => {
           </div>
           <div>
             <SuperButton onClick={closeModal}>Cancel</SuperButton>
-            <SuperButton onClick={setNewPack}>Add</SuperButton>
+            <SuperButton onClick={addNewPack}>Add</SuperButton>
           </div>
         </WrapperModal>
       </Modal>

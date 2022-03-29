@@ -1,19 +1,22 @@
-import { initializeMeAC, setErrorMessageAC } from 'store/actions';
+import { initializeMeAC, isLoadingAC, setErrorMessageAC } from 'store/actions';
 import { appReducer, InitialStateType } from 'store/reducers/appReducer';
 
 let initialState: InitialStateType;
 let error: string;
 let notError: string;
 let newInitializeValue: boolean;
+let isLoading: boolean;
 
 beforeEach(() => {
   initialState = {
     errorMessage: '',
     isInitialize: false,
+    isLoading: false,
   };
   error = 'some error';
   notError = '';
   newInitializeValue = true;
+  isLoading = true;
 });
 
 test('set error message', () => {
@@ -34,4 +37,13 @@ test('set initialized', () => {
   expect(endState).not.toBe(initialState);
   expect(endState.isInitialize).toBeTruthy();
   expect(initialState.isInitialize).toBeFalsy();
+});
+
+test('set loading', () => {
+  const action = isLoadingAC(isLoading);
+
+  const endState = appReducer(initialState, action);
+
+  expect(endState).not.toBe(initialState);
+  expect(endState.isLoading).toBeTruthy();
 });

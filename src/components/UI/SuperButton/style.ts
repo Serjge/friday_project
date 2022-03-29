@@ -1,25 +1,18 @@
-import styled, { CSSProp } from 'styled-components';
+import styled, { css, CSSProp } from 'styled-components';
 
 type ButtonPropsType = {
-  size?: 'small' | 'normal';
+  size?: 'small' | 'normal' | 'big';
   marginTop?: CSSProp;
 };
 
-export const Button = styled.button<ButtonPropsType>`
-  margin: ${({ size, marginTop }) =>
-    size === 'small'
-      ? `${marginTop || '0'} 0 5px `
-      : `${marginTop || '15px'} 15px 15px `};
+export const BaseButton = styled.button`
   font-style: normal;
   font-weight: 600;
   line-height: 14px;
   appearance: none;
-  padding: ${({ size }) => (size === 'small' ? '5px' : '15px 30px')};
-  font-size: ${({ size }) => (size === 'small' ? '12px' : '18px')};
   border-radius: 2px;
   position: relative;
   display: inline-block;
-
   text-align: center;
   letter-spacing: 1px;
   text-decoration: none;
@@ -46,6 +39,100 @@ export const Button = styled.button<ButtonPropsType>`
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px #cbd6ee;
+    box-shadow: 0 0 0 2px ${({ theme: { borderColor } }) => borderColor};
   }
 `;
+
+export const Button = styled(BaseButton)<ButtonPropsType>`
+  ${({ size, marginTop }) => {
+    switch (size) {
+      case 'small':
+        return css`
+          margin: ${marginTop || '0'} 5px 5px;
+          padding: 5px 10px;
+          font-size: 12px;
+        `;
+      case 'big':
+        return css`
+          margin: ${marginTop || '15px'} 15px 15px;
+          padding: 15px 30px;
+          font-size: 18px;
+        `;
+
+      default:
+        return css`
+          margin: ${marginTop || '10px'} 10px 10px;
+          padding: 10px 20px;
+          font-size: 15px;
+        `;
+    }
+  }}
+`;
+
+// export const Button = styled.button<ButtonPropsType>`
+//   font-style: normal;
+//   font-weight: 600;
+//   line-height: 14px;
+//   appearance: none;
+//   margin: ${({ size, marginTop }) => {
+//   switch (size) {
+//     case 'small':
+//       return `${marginTop || '0'} 5px 5px `;
+//     case 'big':
+//       return `${marginTop || '15px'} 15px 15px `;
+//     default:
+//       return `${marginTop || '10px'} 10px 10px `;
+//   }
+// }};
+//   padding: ${({ size }) => {
+//   switch (size) {
+//     case 'small':
+//       return '5px 10px';
+//     case 'big':
+//       return '15px 30px';
+//     default:
+//       return '10px 20px';
+//   }
+// }};
+//   font-size: ${({ size }) => {
+//   switch (size) {
+//     case 'small':
+//       return '12px';
+//     case 'big':
+//       return '18px';
+//     default:
+//       return '15px';
+//   }
+// }};
+//   border-radius: 2px;
+//   position: relative;
+//   display: inline-block;
+//   text-align: center;
+//   letter-spacing: 1px;
+//   text-decoration: none;
+//   color: ${({ theme: { mainColor } }) => mainColor};
+//   background: transparent;
+//   cursor: pointer;
+//   transition: ease-out 0.5s;
+//   border: 2px solid ${({ theme: { mainColor } }) => mainColor};
+//   box-shadow: inset 0 0 0 0 ${({ theme: { mainColor } }) => mainColor};
+//
+//   &:hover {
+//     color: ${({ theme: { fontColor } }) => fontColor};
+//     box-shadow: inset 0 -100px 0 0 ${({ theme: { mainColor } }) => mainColor};
+//   }
+//
+//   &:active {
+//     transform: scale(0.9);
+//   }
+//
+//   &:disabled {
+//     pointer-events: none;
+//     opacity: 0.5;
+//   }
+//
+//   &:focus {
+//     outline: none;
+//     box-shadow: 0 0 0 2px ${({ theme: { borderColor } }) => borderColor};
+//   }
+// `;
