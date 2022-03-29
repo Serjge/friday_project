@@ -1,7 +1,7 @@
 import { RootReducerType } from '../store';
 
 export const selectNeedEditProfile = (state: RootReducerType): boolean =>
-  state.profile.needEdit;
+  state.profile.isEditProfileOpen;
 
 export const selectNameProfile = (state: RootReducerType): string =>
   state.profile.profileData.name;

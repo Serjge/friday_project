@@ -22,7 +22,7 @@ export const Profile = (): ReactElement => {
   const isLogin = useSelector(selectIsLogin);
   const name = useSelector(selectNameProfile);
   const avatar = useSelector(selectAvatarProfile);
-  const needEdit = useSelector(selectNeedEditProfile);
+  const isEditModuleOpen = useSelector(selectNeedEditProfile);
   const publicCardPacksCount = useSelector(selectPublicCardPacksCountProfile);
 
   const editModule = (): void => {
@@ -33,7 +33,7 @@ export const Profile = (): ReactElement => {
     return <Navigate to={PATH.LOGIN} />;
   }
 
-  if (needEdit) {
+  if (isEditModuleOpen) {
     return <EditProfilePage />;
   }
 

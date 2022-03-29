@@ -34,7 +34,7 @@ beforeEach(() => {
       avatar: '',
     },
     error: '',
-    needEdit: false,
+    isEditProfileOpen: false,
   };
   dataFromAPI = {
     _id: 'politics',
@@ -62,7 +62,7 @@ test('change isEdit view', () => {
   const endState = ProfileReducer(initialState, action);
 
   expect(endState).not.toBe(initialState);
-  expect(endState.needEdit).toBeTruthy();
+  expect(endState.isEditProfileOpen).toBeTruthy();
 });
 
 test('check Auth me', () => {
