@@ -14,34 +14,36 @@ export const EditAvatar = (): ReactElement => {
   const avatar = useSelector(selectAvatarProfile);
 
   const [newAvatar, setNewAvatar] = useState<string>(avatar);
-  const [editAvatar, setEditAvatar] = useState<boolean>(true);
+  const [isAvatarEdit, setIsAvatarEdit] = useState<boolean>(true);
 
-  const changeAvatarHandler = (): void => setEditAvatar(false);
-  const cancelChangeAvatar = (): void => setEditAvatar(true);
+  const openChangeAvatarModuleOnClick = (): void => setIsAvatarEdit(false);
 
-  const changePersonalAvatarHandler = (): void => {
+  const closeChangeAvatarModuleOnClick = (): void => setIsAvatarEdit(true);
+
+  const handleNewAvatarOnClick = (): void => {
     dispatch(editPersonalAvatarTC(newAvatar));
-    setEditAvatar(true);
+    setIsAvatarEdit(true);
   };
-  const changeAvatarUrlHandler = (e: ChangeEvent<HTMLInputElement>): void => {
+
+  const writeNewAvatarUrlOnChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setNewAvatar(e.currentTarget.value);
   };
 
   return (
     <EditAvatarBlock>
       <UserImgProfile src={avatar} alt="avatar-user" />
-      {editAvatar ? (
-        <SuperButton onClick={changeAvatarHandler}>Change avatar</SuperButton>
+      {isAvatarEdit ? (
+        <SuperButton onClick={openChangeAvatarModuleOnClick}>Change avatar</SuperButton>
       ) : (
         <EditRowBlock>
           <TextField
             type="url"
             placeholder="Please, insert new avatar URL"
-            onChange={changeAvatarUrlHandler}
+            onChange={writeNewAvatarUrlOnChange}
             autoFocus
           />
-          <SuperButton onClick={changePersonalAvatarHandler}>Save</SuperButton>
-          <SuperButton onClick={cancelChangeAvatar}>Cancel</SuperButton>
+          <SuperButton onClick={handleNewAvatarOnClick}>Save</SuperButton>
+          <SuperButton onClick={closeChangeAvatarModuleOnClick}>Cancel</SuperButton>
         </EditRowBlock>
       )}
     </EditAvatarBlock>
