@@ -72,7 +72,9 @@ export const CardList = memo((): ReactElement => {
         <DebounceSearchField placeholder="Answer:" searchValue={searchByAnswer} />
         <AddCard packId={id} />
       </SearchWrapper>
+
       <TableCards />
+
       <Pagination
         currentPage={currentPage}
         pagesCount={pagesCount}

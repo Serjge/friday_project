@@ -1,13 +1,6 @@
-/* eslint-disable @typescript-eslint/no-magic-numbers */
 import { instance } from 'api/instance';
 import { PATHS_API } from 'enum';
 import { PacksType } from 'types';
-
-// type AddPackPayload = {
-//   name?: string;
-//   deckCover?: string;
-//   private?: boolean;
-// };
 
 export const packApi = {
   getPacks(

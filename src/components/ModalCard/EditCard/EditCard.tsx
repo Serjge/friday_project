@@ -1,22 +1,28 @@
-import { memo, ReactElement, useCallback, useRef, useState } from 'react';
+import { memo, ReactElement, useCallback, useRef } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Modal, SuperButton, TextField } from 'components';
+import { useModal } from 'hook';
 import { RootReducerType } from 'store';
 import { selectAnswer, selectQuestion } from 'store/selectors';
 import { updateCardTC } from 'store/thunks';
 import { WrapperModal } from 'styles';
 
-export const EditCard = memo(({ cardId }: { cardId: string }): ReactElement => {
+type EditCardPropsType = {
+  cardId: string;
+};
+
+export const EditCard = memo(({ cardId }: EditCardPropsType): ReactElement => {
   const dispatch = useDispatch();
+
+  const { isActiveModal, openModal, closeModal } = useModal();
 
   const answer = useSelector((state: RootReducerType) => selectAnswer(state, cardId));
   const question = useSelector((state: RootReducerType) => selectQuestion(state, cardId));
 
   const newAnswer = useRef<HTMLInputElement>(null);
   const newQuestion = useRef<HTMLInputElement>(null);
-  const [isActive, setIsActive] = useState<boolean>(false);
 
   const onUpdateCardClick = useCallback((): void => {
     dispatch(
@@ -25,20 +31,12 @@ export const EditCard = memo(({ cardId }: { cardId: string }): ReactElement => {
         answer: newAnswer.current!.value,
       }),
     );
-    setIsActive(false);
+    closeModal();
   }, []);
-
-  const onCloseModalClick = useCallback((): void => {
-    setIsActive(false);
-  }, []);
-
-  const onOpenModalClick = (): void => {
-    setIsActive(true);
-  };
 
   return (
     <>
-      <Modal isActive={isActive} changeIsActive={setIsActive}>
+      <Modal isActive={isActiveModal} changeIsActive={closeModal}>
         <WrapperModal>
           <h3>Update card.</h3>
           <div>
@@ -56,13 +54,13 @@ export const EditCard = memo(({ cardId }: { cardId: string }): ReactElement => {
             />
           </div>
           <div>
-            <SuperButton onClick={onCloseModalClick}>Cancel</SuperButton>
+            <SuperButton onClick={closeModal}>Cancel</SuperButton>
             <SuperButton onClick={onUpdateCardClick}>Add</SuperButton>
           </div>
         </WrapperModal>
       </Modal>
-      <SuperButton size="small" onClick={onOpenModalClick}>
-        edit
+      <SuperButton size="small" onClick={openModal}>
+        Edit
       </SuperButton>
     </>
   );

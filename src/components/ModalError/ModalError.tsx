@@ -24,12 +24,12 @@ export const ModalError = (): ReactElement => {
     }, ModalErrorTimer.DELETE_ERROR_DELAY);
   };
 
-  const deb = useDebounce(CloseModal, ModalErrorTimer.AUTO_HIDE_DURATION_DELAY);
+  const debounce = useDebounce(CloseModal, ModalErrorTimer.AUTO_HIDE_DURATION_DELAY);
 
   useEffect(() => {
-    if (error !== null) {
+    if (error) {
       setIsError(true);
-      deb(error);
+      debounce(error);
     }
   }, [error]);
 

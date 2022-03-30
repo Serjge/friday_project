@@ -35,6 +35,7 @@ import {
 } from 'store/selectors';
 import { getPacksTC } from 'store/thunks';
 import { Flex } from 'styles';
+import { DataOnChangeType } from 'types';
 import { getNumberValuesFromEnum } from 'utils';
 
 export const PacksList = memo((): ReactElement => {
@@ -66,13 +67,10 @@ export const PacksList = memo((): ReactElement => {
     dispatch(setPageCountPacksAC(value));
   }, []);
 
-  const changeRange = useCallback(
-    ({ minVal, maxVal }: { minVal: number; maxVal: number }): void => {
-      dispatch(setLocalMinCardsCountAC(minVal));
-      dispatch(setLocalMaxCardsCountAC(maxVal));
-    },
-    [],
-  );
+  const changeRange = useCallback(({ minVal, maxVal }: DataOnChangeType): void => {
+    dispatch(setLocalMinCardsCountAC(minVal));
+    dispatch(setLocalMaxCardsCountAC(maxVal));
+  }, []);
 
   const handleRange = useDebounce(changeRange, DeBounceTimer.RANGE_DELAY);
 
@@ -98,7 +96,9 @@ export const PacksList = memo((): ReactElement => {
         <MultiRangeSlider min={minRange} max={maxRange} onChange={handleRange} />
         <SwitcherMyAll />
       </Flex>
+
       <TablePacks />
+
       <Pagination
         currentPage={currentPage}
         pagesCount={pagesCount}

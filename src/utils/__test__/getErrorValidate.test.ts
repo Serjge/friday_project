@@ -1,12 +1,12 @@
 import { ErrorValidateMessage } from 'enum';
-import { getErrorValidate } from 'utils';
+import { getValidErrorMessage } from 'utils';
 
 test('error validate', () => {
-  const result1 = getErrorValidate('required');
-  const result2 = getErrorValidate('minLength');
-  const result3 = getErrorValidate('validate');
-  const result4 = getErrorValidate('pattern');
-  const result5 = getErrorValidate('some text');
+  const result1 = getValidErrorMessage('required');
+  const result2 = getValidErrorMessage('minLength');
+  const result3 = getValidErrorMessage('validate');
+  const result4 = getValidErrorMessage('pattern');
+  const result5 = getValidErrorMessage('some text');
 
   expect(result1).toBe(ErrorValidateMessage.Required);
   expect(result2).toBe(ErrorValidateMessage.MinLength);

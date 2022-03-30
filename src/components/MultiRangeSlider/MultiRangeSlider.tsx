@@ -12,11 +12,7 @@ import {
 } from './style';
 
 import { RangeValue } from 'enum';
-
-type DataOnChangeType = {
-  minVal: number;
-  maxVal: number;
-};
+import { DataOnChangeType } from 'types';
 
 type MultiRangeSliderPropTypes = {
   min: number;

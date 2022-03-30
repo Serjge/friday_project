@@ -1,6 +1,4 @@
-export { SuperInputText } from './SuperInputText';
 export { SuperButton } from './SuperButton';
-
 export { TextField } from './TextField';
 export { Loading } from './Loading';
 export { SearchField } from './SearchField';

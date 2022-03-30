@@ -19,14 +19,10 @@ import { Flex, TableItem } from 'styles';
 
 type PackItemPropsType = {
   packId: string;
-  // eslint-disable-next-line react/no-unused-prop-types
   background?: string;
 };
 
 export const PackItem: FC<PackItemPropsType> = memo(({ packId, background }) => {
-  PackItem.defaultProps = {
-    background: undefined,
-  };
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -46,8 +42,8 @@ export const PackItem: FC<PackItemPropsType> = memo(({ packId, background }) => 
     selectUpdateDataPack(state, packId),
   );
 
-  const dataNew = new Date(updateDataPack);
-  const hiddenEditPackButton = userId === userIdPack;
+  const newData = new Date(updateDataPack);
+  const isMyPack = userId === userIdPack;
 
   const onOpenPackClick = (): void => {
     dispatch(setSearchQuestionCardsAC(''));
@@ -59,16 +55,16 @@ export const PackItem: FC<PackItemPropsType> = memo(({ packId, background }) => 
     <Flex background={background} justifyContent="center" alignItems="center">
       <TableItem flexBasis="30%">
         {namePack}
-        {hiddenEditPackButton && <EditNamePack namePack={namePack} packId={packId} />}
+        {isMyPack && <EditNamePack namePack={namePack} packId={packId} />}
       </TableItem>
       <TableItem flexBasis="10%">{cardsCount}</TableItem>
-      <TableItem flexBasis="10%">{dataNew.toLocaleDateString()}</TableItem>
+      <TableItem flexBasis="10%">{newData.toLocaleDateString()}</TableItem>
       <TableItem flexBasis="30%">{userNamePack}</TableItem>
       <TableItem flexBasis="20%">
         <SuperButton size="small" onClick={onOpenPackClick}>
           Open
         </SuperButton>
-        {hiddenEditPackButton && <DeletePack packId={packId} />}
+        {isMyPack && <DeletePack packId={packId} />}
         {!!cardsCount && <LearnPack packId={packId} cardsCount={cardsCount} />}
       </TableItem>
     </Flex>

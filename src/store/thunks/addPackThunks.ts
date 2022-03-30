@@ -1,5 +1,3 @@
-import { AxiosError } from 'axios';
-
 import { packApi } from 'api/packApi';
 import { StatusCode } from 'enum';
 import { rerenderPackAC, setResultMessageAddPackAC } from 'store/actions';
@@ -30,16 +28,8 @@ export const editTitlePackTC =
         dispatch(setResultMessageAddPackAC('Pack name changed'));
         dispatch(rerenderPackAC());
       }
-    } catch (errorCatch) {
-      const { response, message } = errorCatch as AxiosError;
-      const error = response?.data.error;
-      const status = response?.status;
-
-      if (status === StatusCode.Bad_Request) {
-        dispatch(setResultMessageAddPackAC(error));
-      } else {
-        dispatch(setResultMessageAddPackAC(message));
-      }
+    } catch (error) {
+      handleError(error, dispatch, StatusCode.Bad_Request);
     }
   };
 

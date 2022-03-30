@@ -4,15 +4,14 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
-import { PasswordField, SuperButton, TextField } from 'components';
-import { CheckBox } from 'components/UI/Checkbox/CheckBox';
+import { PasswordField, SuperButton, TextField, CheckBox } from 'components';
 import { PATH } from 'enum';
 import { ForgotPassword } from 'pages/Login/style';
 import { selectIsLogin } from 'store/selectors';
 import { setLoginDataThunkCreator } from 'store/thunks';
 import { Flex, HelpText, LinkStyle, Wrapper } from 'styles';
 import { LoginApiPayloadType } from 'types';
-import { getErrorValidate } from 'utils';
+import { getValidErrorMessage } from 'utils';
 
 export const Login = (): ReactElement => {
   const dispatch = useDispatch();
@@ -50,7 +49,7 @@ export const Login = (): ReactElement => {
             placeholder="Email"
             type="text"
             autoComplete="on"
-            error={getErrorValidate(email?.type)}
+            error={getValidErrorMessage(email?.type)}
           />
           <PasswordField
             {...register('password', { required: true, minLength: 8 })}
@@ -59,7 +58,7 @@ export const Login = (): ReactElement => {
             labelTitle="Password:"
             placeholder="Password"
             autoComplete="on"
-            error={getErrorValidate(password?.type)}
+            error={getValidErrorMessage(password?.type)}
           />
           <Flex justifyContent="space-between">
             <CheckBox

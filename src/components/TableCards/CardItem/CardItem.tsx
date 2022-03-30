@@ -15,16 +15,11 @@ import { Flex, TableItem } from 'styles';
 type CardItemPropsType = {
   cardId: string;
   isMyPack: boolean;
-  // eslint-disable-next-line react/no-unused-prop-types
   background?: string;
 };
 
 export const CardItem: FC<CardItemPropsType> = memo(
   ({ background, cardId, isMyPack }) => {
-    CardItem.defaultProps = {
-      background: undefined,
-    };
-
     const question = useSelector((state: RootReducerType) =>
       selectQuestion(state, cardId),
     );
@@ -34,13 +29,13 @@ export const CardItem: FC<CardItemPropsType> = memo(
       selectUpdateCard(state, cardId),
     );
 
-    const dataNew = new Date(updated);
+    const newData = new Date(updated);
 
     return (
       <Flex background={background} justifyContent="center" alignItems="center">
         <TableItem flexBasis="40%">{question}</TableItem>
         <TableItem flexBasis="40%">{answer}</TableItem>
-        <TableItem flexBasis="10%">{dataNew.toLocaleDateString()}</TableItem>
+        <TableItem flexBasis="10%">{newData.toLocaleDateString()}</TableItem>
         <TableItem flexBasis="10%">
           <Rating activeStars={grade} />
         </TableItem>

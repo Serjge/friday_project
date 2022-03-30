@@ -7,7 +7,7 @@ import { rerenderPackAC, setSortPacksAC } from 'store/actions';
 import { selectSortPacks } from 'store/selectors';
 import { Flex, TableHeadWithSorts } from 'styles';
 
-const tableHeadData = [
+const TABLE_HEAD_DATA = [
   {
     name: 'Name',
     sortType: 'name',
@@ -40,7 +40,7 @@ export const HeadTablePacks = memo((): ReactElement => {
 
   const onSortPacksClick = useSort(setSortPacksAC, rerenderPackAC, selectSortPacks);
 
-  const mapTableHead = tableHeadData.map(({ name, flexBasis, sortType }) => (
+  const tableHead = TABLE_HEAD_DATA.map(({ name, flexBasis, sortType }) => (
     <TableHeadWithSorts
       key={name + flexBasis}
       sortPack={sortPacks}
@@ -52,5 +52,5 @@ export const HeadTablePacks = memo((): ReactElement => {
     </TableHeadWithSorts>
   ));
 
-  return <Flex justifyContent="center">{mapTableHead}</Flex>;
+  return <Flex justifyContent="center">{tableHead}</Flex>;
 });
