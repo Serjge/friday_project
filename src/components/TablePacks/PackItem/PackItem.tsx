@@ -19,7 +19,6 @@ import { Flex, TableItem } from 'styles';
 
 type PackItemPropsType = {
   packId: string;
-  // eslint-disable-next-line react/no-unused-prop-types
   background?: string;
 };
 

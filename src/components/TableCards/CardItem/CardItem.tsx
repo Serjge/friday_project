@@ -15,7 +15,6 @@ import { Flex, TableItem } from 'styles';
 type CardItemPropsType = {
   cardId: string;
   isMyPack: boolean;
-  // eslint-disable-next-line react/no-unused-prop-types
   background?: string;
 };
 
