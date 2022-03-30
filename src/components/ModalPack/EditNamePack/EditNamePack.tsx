@@ -1,15 +1,13 @@
-import { ChangeEvent, FC, ReactElement, useState } from 'react';
+import { FC, ReactElement, useCallback, useRef } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
-
-import { FormDiv, MessageDiv } from './style';
+import { useDispatch } from 'react-redux';
 
 import { Modal } from 'components';
 import { SuperButton, TextField } from 'components/UI';
+import { useModal } from 'hook';
 import { PenIcon } from 'icon';
-import { setResultMessageAddPackAC } from 'store/actions';
-import { selectResultMessage } from 'store/selectors';
 import { editTitlePackTC } from 'store/thunks';
+import { WrapperModal } from 'styles';
 
 type EditNamePackPropsType = {
   namePack: string;
@@ -21,43 +19,33 @@ export const EditNamePack: FC<EditNamePackPropsType> = ({
   packId,
 }): ReactElement => {
   const dispatch = useDispatch();
-  const resultMessage = useSelector(selectResultMessage);
 
-  const [isActive, setIsActive] = useState<boolean>(false);
-  const [newPackTitle, setNewPackTitle] = useState<string>('');
+  const { isActiveModal, openModal, closeModal } = useModal();
+  const titleRef = useRef<HTMLInputElement>(null);
 
-  const editNamePack = (): void => {
-    dispatch(editTitlePackTC(packId, newPackTitle));
-  };
-
-  const setIsEditMod = (): void => {
-    setIsActive(false);
-    dispatch(setResultMessageAddPackAC(''));
-  };
-
-  const newPackTitleHandle = (e: ChangeEvent<HTMLInputElement>): void => {
-    setNewPackTitle(e.currentTarget.value);
-  };
+  const editNamePack = useCallback((): void => {
+    dispatch(editTitlePackTC(packId, titleRef.current!.value));
+    closeModal();
+  }, []);
 
   return (
     <div>
-      <Modal isActive={isActive} changeIsActive={setIsActive}>
-        <FormDiv>
+      <Modal isActive={isActiveModal} changeIsActive={closeModal}>
+        <WrapperModal>
           <h3>EDIT NAME PACK</h3>
           <TextField
+            ref={titleRef}
             labelTitle="New title"
             width="200px"
             defaultValue={namePack}
-            onChange={newPackTitleHandle}
           />
-          <MessageDiv>{resultMessage}</MessageDiv>
           <div>
-            <SuperButton onClick={setIsEditMod}>Cancel</SuperButton>
+            <SuperButton onClick={closeModal}>Cancel</SuperButton>
             <SuperButton onClick={editNamePack}>Edit</SuperButton>
           </div>
-        </FormDiv>
+        </WrapperModal>
       </Modal>
-      <div onClick={() => setIsActive(true)} role="presentation">
+      <div onClick={openModal} role="presentation">
         <PenIcon />
       </div>
     </div>
