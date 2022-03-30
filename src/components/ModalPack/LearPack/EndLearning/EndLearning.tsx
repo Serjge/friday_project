@@ -1,5 +1,7 @@
 import { FC, ReactElement, useCallback } from 'react';
 
+import { Title } from '../style';
+
 import { Modal, SuperButton } from 'components';
 import { ErrorType } from 'types';
 
@@ -13,7 +15,9 @@ export const EndLearning: FC<ErrorType> = ({
 
   return (
     <Modal isActive={active} changeIsActive={closeLearningWindow}>
-      <h2>End Pack</h2>
+      <Title>
+        <span>End Pack</span>
+      </Title>
       <SuperButton onClick={closeLearning}>Back</SuperButton>
     </Modal>
   );

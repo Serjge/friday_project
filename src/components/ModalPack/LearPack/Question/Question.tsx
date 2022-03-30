@@ -1,5 +1,9 @@
 import { FC, ReactElement, useCallback } from 'react';
 
+import { Buttons, Text, Title } from '../style';
+
+import { MainBlock } from './style';
+
 import { Modal } from 'components/Modal';
 import { SuperButton } from 'components/UI';
 import { QuestionType } from 'types';
@@ -17,12 +21,18 @@ export const Question: FC<QuestionType> = ({
 
   return (
     <Modal isActive={isActiveQuestion} changeIsActive={setIsActiveQuestion}>
-      <h3>Question:</h3>
-      <div>{question}</div>
-      <div>
-        <SuperButton onClick={closeLearnWindow}>Cancel</SuperButton>
-        <SuperButton onClick={openAnswer}>Show answer</SuperButton>
-      </div>
+      <MainBlock>
+        <div>
+          <Title>
+            <span>Question :</span>
+          </Title>
+          <Text>{question}</Text>
+        </div>
+        <Buttons>
+          <SuperButton onClick={closeLearnWindow}>Cancel</SuperButton>
+          <SuperButton onClick={openAnswer}>Show answer</SuperButton>
+        </Buttons>
+      </MainBlock>
     </Modal>
   );
 };

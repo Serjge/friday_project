@@ -1,5 +1,9 @@
 import { ChangeEvent, FC, ReactElement, useCallback, useState } from 'react';
 
+import { Title, Buttons, Text } from '../style';
+
+import { Rating, MainBlock } from './style';
+
 import { Modal, SuperButton, CheckBox } from 'components';
 import { GradesCards } from 'enum';
 import { AnswerType } from 'types';
@@ -40,13 +44,24 @@ export const Answer: FC<AnswerType> = ({
 
   return (
     <Modal isActive={isActiveAnswer} changeIsActive={setIsActiveAnswer}>
-      <h3>Answer:</h3>
-      <div>{answer}</div>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>{checkBoxes}</div>
-      <div>
-        <SuperButton onClick={setIsActiveAnswerCB}>Cancel</SuperButton>
-        <SuperButton onClick={setNextQuestion}>Next</SuperButton>
-      </div>
+      <MainBlock>
+        <div>
+          <Title>
+            <span>Answer :</span>
+          </Title>
+          <Text>{answer}</Text>
+        </div>
+        <div>
+          <Title>
+            <span>Rating :</span>
+          </Title>
+          <Rating>{checkBoxes}</Rating>
+        </div>
+        <Buttons>
+          <SuperButton onClick={setIsActiveAnswerCB}>Cancel</SuperButton>
+          <SuperButton onClick={setNextQuestion}>Next</SuperButton>
+        </Buttons>
+      </MainBlock>
     </Modal>
   );
 };

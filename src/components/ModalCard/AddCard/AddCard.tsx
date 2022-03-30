@@ -39,7 +39,7 @@ export const AddCard = memo(
               <TextField labelTitle="Answer" width="200px" ref={answer} />
             </div>
             <div>
-              <SuperButton onClick={openModal}>Cancel</SuperButton>
+              <SuperButton onClick={closeModal}>Cancel</SuperButton>
               <SuperButton onClick={onAddCardClick}>Add</SuperButton>
             </div>
           </WrapperModal>
