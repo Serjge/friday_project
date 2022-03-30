@@ -24,3 +24,4 @@ export type {
   QuestionType,
   AnswerType,
 } from './LearnPackTypes';
+export type { DataOnChangeType } from './DataOnChangeType';

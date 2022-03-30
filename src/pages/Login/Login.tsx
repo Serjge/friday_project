@@ -4,8 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
-import { PasswordField, SuperButton, TextField } from 'components';
-import { CheckBox } from 'components/UI/Checkbox/CheckBox';
+import { PasswordField, SuperButton, TextField, CheckBox } from 'components';
 import { PATH } from 'enum';
 import { ForgotPassword } from 'pages/Login/style';
 import { selectIsLogin } from 'store/selectors';

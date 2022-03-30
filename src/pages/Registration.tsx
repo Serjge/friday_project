@@ -62,6 +62,7 @@ export const Registration = (): ReactElement => {
           placeholder="Email"
           error={getValidErrorMessage(email?.type)}
         />
+
         <PasswordField
           type="password"
           labelTitle="Password"
@@ -70,6 +71,7 @@ export const Registration = (): ReactElement => {
           error={getValidErrorMessage(password?.type)}
           placeholder="Password"
         />
+
         <PasswordField
           labelTitle="Confirm password"
           type="password"
@@ -82,11 +84,17 @@ export const Registration = (): ReactElement => {
           placeholder="Confirm password"
           error={getValidErrorMessage(confirmPassword?.type)}
         />
+
         <Flex justifyContent="space-around" alignItems="flex-end">
-          <SuperButton onClick={onBackLoginClick} type="button">
+          <SuperButton size="big" onClick={onBackLoginClick} type="button">
             Cancel
           </SuperButton>
-          <SuperButton marginTop="90px" disabled={status === 'loading'} type="submit">
+          <SuperButton
+            size="big"
+            marginTop="90px"
+            disabled={status === 'loading'}
+            type="submit"
+          >
             Register
           </SuperButton>
         </Flex>
