@@ -10,4 +10,3 @@ export { Modal } from './Modal';
 export { AddCard, EditCard, DeleteCard } from './ModalCard';
 export { ModalError } from './ModalError';
 export { DeletePack, AddPack, LearnPack, EditNamePack } from './ModalPack';
-export type { DataOnChangeType } from './MultiRangeSlider';
