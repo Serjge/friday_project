@@ -9,7 +9,7 @@ import { PATH } from 'enum';
 import { forgotPasswordTC } from 'store/thunks';
 import { Flex, HelpText, LinkStyle, Wrapper } from 'styles';
 import { ForgotPasswordFormType, ForgotPasswordSendType } from 'types';
-import { getErrorValidate } from 'utils';
+import { getValidErrorMessage } from 'utils';
 
 export const ForgotPassword = (): ReactElement => {
   const navigate = useNavigate();
@@ -48,7 +48,7 @@ export const ForgotPassword = (): ReactElement => {
           placeholder="Email"
           type="text"
           autoComplete="on"
-          error={getErrorValidate(email?.type)}
+          error={getValidErrorMessage(email?.type)}
         />
         <Flex alignItems="center" flexDirection="column">
           <HelpText>

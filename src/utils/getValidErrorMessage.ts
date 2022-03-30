@@ -2,7 +2,9 @@ import { UndefinedAnd } from 'types';
 
 // export type GetErrorValidate = 'required' | 'minLength' | 'validate' | 'pattern'; // оставил, чтобы куда-нибудь добавить. Или здесь или в общий тип отправить.
 
-export const getErrorValidate = (type: UndefinedAnd<string>): UndefinedAnd<string> => {
+export const getValidErrorMessage = (
+  type: UndefinedAnd<string>,
+): UndefinedAnd<string> => {
   switch (type) {
     case 'required':
       return 'This field is required';

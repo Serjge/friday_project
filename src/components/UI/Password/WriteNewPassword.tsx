@@ -10,7 +10,7 @@ import { PasswordField, SuperButton } from 'components';
 import { sendNewPasswordTC } from 'store/thunks';
 import { Wrapper } from 'styles';
 import { CreateNewPasswordType, SendNewPasswordType } from 'types';
-import { getErrorValidate } from 'utils';
+import { getValidErrorMessage } from 'utils';
 
 export const WriteNewPassword = (): ReactElement => {
   const dispatch = useDispatch();
@@ -46,8 +46,9 @@ export const WriteNewPassword = (): ReactElement => {
           labelTitle="New Password:"
           placeholder="Password"
           autoComplete="no"
-          error={getErrorValidate(password?.type)}
+          error={getValidErrorMessage(password?.type)}
         />
+
         <PasswordField
           labelTitle="Confirm password"
           type="password"
@@ -58,11 +59,11 @@ export const WriteNewPassword = (): ReactElement => {
           })}
           id="confirmPassword"
           placeholder="Confirm password"
-          error={getErrorValidate(confirmPassword?.type)}
+          error={getValidErrorMessage(confirmPassword?.type)}
         />
 
         <CreatePasswordDiv>
-          <SuperButton marginTop="90px" type="submit" value="create">
+          <SuperButton size="big" marginTop="90px" type="submit" value="create">
             Create new password
           </SuperButton>
         </CreatePasswordDiv>

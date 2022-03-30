@@ -9,7 +9,7 @@ import { PATH } from 'enum';
 import { selectRegistrationIsCompleted, selectStatus } from 'store/selectors';
 import { registrationTC } from 'store/thunks';
 import { Flex, Wrapper } from 'styles';
-import { getErrorValidate } from 'utils';
+import { getValidErrorMessage } from 'utils';
 
 type Inputs = {
   email: string;
@@ -60,14 +60,14 @@ export const Registration = (): ReactElement => {
             pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
           })}
           placeholder="Email"
-          error={getErrorValidate(email?.type)}
+          error={getValidErrorMessage(email?.type)}
         />
         <PasswordField
           type="password"
           labelTitle="Password"
           disabled={status === 'loading'}
           {...register('password', { required: true, minLength: 8 })}
-          error={getErrorValidate(password?.type)}
+          error={getValidErrorMessage(password?.type)}
           placeholder="Password"
         />
         <PasswordField
@@ -80,7 +80,7 @@ export const Registration = (): ReactElement => {
             validate: value => value === getValues('password'),
           })}
           placeholder="Confirm password"
-          error={getErrorValidate(confirmPassword?.type)}
+          error={getValidErrorMessage(confirmPassword?.type)}
         />
         <Flex justifyContent="space-around" alignItems="flex-end">
           <SuperButton onClick={onBackLoginClick} type="button">

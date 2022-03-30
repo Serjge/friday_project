@@ -28,7 +28,7 @@ export const PasswordSuccessfulChanged = (): ReactElement => {
       <HelpText>
         Your password has been changed successfully. Use your new password to log in.
       </HelpText>
-      <SuperButton marginTop="90px" onClick={toLoginHandler}>
+      <SuperButton size="big" marginTop="90px" onClick={toLoginHandler}>
         Login
       </SuperButton>
     </Wrapper>
