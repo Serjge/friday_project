@@ -6,8 +6,9 @@ const OPACITY_0 = 0;
 export const MainBlock = styled.div<{ isActive: boolean }>`
   height: 100vh;
   width: 100vw;
-  background-color: rgb(7, 20, 28);
+  background-color: ${({ theme }) => theme.backgroundColor};
   position: fixed;
+  z-index: 0;
   top: 0;
   left: 0;
   display: flex;

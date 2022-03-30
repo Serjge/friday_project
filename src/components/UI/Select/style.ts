@@ -12,12 +12,12 @@ export const Title = styled.div`
   justify-content: center;
   width: 100px;
   height: 30px;
-  border: #13d7a1 solid 2px;
-  background-color: rgb(40, 44, 52);
+  border: ${({ theme }) => theme.mainColor} solid 2px;
+  background-color: ${({ theme }) => theme.backgroundColor};
   margin: 0 5px 5px;
 
   &:hover {
-    box-shadow: rgb(60, 255, 228) 0 0 10px;
+    box-shadow: ${({ theme }) => theme.mainColor} 0 0 10px;
   }
 `;
 
@@ -33,20 +33,19 @@ export const Items = styled.div<{ isActive: boolean }>`
   justify-content: space-evenly;
   width: 100px;
   height: auto;
-  border: #13d7a1 solid 2px;
-  background-color: rgb(40, 44, 52);
+  border: ${({ theme }) => theme.mainColor} solid 2px;
+  background-color: ${({ theme }) => theme.backgroundColor};
   opacity: ${({ isActive }) => (isActive ? OPACITY_IS_ACTIVE : OPACITY_IS_NOT_ACTIVE)};
 `;
 
 export const Item = styled.div<{ isCurrentCount: boolean }>`
   display: flex;
   justify-content: center;
-  background-color: ${({ isCurrentCount }) => isCurrentCount && '#13d7a1'};
+  background-color: ${({ isCurrentCount, theme }) => isCurrentCount && theme.mainColor};
   width: 100%;
   height: 30px;
 
   &:hover {
-    background-color: #13d7a1;
-    box-shadow: rgb(60, 255, 228) 0 0 10px;
+    background-color: ${({ theme }) => theme.mainColor};
   }
 `;

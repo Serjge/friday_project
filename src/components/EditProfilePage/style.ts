@@ -13,7 +13,7 @@ export const EditPersonalInfo = styled.div`
   align-items: center;
   height: 620px;
   width: 650px;
-  border: 1px solid cornflowerblue;
+  border: 1px solid ${({ theme }) => theme.mainColor};
   border-radius: 5px;
 `;
 
