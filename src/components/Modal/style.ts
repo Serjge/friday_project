@@ -6,9 +6,9 @@ const OPACITY_0 = 0;
 export const MainBlock = styled.div<{ isActive: boolean }>`
   height: 100vh;
   width: 100vw;
-  background-color: ${({ theme }) => theme.backgroundColor};
+  background-color: ${({ theme }) => theme.backgroundModalColor};
   position: fixed;
-  z-index: 0;
+  z-index: 10;
   top: 0;
   left: 0;
   display: flex;
@@ -26,7 +26,8 @@ export const ContentBlock = styled.div<{ isActive: boolean }>`
   min-width: 300px;
   max-width: 500px;
   min-height: 200px;
-  background-color: #202c3a;
+  z-index: 3;
+  background-color: ${({ theme }) => theme.backgroundContentModalColor};
   display: flex;
   flex-direction: column;
   align-items: center;

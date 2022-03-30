@@ -27,14 +27,14 @@ export const Answer: FC<AnswerType> = ({
     setIsActiveAnswer(false);
   }, []);
 
-  const checkBoxes = GradesCards.map(grade => (
+  const checkBoxes = GradesCards.map(({ value, name }) => (
     <CheckBox
       type="checkbox"
-      key={grade.value}
-      checked={grade.value === currentGrade}
+      key={value}
+      checked={value === currentGrade}
       onChange={handleGrade}
-      value={grade.value}
-      labelTitle={grade.name}
+      value={value}
+      labelTitle={name}
     />
   ));
 

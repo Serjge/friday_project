@@ -1,7 +1,6 @@
 import { DefaultTheme } from 'styled-components';
 
 export const darkTheme: DefaultTheme = {
-  backgroundColor: '#282c34',
   fontColor: '#fefefe',
   borderColor: '#fefefe',
   errorColor: 'darkred',
@@ -9,4 +8,7 @@ export const darkTheme: DefaultTheme = {
   helpTextColor: '#bdbdbd',
   tableLineColor: '#383e49',
   tableHeadColor: '#21252b',
+  backgroundColor: '#282c34',
+  backgroundModalColor: 'rgba(40,44,52,0.78)',
+  backgroundContentModalColor: '#383e49',
 };
