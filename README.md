@@ -16,16 +16,11 @@ You have deck with cards. Every card has question and answer. After answer, you 
 
 ## stack:
 
-- #### typescript 
-- #### react
-- #### react-dom
-- #### react-hook-form
-- #### react-router-dom
-- #### redux
-- #### react-redux
-- #### redux-thunk
-- #### axios 
-- #### styled-components
+- ### typescript 
+- ### react / react-dom / react-hook-form / react-router-dom
+- ### redux / react-redux / redux-thunk
+- ### axios 
+- ### styled-components
 
 
 
