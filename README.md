@@ -1,4 +1,3 @@
-
 <p align="center">
     <img src="./src/icon/img/icon_readme.png" alt="Logo" width="200px">
 </p>
@@ -10,17 +9,18 @@
     Do you want to check yourself ?
 </p>
 
-***
-
-You have deck with cards. Every card has question and answer. After answer, you can rate a card. You can create new card and change existing card. There is searching about  card's name and about count cards. The application has pages: login, registration, profile (there is avatar and your name), page with deck and page with cards.
+You have deck with cards. Every card has question and answer. After answer, you can
+rate a card. You can create new card and change existing card. There is searching
+about card's name and about count cards. The application has pages: login,
+registration, profile (there is avatar and your name), page with deck and page with
+cards.
 
 ## stack:
 
-
-- #### typescript 
+- #### typescript
 - #### react / react-dom / react-hook-form / react-router-dom
 - #### redux / react-redux / redux-thunk
-- #### axios 
+- #### axios
 - #### styled-components
 
 
