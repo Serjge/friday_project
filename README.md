@@ -15,7 +15,9 @@ about card's name and about count cards. The application has pages: login,
 registration, profile (there is avatar and your name), page with deck and page with
 cards.
 
-## stack:
+<p align="center">
+    <h3 align="center">Stack :</h3>
+</p>
 
 - #### typescript
 - #### react / react-dom / react-hook-form / react-router-dom
