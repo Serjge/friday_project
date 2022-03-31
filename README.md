@@ -26,3 +26,4 @@ cards.
 - #### styled-components
 
 <p align="center"><a src="https://github.com/Serjge/friday_project/">_____ Result _____</a></p>
+
