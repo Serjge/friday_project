@@ -25,4 +25,4 @@ cards.
 - #### axios
 - #### styled-components
 
-<p align="center"><a src="https://github.com/Serjge/friday_project/">_____ Result _____</a></p>
+- ### [Result](https://serjge.github.io/friday_project/)
