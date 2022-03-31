@@ -9,12 +9,14 @@ beforeEach(() => {
   };
 });
 
-test('change isLogin', () => {
-  const action = setIsLoginAC(true);
+describe('login reducer', () => {
+  test('change isLogin', () => {
+    const action = setIsLoginAC(true);
 
-  const endState = loginReducer(initialState, action);
+    const endState = loginReducer(initialState, action);
 
-  expect(endState).not.toBe(initialState);
-  expect(endState.isLogin).toBeTruthy();
-  expect(initialState.isLogin).toBeFalsy();
+    expect(endState).not.toBe(initialState);
+    expect(endState.isLogin).toBeTruthy();
+    expect(initialState.isLogin).toBeFalsy();
+  });
 });
