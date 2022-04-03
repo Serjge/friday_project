@@ -24,5 +24,6 @@ cards. </p>
 - #### redux / react-redux / redux-thunk
 - #### axios
 - #### styled-components
+- #### eslint prettier
 
 - ### [Result](https://serjge.github.io/friday_project/)
